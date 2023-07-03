@@ -47,6 +47,7 @@
 <!--									<th style="text-align: center;"><input type="checkbox" id="allChk" value="입금완료th"></th>-->
 									<th></th>
 									<th>회원여부</th>
+									<th>접수번호</th>
 									<th>구분1</th>
 									<th>구분2</th>
 									<th style="min-width: 100px">면허번호</th>
@@ -60,6 +61,7 @@
 									<th>QR 생성여부</th>
 									<th>입장시간</th>
 									<th>퇴장시간</th>
+									<th>메모</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -68,6 +70,7 @@
 									echo '<tr>';
 									echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="'.  $item['id'] .'"></td>';
 									echo '<td>' . $item['type3'] . '</td>';
+									echo '<td>' . $item['registration_no'] . '</td>';
 									echo '<td>' . $item['type'] . '</td>';
 									echo '<td>' . $item['type2'] . '</td>';
 									echo '<td>' . $item['sn'] . '</td>';
@@ -97,6 +100,7 @@
 
 									echo '<td>' . $item['mintime'] . '</td>';
 									echo '<td>' . $item['maxtime'] . '</td>';
+									echo '<td>' . $item['memo'] . '</td>';
 									echo '</tr>';
 								}
 								?>
