@@ -3108,9 +3108,9 @@ fieldset[disabled] .btn-default.focus {
   background-color: #333;
 }
 .btn-primary {
-  color: #fff;
-  background-color: #2196F3;
-  border-color: #2196F3;
+  color: #ffffff;
+  background-color: #007aff;
+  border-color: #007aff;
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -3222,20 +3222,20 @@ fieldset[disabled] .btn-success.focus {
   background-color: #fff;
 }
 .btn-info {
-  color: #fff;
-  background-color: #00BCD4;
-  border-color: #00BCD4;
+  color: #000a66;
+  background-color: #fff;
+  border-color: #000a66;
 }
 .btn-info:focus,
 .btn-info.focus {
   color: #fff;
-  background-color: #008fa1;
-  border-color: #004b55;
+  background-color: #000a66;
+  border-color: #000a66;
 }
 .btn-info:hover {
   color: #fff;
-  background-color: #008fa1;
-  border-color: #008697;
+  background-color: #000a66;
+  border-color: #000a66;
 }
 .btn-info:active,
 .btn-info.active,
@@ -3279,9 +3279,9 @@ fieldset[disabled] .btn-info.focus {
   background-color: #fff;
 }
 .btn-warning {
-  color: #fff;
-  background-color: #FF5722;
-  border-color: #FF5722;
+  color: #ff8400;
+  /* background-color: #ff8400; */
+  border-color: #ff8400;
 }
 .btn-warning:focus,
 .btn-warning.focus {

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 require __DIR__ . '/../../vendor/autoload.php';
 
 class breaktime
@@ -8,9 +8,10 @@ class breaktime
     public $end;
 }
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
 
@@ -25,67 +26,85 @@ class Admin extends CI_Controller {
         $this->load->library("time_spent");
     }
 
-	public function index()
-	{
-		
-		$this->load->view('admin/header');
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
-			// 
-			$data['primary_menu'] = 'users';
-			$data['users'] = $this->users->get_users_time();
+    public function index()
+    {
 
-			$this->load->view('admin/left_side.php', $data);
-			$this->load->view('admin/users', $data);
-		}
-		$this->load->view('footer');
-	}
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            // 
+            $data['primary_menu'] = 'users';
+            $data['users'] = $this->users->get_users_time();
 
-	public function abstracts()
-	{
-		
-		$this->load->view('admin/header');
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
-			// 
-			$data['primary_menu'] = 'abstracts';
-			$data['abstracts'] = $this->users->get_abstracts_users();
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/users', $data);
+        }
+        $this->load->view('footer');
+    }
+    public function qr_user()
+    {
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            // 
+            $data['primary_menu'] = 'user_qr';
+            $data['users'] = $this->users->get_users_time();
 
-			$this->load->view('admin/left_side.php', $data);
-			$this->load->view('admin/abstracts', $data);
-		}
-		$this->load->view('footer');
-	}
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/qr_user', $data);
+        }
+        $this->load->view('footer');
+    }
 
-	public function login(){
-		$user_id = $this->input->post("user_id");
-		$user_pass = $this->input->post("user_pass");
 
-		if($user_id == ADMIN_ID && $user_pass == ADMIN_PASS){
-			$this->session->set_userdata('admin_data', array(
-	            'logged_in' => true
-	        ));
-		}
-		redirect('admin');
-	}
+    public function abstracts()
+    {
 
-	public function log_out(){
-		unset($_SESSION["admin_data"]);
-		redirect('admin');
-	}
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            // 
+            $data['primary_menu'] = 'abstracts';
+            $data['abstracts'] = $this->users->get_abstracts_users();
 
-	public function excel_download(){
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/abstracts', $data);
+        }
+        $this->load->view('footer');
+    }
+
+    public function login()
+    {
+        $user_id = $this->input->post("user_id");
+        $user_pass = $this->input->post("user_pass");
+
+        if ($user_id == ADMIN_ID && $user_pass == ADMIN_PASS) {
+            $this->session->set_userdata('admin_data', array(
+                'logged_in' => true
+            ));
+        }
+        redirect('admin');
+    }
+
+    public function log_out()
+    {
+        unset($_SESSION["admin_data"]);
+        redirect('admin');
+    }
+
+    public function excel_download()
+    {
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
-        
-        $table_columns = array("회원여부", "구분1","구분2", "면허번호", "이름", "전화번호", "이메일", "소속", "주소", "등록비", "입금자명", "입금예정일", "입금여부", "등록시각");
+
+        $table_columns = array("회원여부", "구분1", "구분2", "면허번호", "이름", "전화번호", "이메일", "소속", "주소", "등록비", "입금자명", "입금예정일", "입금여부", "등록시각");
 
         $column = 0;
 
-        foreach($table_columns as $field)
-        {
+        foreach ($table_columns as $field) {
             $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
             $column++;
         }
@@ -94,8 +113,7 @@ class Admin extends CI_Controller {
 
         $list = $this->users->get_users();
 
-        foreach($list as $row)
-        {
+        foreach ($list as $row) {
 
             $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row['type3']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row['type']);
@@ -114,7 +132,7 @@ class Admin extends CI_Controller {
 
             $excel_row++;
         }
-        
+
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="학회등록명단.xlsx"');
 
@@ -122,18 +140,18 @@ class Admin extends CI_Controller {
 
         $object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
         $object_writer->save('php://output');
-	}
+    }
 
-	public function excel_download_abstract(){
+    public function excel_download_abstract()
+    {
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
-        
+
         $table_columns = array("이름", "이메일", "전화번호", "소속", "파일명", "파일경로", "파일이름", "등록시각");
 
         $column = 0;
 
-        foreach($table_columns as $field)
-        {
+        foreach ($table_columns as $field) {
             $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
             $column++;
         }
@@ -142,8 +160,7 @@ class Admin extends CI_Controller {
 
         $list = $this->users->get_abstracts_users();
 
-        foreach($list as $row)
-        {
+        foreach ($list as $row) {
 
             $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row['name']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row['email']);
@@ -156,7 +173,7 @@ class Admin extends CI_Controller {
 
             $excel_row++;
         }
-        
+
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="초록제출인원.xlsx"');
 
@@ -164,31 +181,31 @@ class Admin extends CI_Controller {
 
         $object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
         $object_writer->save('php://output');
-	}
+    }
 
 
-    function deposit_check(){
+    function deposit_check()
+    {
 
-            $userId = $this->input->post('userId');
+        $userId = $this->input->post('userId');
 
-            foreach($userId as $value){
-                $info = array(
-                    'deposit' =>  '입금완료'
-                );
-                $where = array(
-                    'id' => $value,
-                    'deposit' => '미결제'
-                );
-                $this->users->update_deposit_status($info, $where);
-
-            }
-
-		$this->load->view('admin/d_success');
-
+        foreach ($userId as $value) {
+            $info = array(
+                'deposit' =>  '입금완료'
+            );
+            $where = array(
+                'id' => $value,
+                'deposit' => '미결제'
+            );
+            $this->users->update_deposit_status($info, $where);
         }
 
+        $this->load->view('admin/d_success');
+    }
 
-    function qr_generate(){
+
+    function qr_generate()
+    {
         $userPhone = $_GET['n'];
         $info = array(
             'qr_chk' =>  'Y'
@@ -202,7 +219,7 @@ class Admin extends CI_Controller {
         $upload_dir = $dir . '/';
         $filename =  'qrcode_' . $userPhone . '.png';
 
-        if(is_dir($dir) != true){
+        if (is_dir($dir) != true) {
             mkdir($dir, 0700);
         }
 
@@ -210,21 +227,21 @@ class Admin extends CI_Controller {
         //유효성체크 제거
         //$rop = array( "options" => array("regexp"=>"/^(\d){9,10,11}$/"));
         //if(filter_var($userPhone, FILTER_VALIDATE_REGEXP, $rop)){
-            $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir.$filename);
-            $this->users->update_qr_status($info, $where);
-            $this->load->view('admin/qr_success');
+        $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir . $filename);
+        $this->users->update_qr_status($info, $where);
+        $this->load->view('admin/qr_success');
         //}
     }
 
 
-    function qr_generate_all(){
+    function qr_generate_all()
+    {
         $list = $this->users->get_users();
-//        var_dump($list);
+        //        var_dump($list);
 
         $dir = "././assets/images/QR";
         $upload_dir = $dir . '/';
-        foreach($list as $row)
-        {
+        foreach ($list as $row) {
             $userPhone = $row['phone'];
             $info = array(
                 'qr_chk' =>  'Y'
@@ -237,57 +254,57 @@ class Admin extends CI_Controller {
             $str = 'http://conf.webeon.net/access/record/' . $userPhone;
             $filename =  'qrcode_' . $userPhone . '.png';
 
-            if(is_dir($dir) != true){
+            if (is_dir($dir) != true) {
                 mkdir($dir, 0700);
             }
 
             //유효성체크 제거
             //$rop = array( "options" => array("regexp"=>"/^(\d){9,10,11}$/"));
             //if(filter_var($userPhone, FILTER_VALIDATE_REGEXP, $rop)){
-                $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir.$filename);
-                $this->users->update_qr_status($info, $where);
+            $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir . $filename);
+            $this->users->update_qr_status($info, $where);
             //}
         }
         $this->load->view('admin/qr_success');
-
     }
 
 
-    function qr_layout(){
+    function qr_layout()
+    {
 
-		$this->load->view('admin/header');
-            $userId = $_GET['n'];
-            $where = array(
-                'phone' => $userId
-            );
-			$data['users'] = $this->users->get_user($where);
-//                var_dump($data['users']);
-		$this->load->view('admin/qr_layout', $data);
+        $this->load->view('admin/header');
+        $userId = $_GET['n'];
+        $where = array(
+            'phone' => $userId
+        );
+        $data['users'] = $this->users->get_user($where);
+        //                var_dump($data['users']);
+        $this->load->view('admin/qr_layout', $data);
+    }
 
-        }
 
+    function qr_layout_all()
+    {
 
-    function qr_layout_all(){
-
-		$this->load->view('admin/header');
+        $this->load->view('admin/header');
         $userType = $_GET['type'];
 
-        if($userType=='03'){
+        if ($userType == '03') {
             $where = array(
                 'nick_name' => '이원영'
             );
-        }else{
-            if($userType=='01'){
+        } else {
+            if ($userType == '01') {
                 $userType = '일반참가자';
-            }else if($userType=='02'){
+            } else if ($userType == '02') {
                 $userType = '임원';
-            }else if($userType=='04'){
+            } else if ($userType == '04') {
                 $userType = '패널';
-            }else if($userType=='05'){
+            } else if ($userType == '05') {
                 $userType = '연자';
-            }else if($userType=='06'){
+            } else if ($userType == '06') {
                 $userType = '좌장';
-            }else if($userType=='07'){
+            } else if ($userType == '07') {
                 $userType = '후원사';
             }
             $where = array(
@@ -296,87 +313,87 @@ class Admin extends CI_Controller {
         }
 
         $data['users'] = $this->users->get_users_order('nick_name', $where);
-//        var_dump($data['users']);
-		$this->load->view('admin/qr_layout_all', $data);
+        //        var_dump($data['users']);
+        $this->load->view('admin/qr_layout_all', $data);
+    }
 
-        }
 
+    function qr_layout_post()
+    {
 
-    function qr_layout_post(){
-
-		$this->load->view('admin/header');
+        $this->load->view('admin/header');
 
         $userId = $this->input->post('userId');
         $data['users'] = $this->users->get_user_check($userId);
 
-//        var_dump($data['users']);
+        //        var_dump($data['users']);
 
-		$this->load->view('admin/qr_layout_all', $data);
+        $this->load->view('admin/qr_layout_all', $data);
+    }
 
+    public function user_detail()
+    {
+
+        $this->load->view('admin/header');
+
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            //
+            $data['primary_menu'] = 'users';
+            $userId = $_GET['n'];
+            $where = array(
+                'phone' => $userId
+            );
+            $data['item'] = $this->users->get_user($where);
+            $data['item2'] = $this->entrance->access($where);
+
+            //            var_dump($data['item2']);
+
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/user_detail', $data);
         }
+        $this->load->view('footer');
+    }
 
-	public function user_detail(){
 
-		$this->load->view('admin/header');
 
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
+    public function user_detail_bak()
+    {
+
+        $this->load->view('admin/header');
+
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
             $this->load->helper('form');
             $this->load->library('form_validation');
-			//
-			$data['primary_menu'] = 'users';
+            //
+            $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
                 'phone' => $userId
             );
-			$data['item'] = $this->users->get_user($where);
-			$data['item2'] = $this->entrance->access($where);
+            $data['item'] = $this->users->get_user($where);
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/user_detail_bak', $data);
+        }
+        $this->load->view('footer');
+    }
 
-//            var_dump($data['item2']);
+    public function add_user()
+    {
 
-			$this->load->view('admin/left_side.php', $data);
-			$this->load->view('admin/user_detail', $data);
+        $this->load->view('admin/header');
 
-
-		}
-		$this->load->view('footer');
-	}
-
-	public function user_detail_bak(){
-
-		$this->load->view('admin/header');
-
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
-            $this->load->helper('form');
-            $this->load->library('form_validation');
-			//
-			$data['primary_menu'] = 'users';
-            $userId = $_GET['n'];
-            $where = array(
-                'phone' => $userId
-            );
-			$data['item'] = $this->users->get_user($where);
-			$this->load->view('admin/left_side.php', $data);
-			$this->load->view('admin/user_detail_bak', $data);
-
-
-		}
-		$this->load->view('footer');
-	}
-
-	public function add_user(){
-
-		$this->load->view('admin/header');
-
-		if(!isset($this->session->admin_data['logged_in'])){
-			$this->load->view('admin/login');
-        }else{
-			//
-			$data['primary_menu'] = 'users';
-			$this->load->view('admin/left_side.php', $data);
+        if (!isset($this->session->admin_data['logged_in'])) {
+            $this->load->view('admin/login');
+        } else {
+            //
+            $data['primary_menu'] = 'users';
+            $this->load->view('admin/left_side.php', $data);
             $this->load->helper('form');
             $this->load->library('form_validation');
 
@@ -384,9 +401,9 @@ class Admin extends CI_Controller {
             $this->form_validation->set_rules('org', '소속', 'required');
             $this->form_validation->set_rules('phone', '전화번호', 'required');
 
-            if ($this->form_validation->run() === FALSE){
+            if ($this->form_validation->run() === FALSE) {
                 $this->load->view('admin/add_user');
-            }else{
+            } else {
                 $name = $this->input->post('nick_name');
                 $license = $this->input->post('sn');
                 $org = $this->input->post('org');
@@ -401,23 +418,23 @@ class Admin extends CI_Controller {
                 $extraAddress = $this->input->post('extraAddress');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
-                if($type2 =='개원의' || $type2 =='봉직의' || $type2 =='전문의' || $type2 =='교수' || $type2 =='군의관') {
-                    if($type == '좌장'||$type == '연자'||$type == '패널'){
+                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
+                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
                         $fee = 0;
-                    }else{
-                        if($type3 == '비회원'){
+                    } else {
+                        if ($type3 == '비회원') {
                             $fee = 50000;
-                        }else{
+                        } else {
                             $fee = 30000;
                         }
                     }
-                } else if($type2 =='간호사' || $type2 =='영양사' || $type2 =='약사' || $type2 =='운동처방사' || $type2 =='연구원') {
-                    if($type == '좌장'||$type == '연자'||$type == '패널'){
+                } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
+                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
                         $fee = 0;
-                    }else{
-                        if($type3 == '비회원'){
+                    } else {
+                        if ($type3 == '비회원') {
                             $fee = 40000;
-                        }else{
+                        } else {
                             $fee = 20000;
                         }
                     }
@@ -435,7 +452,7 @@ class Admin extends CI_Controller {
                 $time = date("Y-m-d H:i:s");
                 $uagent = $this->agent->agent_string();
 
-    //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
+                //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
 
                 $info = array(
                     'nick_name' => preg_replace("/\s+/", "", $name),
@@ -456,66 +473,91 @@ class Admin extends CI_Controller {
                     'deposit_date' => $deposit_date,
                     'deposit_name' => $deposit_name
                 );
-//                var_dump($info);
+                //                var_dump($info);
                 $this->users->add_user($info);
                 $this->load->view('admin/add_success');
             }
+        }
+        $this->load->view('footer');
+    }
 
-		}
-		$this->load->view('footer');
-	}
+    public function memo()
+    {
 
-	public function delete_user()
-	{
-
-		$this->load->view('admin/header');
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
-            $userId = $_GET['d'];
-            $where = array(
-                'phone' => $userId
-            );
-			$del_chk = $this->users->num_row($where);
-            if($del_chk==1){
-                $this->users->del_user($where);
-                $this->load->view('admin/user_delete_success');
-            }else{
-                $this->load->view('admin/user_delete_fail');
-            }
-		  $this->load->view('footer');
-
-		}
-	}
-
-	public function update_user()
-	{
-
-		$this->load->view('admin/header');
-
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
             $this->load->helper('form');
             $this->load->library('form_validation');
-			//
-			$data['primary_menu'] = 'users';
+            // 
+            $data['primary_menu'] = 'user_qr';
             $userId = $_GET['n'];
             $where = array(
                 'phone' => $userId
             );
-			$this->load->view('admin/left_side.php', $data);
+            $data['item'] = $this->users->get_user($where);
+
+            $this->form_validation->set_rules('memo', 'Memo', 'required');
+
+            if ($this->form_validation->run() === FALSE) {
+                $this->load->view('admin/memo', $data);
+            } else {
+
+                $memo = $this->input->post('memo');
+
+                $info = array("memo" => $memo);
+
+                $this->users->add_memo($info, $where);
+            }
+        }
+    }
+    public function delete_user()
+    {
+
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $_GET['d'];
+            $where = array(
+                'phone' => $userId
+            );
+            $del_chk = $this->users->num_row($where);
+            if ($del_chk == 1) {
+                $this->users->del_user($where);
+                $this->load->view('admin/user_delete_success');
+            } else {
+                $this->load->view('admin/user_delete_fail');
+            }
+            $this->load->view('footer');
+        }
+    }
+
+    public function update_user()
+    {
+
+        $this->load->view('admin/header');
+
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            //
+            $data['primary_menu'] = 'users';
+            $userId = $_GET['n'];
+            $where = array(
+                'phone' => $userId
+            );
+            $this->load->view('admin/left_side.php', $data);
 
             $this->form_validation->set_rules('nick_name', '이름', 'required');
             $this->form_validation->set_rules('phone', '전화번호', 'required');
             $this->form_validation->set_rules('org', '소속', 'required');
 
-            if ($this->form_validation->run() === FALSE)
-            {
-//                $this->load->view('admin');
-            }
-            else
-            {
+            if ($this->form_validation->run() === FALSE) {
+                //                $this->load->view('admin');
+            } else {
                 $type = $this->input->post('type1');
                 $type2 = $this->input->post('type2');
                 $type3 = $this->input->post('type3');
@@ -529,23 +571,23 @@ class Admin extends CI_Controller {
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
 
-                if($type2 =='개원의' || $type2 =='봉직의' || $type2 =='전문의' || $type2 =='교수'|| $type2 =='군의관') {
-                    if($type == '좌장'||$type == '연자'||$type == '패널'){
+                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
+                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
                         $fee = 0;
-                    }else{
-                        if($type3 == '비회원'){
+                    } else {
+                        if ($type3 == '비회원') {
                             $fee = 50000;
-                        }else{
+                        } else {
                             $fee = 30000;
                         }
                     }
-                } else if($type2 =='간호사' || $type2 =='영양사' || $type2 =='약사' || $type2 =='운동처방사' || $type2 =='연구원') {
-                    if($type == '좌장'||$type == '연자'||$type == '패널'){
+                } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
+                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
                         $fee = 0;
-                    }else{
-                        if($type3 == '비회원'){
+                    } else {
+                        if ($type3 == '비회원') {
                             $fee = 40000;
-                        }else{
+                        } else {
                             $fee = 20000;
                         }
                     }
@@ -580,14 +622,15 @@ class Admin extends CI_Controller {
 
                 $this->users->update_user($info, $where);
                 $data['item'] = $this->users->get_user($where);
-//                $this->load->view('admin/user_detail', $data);
+                //                $this->load->view('admin/user_detail', $data);
                 $this->load->view('admin/user_update_success', $data);
             }
-		}
-		$this->load->view('footer');
-	}
+        }
+        $this->load->view('footer');
+    }
 
-	public function qr_excel_download(){
+    public function qr_excel_download()
+    {
 
         function hoursandmins($time, $format = '%02d시간 %02d분')
         {
@@ -607,14 +650,13 @@ class Admin extends CI_Controller {
 
         $column = 0;
 
-        foreach($table_columns as $field)
-        {
+        foreach ($table_columns as $field) {
             $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
-             $object->getActiveSheet()->getStyle('B2')->getAlignment()->applyFromArray(
-                     array(
-                         'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER
-                     )
-             );
+            $object->getActiveSheet()->getStyle('B2')->getAlignment()->applyFromArray(
+                array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER
+                )
+            );
             $column++;
         }
 
@@ -629,23 +671,21 @@ class Admin extends CI_Controller {
         $allbreaks = $this->schedule->get_breaks();
         $breaks = [];
 
-        foreach ($allbreaks as $brk)
-        {
+        foreach ($allbreaks as $brk) {
             $break = new breaktime();
             $break->start = $brk['start'];
             $break->end = $brk['end'];
             $breaks[] = $break;
         }
 
-        foreach($list as $row)
-        {
-            if(empty($row['mintime'])){
+        foreach ($list as $row) {
+            if (empty($row['mintime'])) {
                 $chk = '미참석';
-            }else{
+            } else {
                 $chk = '참석';
             }
 
-            if($row['d_format']=='00시간 00분'){
+            if ($row['d_format'] == '00시간 00분') {
                 $row['d_format'] = '';
             }
 
@@ -654,28 +694,28 @@ class Admin extends CI_Controller {
 
             $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
 
-            $score = floor($spent/60);
+            $score = floor($spent / 60);
             $max_score = $this->schedule->get_maxscore();
             $score = min($max_score, $score);
 
-//            $excel->getActiveSheet()->getRowDimension ( 1 )->setRowHeight ( 35 );
-            $object->getActiveSheet()->getStyle ( "F".$excel_row )->getAlignment ()->setHorizontal ( PHPExcel_Style_Alignment::HORIZONTAL_LEFT );
-            $object->getActiveSheet()->getStyle ( "H".$excel_row )->getAlignment ()->setHorizontal ( PHPExcel_Style_Alignment::HORIZONTAL_LEFT );
+            //            $excel->getActiveSheet()->getRowDimension ( 1 )->setRowHeight ( 35 );
+            $object->getActiveSheet()->getStyle("F" . $excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+            $object->getActiveSheet()->getStyle("H" . $excel_row)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
 
-            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $excel_row-1);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $excel_row - 1);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $chk);
             $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row['type']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['type2']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['nick_name']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, (string)$row['sn'] );
+            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, (string)$row['sn']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row['org']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, (string)$row['postcode']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row['addr']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row['phone']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row['email']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, number_format($row['fee']));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, date("H:i",strtotime($enter)));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, date("H:i",strtotime($leave)));
+            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, date("H:i", strtotime($enter)));
+            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, date("H:i", strtotime($leave)));
             $object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row['d_format']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, hoursandmins($spent));
             $object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $score);
@@ -691,45 +731,46 @@ class Admin extends CI_Controller {
 
         $object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
         $object_writer->save('php://output');
-	}
-    
-	public function new_abstracts()
-	{
-		
-		$this->load->view('admin/header');
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
-			// 
-			$data['primary_menu'] = 'new_abstracts';
-			$data['new_abstracts'] = $this->users->get_new_abstracts_users();
+    }
 
-			$this->load->view('admin/left_side.php', $data);
-			$this->load->view('admin/new_abstracts.php', $data);
-		}
-		$this->load->view('footer');
-	}
-    
-	public function new_abstract_detail(){
+    public function new_abstracts()
+    {
 
-		$this->load->view('admin/header');
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            // 
+            $data['primary_menu'] = 'new_abstracts';
+            $data['new_abstracts'] = $this->users->get_new_abstracts_users();
 
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/new_abstracts.php', $data);
+        }
+        $this->load->view('footer');
+    }
+
+    public function new_abstract_detail()
+    {
+
+        $this->load->view('admin/header');
+
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
             $this->load->helper('form');
             $this->load->library('form_validation');
-			
-			$data['primary_menu'] = 'new_abstracts';
+
+            $data['primary_menu'] = 'new_abstracts';
             $idx = $_GET['n'];
             $where = array(
                 'IDX' => $idx
             );
-			$data['base'] = $this->users->get_abstract_base($where);
+            $data['base'] = $this->users->get_abstract_base($where);
 
             $fileIdx = explode(",", $data['base']['FILE_NO']);
             $file = [];
-            foreach($fileIdx as $idx) {
+            foreach ($fileIdx as $idx) {
                 $where = array(
                     'idx' => $idx
                 );
@@ -737,18 +778,17 @@ class Admin extends CI_Controller {
             }
             $data['file'] = $file;
 
-			$this->load->view('admin/left_side.php', $data);
-			$this->load->view('admin/new_abstract_detail.php', $data);
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/new_abstract_detail.php', $data);
+        }
+        $this->load->view('footer');
 
+        return;
+    }
 
-		}
-		$this->load->view('footer');
+    public function new_abstract_2docx()
+    {
 
-        return ;
-	}
-
-    public function new_abstract_2docx(){
-        
         $idx = $_GET['n'];
         $where = array(
             'IDX' => $idx
@@ -757,7 +797,7 @@ class Admin extends CI_Controller {
 
         $fileIdx = explode(",", $data['base']['FILE_NO']);
         $file = [];
-        foreach($fileIdx as $idx) {
+        foreach ($fileIdx as $idx) {
             $where = array(
                 'idx' => $idx
             );
@@ -765,27 +805,27 @@ class Admin extends CI_Controller {
         }
         $data['file'] = $file;
 
-		$this->load->view('admin/new_abstract_2docx.php', $data);
+        $this->load->view('admin/new_abstract_2docx.php', $data);
     }
 
     public function new_abstract_update()
-	{
+    {
 
-		$this->load->view('admin/header');
+        $this->load->view('admin/header');
 
-		if(!isset($this->session->admin_data['logged_in']))
-			$this->load->view('admin/login');
-		else{
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
             $this->load->helper('form');
             $this->load->library('form_validation');
-			
-			$data['primary_menu'] = 'new_abstracts';
+
+            $data['primary_menu'] = 'new_abstracts';
             $userId = $_GET['n'];
             $where = array(
                 'SERIAL' => $serial
             );
-			$this->load->view('admin/left_side.php', $data);
-		}
-		$this->load->view('footer');
-	}
+            $this->load->view('admin/left_side.php', $data);
+        }
+        $this->load->view('footer');
+    }
 }
