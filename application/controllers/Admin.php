@@ -491,7 +491,7 @@ class Admin extends CI_Controller
             $this->load->library('form_validation');
             // 
             $data['primary_menu'] = 'user_qr';
-            $userId = $_GET['n'];
+            $userId = "0" + $_GET['n'];
             $where = array(
                 'phone' => $userId
             );

@@ -24,4 +24,9 @@ class OnSite extends CI_Controller
     public function init_()
     {
     }
+
+    public function success()
+    {
+        $this->load->view('success', $this->data);
+    }
 }
