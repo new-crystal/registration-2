@@ -162,7 +162,7 @@ span {
                                                     <span class="hit">*</span>
                                                 </th>
                                                 <td>
-                                                    <input type="text" id="name" name="name" placeholder="*성명" />
+                                                    <input type="text" id="userName" name="name" placeholder="*성명" />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -330,7 +330,7 @@ const participation = document.querySelector("#participation")
 
 const category = document.querySelector("#category")
 
-const name = document.querySelector("#name")
+const name = document.querySelector("#userName")
 
 const number = document.querySelector("#number")
 
@@ -440,9 +440,9 @@ function onSubmit() {
     console.log("member", member.checked);
     console.log("participation", participation.options[participation.selectedIndex].value)
     console.log("category", category.options[category.selectedIndex].value)
-    console.log("name", name.vlaue)
+    console.log("name", name.value)
     console.log("number", number.value)
-    console.log("affiliation", affiliation.vlaue)
+    console.log("affiliation", affiliation.value)
     console.log("phone", phone.value)
     console.log("email", email.value)
     console.log("입금예정일", depositDate.value)

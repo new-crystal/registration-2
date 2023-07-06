@@ -16,6 +16,7 @@ class OnSite extends CI_Controller
 
     public function index()
     {
+
         $this->load->view('header');
         $this->load->view('on-site', $this->data);
         $this->load->view('footer');

@@ -50,6 +50,13 @@ class Users extends CI_Model
 		return $this->db->get($this->users)->row_array();
 	}
 
+	public function get_qr_user($where)
+	{
+		$this->db->where($where);
+		$query = $this->db->get($this->users);
+		return $query->result_array();
+	}
+
 	public function add_user($info)
 	{
 		$this->db->insert($this->users, $info);

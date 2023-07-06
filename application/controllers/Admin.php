@@ -50,7 +50,11 @@ class Admin extends CI_Controller
         else {
             // 
             $data['primary_menu'] = 'user_qr';
-            $data['users'] = $this->users->get_users_time();
+            $where = array(
+                'deposit !=' => '미결제'
+            );
+
+            $data['users'] = $this->users->get_qr_user($where);
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/qr_user', $data);
@@ -201,6 +205,24 @@ class Admin extends CI_Controller
         }
 
         $this->load->view('admin/d_success');
+    }
+
+    function non_deposit_check()
+    {
+        $userId = $this->input->post('userId');
+
+        foreach ($userId as $value) {
+            $info = array(
+                'deposit' =>  '미결제'
+            );
+            $where = array(
+                'id' => $value,
+                'deposit' => '입금완료'
+            );
+            $this->users->update_deposit_status($info, $where);
+        }
+
+        $this->load->view('admin/non_d_success');
     }
 
 

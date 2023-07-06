@@ -28,7 +28,7 @@ table th {
                     <form action="/admin/excel_download" method="post">
                         <button class="btn btn-primary pull-right"><i class="icon-download4"></i> QR기록 다운로드</button>
                     </form>
-                    <form action="/admin/deposit_check" method="post" id="depositForm">
+                    <form action="/admin/deposit_check" method="post" id="deposit_mail_Form">
                         <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 전체메일발송</button>
                     </form>
                     <form action="/admin/deposit_check" method="post" id="depositForm">
@@ -119,7 +119,7 @@ table th {
                         echo '</td>';
                         echo '</td>';
                         echo '<td>';
-                        echo '<a><div class="btn btn-info qr_btn" >QR보기</div></a>';
+                        echo '<a  href="/admin/qr_layout?n=' . $item['phone'] . '"><div class="btn btn-info qr_btn" >QR보기</div></a>';
                         echo '</td>';
 
                         // echo $item['deposit'] . '</td>';
@@ -172,12 +172,14 @@ table th {
 $('.depositChk').click(function() {
     var formName = $('#depositForm');
     var formName2 = $('#nametagForm');
+    var formName3 = $('#deposit_mail_Form');
     var userId = $(this).val();
     var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
         '" id="">'
     if ($(this).prop('checked')) {
         formName.append(checkHtml);
         formName2.append(checkHtml);
+        formName3.append(checkHtml);
     } else {
         $('.user' + userId).remove();
     }

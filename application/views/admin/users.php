@@ -1,9 +1,9 @@
 <script type="text/javascript" src="/assets/js/admin/lecture_history.js"></script>
 <style>
-    table th {
-        padding: 0;
-        font-size: 1.2rem;
-    }
+table th {
+    padding: 0;
+    font-size: 1.2rem;
+}
 </style>
 <!-- Main content -->
 <div class="content-wrapper">
@@ -32,7 +32,7 @@
                     <form action="/admin/deposit_check" method="post" id="depositForm">
                         <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 입금확인</button>
                     </form>
-                    <form action="/admin/deposit_check" method="post" id="depositForm">
+                    <form action="/admin/non_deposit_check" method="post" id="non_depositForm">
                         <button class="btn btn-danger pull-right"><i class="icon-checkmark"></i> 미결제처리</button>
                     </form>
                     <!-- <form action="/admin/qr_layout_post" method="post" id="nametagForm">
@@ -165,37 +165,39 @@
 </div>
 <!-- /page container -->
 <script>
-    //        $('#allChk').click(function(){
-    //            if($('input:checkbox[id="allChk"]').prop('checked')){
-    //                $('input[type=checkbox]').prop('checked',true);
-    //            }else{
-    //                $('input[type=checkbox]').prop('checked',false);
-    //            }
-    //        })
+//        $('#allChk').click(function(){
+//            if($('input:checkbox[id="allChk"]').prop('checked')){
+//                $('input[type=checkbox]').prop('checked',true);
+//            }else{
+//                $('input[type=checkbox]').prop('checked',false);
+//            }
+//        })
 
-    function onClickMemo(phone) {
-        const url = (phone.toString().charAt(0) === "0") ?
-            `/admin/memo?n=0${phone}` :
-            `/admin/memo?n=${phone}`;
-        console.log(url)
-        window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+function onClickMemo(phone) {
+    const url = (phone.toString().charAt(0) === "0") ?
+        `/admin/memo?n=0${phone}` :
+        `/admin/memo?n=${phone}`;
+    console.log(url)
+    window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+}
+
+
+
+
+$('.depositChk').click(function() {
+    var formName = $('#depositForm');
+    var formName2 = $('#nametagForm');
+    var formName3 = $('#non_depositForm');
+    var userId = $(this).val();
+    var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
+        '" id="">'
+    if ($(this).prop('checked')) {
+        formName.append(checkHtml);
+        formName2.append(checkHtml);
+        formName3.append(checkHtml);
+    } else {
+        $('.user' + userId).remove();
     }
-
-
-
-
-    $('.depositChk').click(function() {
-        var formName = $('#depositForm');
-        var formName2 = $('#nametagForm');
-        var userId = $(this).val();
-        var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
-            '" id="">'
-        if ($(this).prop('checked')) {
-            formName.append(checkHtml);
-            formName2.append(checkHtml);
-        } else {
-            $('.user' + userId).remove();
-        }
-    })
+})
 </script>
 </body>
