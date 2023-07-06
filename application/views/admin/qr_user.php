@@ -26,19 +26,19 @@ table th {
                 <h5 class="panel-title">등록 인원</h5>
                 <div class="heading-elements">
                     <form action="/admin/excel_download" method="post">
-                        <button class="btn btn-primary pull-right"><i class="icon-download4"></i> &nbspExcel
-                            Download</button>
+                        <button class="btn btn-primary pull-right"><i class="icon-download4"></i> QR기록 다운로드</button>
+                    </form>
+                    <form action="/admin/deposit_check" method="post" id="deposit_mail_Form">
+                        <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 전체메일발송</button>
                     </form>
                     <form action="/admin/deposit_check" method="post" id="depositForm">
-                        <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 입금확인</button>
-                    </form>
-                    <form action="/admin/non_deposit_check" method="post" id="non_depositForm">
-                        <button class="btn btn-danger pull-right"><i class="icon-checkmark"></i> 미결제처리</button>
+                        <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 전체문자발송</button>
                     </form>
                     <!-- <form action="/admin/qr_layout_post" method="post" id="nametagForm">
                         <button class="btn btn-primary pull-right"><i class="icon-printer2"></i> 네임택 출력</button>
                     </form> -->
-                    <a class="btn btn-primary pull-right" href="/admin/add_user"><i class="icon-add"></i> 등록</a>
+                    <a class="btn btn-primary pull-right" href="/admin/add_user"><i class="icon-add"></i> 등록데스크
+                        QR페이지</a>
                     <!--
                                 <a class="btn btn-primary pull-right" href="/admin/qr_layout_all?type=좌장"><i class="icon-printer2"></i> 좌장</a>
                                 <a class="btn btn-primary pull-right" href="/admin/qr_layout_all?type=연자"><i class="icon-printer2"></i> 연자</a>
@@ -74,8 +74,8 @@ table th {
                         <th>메모</th> -->
 
                         <th></th>
-                        <th style="min-width: 90px">회원여부</th>
-                        <th>등록시간</th>
+                        <!-- <th style="min-width: 90px">회원여부</th>
+                        <th>등록시간</th> -->
                         <th>접수번호</th>
                         <th style="min-width: 100px">참석자유형</th>
                         <th>참석자구분</th>
@@ -83,11 +83,11 @@ table th {
                         <th>소속</th>
                         <th>이메일</th>
                         <th>전화번호</th>
-                        <th>영수증출력</th>
+                        <th>QR 문자 전송</th>
                         <th>메일전송</th>
-                        <th>등록비</th>
-                        <th>입금여부</th>
-                        <th>메모</th>
+                        <th>입장시간</th>
+                        <th>퇴장시간</th>
+                        <th>QR생성</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,8 +95,8 @@ table th {
                     foreach ($users as $item) {
                         echo '<tr>';
                         echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['id'] . '"></td>';
-                        echo '<td>' . $item['type3'] . '</td>';
-                        echo '<td>' . substr($item['time'], 0, 10) . '</td>';
+                        // echo '<td>' . $item['type3'] . '</td>';
+                        // echo '<td>' . substr($item['time'], 0, 10) . '</td>';
                         echo '<td>' . $item['registration_no'] . '</td>';
                         echo '<td>' . $item['type'] . '</td>';
                         echo '<td>' . $item['type2'] . '</td>';
@@ -105,26 +105,21 @@ table th {
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
                         echo '<td>';
-                        echo '<a><div class="btn btn-success qr_btn" >영수증</div></a>';
+                        echo '<a><div class="btn btn-success qr_btn" >문자발송</div></a>';
                         echo '</td>';
                         echo '<td>';
                         echo '<a><div class="btn btn-warning qr_btn" >메일발송</div></a>';
                         echo '</td>';
-                        echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
+                        echo '<td style="text-align: center;"></td>';
                         if ($item['deposit'] == "미결제") {
                             echo '<td style="color:red;">';
                         } else {
                             echo '<td style="color:blue;">';
                         }
-                        echo '' . $item['deposit'] . '</td>';
                         echo '</td>';
-                        if ($item['memo'] != "") {
-                            echo '<td>';
-                            echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(' . $item['phone'] . ')">메모</button>';
-                        } else {
-                            echo '<td>';
-                            echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800" style="background:#fff" onclick="onClickMemo(' . $item['phone'] . ')">메모</button>';
-                        }
+                        echo '</td>';
+                        echo '<td>';
+                        echo '<a  href="/admin/qr_layout?n=' . $item['phone'] . '"><div class="btn btn-info qr_btn" >QR보기</div></a>';
                         echo '</td>';
 
                         // echo $item['deposit'] . '</td>';
@@ -173,21 +168,11 @@ table th {
 //            }
 //        })
 
-function onClickMemo(phone) {
-    const url = (phone.toString().charAt(0) === "0") ?
-        `/admin/memo?n=0${phone}` :
-        `/admin/memo?n=${phone}`;
-    console.log(url)
-    window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
-}
-
-
-
 
 $('.depositChk').click(function() {
     var formName = $('#depositForm');
     var formName2 = $('#nametagForm');
-    var formName3 = $('#non_depositForm');
+    var formName3 = $('#deposit_mail_Form');
     var userId = $(this).val();
     var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
         '" id="">'

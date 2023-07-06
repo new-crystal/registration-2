@@ -1093,3 +1093,119 @@ div.venueCon table thead th {
 	float: right;
 	display: inline-block;
 }
+
+/**registration*/
+.registration_form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.registration_agree_container {
+	border: 1px solid #ddd;
+	width: 80%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.125rem;
+	line-height: 1.75rem; 
+	padding: 1.25rem;
+	margin: 1.25rem auto;
+}
+
+.registration_agree_checkbox{
+	display: flex;
+	justify-content: end;
+	margin-top: 1.25rem
+}
+
+.table_container{
+	text-align: left;
+	width: 84%;
+	margin: 1.25rem auto;
+}
+
+.table_container > h3{
+	font-size: 1.5rem;
+	line-height: 2rem;
+	font-weight: 900;
+	margin-bottom: 1.25rem;
+	color: rgb(30 58 138);
+}
+
+.table_container >table{
+	border-collapse: collapse;
+	border: 1px solid #7d8597;
+	width: 100%;
+}
+.table_container >table > tbody > tr{
+	border: 1px solid #7d8597;
+	align-items: center;
+}
+
+.table_flex_td > div{
+	display: flex;
+	align-items: center;
+	margin: 0.5rem;
+}
+
+.table_select_box {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.table_select_box > select {
+	padding: 0.25rem 0.5rem;
+	width: 100%;
+	height: 2.5rem;
+	border: 1px solid #ddd;
+	background-color:#ffffff;
+	font-weight: 600;
+}
+.table_select_box > select > option {
+	/* margin: 0.25rem; */
+	height: 2rem;
+	padding: 0.5rem;
+	font-size: 1rem;
+	/* font-weight: 600; */
+}
+.button_box{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1.56rem;
+}
+
+.button_box > button {
+	color: white;
+	padding: 0.5rem;
+	width: 10rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	height: 3rem;
+}
+
+.button_box > .confirm_button {
+	background-color: rgb(55 48 163);
+	margin: 1.25rem;
+}
+
+.button_box > .cancel_button {
+	background-color: rgb(156 163 175);
+}
+
+.address_box > input {
+	margin-bottom: 0.25rem;
+}
+
+.email_msg {
+	padding: 0;
+	margin: 0;
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 600;
+}
