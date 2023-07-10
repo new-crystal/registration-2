@@ -17,8 +17,23 @@ class Qrcode extends CI_Controller {
 
 	public function index()
 	{
-        $this->qrcode_e->create_QRcode("Hello, World!!!!!", "qrcode.png");
+        //$this->qrcode_e->create_QRcode("Hello, World!!!!!", "qrcode.png");
+        $this->load->view('qrcode');
 	}
+
+    public function print_file()
+    {
+        $filename = $this->input->post('filename');
+        $filepath = '/path/to/files/' . $filename;
+
+        if (file_exists($filepath)) {
+            // Load the file and print it
+            // ...
+        } else {
+            // Handle error
+            // ...
+        }
+    }
 
 	public function init_(){
 
