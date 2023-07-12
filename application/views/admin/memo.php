@@ -1,6 +1,6 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
-<?php echo form_open('/admin/memo?n=' . $item['phone'], 'id="memoForm" name="memoForm"') ?>
+<?php echo form_open('/admin/memo?n=' . $item['id'], 'id="memoForm" name="memoForm"') ?>
 <div class="flex flex-col items-center justify-center w-full h-full">
     <input id="memo" name="memo" class="w-10/12 h-4/6 border p-5" value="<?php echo isset($item['memo']) ? $item['memo'] : ''; ?>">
     </input>
