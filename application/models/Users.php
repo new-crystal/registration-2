@@ -22,6 +22,7 @@ class Users extends CI_Model
 		return $query->result_array();
 	}
 
+
 	public function get_abstracts_users()
 	{
 		$query = $this->db->query("select ab.*, uf.* from abstracts as ab left join upload_file as uf on ab.file_no = uf.idx");
@@ -165,5 +166,17 @@ class Users extends CI_Model
 	{
 		$this->db->where($where);
 		return $this->db->get($this->abstractsBase)->row_array();
+	}
+
+	public function update_msm_status($info, $where)
+	{
+		$this->db->where($where);
+		$this->db->update($this->users, $info);
+	}
+
+	public function get_msm_user($where)
+	{
+		$this->db->where($where);
+		return $this->db->get($this->users)->result_array();
 	}
 }

@@ -3164,6 +3164,32 @@ fieldset[disabled] .btn-primary.focus {
   color: #2196F3;
   background-color: #fff;
 }
+
+
+.btn-non-success {
+  color: #4cd964;
+  background-color: #fff;
+  border: 1px solid #4cd964;
+  border-color: #4cd964;
+}
+.btn-non-success:hover,
+.btn-non-success:focus,
+.btn-non-success:active,
+.btn-non-success.active,
+.open .dropdown-toggle.btn-non-success {
+  color: #4cd964;
+  background-color: #fff;
+  border: 1px solid #4cd964;
+  border-color: #4cd964;
+}
+.btn-non-success:active,
+.btn-non-success.active,
+.open .dropdown-toggle.btn-non-success {
+  background-image: none;
+  outline: none;
+}
+
+
 .btn-success {
   color: #fff;
   background-color: #4CAF50;
