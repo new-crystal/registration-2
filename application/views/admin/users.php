@@ -94,7 +94,7 @@ table th {
                     <?php
                     foreach ($users as $item) {
                         echo '<tr>';
-                        echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['id'] . '"></td>';
+                        echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['registration_no'] . '"></td>';
                         echo '<td>' . $item['type3'] . '</td>';
                         echo '<td>' . substr($item['time'], 0, 10) . '</td>';
                         echo '<td>' . $item['registration_no'] . '</td>';

@@ -25,7 +25,7 @@
                                         }
                                         echo '<div class="org draggable">' . $item['org_nametag'] . '</div>';
                                         if($item['qr_chk']=='Y'){
-                                            echo '<div id="qrcode" class="draggable"><img src="/assets/images/QR/qrcode_' . $item['phone'] . '.png"></div>';
+                                            echo '<div id="qrcode" class="draggable"><img src="/assets/images/QR/qrcode_' . $item['registration_no'] . '.jpg"></div>';
                                         }
                                         echo '<div class="receipt receipt_name">' . $item['nick_name'] . '</div>';
                                         echo '<div class="receipt receipt_price">'. number_format($item['fee'])  .'</div>';

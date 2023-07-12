@@ -12,29 +12,73 @@ class Qrcode extends CI_Controller {
 
         date_default_timezone_set('Asia/Seoul');
         $this->load->library("qrcode_e");
+        $this->load->model('users');
         ini_set('memory_limit', '-1');
     }
 
 	public function index()
 	{
         //$this->qrcode_e->create_QRcode("Hello, World!!!!!", "qrcode.png");
-        $this->load->view('qrcode');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('qrcode', 'text', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->data['entrance'] = "";
+            $this->data['entrance_org'] = '';
+            $this->load->view('header');
+            $this->load->view('qrcode', $this->data);
+            $this->load->view('footer');
+            
+        }
+        else
+        {
+            $qrcode = $this->input->post('qrcode');
+
+            $where = array(
+                'registration_no' => $qrcode
+            );
+
+            $user = $this->users->get_user($where);
+
+            $this->data['user'] = $user;
+
+            $this->load->view('header');
+            $this->load->view('qrcode', $this->data);
+            $this->load->view('footer');
+        }
 	}
 
     public function print_file()
     {
-        $filename = $this->input->post('filename');
-        $filepath = '/path/to/files/' . $filename;
-
-        if (file_exists($filepath)) {
-            // Load the file and print it
-            // ...
-        } else {
-            // Handle error
-            // ...
-        }
+        $this->load->view('admin/header');
+        $qrcode = $_GET['registration_no'];
+        $where = array(
+            'registration_no' => $qrcode
+        );
+        $data['users'] = $this->users->get_user($where);
+        //                var_dump($data['users']);
+        $this->load->view('/qr_print', $data);
     }
 
+    public function info()
+    {
+        $qrcode = $this->input->post('qrcode');
+
+        $where = array(
+            'registration_no' => $qrcode
+        );
+
+        $user = $this->users->get_user($where);
+
+        $this->data['user'] = $user;
+
+        $this->load->view('header');
+        $this->load->view('qr_info', $this->data);
+    }
+    
 	public function init_(){
 
 	}

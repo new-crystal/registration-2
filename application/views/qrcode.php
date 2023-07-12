@@ -18,7 +18,7 @@
                                         return false;
                                     }
 
-                                    $("#accessForm").attr("action", "/access");
+                                    $("#accessForm").attr("action", "/qrcode/info");
 
                                     return true;
                                 });
@@ -27,7 +27,7 @@
                         <div class="txtCon regist">
                             <h3 class="hidden">QR CODE 입력</h3>
                                 <?php echo validation_errors(); ?>
-                                <?php echo form_open('/access', 'id="accessForm" name="accessForm"') ?>
+                                <?php echo form_open('/qrcode/info', 'id="accessForm" name="accessForm"') ?>
                                 <fieldset>
                                     <legend>QR CODE</legend>
 
@@ -48,48 +48,10 @@
                                         </dl>
                                         <dl class="boldTit qr_txt">
                                            <?php
+                                           /*
 											echo "<dt><h1>$entrance</h1></dt>";
+                                            */
 											?>
-                                        </dl>
-                                        <dl class="boldTit qr_cont">
-                                            <div class="qr_info" id="qr_nick_name">
-                                                <center>이　　름 <input type="text" value="<?php if(isset($nick_name)) echo $nick_name ?>" readonly></center>
-                                            </div>
-                                            <div class="qr_info" id="qr_org">
-                                                <center>소　　속
-                                                <input type="text" value="<?php if(isset($entrance_org)) echo $entrance_org ?>" readonly></center>
-                                            </div>
-                                            <div class="qr_info" id="" style="opacity:0;">
-                                                <center>소속
-                                                <input type="text" value="hidden" readonly></center>
-                                            </div>
-                                        </dl>
-
-                                        <dl class="boldTit qr_cont">
-                                            <div class="qr_info" id="qr_entrance">
-                                                <center>입장시간
-                                                <input type="text" value="<?php
-                                                        if(isset($enter)){
-                                                            $enter = date("Y-m-d H:i",strtotime($enter));
-                                                            echo $enter;
-                                                        }
-                                                    ?>
-                                                " readonly></center>
-                                            </div>
-                                            <div class="qr_info" id="qr_exit">
-                                                <center>퇴장시간
-                                                <input type="text" value="<?php
-                                                        if(isset($leave)){
-                                                            $leave = date("Y-m-d H:i",strtotime($leave));
-                                                            echo $leave;
-                                                        }
-                                                    ?>
-                                                " readonly></center>
-                                            </div>
-                                            <div class="qr_info" id="qr_score">
-                                                <center>평　　점
-                                                <input class="red" type="text" value="<?php if(isset($score)) echo $score ?>" readonly></center>
-                                            </div>
                                         </dl>
 
                                         <div class="btn btnSubm">
@@ -103,12 +65,16 @@
                             <script type="text/javascript">
                                     window.scrollTo(0, document.body.scrollHeight);
                                     $("#qrcode").focus();
+                                    <?php
+                                    /*
                                     $(document).ready(function(){
                                         setTimeout(function(){
                                             $('.qr_info input').val('');
                                             $('.qr_txt').hide();
                                         },10000);
                                     })
+                                    */
+                                    ?>
                             </script>
                         </div>
                     </dl>

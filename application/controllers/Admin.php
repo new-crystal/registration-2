@@ -191,17 +191,43 @@ class Admin extends CI_Controller
     function deposit_check()
     {
 
-        $userId = $this->input->post('userId');
+        $regNo = $this->input->post('userId');
 
-        foreach ($userId as $value) {
+        foreach ($regNo as $value) {
             $info = array(
                 'deposit' =>  '입금완료'
             );
             $where = array(
-                'id' => $value,
+                'registration_no' => $value,
                 'deposit' => '미결제'
             );
             $this->users->update_deposit_status($info, $where);
+
+            /* QR생성 */
+            $info = array(
+                'qr_chk' =>  'Y'
+            );
+            $where = array(
+                'registration_no' => $value
+            );
+    
+            $str = $value;
+            $dir = "./assets/images/QR";
+            $upload_dir = $dir . '/';
+            $filename =  'qrcode_' . $value . '.jpg';
+    
+            echo getcwd();
+            echo $upload_dir;
+            echo $filename;
+
+            if (is_dir($dir) != true) {
+                mkdir($dir, 0700);
+            }
+    
+            //유효성체크 제거
+            $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir . $filename);
+            $this->users->update_qr_status($info, $where);
+            /* QR생성 끝 */
         }
 
         $this->load->view('admin/d_success');
@@ -209,14 +235,14 @@ class Admin extends CI_Controller
 
     function non_deposit_check()
     {
-        $userId = $this->input->post('userId');
+        $regNo = $this->input->post('userId');
 
-        foreach ($userId as $value) {
+        foreach ($regNo as $value) {
             $info = array(
                 'deposit' =>  '미결제'
             );
             $where = array(
-                'id' => $value,
+                'registration_no' => $value,
                 'deposit' => '입금완료'
             );
             $this->users->update_deposit_status($info, $where);
@@ -228,18 +254,18 @@ class Admin extends CI_Controller
 
     function qr_generate()
     {
-        $userPhone = $_GET['n'];
+        $regNo = $_GET['n'];
         $info = array(
             'qr_chk' =>  'Y'
         );
         $where = array(
-            'phone' => $userPhone
+            'registration_no' => $regNo
         );
 
-        $str = 'http://conf.webeon.net/access/record/' . $userPhone;
+        $str = $regNo;
         $dir = "././assets/images/QR";
         $upload_dir = $dir . '/';
-        $filename =  'qrcode_' . $userPhone . '.png';
+        $filename =  'qrcode_' . $regNo . '.jpg';
 
         if (is_dir($dir) != true) {
             mkdir($dir, 0700);
@@ -264,17 +290,17 @@ class Admin extends CI_Controller
         $dir = "././assets/images/QR";
         $upload_dir = $dir . '/';
         foreach ($list as $row) {
-            $userPhone = $row['phone'];
+            $regNo = $row['registration_no'];
             $info = array(
                 'qr_chk' =>  'Y'
             );
             $where = array(
-                'phone' => $userPhone
+                'registration_no' => $regNo
             );
 
 
-            $str = 'http://conf.webeon.net/access/record/' . $userPhone;
-            $filename =  'qrcode_' . $userPhone . '.png';
+            $str = $regNo;
+            $filename =  'qrcode_' . $regNo . '.png';
 
             if (is_dir($dir) != true) {
                 mkdir($dir, 0700);
@@ -295,9 +321,9 @@ class Admin extends CI_Controller
     {
 
         $this->load->view('admin/header');
-        $userId = $_GET['n'];
+        $regNo = $_GET['n'];
         $where = array(
-            'phone' => $userId
+            'registration_no' => $regNo
         );
         $data['users'] = $this->users->get_user($where);
         //                var_dump($data['users']);

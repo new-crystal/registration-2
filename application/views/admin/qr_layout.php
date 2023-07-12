@@ -28,7 +28,7 @@
                                                 echo '<div class="nick_name" id="nick_name">' . $users['nick_name'] . '</div>';
                                             }
                                             echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-                                            echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['phone'] . '.png"></div>';
+                                            echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
                                             echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
                                             echo '<div class="receipt receipt_price">'. number_format($users['fee']) .'</div>';
                                     echo '</div>';
