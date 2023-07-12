@@ -100,7 +100,7 @@
                         echo '<td>' . $item['registration_no'] . '</td>';
                         echo '<td>' . $item['type'] . '</td>';
                         echo '<td>' . $item['type2'] . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['phone'] . '">' . $item['nick_name'] . '</a></td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['id'] . '">' . $item['nick_name'] . '</a></td>';
                         echo '<td>' . $item['org'] . '</td>';
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
@@ -120,10 +120,10 @@
                         echo '</td>';
                         if ($item['memo'] != "") {
                             echo '<td>';
-                            echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(' . $item['phone'] . ')">메모</button>';
+                            echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(' . $item['id'] . ')">메모</button>';
                         } else {
                             echo '<td>';
-                            echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800" style="background:#fff" onclick="onClickMemo(' . $item['phone'] . ')">메모</button>';
+                            echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800" style="background:#fff" onclick="onClickMemo(' . $item['id'] . ')">메모</button>';
                         }
                         echo '</td>';
 
@@ -174,6 +174,7 @@
     //        })
 
     function onClickMemo(phone) {
+        console.log(phone)
         const url = (phone.toString().charAt(0) === "0") ?
             `/admin/memo?n=0${phone}` :
             `/admin/memo?n=${phone}`;

@@ -46,7 +46,7 @@ if ($err) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => array(
-            'phone' =>  $phone, 'callback' => '0109022486', 'message' => '안녕하세요. ' . $nick_name . '  님[접수번호 :' . $registration_no . ']
+            'phone' =>  $phone, 'callback' => '01090224867', 'message' => '안녕하세요. ' . $nick_name . '  님[접수번호 :' . $registration_no . ']
         2023년 서울아산병원 당뇨병개원의 연수강
         좌에 참석 해주셔서 감사합니다.
         현장 등록데스크에 방문하여 위 QR코드를 제
@@ -74,12 +74,12 @@ if ($err) {
     curl_close($curl);
 
     if ($err) {
-        //echo "cURL Error #:" . $err;
+        // echo "cURL Error #:" . $err;
         // $error = $err;
         // $error = json_decode($err, true);
         $error_msg = $err['message'];
     } else {
-        //echo $response;
+        // echo $response;
         $responseData = json_decode($response, true);
         $code = $responseData['code'];
         $after = $responseData['data']['AFTER_SMS_QTY'];

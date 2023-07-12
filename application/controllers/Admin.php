@@ -210,12 +210,12 @@ class Admin extends CI_Controller
             $where = array(
                 'registration_no' => $value
             );
-    
+
             $str = $value;
             $dir = "./assets/images/QR";
             $upload_dir = $dir . '/';
             $filename =  'qrcode_' . $value . '.jpg';
-    
+
             echo getcwd();
             echo $upload_dir;
             echo $filename;
@@ -223,7 +223,7 @@ class Admin extends CI_Controller
             if (is_dir($dir) != true) {
                 mkdir($dir, 0700);
             }
-    
+
             //유효성체크 제거
             $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir . $filename);
             $this->users->update_qr_status($info, $where);
@@ -393,7 +393,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'phone' => $userId
+                'id' => $userId
             );
             $data['item'] = $this->users->get_user($where);
             $data['item2'] = $this->entrance->access($where);
@@ -422,7 +422,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'phone' => $userId
+                'id' => $userId
             );
             $data['item'] = $this->users->get_user($where);
             $this->load->view('admin/left_side.php', $data);
@@ -539,9 +539,9 @@ class Admin extends CI_Controller
             $this->load->library('form_validation');
             // 
             $data['primary_menu'] = 'user_qr';
-            $userId = "0" + $_GET['n'];
+            $userId = $_GET['n'];
             $where = array(
-                'phone' => $userId
+                'id' => $userId
             );
             $data['item'] = $this->users->get_user($where);
 
@@ -568,7 +568,7 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['d'];
             $where = array(
-                'phone' => $userId
+                'id' => $userId
             );
             $del_chk = $this->users->num_row($where);
             if ($del_chk == 1) {
@@ -595,7 +595,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'phone' => $userId
+                'id' => $userId
             );
             $this->load->view('admin/left_side.php', $data);
 
@@ -905,7 +905,7 @@ class Admin extends CI_Controller
 
             foreach ($userId as $value) {
                 $where = array(
-                    'id' => $value,
+                    'registration_no' => $value,
                 );
                 $info = array(
                     'msm_chk' =>  'Y'

@@ -381,6 +381,10 @@ email.addEventListener("input", () => {
     onClickEmail()
 })
 
+phone.addEventListener("input", () => {
+    onCheckPhone()
+})
+
 function onSubmit() {
     if (!agree.checked) {
         alert("이용약관에 동의해주세요.")
@@ -417,6 +421,15 @@ function onSubmit() {
         phone.focus()
         return;
     }
+    const phoneValue = phone.value;
+    const phoneRegex = /^\d{10}$/;
+
+    if (!phoneRegex.test(phoneValue)) {
+        alert("연락처를 형식에 맞게 입력해주세요");
+        phone.focus();
+        return;
+    }
+
     if (!email.value) {
         alert("이메일 주소를 입력해주세요.")
         email.focus();
@@ -460,6 +473,17 @@ function onClickEmail() {
     }
     if (emailRegex.test(inputValue)) {
         emailmsg.innerText = "";
+        return;
+    }
+}
+
+function onCheckPhone() {
+    const phoneValue = phone.value;
+    const phoneRegex = /^\d{10}$/;
+
+    if (!phoneRegex.test(phoneValue)) {
+        alert("연락처를 형식에 맞게 입력해주세요");
+        phone.focus();
         return;
     }
 }
