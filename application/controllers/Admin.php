@@ -876,4 +876,46 @@ class Admin extends CI_Controller
         }
         $this->load->view('footer');
     }
+
+    public function send_msm()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $_GET['n'];
+            $where = array(
+                'id' => $userId
+            );
+            $info = array(
+                'msm_chk' =>  'Y'
+            );
+            $this->users->update_msm_status($info, $where);
+            $data['users'] = $this->users->get_user($where);
+            $this->load->view('admin/send_msm', $data);
+        }
+    }
+
+    public function send_all_msm()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $this->input->post('userId');
+            $data['users'] = array(); // 배열로 초기화
+
+            foreach ($userId as $value) {
+                $where = array(
+                    'id' => $value,
+                );
+                $info = array(
+                    'msm_chk' =>  'Y'
+                );
+                $this->users->update_msm_status($info, $where);
+                $users = $this->users->get_msm_user($where);
+                $data['users'] = array_merge($data['users'], $users); // 결과를 배열에 추가
+            }
+
+            $this->load->view('admin/send_all_msm', $data);
+        }
+    }
 }
