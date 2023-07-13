@@ -50,11 +50,7 @@ class Admin extends CI_Controller
         else {
             // 
             $data['primary_menu'] = 'user_qr';
-            $where = array(
-                'deposit !=' => '미결제'
-            );
-
-            $data['users'] = $this->users->get_qr_user($where);
+            $data['users'] = $this->users->get_qr_user();
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/qr_user', $data);
@@ -917,5 +913,20 @@ class Admin extends CI_Controller
 
             $this->load->view('admin/send_all_msm', $data);
         }
+    }
+
+
+    public function participant()
+    {
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $data['primary_menu'] = 'participant';
+
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/participant.php', $data);
+        }
+        $this->load->view('footer');
     }
 }

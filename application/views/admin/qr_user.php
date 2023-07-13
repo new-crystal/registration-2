@@ -115,14 +115,8 @@
                         echo '<td>';
                         echo '<a><div class="btn btn-warning qr_btn" >메일발송</div></a>';
                         echo '</td>';
-                        echo '<td style="text-align: center;"></td>';
-                        if ($item['deposit'] == "미결제") {
-                            echo '<td style="color:red;">';
-                        } else {
-                            echo '<td style="color:blue;">';
-                        }
-                        echo '</td>';
-                        echo '</td>';
+                        echo '<td style="text-align: center;">' . $item['mintime'] . '</td>';
+                        echo '<td style="text-align: center;">' . $item['maxtime'] . '</td>';
                         echo '<td>';
                         echo '<a  href="/admin/qr_layout?n=' . $item['registration_no'] . '"><div class="btn btn-info qr_btn" >QR보기</div></a>';
                         echo '</td>';

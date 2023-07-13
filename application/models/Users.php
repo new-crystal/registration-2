@@ -63,10 +63,22 @@ class Users extends CI_Model
 		return $this->db->get($this->users)->row_array();
 	}
 
-	public function get_qr_user($where)
+	public function get_qr_user()
 	{
-		$this->db->where($where);
-		$query = $this->db->get($this->users);
+		$query = $this->db->query("
+		SELECT *, time_format(b.duration,'%H시간 %i분') as d_format
+		FROM users a
+		LEFT JOIN (
+			SELECT registration_no as qr_registration_no,
+				MAX(time) as maxtime,
+				MIN(time) as mintime,
+				TIMEDIFF(MAX(time), MIN(time)) as duration
+			FROM access
+			GROUP BY registration_no
+		) b ON a.registration_no = b.qr_registration_no
+		WHERE a.deposit != '미결제'
+		ORDER BY a.id ASC
+");
 		return $query->result_array();
 	}
 
