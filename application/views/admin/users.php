@@ -1,9 +1,9 @@
 <script type="text/javascript" src="/assets/js/admin/lecture_history.js"></script>
 <style>
-    table th {
-        padding: 0;
-        font-size: 1.2rem;
-    }
+table th {
+    padding: 0;
+    font-size: 1.2rem;
+}
 </style>
 <!-- Main content -->
 <div class="content-wrapper">
@@ -100,7 +100,7 @@
                         echo '<td>' . $item['registration_no'] . '</td>';
                         echo '<td>' . $item['type'] . '</td>';
                         echo '<td>' . $item['type2'] . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['id'] . '">' . $item['nick_name'] . '</a></td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '">' . $item['nick_name'] . '</a></td>';
                         echo '<td>' . $item['org'] . '</td>';
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
@@ -118,12 +118,12 @@
                         }
                         echo '' . $item['deposit'] . '</td>';
                         echo '</td>';
-                        if ($item['memo'] != "") {
+                        if ($item['memo'] != "" && $item['memo'] != 'null') {
                             echo '<td>';
-                            echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(' . $item['id'] . ')">메모</button>';
+                            echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(\'' . $item['registration_no'] . '\')" data-id="' . $item['registration_no'] . '">메모</button>';
                         } else {
                             echo '<td>';
-                            echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800" style="background:#fff" onclick="onClickMemo(' . $item['id'] . ')">메모</button>';
+                            echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800 bg-white" onclick="onClickMemo(\'' . $item['registration_no'] . '\')" data-id="' . $item['registration_no'] . '">메모</button>';
                         }
                         echo '</td>';
 
@@ -165,40 +165,36 @@
 </div>
 <!-- /page container -->
 <script>
-    //        $('#allChk').click(function(){
-    //            if($('input:checkbox[id="allChk"]').prop('checked')){
-    //                $('input[type=checkbox]').prop('checked',true);
-    //            }else{
-    //                $('input[type=checkbox]').prop('checked',false);
-    //            }
-    //        })
+//        $('#allChk').click(function(){
+//            if($('input:checkbox[id="allChk"]').prop('checked')){
+//                $('input[type=checkbox]').prop('checked',true);
+//            }else{
+//                $('input[type=checkbox]').prop('checked',false);
+//            }
+//        })
 
-    function onClickMemo(phone) {
-        console.log(phone)
-        const url = (phone.toString().charAt(0) === "0") ?
-            `/admin/memo?n=0${phone}` :
-            `/admin/memo?n=${phone}`;
-        console.log(url)
-        window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+function onClickMemo(id) {
+    const url = `/admin/memo?n=${id}`;
+    window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+}
+
+
+
+
+$('.depositChk').click(function() {
+    var formName = $('#depositForm');
+    var formName2 = $('#nametagForm');
+    var formName3 = $('#non_depositForm');
+    var userId = $(this).val();
+    var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
+        '" id="">'
+    if ($(this).prop('checked')) {
+        formName.append(checkHtml);
+        formName2.append(checkHtml);
+        formName3.append(checkHtml);
+    } else {
+        $('.user' + userId).remove();
     }
-
-
-
-
-    $('.depositChk').click(function() {
-        var formName = $('#depositForm');
-        var formName2 = $('#nametagForm');
-        var formName3 = $('#non_depositForm');
-        var userId = $(this).val();
-        var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
-            '" id="">'
-        if ($(this).prop('checked')) {
-            formName.append(checkHtml);
-            formName2.append(checkHtml);
-            formName3.append(checkHtml);
-        } else {
-            $('.user' + userId).remove();
-        }
-    })
+})
 </script>
 </body>

@@ -389,7 +389,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $data['item'] = $this->users->get_user($where);
             $data['item2'] = $this->entrance->access($where);
@@ -418,7 +418,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $data['item'] = $this->users->get_user($where);
             $this->load->view('admin/left_side.php', $data);
@@ -537,7 +537,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'user_qr';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $data['item'] = $this->users->get_user($where);
 
@@ -549,7 +549,12 @@ class Admin extends CI_Controller
 
                 $memo = $this->input->post('memo');
 
-                $info = array("memo" => $memo);
+                if ($memo === "") {
+                    $info = array("memo" => null); // 메모 필드를 null로 설정하여 삭제
+                } else {
+                    $info = array("memo" => $memo);
+                }
+
 
                 $this->users->add_memo($info, $where);
             }
@@ -564,7 +569,7 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['d'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $del_chk = $this->users->num_row($where);
             if ($del_chk == 1) {
@@ -591,7 +596,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $this->load->view('admin/left_side.php', $data);
 
@@ -880,7 +885,7 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $info = array(
                 'msm_chk' =>  'Y'
