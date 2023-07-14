@@ -15,7 +15,7 @@
         width: 18px;
         height: 18px;
         margin-right: 10px;
-        transform: translateY(2.5px);
+        transform: translateY(0.5px);
     }
 
     input[type=radio] {
@@ -188,12 +188,11 @@
 
 <body>
     <div class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll">
-        <div class="w-full max-w-4xl px-3 py-2">
-            <div
-                class="text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 p-3 text-white">
+        <div class="w-full max-w-4xl ">
+            <div class="text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white">
                 <h1>On-site registration<br>(현장 등록)</h1>
             </div>
-            <div class="w-11/12 mt-5 mx-auto">
+            <div class="w-11/12 mt-5 mx-auto px-3">
                 <div id="page_1">
                     <div>
                         <img src="../../assets/images/circle.png" class="inline-block" />
@@ -549,7 +548,7 @@
                         <h2 class="inline-block">Session participation(세션참여 여부)<span>*</span></h2>
                     </div>
 
-                    <p>Welcome Reception <br>- September 7(Thu) </p>
+                    <p style="font-weight: 500;">Welcome Reception <br>- September 7(Thu) </p>
                     <div>
                         <input class="session_radio" type="radio" id="yes_1" />
                         <label for="yes_1">Yes</label>
@@ -557,7 +556,7 @@
                         <label for="no_1">NO</label>
                     </div>
 
-                    <p>Day 2 Breakfast Symposium<br>- September 8(Fri) </p>
+                    <p style="font-weight: 500;">Day 2 Breakfast Symposium<br>- September 8(Fri) </p>
                     <div>
                         <input class="session_radio" type="radio" id="yes_2" />
                         <label for="yes_2">Yes</label>
@@ -565,7 +564,7 @@
                         <label for="no_2">NO</label>
                     </div>
 
-                    <p>Day 2 Luncheon Symposium<br>- September 8(Fri) </p>
+                    <p style="font-weight: 500;">Day 2 Luncheon Symposium<br>- September 8(Fri) </p>
                     <div>
                         <input class="session_radio" type="radio" id="yes_3" />
                         <label for="yes_3">Yes</label>
@@ -573,7 +572,7 @@
                         <label for="no_3">NO</label>
                     </div>
 
-                    <p>Day 3 Breakfast Symposium<br> - September 9(Sat) </p>
+                    <p style="font-weight: 500;">Day 3 Breakfast Symposium<br> - September 9(Sat) </p>
                     <div>
                         <input class="session_radio" type="radio" id="yes_4" />
                         <label for="yes_4">Yes</label>
@@ -581,7 +580,7 @@
                         <label for="no_4">NO</label>
                     </div>
 
-                    <p>Day 3 Luncheon Symposium<br>- September 9(Sat) </p>
+                    <p style="font-weight: 500;">Day 3 Luncheon Symposium<br>- September 9(Sat) </p>
                     <div>
                         <input class="session_radio" type="radio" id="yes_5" />
                         <label for="yes_5">Yes</label>
@@ -659,7 +658,7 @@
                 <div id="page_4" class="wrap_2">
                     <div class="confirm_box mt-10">
                         <div class="confirm_box_title flex items-center justify-center">
-                            <h1 class="text-xl">Use of Personal Information <br>(개인정보활용동의)</h1>
+                            <h1 class="text-sm">Use of Personal Information <br>(개인정보활용동의)</h1>
                         </div>
                         <textarea style="height: 80px;" class="border text-center w-full" disabled="" readonly="">ICOMES 2023 이용 약관 
 본 학술대회의 주관사인 대한비만학회는 학술대회 등록시스템 서비스 제공을 위하여 관계 법령에 따라 아래와 같이 개인정보를 수집, 이용하는 내용을 알리오니 자세히 읽으신 후 동의 여부를 결정하여 주십시오.
