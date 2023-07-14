@@ -934,4 +934,18 @@ class Admin extends CI_Controller
         }
         $this->load->view('footer');
     }
+
+    public function receipt()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $_GET['n'];
+            $where = array(
+                'registration_no' => $userId
+            );
+            $data['users'] = $this->users->get_user($where);
+            $this->load->view('admin/receipt', $data);
+        }
+    }
 }

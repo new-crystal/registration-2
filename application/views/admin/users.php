@@ -105,7 +105,7 @@ table th {
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
                         echo '<td>';
-                        echo '<a><div class="btn btn-non-success qr_btn" >영수증</div></a>';
+                        echo '<a><div class="btn btn-non-success qr_btn" onclick="onClickReceipt(\'' . $item['registration_no'] . '\')">영수증</div></a>';
                         echo '</td>';
                         echo '<td>';
                         echo '<a><div class="btn btn-warning qr_btn" >메일발송</div></a>';
@@ -178,7 +178,10 @@ function onClickMemo(id) {
     window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
 }
 
-
+function onClickReceipt(id) {
+    const url = `/admin/receipt?n=${id}`
+    window.open(url, "Certificate", "width=500, height=300, top=30, left=30")
+}
 
 
 $('.depositChk').click(function() {
