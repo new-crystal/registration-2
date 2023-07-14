@@ -80,8 +80,22 @@
         
         $(function() {
             $("#btnPrint").trigger("click");
-            //window.close();
+
+            
+            if (window.matchMedia) {
+                var mediaQueryList = window.matchMedia('print');
+                mediaQueryList.addListener(function(mql) {
+                    if (mql.matches) {
+                        console.log('프린트 이전에 호출됩니다.');
+                    } else {
+                        console.log('프린트 이후에 호출됩니다.');
+                        window.close();
+                    }
+                });
+            }
         });
+
+
     </script>
 
     <script>
