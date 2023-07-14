@@ -106,7 +106,7 @@ table th {
                         echo '<td>' . $item['phone'] . '</td>';
                         echo '<td>';
 
-                        if ($item['msm_chk'] == "Y") {
+                        if ($item['QR_SMS_SEND_YN'] == "Y") {
                             echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '"><div class="btn btn-success qr_btn">문자발송</div></a>';
                         } else {
                             echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '"><div class="btn btn-non-success qr_btn">문자발송</div></a>';

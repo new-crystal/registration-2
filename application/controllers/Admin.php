@@ -909,7 +909,7 @@ class Admin extends CI_Controller
                     'registration_no' => $value,
                 );
                 $info = array(
-                    'msm_chk' =>  'Y'
+                    'QR_SMS_SEND_YN' =>  'Y'
                 );
                 $this->users->update_msm_status($info, $where);
                 $users = $this->users->get_msm_user($where);
