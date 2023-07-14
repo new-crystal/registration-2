@@ -1,106 +1,109 @@
 			<!-- Main content -->
 			<div id="nametag_wrapper">
-                <div class="edit_wrapper">
-                    <button id="btnPrint" type="button" class="btn btn-primary">Print</button>
-<!--
+			    <div class="edit_wrapper">
+			        <button id="btnPrint" type="button" class="btn btn-primary">Print</button>
+			        <!--
                     <div id="edit_area">
                         <textarea name="editor1" id="editor1" rows="10" cols="50">
                             This is my textarea to be replaced with CKEditor 4.
                         </textarea>
                     </div>
 -->
-                </div>
-				<!-- Content area -->
-				<div class="content" id="nametag">
-                    <div id="printThis">
-                        <div id="editor1" contenteditable="true">
-                        <?php
-                            $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['nick_name']);
-                            echo '<div class="a4_area">';
-                                echo '<div class="bg_area">';
-                                    echo '<div class="txt_con">';
-                                            if($users['nt_info'] != ''){
-                                                echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
-                                            }
-                                            if($lang==0){
-                                                echo '<div class="nick_name lang_en" id="nick_name">' . $users['nick_name'] . '</div>';
-                                            }else{
-                                                echo '<div class="nick_name" id="nick_name">' . $users['nick_name'] . '</div>';
-                                            }
-                                            echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-                                            echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['phone'] . '.png"></div>';
-                                            echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
-                                            echo '<div class="receipt receipt_price">'. number_format($users['fee']) .'</div>';
-                                    echo '</div>';
-                                echo '</div>';
-                            echo '</div>';
-                        ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-				<!-- /content area -->
+			    </div>
+			    <!-- Content area -->
+			    <div class="content" id="nametag">
+			        <div id="printThis">
+			            <div id="editor1" contenteditable="true">
+			                <?php
+							$lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['nick_name']);
+							echo '<div class="a4_area">';
+							echo '<div class="bg_area">';
+							echo '<div class="txt_con">';
+							if ($users['nt_info'] != '') {
+								echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
+							}
+							if ($lang == 0) {
+								echo '<div class="nick_name lang_en" id="nick_name">' . $users['nick_name'] . '</div>';
+							} else {
+								echo '<div class="nick_name" id="nick_name">' . $users['nick_name'] . '</div>';
+							}
+							echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
+							echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.png"></div>';
+							echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
+							echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
+							echo '</div>';
+							echo '</div>';
+							echo '</div>';
+							?>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			<!-- /content area -->
 
 			</div>
 			<!-- /main content -->
 
-		</div>
-		<!-- /page content -->
+			</div>
+			<!-- /page content -->
 
-	</div>
-	<!-- /page container -->
-	<style>
-        body{
-            background-color: #fff;
-        }
-    </style>
-	<script>
-        document.getElementById("btnPrint").onclick = function () {
-            printElement(document.getElementById("printThis"));
+			</div>
+			<!-- /page container -->
+			<style>
+body {
+    background-color: #fff;
+}
+			</style>
+			<script>
+document.getElementById("btnPrint").onclick = function() {
+    printElement(document.getElementById("printThis"));
+    window.close();
+}
 
-        }
+function printElement(elem) {
+    var domClone = elem.cloneNode(true);
 
-        function printElement(elem) {
-            var domClone = elem.cloneNode(true);
+    var $printSection = document.getElementById("printSection");
 
-            var $printSection = document.getElementById("printSection");
+    if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
+    }
 
-            if (!$printSection) {
-                var $printSection = document.createElement("div");
-                $printSection.id = "printSection";
-                document.body.appendChild($printSection);
-            }
+    $printSection.innerHTML = "";
+    $printSection.appendChild(domClone);
+    //            console.log($printSection);
+    window.print();
+}
 
-            $printSection.innerHTML = "";
-            $printSection.appendChild(domClone);
-//            console.log($printSection);
-            window.print();
-        }
 
-        
-        $(function() {
-            $("#btnPrint").trigger("click");
-            //window.close();
-        });
-    </script>
+$(function() {
+    $("#btnPrint").trigger("click");
+    //window.close();
+});
+			</script>
 
-    <script>
-    //Make the DIV element draggagle:
-    dragElement(document.getElementById("qrcode"));
-    dragElement(document.getElementById("org"));
-    dragElement(document.getElementById("nick_name"));
+			<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("qrcode"));
+dragElement(document.getElementById("org"));
+dragElement(document.getElementById("nick_name"));
 
-    function dragElement(elmnt) {
-      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      if (document.getElementById(elmnt.id)) {
+function dragElement(elmnt) {
+    var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+    if (document.getElementById(elmnt.id)) {
         /* if present, the header is where you move the DIV from:*/
         document.getElementById(elmnt.id).onmousedown = dragMouseDown;
-      } else {
+    } else {
         /* otherwise, move the DIV from anywhere inside the DIV:*/
         elmnt.onmousedown = dragMouseDown;
-      }
+    }
 
-      function dragMouseDown(e) {
+    function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
@@ -109,9 +112,9 @@
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
-      }
+    }
 
-      function elementDrag(e) {
+    function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
         // calculate the new cursor position:
@@ -122,23 +125,23 @@
         // set the element's new position:
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      }
+    }
 
-      function closeDragElement() {
+    function closeDragElement() {
         /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
-      }
     }
-    </script>
-    <script src="/ckeditor/ckeditor.js"></script>
-    <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
+}
+			</script>
+			<script src="/ckeditor/ckeditor.js"></script>
+			<script>
+// Replace the <textarea id="editor1"> with a CKEditor 4
+// instance, using default configuration.
 //        CKEDITOR.replace( 'editor1' );
 
-        // Turn off automatic editor creation first.
-        CKEDITOR.disableAutoInline = true;
-        CKEDITOR.inline( 'editor1' );
-    </script>
-</body>
+// Turn off automatic editor creation first.
+CKEDITOR.disableAutoInline = true;
+CKEDITOR.inline('editor1');
+			</script>
+			</body>
