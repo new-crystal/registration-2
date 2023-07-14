@@ -1,9 +1,9 @@
 <script type="text/javascript" src="/assets/js/admin/lecture_history.js"></script>
 <style>
-    table th {
-        padding: 0;
-        font-size: 1.2rem;
-    }
+table th {
+    padding: 0;
+    font-size: 1.2rem;
+}
 </style>
 <!-- Main content -->
 <div class="content-wrapper">
@@ -100,29 +100,23 @@
                         echo '<td>' . $item['registration_no'] . '</td>';
                         echo '<td>' . $item['type'] . '</td>';
                         echo '<td>' . $item['type2'] . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['phone'] . '">' . $item['nick_name'] . '</a></td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '">' . $item['nick_name'] . '</a></td>';
                         echo '<td>' . $item['org'] . '</td>';
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
                         echo '<td>';
 
-                        if ($item['msm_chk'] == "Y") {
-                            echo '<a href="/admin/send_msm?n=' . $item['id'] . '"><div class="btn btn-success qr_btn">문자발송</div></a>';
+                        if ($item['QR_SMS_SEND_YN'] == "Y") {
+                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '"><div class="btn btn-success qr_btn">문자발송</div></a>';
                         } else {
-                            echo '<a href="/admin/send_msm?n=' . $item['id'] . '"><div class="btn btn-non-success qr_btn">문자발송</div></a>';
+                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '"><div class="btn btn-non-success qr_btn">문자발송</div></a>';
                         }
                         echo '</td>';
                         echo '<td>';
                         echo '<a><div class="btn btn-warning qr_btn" >메일발송</div></a>';
                         echo '</td>';
-                        echo '<td style="text-align: center;"></td>';
-                        if ($item['deposit'] == "미결제") {
-                            echo '<td style="color:red;">';
-                        } else {
-                            echo '<td style="color:blue;">';
-                        }
-                        echo '</td>';
-                        echo '</td>';
+                        echo '<td style="text-align: center;">' . $item['mintime'] . '</td>';
+                        echo '<td style="text-align: center;">' . $item['maxtime'] . '</td>';
                         echo '<td>';
                         echo '<a  href="/admin/qr_layout?n=' . $item['registration_no'] . '"><div class="btn btn-info qr_btn" >QR보기</div></a>';
                         echo '</td>';
@@ -165,30 +159,30 @@
 </div>
 <!-- /page container -->
 <script>
-    //        $('#allChk').click(function(){
-    //            if($('input:checkbox[id="allChk"]').prop('checked')){
-    //                $('input[type=checkbox]').prop('checked',true);
-    //            }else{
-    //                $('input[type=checkbox]').prop('checked',false);
-    //            }
-    //        })
+//        $('#allChk').click(function(){
+//            if($('input:checkbox[id="allChk"]').prop('checked')){
+//                $('input[type=checkbox]').prop('checked',true);
+//            }else{
+//                $('input[type=checkbox]').prop('checked',false);
+//            }
+//        })
 
 
-    $('.depositChk').click(function() {
-        var formName = $('#depositForm');
-        // var formName2 = $('#nametagForm');
-        var formName3 = $('#deposit_mail_Form');
-        var userId = $(this).val();
-        var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
-            '" id="">'
-        console.log(userId)
-        if ($(this).prop('checked')) {
-            formName.append(checkHtml);
-            // formName2.append(checkHtml);
-            formName3.append(checkHtml);
-        } else {
-            $('.user' + userId).remove();
-        }
-    })
+$('.depositChk').click(function() {
+    var formName = $('#depositForm');
+    // var formName2 = $('#nametagForm');
+    var formName3 = $('#deposit_mail_Form');
+    var userId = $(this).val();
+    var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
+        '" id="">'
+    console.log(userId)
+    if ($(this).prop('checked')) {
+        formName.append(checkHtml);
+        // formName2.append(checkHtml);
+        formName3.append(checkHtml);
+    } else {
+        $('.user' + userId).remove();
+    }
+})
 </script>
 </body>
