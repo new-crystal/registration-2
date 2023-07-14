@@ -22,8 +22,9 @@ class OnSite extends CI_Controller
         $this->load->view('footer');
     }
 
-    public function init_()
+    public function mobile()
     {
+        $this->load->view('on-site-mo', $this->data);
     }
 
     public function success()

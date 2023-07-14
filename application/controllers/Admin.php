@@ -50,11 +50,7 @@ class Admin extends CI_Controller
         else {
             // 
             $data['primary_menu'] = 'user_qr';
-            $where = array(
-                'deposit !=' => '미결제'
-            );
-
-            $data['users'] = $this->users->get_qr_user($where);
+            $data['users'] = $this->users->get_qr_user();
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/qr_user', $data);
@@ -393,7 +389,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $data['item'] = $this->users->get_user($where);
             $data['item2'] = $this->entrance->access($where);
@@ -422,7 +418,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $data['item'] = $this->users->get_user($where);
             $this->load->view('admin/left_side.php', $data);
@@ -541,7 +537,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'user_qr';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $data['item'] = $this->users->get_user($where);
 
@@ -553,7 +549,12 @@ class Admin extends CI_Controller
 
                 $memo = $this->input->post('memo');
 
-                $info = array("memo" => $memo);
+                if ($memo === "") {
+                    $info = array("memo" => null); // 메모 필드를 null로 설정하여 삭제
+                } else {
+                    $info = array("memo" => $memo);
+                }
+
 
                 $this->users->add_memo($info, $where);
             }
@@ -568,7 +569,7 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['d'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $del_chk = $this->users->num_row($where);
             if ($del_chk == 1) {
@@ -595,7 +596,7 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'users';
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $this->load->view('admin/left_side.php', $data);
 
@@ -884,7 +885,7 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['n'];
             $where = array(
-                'id' => $userId
+                'registration_no' => $userId
             );
             $info = array(
                 'msm_chk' =>  'Y'
@@ -908,7 +909,7 @@ class Admin extends CI_Controller
                     'registration_no' => $value,
                 );
                 $info = array(
-                    'msm_chk' =>  'Y'
+                    'QR_SMS_SEND_YN' =>  'Y'
                 );
                 $this->users->update_msm_status($info, $where);
                 $users = $this->users->get_msm_user($where);
@@ -916,6 +917,35 @@ class Admin extends CI_Controller
             }
 
             $this->load->view('admin/send_all_msm', $data);
+        }
+    }
+
+
+    public function participant()
+    {
+        $this->load->view('admin/header');
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $data['primary_menu'] = 'participant';
+
+            $this->load->view('admin/left_side.php', $data);
+            $this->load->view('admin/participant.php', $data);
+        }
+        $this->load->view('footer');
+    }
+
+    public function receipt()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $_GET['n'];
+            $where = array(
+                'registration_no' => $userId
+            );
+            $data['users'] = $this->users->get_user($where);
+            $this->load->view('admin/receipt', $data);
         }
     }
 }

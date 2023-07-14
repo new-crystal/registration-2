@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * CodeIgniter QRCode Class
@@ -13,26 +13,29 @@ use Endroid\QrCode\Response\QrCodeResponse;
 
 class QRcode_e
 {
-    public function __construct() {
+    public function __construct()
+    {
         log_message('Debug', 'QRCode class is loaded.');
     }
 
-    public function load() {
+    public function load()
+    {
         // Include QRCode library files
-#       require_once APPPATH.'../vendor/endroid/qr-code/src/QrCode.php';
-#       require_once APPPATH.'../vendor/endroid/qr-code/src/QrCodeInterface.php';
-#       require_once APPPATH.'../vendor/endroid/qr-code/src/ErrorCorrectionLevel.php';
-#       require_once APPPATH.'../vendor/endroid/qr-code/src/LabelAlignment.php';
-#       require_once APPPATH.'../vendor/endroid/qr-code/src/WriteRegistry.php';
-#       require_once APPPATH.'../vendor/endroid/qr-code/src/WriteRegistryInterface.php';
+        #       require_once APPPATH.'../vendor/endroid/qr-code/src/QrCode.php';
+        #       require_once APPPATH.'../vendor/endroid/qr-code/src/QrCodeInterface.php';
+        #       require_once APPPATH.'../vendor/endroid/qr-code/src/ErrorCorrectionLevel.php';
+        #       require_once APPPATH.'../vendor/endroid/qr-code/src/LabelAlignment.php';
+        #       require_once APPPATH.'../vendor/endroid/qr-code/src/WriteRegistry.php';
+        #       require_once APPPATH.'../vendor/endroid/qr-code/src/WriteRegistryInterface.php';
 
     }
 
-    public function create_QRcode($data, $filename) {
+    public function create_QRcode($data, $filename)
+    {
         // Create a basic QR code
         $qrCode = new QrCode($data);
         $qrCode->setSize(300);
-        $qrCode->setMargin(10); 
+        $qrCode->setMargin(10);
 
         // Set advanced options
         $qrCode->setWriterByName('png');
@@ -63,6 +66,5 @@ class QRcode_e
 
         // Generate a data URI to include image data inline (i.e. inside an <img> tag)
         $dataUri = $qrCode->writeDataUri();
-
     }
 }

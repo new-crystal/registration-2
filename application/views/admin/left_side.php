@@ -62,21 +62,21 @@
                                 </li>
 
                                 <li style="margin-bottom: 2rem;">
-                                    <a href="/admin/qr_layout_all?type=01" target="_blank">
+                                    <a href="/admin/qr_layout_all?type=06" target="_blank">
                                         <i class="icon-printer2"></i>
                                         <span>좌장 QR생성
                                         </span>
                                     </a>
                                 </li>
                                 <li style="margin-bottom: 2rem;">
-                                    <a href="/admin/qr_layout_all?type=01" target="_blank">
+                                    <a href="/admin/qr_layout_all?type=05" target="_blank">
                                         <i class="icon-printer2"></i>
                                         <span>연자 QR생성
                                         </span>
                                     </a>
                                 </li>
                                 <li style="margin-bottom: 2rem;">
-                                    <a href="/admin/qr_layout_all?type=01" target="_blank">
+                                    <a href="/admin/qr_layout_all?type=04" target="_blank">
                                         <i class="icon-printer2"></i>
                                         <span>패널 QR생성
                                         </span>
@@ -89,14 +89,14 @@
                                         </span>
                                     </a>
                                 </li>
-                                <!-- <li style="margin-bottom: 2rem;"
-                                    <?php if ($primary_menu == 'users') echo 'class="active"' ?>>
-                                    <a href="/admin">
+                                <li style="margin-bottom: 2rem;"
+                                    <?php if ($primary_menu == 'participant') echo 'class="active"' ?>>
+                                    <a href="/admin/participant">
                                         <i class="icon-list-unordered"></i>
                                         <span>참석자 현황
                                         </span>
                                     </a>
-                                </li> -->
+                                </li>
                                 <li <?php if ($primary_menu == 'abstracts') echo 'class="active"' ?>>
                                     <a href="/admin/abstracts">
                                         <i class="icon-list-unordered"></i>

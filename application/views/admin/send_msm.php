@@ -5,6 +5,7 @@ $registration_no = $users['registration_no'] ?? '';
 $nick_name = $users['nick_name'] ?? '';
 $curl = curl_init();
 
+
 curl_setopt_array($curl, array(
     CURLOPT_URL => "https://sms.gabia.com/oauth/token",
     CURLOPT_RETURNTRANSFER => true,
@@ -58,10 +59,9 @@ if ($err) {
         ', 'refkey' => 'RESTAPITEST1548722798', 'subject' => ' 2023년 서울아산병원 당뇨병개원
         의 연수강좌 현장 사전 안내', 'image_cnt' =>
             '1', '
-      
-        images0' => new CURLFILE('assets/qr/qrcode_21903.jpg')
-            //원래 qr + id로 위 코드는 하드코딩!(지울것)
-            // images0' => new CURLFILE('assets/qr/qrcode_' . $id . '.jpg')
+             images0' => new CURLFILE('assets/images/QR/qrcode_' . $registration_no . '.jpg')
+
+            // images0' => new CURLFILE('assets/images/QR/qrcode_A2023-00105.jpg')
         ),
         CURLOPT_HTTPHEADER => array(
             "Authorization: Basic " . base64_encode("intowebinar:" . $accessToken)
@@ -74,38 +74,38 @@ if ($err) {
     curl_close($curl);
 
     if ($err) {
-        // echo "cURL Error #:" . $err;
+        echo "cURL Error #:" . $err;
         // $error = $err;
         // $error = json_decode($err, true);
         $error_msg = $err['message'];
     } else {
-        // echo $response;
+        echo $response;
         $responseData = json_decode($response, true);
         $code = $responseData['code'];
-        $after = $responseData['data']['AFTER_SMS_QTY'];
+        // $after = $responseData['data']['AFTER_SMS_QTY'];
     }
 }
 
 ?>
 <script src="https://cdn.tailwindcss.com"></script>
 <div class="w-full h-full flex items-center justify-center">
-    <?php if ($code == "200") : ?>
-        <div class="w-2/4 h-2/4 bg-lime-500 flex flex-col items-center justify-center">
-            <h1 class="text-white font-semibold text-3xl">MMS 전송이 성공하였습니다.</h1>
-            <p class="text-xl font-semibold mt-5">문자 잔여량 : <?= $after ?> </p>
-            <a href="/admin/qr_user"><button class="bg-white text-lime-500 p-3 translate-y-32 font-semibold rounded">뒤로
-                    가기</button></a>
-        </div>
+    <?php if ($code == "200" && isset($responseData['data'])) : ?>
+    <div class="w-2/4 h-2/4 bg-lime-500 flex flex-col items-center justify-center">
+        <h1 class="text-white font-semibold text-3xl">MMS 전송이 성공하였습니다.</h1>
+        <p class="text-xl font-semibold mt-5">문자 잔여량 : <?= $responseData['data']['AFTER_SMS_QTY'] ?> </p>
+        <a href="/admin/qr_user"><button
+                class="bg-white text-lime-500 p-3 translate-y-32 font-semibold rounded">뒤로가기</button></a>
+    </div>
 
 
     <?php endif; ?>
     <?php if ($code != "200") : ?>
-        <div class="w-2/4 h-3/4 bg-orange-500 flex flex-col items-center justify-center">
-            <h1 class="text-white font-semibold text-3xl">MMS 전송이 실패하였습니다.</h1>
-            <p class="text-xl font-semibold mt-5"> <?= $error_msg ?> </p>
-            <a href="/admin/qr_user"><button class="bg-white bg-orange-500 p-3 font-semibold rounded">뒤로
-                    가기</button></a>
-        </div>
+    <div class="w-2/4 h-3/4 bg-orange-500 flex flex-col items-center justify-center">
+        <h1 class="text-white font-semibold text-3xl">MMS 전송이 실패하였습니다.</h1>
+        <p class="text-xl font-semibold mt-5"> </p>
+        <a href="/admin/qr_user"><button class="bg-white bg-orange-500 p-3 font-semibold rounded">뒤로
+                가기</button></a>
+    </div>
     <?php endif; ?>
 </div>
 
