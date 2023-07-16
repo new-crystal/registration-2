@@ -210,7 +210,7 @@ class Admin extends CI_Controller
             $str = $value;
             $dir = "./assets/images/QR";
             $upload_dir = $dir . '/';
-            $filename =  'qrcode_' . $value . '.jpg';
+            $filename =  'qrcode_' . $value . '.png';
 
             echo getcwd();
             echo $upload_dir;
@@ -224,6 +224,18 @@ class Admin extends CI_Controller
             $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir . $filename);
             $this->users->update_qr_status($info, $where);
             /* QR생성 끝 */
+
+            /* PNG to JPG 변환 */
+            $image = imagecreatefrompng($upload_dir . 'qrcode_' . $value . '.png');
+            $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
+            imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+            imagealphablending($bg, TRUE);
+            imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+            imagedestroy($image);
+            $quality = 100; // 0 = worst / smaller file, 100 = better / bigger file 
+            imagejpeg($bg, $upload_dir . 'qrcode_' . $value . '.jpg', $quality);
+            imagedestroy($bg);
+
         }
 
         $this->load->view('admin/d_success');
@@ -928,6 +940,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/login');
         else {
             $data['primary_menu'] = 'participant';
+            $data['statistics'] = $this->users->get_access_statistics();
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/participant.php', $data);

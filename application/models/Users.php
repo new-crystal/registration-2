@@ -203,4 +203,19 @@ class Users extends CI_Model
 		$this->db->where($where);
 		return $this->db->get($this->users)->result_array();
 	}
+
+    public function get_access_statistics()
+    {
+        $query = $this->db->query("
+            SELECT u.type,
+                COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' THEN a.registration_no END) AS '2023-07-11',
+                COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' THEN a.registration_no END) AS '2023-07-12',
+                COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' THEN a.registration_no END) AS '2023-07-13'
+            FROM users u
+            JOIN access a
+            ON u.registration_no = a.registration_no
+            GROUP BY u.type;
+        ");
+		return $query->result_array();
+    }
 }

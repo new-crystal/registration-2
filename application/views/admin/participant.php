@@ -20,6 +20,9 @@ tr {
 <div class="text-center flex flex-col items-center justify-center">
     <h1 class="text-6xl font-semibold text-orange-600 my-10">***학회_2023 ****</h1>
     <h6 class="text-3xl font-semibold mb-20 ">현장 참석자 데이터</h6>
+    <?php
+        print_r($statistics);
+    ?>
     <table class="w-9/12 text-2xl mb-20">
         <tr class="bg-green-200">
             <th colspan="2">등록구분</th>
@@ -54,7 +57,7 @@ tr {
         </tr>
         <tr>
             <th class="bg-red-100">일반 참가자</th>
-            <td></td>
+            <td><?php echo $statistics[0]['2023-07-11']; ?></td>
             <td></td>
             <td></td>
         </tr>

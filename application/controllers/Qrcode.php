@@ -22,8 +22,6 @@ class Qrcode extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('qrcode', 'text', 'required');
-
         if ($this->form_validation->run() === FALSE)
         {
             $this->data['entrance'] = "";
