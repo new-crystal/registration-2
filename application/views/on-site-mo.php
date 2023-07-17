@@ -542,7 +542,8 @@
                     </div>
                 </div>
                 <!-- ==========================================================================================================/ -->
-                <div id="page_2" class="flex flex-col items-center justify-center text-center my-20">
+                <div id="page_2" class="flex flex-col items-center justify-center text-center my-20"
+                    style="display: none;">
                     <div>
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <h2 class="inline-block">Session participation(세션참여 여부)<span>*</span></h2>
@@ -592,7 +593,7 @@
                 </div>
                 <!-- ==========================================================================================================/ -->
 
-                <div id="page_3" class="mt-5">
+                <div id="page_3" class="mt-5" style="display: none;">
                     <div class="mb-4">
                         <img src="../../assets/images/circle.png" class="inline" />
                         <h2 class="mb-5 inline">Where did you get the information about the conference?(가입경로)</h2>
@@ -655,7 +656,7 @@
                         class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
                 </div>
                 <!-- ================================================================================================/ -->
-                <div id="page_4" class="wrap_2">
+                <div id="page_4" class="wrap_2" style="display: none;">
                     <div class="confirm_box mt-10">
                         <div class="confirm_box_title flex items-center justify-center">
                             <h1 class="text-sm">Use of Personal Information <br>(개인정보활용동의)</h1>
@@ -1093,7 +1094,10 @@ function onSubmit(e) {
     wrap_2.style.display = ""
     wrap_3.style.display = "none"
     wrap_4.style.display = "none"
-    yes_1.focus()
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
 secondPageBtn.addEventListener("click", () => {
@@ -1105,7 +1109,10 @@ secondPageBtn.addEventListener("click", () => {
     wrap_2.style.display = "none"
     wrap_3.style.display = ""
     wrap_4.style.display = "none"
-    page3.focus()
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 })
 
 thirdPageBtn.addEventListener("click", () => {
@@ -1121,7 +1128,10 @@ thirdPageBtn.addEventListener("click", () => {
     wrap_2.style.display = "none"
     wrap_3.style.display = "none"
     wrap_4.style.display = ""
-    allCheck.focus()
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 })
 
 function onClickSubmit() {
