@@ -235,7 +235,6 @@ class Admin extends CI_Controller
             $quality = 100; // 0 = worst / smaller file, 100 = better / bigger file 
             imagejpeg($bg, $upload_dir . 'qrcode_' . $value . '.jpg', $quality);
             imagedestroy($bg);
-
         }
 
         $this->load->view('admin/d_success');
@@ -900,7 +899,7 @@ class Admin extends CI_Controller
                 'registration_no' => $userId
             );
             $info = array(
-                'msm_chk' =>  'Y'
+                'QR_SMS_SEND_YN' =>  'Y'
             );
             $this->users->update_msm_status($info, $where);
             $data['users'] = $this->users->get_user($where);
