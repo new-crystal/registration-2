@@ -3361,6 +3361,39 @@ fieldset[disabled] .btn-warning.focus {
   color: #FF5722;
   background-color: #fff;
 }
+
+
+.btn-non-warning:focus,
+.btn-non-warning.focus,
+.btn-non-warning:hover {
+  background-color: #FF5722;
+  color: #fff;
+  border-color: #FF5722;
+}
+.btn-non-warning:active,
+.btn-non-warning.active,
+.open > .dropdown-toggle.btn-non-warning {
+  background-color: #FF5722;
+  color: #fff;
+  border-color: #FF5722;
+}
+.btn-non-warning:active:hover,
+.btn-non-warning.active:hover,
+.open > .dropdown-toggle.btn-non-warning:hover,
+.btn-non-warning:active:focus,
+.btn-non-warning.active:focus,
+.open > .dropdown-toggle.btn-non-warning:focus,
+.btn-non-warning:active.focus,
+.btn-non-warning.active.focus,
+.open > .dropdown-toggle.btn-non-warning.focus {
+  background-color: #FF5722;
+  color: #fff;
+  border-color: #FF5722;
+}
+.btn-non-warning.disabled {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 .btn-danger {
   color: #fff;
   background-color: #F44336;
