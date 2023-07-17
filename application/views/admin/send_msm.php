@@ -79,7 +79,7 @@ if ($err) {
         // $error = json_decode($err, true);
         $error_msg = $err['message'];
     } else {
-        echo $response;
+        // echo $response;
         $responseData = json_decode($response, true);
         $code = $responseData['code'];
         // $after = $responseData['data']['AFTER_SMS_QTY'];
@@ -90,22 +90,21 @@ if ($err) {
 <script src="https://cdn.tailwindcss.com"></script>
 <div class="w-full h-full flex items-center justify-center">
     <?php if ($code == "200" && isset($responseData['data'])) : ?>
-    <div class="w-2/4 h-2/4 bg-lime-500 flex flex-col items-center justify-center">
-        <h1 class="text-white font-semibold text-3xl">MMS 전송이 성공하였습니다.</h1>
-        <p class="text-xl font-semibold mt-5">문자 잔여량 : <?= $responseData['data']['AFTER_SMS_QTY'] ?> </p>
-        <a href="/admin/qr_user"><button
-                class="bg-white text-lime-500 p-3 translate-y-32 font-semibold rounded">뒤로가기</button></a>
-    </div>
+        <div class="w-2/4 h-2/4 bg-lime-500 flex flex-col items-center justify-center">
+            <h1 class="text-white font-semibold text-3xl">MMS 전송이 성공하였습니다.</h1>
+            <p class="text-xl font-semibold mt-5">문자 잔여량 : <?= $responseData['data']['AFTER_SMS_QTY'] ?> </p>
+            <a href="/admin/qr_user"><button class="bg-white text-lime-500 p-3 translate-y-32 font-semibold rounded">뒤로가기</button></a>
+        </div>
 
 
     <?php endif; ?>
     <?php if ($code != "200") : ?>
-    <div class="w-2/4 h-3/4 bg-orange-500 flex flex-col items-center justify-center">
-        <h1 class="text-white font-semibold text-3xl">MMS 전송이 실패하였습니다.</h1>
-        <p class="text-xl font-semibold mt-5"> </p>
-        <a href="/admin/qr_user"><button class="bg-white bg-orange-500 p-3 font-semibold rounded">뒤로
-                가기</button></a>
-    </div>
+        <div class="w-2/4 h-3/4 bg-orange-500 flex flex-col items-center justify-center">
+            <h1 class="text-white font-semibold text-3xl">MMS 전송이 실패하였습니다.</h1>
+            <p class="text-xl font-semibold mt-5"> </p>
+            <a href="/admin/qr_user"><button class="bg-white bg-orange-500 p-3 font-semibold rounded">뒤로
+                    가기</button></a>
+        </div>
     <?php endif; ?>
 </div>
 
