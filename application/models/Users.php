@@ -121,6 +121,10 @@ class Users extends CI_Model
 		$this->db->where($where);
 		$this->db->update($this->users, $info);
 	}
+	public function update_all_deposit_status($info)
+	{
+		$this->db->update($this->users, $info);
+	}
 
 	public function update_qr_status($info, $where)
 	{
@@ -204,9 +208,9 @@ class Users extends CI_Model
 		return $this->db->get($this->users)->result_array();
 	}
 
-    public function get_access_statistics()
-    {
-        $query = $this->db->query("
+	public function get_access_statistics()
+	{
+		$query = $this->db->query("
             SELECT u.type,
                 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' THEN a.registration_no END) AS '2023-07-11',
                 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' THEN a.registration_no END) AS '2023-07-12',
@@ -217,5 +221,5 @@ class Users extends CI_Model
             GROUP BY u.type;
         ");
 		return $query->result_array();
-    }
+	}
 }

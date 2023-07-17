@@ -29,6 +29,9 @@
                         <button class="btn btn-primary pull-right"><i class="icon-download4"></i> &nbspExcel
                             Download</button>
                     </form>
+                    <form action="/admin/all_deposit_check" method="post" id="all_depositForm">
+                        <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i>전부 입금확인</button>
+                    </form>
                     <form action="/admin/deposit_check" method="post" id="depositForm">
                         <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 입금확인</button>
                     </form>
@@ -193,6 +196,7 @@
         var formName = $('#depositForm');
         var formName2 = $('#nametagForm');
         var formName3 = $('#non_depositForm');
+        // var formName4 = $('#all_depositForm');
         var userId = $(this).val();
         var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
             '" id="">'
@@ -200,9 +204,21 @@
             formName.append(checkHtml);
             formName2.append(checkHtml);
             formName3.append(checkHtml);
+            // formName4.append(checkHtml)
         } else {
             $('.user' + userId).remove();
         }
     })
+
+    $('#all_depositForm').click(function() {
+        var formName4 = $('#all_depositForm');
+        $('.depositChk').prop('checked', true).each(function() {
+            var userId = $(this).val();
+            var checkHtml = '<input type="hidden" class="userId user' + userId +
+                '" name="userId[]" value="' + userId +
+                '" id="">';
+            formName4.append(checkHtml);
+        });
+    });
 </script>
 </body>
