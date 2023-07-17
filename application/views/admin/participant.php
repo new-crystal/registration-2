@@ -21,8 +21,17 @@ tr {
     <h1 class="text-6xl font-semibold text-orange-600 my-10">***학회_2023 ****</h1>
     <h6 class="text-3xl font-semibold mb-20 ">현장 참석자 데이터</h6>
     <!-- <?php
-    print_r($statistics);
-    ?> -->
+            print_r($statistics);
+            $total_1 = 0;
+            $total_2 = 0;
+            $total_3 = 0;
+            for ($i = 0; $i < count($statistics); $i++) {
+                $total_1 += $statistics[$i]['2023-07-11'];
+                $total_2 += $statistics[$i]['2023-07-12'];
+                $total_3 += $statistics[$i]['2023-07-13'];
+            }
+
+            ?> -->
     <table class="w-9/12 text-2xl mb-20">
         <tr class="bg-green-200">
             <th colspan="2">등록구분</th>
@@ -94,9 +103,9 @@ tr {
         </tr>
         <tr class="bg-green-200">
             <th colspan="2">합계</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th><?php echo $total_1; ?></th>
+            <th><?php echo $total_2; ?></th>
+            <th><?php echo $total_3; ?></th>
         </tr>
     </table>
 </div>
