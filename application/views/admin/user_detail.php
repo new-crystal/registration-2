@@ -139,10 +139,17 @@
                                         class="form-control" name="deposit_date">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">메모</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['memo']; ?>" size="16"
+                                        class="form-control" name="memo">
+                                </div>
+                            </div>
                             <div clss="btn_group" style="float: right;">
                                 <button type="submit" data-toggle="modal" class="btn btn-primary">수정</button>
                                 </form>
-                                <a href="/admin/delete_user?d=<?php echo $item['phone']; ?>"
+                                <a href="/admin/delete_user?d=<?php echo $item['registration_no']; ?>"
                                     class="btn btn-danger">삭제</a>
                             </div>
                         </div>

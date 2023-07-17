@@ -240,6 +240,62 @@ class Admin extends CI_Controller
         $this->load->view('admin/d_success');
     }
 
+    function all_deposit_check()
+    {
+
+        $regNo = $this->input->post('userId');
+
+        foreach ($regNo as $value) {
+            $info = array(
+                'deposit' => '입금완료'
+            );
+            $where = array(
+                'registration_no' => $value,
+            );
+            $this->users->update_deposit_status($info, $where);
+
+
+            /* QR생성 */
+            $info = array(
+                'qr_chk' =>  'Y'
+            );
+            $where = array(
+                'registration_no' => $value
+            );
+
+            $str = $value;
+            $dir = "./assets/images/QR";
+            $upload_dir = $dir . '/';
+            $filename =  'qrcode_' . $value . '.png';
+
+            echo getcwd();
+            echo $upload_dir;
+            echo $filename;
+
+            if (is_dir($dir) != true) {
+                mkdir($dir, 0700);
+            }
+
+            //유효성체크 제거
+            $qr_dataUri = $this->qrcode_e->create_QRcode($str, $upload_dir . $filename);
+            $this->users->update_qr_status($info, $where);
+            /* QR생성 끝 */
+
+            /* PNG to JPG 변환 */
+            $image = imagecreatefrompng($upload_dir . 'qrcode_' . $value . '.png');
+            $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
+            imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+            imagealphablending($bg, TRUE);
+            imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+            imagedestroy($image);
+            $quality = 100; // 0 = worst / smaller file, 100 = better / bigger file 
+            imagejpeg($bg, $upload_dir . 'qrcode_' . $value . '.jpg', $quality);
+            imagedestroy($bg);
+        }
+
+        $this->load->view('admin/d_success');
+    }
+
     function non_deposit_check()
     {
         $regNo = $this->input->post('userId');
@@ -473,6 +529,7 @@ class Admin extends CI_Controller
                 $extraAddress = $this->input->post('extraAddress');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
+                $memo = $this->input->post('memo');
                 if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
                     if ($type == '좌장' || $type == '연자' || $type == '패널') {
                         $fee = 0;
@@ -526,7 +583,8 @@ class Admin extends CI_Controller
                     'uagent' => $uagent,
                     'deposit' => $deposit,
                     'deposit_date' => $deposit_date,
-                    'deposit_name' => $deposit_name
+                    'deposit_name' => $deposit_name,
+                    'memo' => $memo,
                 );
                 //                var_dump($info);
                 $this->users->add_user($info);
