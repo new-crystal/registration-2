@@ -969,6 +969,10 @@ class Admin extends CI_Controller
             $where = array(
                 'registration_no' => $userId
             );
+            $info = array(
+                'MAIL_SEND_YN' =>  'Y'
+            );
+            $this->users->update_msm_status($info, $where);
             $data['users'] = $this->users->get_user($where);
             $this->load->view('admin/mail', $data);
         }

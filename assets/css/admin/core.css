@@ -1853,6 +1853,8 @@ input[class*=bg-] + .form-control-feedback {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+
 .btn-warning:focus,
 .btn-warning.focus,
 .btn-warning:hover {
@@ -1881,6 +1883,21 @@ input[class*=bg-] + .form-control-feedback {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+.btn-non-warning{
+  background-color: #FF5722;
+  color: #fff;
+  border-color: #FF5722;
+}
+
+.btn-non-warning:focus,
+.btn-non-warning.focus,
+.btn-non-warning:hover {
+  background-color: #FF5722;
+  color: #fff;
+  border-color: #FF5722;
+}
+
 .btn-danger:focus,
 .btn-danger.focus,
 .btn-danger:hover {
