@@ -960,4 +960,34 @@ class Admin extends CI_Controller
             $this->load->view('admin/receipt', $data);
         }
     }
+    public function email()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $_GET['n'];
+            $where = array(
+                'registration_no' => $userId
+            );
+            $data['users'] = $this->users->get_user($where);
+            $this->load->view('admin/mail', $data);
+        }
+    }
+    public function qr_email()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $_GET['n'];
+            $where = array(
+                'registration_no' => $userId
+            );
+            $info = array(
+                'QR_MAIL_SEND_YN' =>  'Y'
+            );
+            $this->users->update_msm_status($info, $where);
+            $data['users'] = $this->users->get_user($where);
+            $this->load->view('admin/qr_mail', $data);
+        }
+    }
 }

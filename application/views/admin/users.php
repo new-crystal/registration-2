@@ -108,7 +108,7 @@ table th {
                         echo '<a><div class="btn btn-non-success qr_btn" onclick="onClickReceipt(\'' . $item['registration_no'] . '\')">영수증</div></a>';
                         echo '</td>';
                         echo '<td>';
-                        echo '<a><div class="btn btn-warning qr_btn" >메일발송</div></a>';
+                        echo '<a href="/admin/email?n=' . $item['registration_no'] . '"><div class="btn btn-warning qr_btn" >메일발송</div></a>';
                         echo '</td>';
                         echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
                         if ($item['deposit'] == "미결제") {
