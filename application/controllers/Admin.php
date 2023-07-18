@@ -689,6 +689,7 @@ class Admin extends CI_Controller
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
                 $memo = $this->input->post('memo');
+                $time = $this->input->post('time');
                 if ($memo == "") {
                     $memo = null;
                 }
@@ -739,7 +740,8 @@ class Admin extends CI_Controller
                     'deposit_date' => $deposit_date,
                     'deposit_name' => $deposit_name,
                     'updatetime' => $updateTime,
-                    'memo' => $memo
+                    'memo' => $memo,
+                    'time' => substr($time, 0, 10)
                 );
 
                 $this->users->update_user($info, $where);
