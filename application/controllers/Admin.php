@@ -688,7 +688,10 @@ class Admin extends CI_Controller
                 $addr = $this->input->post('addr');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
-
+                $memo = $this->input->post('memo');
+                if ($memo == "") {
+                    $memo = null;
+                }
                 if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
                     if ($type == '좌장' || $type == '연자' || $type == '패널') {
                         $fee = 0;
@@ -736,6 +739,7 @@ class Admin extends CI_Controller
                     'deposit_date' => $deposit_date,
                     'deposit_name' => $deposit_name,
                     'updatetime' => $updateTime,
+                    'memo' => $memo
                 );
 
                 $this->users->update_user($info, $where);

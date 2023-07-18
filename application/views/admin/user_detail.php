@@ -128,16 +128,16 @@
                                 <label class="col-sm-2 control-label">메모</label>
                                 <div class="col-sm-10">
                                     <?php if ($item['memo'] == 'null') { ?>
-                                        <input id="dp1" type="text" value="" size="16" class="form-control" name="memo">
+                                        <input id="memo" type="text" value="" size="16" class="form-control" name="memo">
                                     <?php  } else { ?>
-                                        <input id="dp1" type="text" value="<?php echo $item['memo']; ?>" size="16" class="form-control" name="memo">
+                                        <input id="memo" type="text" value="<?php echo $item['memo']; ?>" size="16" class="form-control" name="memo">
                                     <?php } ?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">등록시간</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo substr($item['time'], 0, 10) ?>" size="16" class="form-control" name="memo">
+                                    <input id="time" type="text" value="<?php echo substr($item['time'], 0, 10) ?>" size="16" class="form-control" name="time">
                                 </div>
                             </div>
                             <div clss="btn_group" style="float: right;">
