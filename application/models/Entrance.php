@@ -22,7 +22,7 @@ class Entrance extends CI_Model
         //        $this->db->select('a.type, a.type2, a.nick_name, access.phone, a.email, a.org, a.addr, access.time, access.id as idx');
         //		$this->db->order_by('a.nick_name');
         //		return $this->db->get($this->access)->result_array();
-        $query = $this->db->query("SELECT *, time_format(b.duration,'%H시간 %i분') as d_format from users a LEFT JOIN( SELECT phone as qr_phone, MAX(time) as maxtime, MIN(time) as mintime, TIMEDIFF(MAX(time), MIN(time)) as duration from access GROUP by phone )b on a.phone = b.qr_phone ORDER BY a.nick_name ASC");
+        $query = $this->db->query("SELECT *, time_format(b.duration,'%H시간 %i분') as d_format from users a LEFT JOIN( SELECT registration_no as qr_registration_no, MAX(time) as maxtime, MIN(time) as mintime, TIMEDIFF(MAX(time), MIN(time)) as duration from access GROUP by registration_no )b on a.registration_no = b.qr_registration_no ORDER BY a.nick_name ASC");
 
         return $query->result_array();
     }
