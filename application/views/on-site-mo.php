@@ -183,6 +183,10 @@
         height: 50px;
         background-color: #e1e1e1;
     }
+
+    .mo_wrap {
+        margin-bottom: 1rem;
+    }
     </style>
 </head>
 
@@ -194,18 +198,18 @@
             </div>
             <div class="w-11/12 mt-5 mx-auto px-3">
                 <div id="page_1">
-                    <div>
+                    <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Name(이름)<span>*</span></p>
                         <div class="flex justify-between w-full mb-2">
-                            <input type="text" id="firstName" class="w-[49%]" placeholder="*firstName" />
-                            <input type="text" id="lastName" class="w-[49%]" placeholder="*lastName" />
+                            <input type="text" id="firstName" class="w-[49%]" placeholder="*first name" />
+                            <input type="text" id="lastName" class="w-[49%]" placeholder="*last name" />
                         </div>
                         <input type="text" id="KoreanName" class="w-full" placeholder="국문이름">
                     </div>
-                    <div>
+                    <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
-                        <p class="inline-block">Contry(국가)<span>*</span></p>
+                        <p class="inline-block">Country(국가)<span>*</span></p>
                         <select id="nation_no" name="nation_no" class="px-2 py-1 w-full h-9 border">
                             <option value="" selected="" hidden="" data-nt="82">Contry</option>
                             <option data-nt="82" value="25">Republic of Korea</option>
@@ -426,17 +430,17 @@
                             <option data-nt="263" value="164">Zimbabwe</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Affiliation(소속)<span>*</span></p>
                         <input type="text" id="affiliation" class="w-full" placeholder="*소속을 입력해주세요">
                     </div>
-                    <div>
+                    <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Mobile Phone Number(휴대전화번호)<span>*</span></p>
                         <input type="text" id="phoneNumber" class="w-full" placeholder="* -를 제외한 숫자만 입력해주세요">
                     </div>
-                    <div>
+                    <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">E-mail(이메일)<span>*</span></p>
                         <div class="flex items-center justify-space">
@@ -461,7 +465,7 @@
                                 <option value="hanmir.com">hanmir.com</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Member(학회 회원 여부)<span>*</span></p>
                             <div class="flex flex-nowrap flex-col">
@@ -476,7 +480,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Type of Participation(참석유형)<span>*</span></p>
                             <div class="flex justify-between items-center">
@@ -492,7 +496,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Category(참석자 구분)<span>*</span></p>
                             <div class="flex justify-between items-center">
@@ -517,7 +521,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Only Korean(평점신청 여부)<span>*</span></p>
                             <div class="h-12">

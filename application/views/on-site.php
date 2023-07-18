@@ -191,7 +191,7 @@ th {
                     </td>
                 </tr>
                 <tr>
-                    <th>Contry<br> (국가)<span class="hit">*</span></th>
+                    <th>Country<br> (국가)<span class="hit">*</span></th>
                     <td>
                         <select id="nation_no" name="nation_no" class="px-2 py-1 w-6/12 h-10">
                             <option value="" selected="" hidden="" data-nt="82">Contry</option>
