@@ -92,6 +92,16 @@ class Users extends CI_Model
 		$this->db->update($this->users, array('registration_no' => $registration_no));
 	}
 
+	public function add_onsite_user($info)
+	{
+		$this->db->insert($this->users, $info);
+
+		$id = $this->db->insert_id();
+		$registration_no = 'B2023-' . str_pad($id, 5, '0', STR_PAD_LEFT);
+		$this->db->where('id', $id);
+		$this->db->update($this->users, array('registration_no' => $registration_no));
+	}
+
 	public function add_memo($info, $where)
 	{
 		$this->db->where($where);

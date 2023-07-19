@@ -60,6 +60,14 @@
                                         </span>
                                     </a>
                                 </li>
+                                <li style="margin-bottom: 2rem;"
+                                    <?php if ($primary_menu == 'qrcode') echo 'class="active"' ?>>
+                                    <a href="/admin/access">
+                                        <i class="icon-list-unordered"></i>
+                                        <span> QR code
+                                        </span>
+                                    </a>
+                                </li>
 
                                 <li style="margin-bottom: 2rem;">
                                     <a href="/admin/qr_layout_all?type=06" target="_blank">
