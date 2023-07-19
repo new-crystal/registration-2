@@ -1147,7 +1147,7 @@ function onClickSubmit() {
         checkedArr = [firstCheck.checked, secondCheck.checked, thirdCheck.checked, fourthCheck.checked];
 
     }
-    const members = member.checked ? true : false
+    const members = member.checked ? "회원" : "비회원"
     const needs = need.checked ? true : false
     const checkArray = []
     checkboxes.forEach((check) => {
@@ -1166,6 +1166,31 @@ function onClickSubmit() {
     console.log("세션참여 여부", [first, second, third, fourth, fiveth])
     console.log("가입경로", checkArray)
     // window.location = "/onsite/success";
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/OnSite/mobile", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    const data = {
+        type2: categorySelect.options[categorySelect.selectedIndex].value,
+        nick_name: KoreanName.value ? KoreanName.value : firstName.value + LastName.value,
+        country: contry.value,
+        phone: phone.value,
+        email: email_1.value + email_2.value,
+        org: affilation.value,
+        type1: participationSelect.options[participationSelect.selectedIndex].value,
+        type3: members,
+        sn: needs ? doctor.value || specialist.value : ""
+    };
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // 요청 완료 후의 동작
+            console.log(xhr.responseText);
+        }
+    };
+
+    xhr.send(JSON.stringify(data));
 }
 </script>
 
