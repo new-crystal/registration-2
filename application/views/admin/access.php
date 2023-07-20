@@ -14,12 +14,19 @@
 }
 
 .qr-info-table>tr,
-.qr-info-table th,
-.qr-info-table td {
+.qr-info-table th {
     border: 2px solid #eee;
     text-align: center;
     font-size: 1.25rem;
     line-height: 2.5rem;
+}
+
+.qr-info-table td {
+    border: 2px solid #eee;
+    text-align: left;
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    padding-left: 4rem;
 }
 
 .qr-info-table tr {
@@ -62,7 +69,7 @@
             <th>메모</th>
             <td class="qr_text"><?php
                                 if (isset($user['memo'])) {
-                                    echo $user['memo'];
+                                    echo $user['memo'] == 'null' ? "" : $user['memo'];
                                 }
                                 ?></td>
         </tr>
@@ -81,12 +88,13 @@
             qrcode.focus();
             return;
         }
+
     });
 
 
-    setTimeout(() => {
-        hideText()
-    }, 3000)
+    // setTimeout(() => {
+    //     hideText()
+    // }, 3000)
 
 
     function hideText() {

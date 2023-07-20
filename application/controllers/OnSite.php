@@ -12,6 +12,7 @@ class OnSite extends CI_Controller
         parent::__construct();
 
         date_default_timezone_set('Asia/Seoul');
+        $this->load->model('users');
     }
 
     public function index()
@@ -24,21 +25,29 @@ class OnSite extends CI_Controller
 
     public function mobile()
     {
-        $this->load->view('on-site-mo', $this->data);
+        $this->load->view('on-site-mo');
+        $firstName = isset($_GET['firstName']) ? $_GET['firstName'] : null;
+        $lastName = isset($_GET['lastName']) ? $_GET['lastName'] : null;
+        $type = isset($_GET['type1']) ? $_GET['type1'] : null;
+        $type2 = isset($_GET['type2']) ? $_GET['type2'] : null;
+        $type4 = isset($_GET['type4']) ? $_GET['type4'] : null;
+        $type5 = isset($_GET['type5']) ? $_GET['type5'] : null;
+        $name = isset($_GET['nick_name']) ? $_GET['nick_name'] : null;
+        $phone = isset($_GET['phone']) ? $_GET['phone'] : null;
+        $email1 = isset($_GET['email1']) ? $_GET['email1'] : null;
+        $email2 = isset($_GET['email2']) ? $_GET['email2'] : null;
+        $org = isset($_GET['org']) ? $_GET['org'] : null;
+        $license = isset($_GET['sn']) ? $_GET['sn'] : null;
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
-            $type = $_POST["type1"];
-            $type2 = $_POST["type2"];
-            $type3 = $_POST["type3"];
-            $name = $_POST["nick_name"];
-            $country = $_POST["country"];
-            $phone = $_POST["phone"];
-            $email = $_POST["email"];
-            $org = $_POST["org"];
-            $type2 = $_POST["type2"];
-            $type2 = $_POST["type2"];
-            $license = $_POST["sn"];
-
+        if (!empty($name) || !empty($firstName)) {
+            if ($type4 == "on") {
+                $type3 = "회원";
+            } else {
+                $type3 = "비회원";
+            }
+            if ($license == "") {
+                $license = "00000";
+            }
             if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
                 if ($type == '좌장' || $type == '연자' || $type == '패널') {
                     $fee = 0;
@@ -69,7 +78,9 @@ class OnSite extends CI_Controller
                 $deposit = '미결제';
 
             $time = date("Y-m-d H:i:s");
-            $uagent = $this->agent->agent_string();
+            // $uagent = $this->agent->agent_string();
+
+            $email = $email1 . "@" . $email2;
             $info = array(
                 'nick_name' => preg_replace("/\s+/", "", $name),
                 'sn' => preg_replace("/\s+/", "", $license),
@@ -83,7 +94,7 @@ class OnSite extends CI_Controller
                 'fee' => $fee,
                 'time' => $time,
                 'deposit' => $deposit,
-                'uagent' => $uagent,
+                // 'uagent' => $uagent,
             );
             $this->users->add_onsite_user($info);
         }
