@@ -21,7 +21,7 @@
     <h1 class="text-6xl font-semibold text-orange-600 my-10">***학회_2023 ****</h1>
     <h6 class="text-3xl font-semibold mb-20 ">현장 참석자 데이터</h6>
     <?php
-    // print_r($statistics);
+    print_r($statistics);
     $total_1 = 0;
     $total_2 = 0;
     $total_3 = 0;
@@ -33,7 +33,7 @@
 
     ?>
     <table class="w-9/12 text-2xl mb-20">
-        <tr class="bg-green-200">
+        <tr class="bg-green-300 text-black">
             <th colspan="2">등록구분</th>
             <th>4월 6일(목)</th>
             <th>4월 7일(금)</th>
@@ -101,7 +101,7 @@
             <td></td>
             <td></td>
         </tr>
-        <tr class="bg-green-200">
+        <tr class="bg-green-300 text-black">
             <th colspan="2">합계</th>
             <th><?php echo $total_1; ?></th>
             <th><?php echo $total_2; ?></th>

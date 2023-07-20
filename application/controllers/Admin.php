@@ -1070,19 +1070,30 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'qrcode';
 
             $qrcode = isset($_GET['qrcode']) ? $_GET['qrcode'] : null;
+            if ($qrcode) {
+                $time = date("Y-m-d H:i:s");
 
-            $where = array(
-                'registration_no' => $qrcode
-            );
+                $info = array(
+                    'registration_no' => $qrcode,
+                    'time' => $time
+                );
 
-            $user = $this->users->get_user($where);
+                $where = array(
+                    'registration_no' => $qrcode
+                );
+                $this->entrance->record($info);
+                $user = $this->users->get_user($where);
+                $this->data['user'] = $user;
 
-            $this->data['user'] = $user;
 
-            $this->load->view('admin/left_side.php', $data);
-            $this->load->view('admin/access', $this->data);
-
-            $this->load->view('footer');
+                $this->load->view('admin/left_side.php', $data);
+                $this->load->view('admin/access', $this->data);
+                $this->load->view('footer');
+            } else {
+                $this->load->view('admin/left_side.php', $data);
+                $this->load->view('admin/access');
+                $this->load->view('footer');
+            }
         }
     }
 }

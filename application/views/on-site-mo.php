@@ -196,16 +196,17 @@
             <div class="text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white">
                 <h1>On-site registration<br>(현장 등록)</h1>
             </div>
-            <div class="w-11/12 mt-5 mx-auto px-3">
-                <div id="page_1">
+            <form action="/onSite/mobile" id="mobile_form" class="w-11/12 mt-5 mx-auto px-3">
+                <div action="/onSite/mobile" id="page_1">
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Name(이름)<span>*</span></p>
                         <div class="flex justify-between w-full mb-2">
-                            <input type="text" id="firstName" class="w-[49%]" placeholder="*first name" />
-                            <input type="text" id="lastName" class="w-[49%]" placeholder="*last name" />
+                            <input type="text" id="firstName" name="firstName" class="w-[49%]"
+                                placeholder="*first name" />
+                            <input type="text" id="lastName" name="lastName" class="w-[49%]" placeholder="*last name" />
                         </div>
-                        <input type="text" id="KoreanName" class="w-full" placeholder="국문이름">
+                        <input type="text" id="KoreanName" name="nick_name" class="w-full" placeholder="국문이름">
                     </div>
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
@@ -433,21 +434,22 @@
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Affiliation(소속)<span>*</span></p>
-                        <input type="text" id="affiliation" class="w-full" placeholder="*소속을 입력해주세요">
+                        <input type="text" id="affiliation" name="org" class="w-full" placeholder="*소속을 입력해주세요">
                     </div>
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Mobile Phone Number(휴대전화번호)<span>*</span></p>
-                        <input type="text" id="phoneNumber" class="w-full" placeholder="* -를 제외한 숫자만 입력해주세요">
+                        <input type="text" id="phoneNumber" name="phone" class="w-full"
+                            placeholder="* -를 제외한 숫자만 입력해주세요">
                     </div>
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">E-mail(이메일)<span>*</span></p>
                         <div class="flex items-center justify-space">
-                            <input type="text" name="Email1" id="Email1" maxlength="64" value="" class="w-[40%] mr-2">
+                            <input type="text" name="email1" id="Email1" maxlength="64" value="" class="w-[40%] mr-2">
                             <p>@</p>
-                            <input type="text" name="Email2" id="Email2" maxlength="64" value="" class="w-[40%] ml-2">
-                            <select name="Email3" id="Email3" class="border w-[15%] h-9 ml-3"
+                            <input type="text" name="email2" id="Email2" maxlength="64" value="" class="w-[40%] ml-2">
+                            <select name="email3" id="Email3" class="border w-[15%] h-9 ml-3"
                                 style="background-color:#ffffff;">
                                 <option value="" selected="selected">직접입력</option>
                                 <option value="naver.com">naver.com</option>
@@ -470,11 +472,11 @@
                             <p class="inline-block">Member(학회 회원 여부)<span>*</span></p>
                             <div class="flex flex-nowrap flex-col">
                                 <div class="block">
-                                    <input type="radio" id="member" />
+                                    <input type="radio" id="member" name="type4" />
                                     <label for="member">Member(회원)</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="non_member" />
+                                    <input type="radio" id="non_member" name="type5" />
                                     <label for="non_member">Non-Member(비회원)</label>
                                 </div>
                             </div>
@@ -485,13 +487,13 @@
                             <p class="inline-block">Type of Participation(참석유형)<span>*</span></p>
                             <div class="flex justify-between items-center">
                                 <select id="Participation_1" style="background-color:#ffffff;"
-                                    class="px-2 py-1 w-full h-9 border">
+                                    class="px-2 py-1 w-full h-9 border" name="type1">
                                     <option value="" selected="selected">* 필수 선택사항</option>
-                                    <option value="Committee">Committee</option>
-                                    <option value="Speaker">Speaker</option>
-                                    <option value="Chairperson">Chairperson</option>
-                                    <option value="Panel">Panel</option>
-                                    <option value="Paticipants">Paticipants</option>
+                                    <option value="임원">Committee</option>
+                                    <option value="연자">Speaker</option>
+                                    <option value="좌장">Chairperson</option>
+                                    <option value="패널">Panel</option>
+                                    <option value="일반참가자">Paticipants</option>
                                 </select>
                             </div>
                         </div>
@@ -501,20 +503,20 @@
                             <p class="inline-block">Category(참석자 구분)<span>*</span></p>
                             <div class="flex justify-between items-center">
                                 <select id="Category_1" style="background-color:#ffffff;"
-                                    class="px-2 py-1 w-full h-9 border">
+                                    class="px-2 py-1 w-full h-9 border" name="type2">
                                     <option value="" selected="selected">* 필수 선택사항</option>
                                     <option value="Certified M.D.">Certified M.D.</option>
                                     <option value="Fellow">Fellow</option>
                                     <option value="Resident">Resident</option>
-                                    <option value="Researcher">Researcher</option>
-                                    <option value="Nutritionist">Nutritionist</option>
-                                    <option value="ExerciseSpecialist">Exercise Specialist</option>
-                                    <option value="Nurse">Nurse</option>
-                                    <option value="Pharmacist"> Pharmacist</option>
-                                    <option value="Surgeon(Military)">Surgeon(Military)</option>
+                                    <option value="연구원">Researcher</option>
+                                    <option value="영양사">Nutritionist</option>
+                                    <option value="운동처방사">Exercise Specialist</option>
+                                    <option value="간호사">Nurse</option>
+                                    <option value="약사"> Pharmacist</option>
+                                    <option value="군의관">Surgeon(Military)</option>
                                     <option value="Public_Health_Doctor">Public Health Doctor</option>
                                     <option value="Corporate_Member">Corporate Member</option>
-                                    <option value="Student">Student</option>
+                                    <option value="학생">Student</option>
                                     <option value="Others">Others</option>
                                     <input type="text" id="category_others" style="display: none;" />
                                 </select>
@@ -533,154 +535,156 @@
                             <div class="flex items-center w-12/12 justify-left flex-wrap">
                                 <div class="flex items-center">
                                     <p class="mx-2 text-xs">의사면허번호</p>
-                                    <input id="doctor" type="text" class="mx-2" />
+                                    <input name="sn" id="doctor" type="text" class="mx-2" />
                                 </div>
                                 <div class="flex items-center mt-2">
                                     <p class="mr-[1.3rem] ml-4 text-xs"> 전문의번호 </p>
-                                    <input id="specialist" type="text" />
+                                    <input name="sn" id="specialist" type="text" />
                                 </div>
                             </div>
                         </div>
-                        <button id="page_1_btn"
+                        <button type="submit" id="page_1_btn"
                             class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
                     </div>
-                </div>
-                <!-- ==========================================================================================================/ -->
-                <div id="page_2" class="flex flex-col items-center justify-center text-center my-20"
-                    style="display: none;">
-                    <div>
-                        <img src="../../assets/images/circle.png" class="inline-block" />
-                        <h2 class="inline-block">Session participation(세션참여 여부)<span>*</span></h2>
-                    </div>
+                    </ㅇ>
+                    <!-- ==========================================================================================================/ -->
+                    <div id="page_2" class="flex flex-col items-center justify-center text-center my-20"
+                        style="display: none;">
+                        <div>
+                            <img src="../../assets/images/circle.png" class="inline-block" />
+                            <h2 class="inline-block">Session participation(세션참여 여부)<span>*</span></h2>
+                        </div>
 
-                    <p style="font-weight: 500;">Welcome Reception <br>- September 7(Thu) </p>
-                    <div>
-                        <input class="session_radio" type="radio" id="yes_1" />
-                        <label for="yes_1">Yes</label>
-                        <input class="session_radio" type="radio" id="no_1" />
-                        <label for="no_1">NO</label>
-                    </div>
+                        <p style="font-weight: 500;">Welcome Reception <br>- September 7(Thu) </p>
+                        <div>
+                            <input class="session_radio" type="radio" id="yes_1" />
+                            <label for="yes_1">Yes</label>
+                            <input class="session_radio" type="radio" id="no_1" />
+                            <label for="no_1">NO</label>
+                        </div>
 
-                    <p style="font-weight: 500;">Day 2 Breakfast Symposium<br>- September 8(Fri) </p>
-                    <div>
-                        <input class="session_radio" type="radio" id="yes_2" />
-                        <label for="yes_2">Yes</label>
-                        <input class="session_radio" type="radio" id="no_2" />
-                        <label for="no_2">NO</label>
-                    </div>
+                        <p style="font-weight: 500;">Day 2 Breakfast Symposium<br>- September 8(Fri) </p>
+                        <div>
+                            <input class="session_radio" type="radio" id="yes_2" />
+                            <label for="yes_2">Yes</label>
+                            <input class="session_radio" type="radio" id="no_2" />
+                            <label for="no_2">NO</label>
+                        </div>
 
-                    <p style="font-weight: 500;">Day 2 Luncheon Symposium<br>- September 8(Fri) </p>
-                    <div>
-                        <input class="session_radio" type="radio" id="yes_3" />
-                        <label for="yes_3">Yes</label>
-                        <input class="session_radio" type="radio" id="no_3" />
-                        <label for="no_3">NO</label>
-                    </div>
+                        <p style="font-weight: 500;">Day 2 Luncheon Symposium<br>- September 8(Fri) </p>
+                        <div>
+                            <input class="session_radio" type="radio" id="yes_3" />
+                            <label for="yes_3">Yes</label>
+                            <input class="session_radio" type="radio" id="no_3" />
+                            <label for="no_3">NO</label>
+                        </div>
 
-                    <p style="font-weight: 500;">Day 3 Breakfast Symposium<br> - September 9(Sat) </p>
-                    <div>
-                        <input class="session_radio" type="radio" id="yes_4" />
-                        <label for="yes_4">Yes</label>
-                        <input class="session_radio" type="radio" id="no_4" />
-                        <label for="no_4">NO</label>
-                    </div>
+                        <p style="font-weight: 500;">Day 3 Breakfast Symposium<br> - September 9(Sat) </p>
+                        <div>
+                            <input class="session_radio" type="radio" id="yes_4" />
+                            <label for="yes_4">Yes</label>
+                            <input class="session_radio" type="radio" id="no_4" />
+                            <label for="no_4">NO</label>
+                        </div>
 
-                    <p style="font-weight: 500;">Day 3 Luncheon Symposium<br>- September 9(Sat) </p>
-                    <div>
-                        <input class="session_radio" type="radio" id="yes_5" />
-                        <label for="yes_5">Yes</label>
-                        <input class="session_radio" type="radio" id="no_5" />
-                        <label for="no_5">NO</label>
+                        <p style="font-weight: 500;">Day 3 Luncheon Symposium<br>- September 9(Sat) </p>
+                        <div>
+                            <input class="session_radio" type="radio" id="yes_5" />
+                            <label for="yes_5">Yes</label>
+                            <input class="session_radio" type="radio" id="no_5" />
+                            <label for="no_5">NO</label>
+                        </div>
+                        <button type="button" id="page_2_btn"
+                            class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
                     </div>
-                    <button id="page_2_btn"
-                        class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
-                </div>
-                <!-- ==========================================================================================================/ -->
+                    <!-- ==========================================================================================================/ -->
 
-                <div id="page_3" class="mt-5" style="display: none;">
-                    <div class="mb-4">
-                        <img src="../../assets/images/circle.png" class="inline" />
-                        <h2 class="mb-5 inline">Where did you get the information about the conference?(가입경로)</h2>
+                    <div id="page_3" class="mt-5" style="display: none;">
+                        <div class="mb-4">
+                            <img src="../../assets/images/circle.png" class="inline" />
+                            <h2 class="mb-5 inline">Where did you get the information about the conference?(가입경로)</h2>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex items-center mb-4 ">
+                                <input class="checkbox" type="checkbox" id="A" />
+                                <label class="text-[0.8rem]" for="A">Website of the Korea Society of Obesity
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4 ">
+                                <input class="checkbox" type="checkbox" id="B" />
+                                <label class="text-[0.8rem]" for="B">Promotional email <br>from the Korea Society of
+                                    Obesity
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4 ">
+                                <input class="checkbox" type="checkbox" id="C" />
+                                <label class="text-[0.8rem]" for="C">Advertising email or <br>the bulletin board from
+                                    the
+                                    relevant society
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4 ">
+                                <input class="checkbox" type="checkbox" id="D" />
+                                <label class="text-[0.8rem]" for="D">Information about affiliated
+                                    <br>companies/organizations
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4 ">
+                                <input class="checkbox" type="checkbox" id="E" />
+                                <label class="text-[0.8rem]" for="E">Invited as a speaker, <br>moderator, and panelist
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4 ">
+                                <input class="checkbox" type="checkbox" id="F" />
+                                <label class="text-[0.8rem]" for="F">Recommended by a professor
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input class="checkbox" type="checkbox" id="G" />
+                                <label class="text-[0.8rem]" for="G">Recommended by acquaintances
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input class="checkbox" type="checkbox" id="H" />
+                                <label class="text-[0.8rem]" for="H">Pharmaceutical company
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input class="checkbox" type="checkbox" id="I" />
+                                <label class="text-[0.8rem]" for="I">Medical community <br>(MEDI:GATE, Dr.Ville, etc.)
+                                </label>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input class="checkbox" type="checkbox" id="J" />
+                                <label class="text-[0.8rem]" for="J">Medical news and journal
+                                </label>
+                            </div>
+                        </div>
+                        <button type="button" id="page_3_btn"
+                            class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
                     </div>
-                    <div class="flex flex-col">
-                        <div class="flex items-center mb-4 ">
-                            <input class="checkbox" type="checkbox" id="A" />
-                            <label class="text-[0.8rem]" for="A">Website of the Korea Society of Obesity
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4 ">
-                            <input class="checkbox" type="checkbox" id="B" />
-                            <label class="text-[0.8rem]" for="B">Promotional email <br>from the Korea Society of Obesity
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4 ">
-                            <input class="checkbox" type="checkbox" id="C" />
-                            <label class="text-[0.8rem]" for="C">Advertising email or <br>the bulletin board from the
-                                relevant society
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4 ">
-                            <input class="checkbox" type="checkbox" id="D" />
-                            <label class="text-[0.8rem]" for="D">Information about affiliated
-                                <br>companies/organizations
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4 ">
-                            <input class="checkbox" type="checkbox" id="E" />
-                            <label class="text-[0.8rem]" for="E">Invited as a speaker, <br>moderator, and panelist
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4 ">
-                            <input class="checkbox" type="checkbox" id="F" />
-                            <label class="text-[0.8rem]" for="F">Recommended by a professor
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input class="checkbox" type="checkbox" id="G" />
-                            <label class="text-[0.8rem]" for="G">Recommended by acquaintances
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input class="checkbox" type="checkbox" id="H" />
-                            <label class="text-[0.8rem]" for="H">Pharmaceutical company
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input class="checkbox" type="checkbox" id="I" />
-                            <label class="text-[0.8rem]" for="I">Medical community <br>(MEDI:GATE, Dr.Ville, etc.)
-                            </label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input class="checkbox" type="checkbox" id="J" />
-                            <label class="text-[0.8rem]" for="J">Medical news and journal
-                            </label>
-                        </div>
-                    </div>
-                    <button id="page_3_btn"
-                        class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
-                </div>
-                <!-- ================================================================================================/ -->
-                <div id="page_4" class="wrap_2" style="display: none;">
-                    <div class="confirm_box mt-10">
-                        <div class="confirm_box_title flex items-center justify-center">
-                            <h1 class="text-sm">Use of Personal Information <br>(개인정보활용동의)</h1>
-                        </div>
-                        <textarea style="height: 80px;" class="border text-center w-full" disabled="" readonly="">ICOMES 2023 이용 약관 
+                    <!-- ================================================================================================/ -->
+                    <div id="page_4" class="wrap_2" style="display: none;">
+                        <div class="confirm_box mt-10">
+                            <div class="confirm_box_title flex items-center justify-center">
+                                <h1 class="text-sm">Use of Personal Information <br>(개인정보활용동의)</h1>
+                            </div>
+                            <textarea style="height: 80px;" class="border text-center w-full" disabled="" readonly="">ICOMES 2023 이용 약관 
 본 학술대회의 주관사인 대한비만학회는 학술대회 등록시스템 서비스 제공을 위하여 관계 법령에 따라 아래와 같이 개인정보를 수집, 이용하는 내용을 알리오니 자세히 읽으신 후 동의 여부를 결정하여 주십시오.
                        
                         </textarea>
-                    </div>
-                    <div class="all_checkbox">
-                        <input id="all_check" type="checkbox" />
-                        <label for="all_check">개인정보 수집 및 제공 동의에 모두 동의</label>
-                    </div>
-                    <div class="personal_checkbox">
-                        <div>
-                            <input id="first_check" class="check" type="checkbox" />
-                            <label for="first_check">개인정보 수집 동의 <span>(필수)</span></label>
                         </div>
+                        <div class="all_checkbox">
+                            <input id="all_check" type="checkbox" />
+                            <label for="all_check">개인정보 수집 및 제공 동의에 모두 동의</label>
+                        </div>
+                        <div class="personal_checkbox">
+                            <div>
+                                <input id="first_check" class="check" type="checkbox" />
+                                <label for="first_check">개인정보 수집 동의 <span>(필수)</span></label>
+                            </div>
 
-                        <textarea class="border text-base" disabled="" readonly="">
+                            <textarea class="border text-base" disabled="" readonly="">
 개인정보 수집 및 이용 동의
 1. 수집항목: 성명, 휴대폰번호, 바코드 입장 정보
 2. 수집/이용 목적
@@ -690,15 +694,15 @@
 ※ 기타 개인정보 취급에 관한 상세한 사항은 본 학술대회 홈페이지
 (https://icomes.or.kr/main/signup.php)에 공개하고 있는 “개인정보 처리방침”을 참조 하십시오.
                         </textarea>
-                    </div>
-
-                    <div class="personal_checkbox">
-                        <div>
-                            <input id="second_check" class="check" type="checkbox" />
-                            <label for="second_check">개인정보 2자 제공 동의<span>(필수)</span></label>
                         </div>
 
-                        <textarea class="border text-base" disabled="" readonly="">
+                        <div class="personal_checkbox">
+                            <div>
+                                <input id="second_check" class="check" type="checkbox" />
+                                <label for="second_check">개인정보 2자 제공 동의<span>(필수)</span></label>
+                            </div>
+
+                            <textarea class="border text-base" disabled="" readonly="">
 개인정보 제3자 제공 동의
 1. 개인정보 취급 업무의 위탁
 본 학술대회는 서비스 향상을 위해서 아래와 같이 개인정보를 위탁하고 있으며, 관계 법령에 따라 위탁계
@@ -718,70 +722,71 @@
 필수항목을 기재하지 않거나 개인정보 수집·이용에 거부하는 경우, 본 학술대회에서 제공하는 서비스를
 이용할 수 없습니다. 또한 학술대회 출입증 발급이 불가하여 재입장 등 입장의 제한이 발생될 수 있습니다.
                         </textarea>
-                    </div>
-
-                    <div class="personal_checkbox">
-                        <div>
-                            <input id="third_check" class="check" type="checkbox" />
-                            <label for="third_check"> 차기 학술대회 관련 안내 이메일 수신 동의 <span style="color: #7d8597;">(선택)</span>
-                            </label>
-
-                        </div>
-                        <table class="tbl_type01" id="optionalAgreeInfoEmail">
-                            <colgroup>
-                                <col width="40%">
-                                <col width="30%">
-                                <col width="30%">
-                            </colgroup>
-                            <tr>
-                                <th>수집 목적</th>
-                                <th class="line_th">수집 항목</th>
-                                <th class="line_th">보유 기간</th>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">학술대회 관람 설문조사<br /><br />
-                                    학술대회 안내<br /><br />
-                                    뉴스레터 발송</td>
-                                <td style="text-align: center;" class="line">이메일</td>
-                                <td style="text-align: center;" class="line">2년</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="personal_checkbox">
-                        <div>
-                            <input id="fourth_check" class="check" type="checkbox" />
-                            <label for="fourth_check"> 차기 학술대회 관련 안내 이메일 수신 동의 <span style="color: #7d8597;">(선택)</span>
-                            </label>
-
                         </div>
 
-                        <table class="tbl_type01" id="optionalAgreeInfoMobile" style="width: 100%;">
-                            <colgroup>
-                                <col width="40%">
-                                <col width="30%">
-                                <col width="30%">
-                            </colgroup>
-                            <tr>
-                                <th>수집 목적</th>
-                                <th class="line_th">수집 항목</th>
-                                <th class="line_th">보유 기간</th>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">학술대회 안내 및<br /><br />
-                                    모바일 초대권 발송</td>
-                                <td style="text-align: center;" class="line">휴대폰 번호</td>
-                                <td style="text-align: center;" class="line">2년</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="next_btn_box">
+                        <div class="personal_checkbox">
+                            <div>
+                                <input id="third_check" class="check" type="checkbox" />
+                                <label for="third_check"> 차기 학술대회 관련 안내 이메일 수신 동의 <span
+                                        style="color: #7d8597;">(선택)</span>
+                                </label>
 
-                        <button type="button"
-                            class="next_btn w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg">Submit</button>
+                            </div>
+                            <table class="tbl_type01" id="optionalAgreeInfoEmail">
+                                <colgroup>
+                                    <col width="40%">
+                                    <col width="30%">
+                                    <col width="30%">
+                                </colgroup>
+                                <tr>
+                                    <th>수집 목적</th>
+                                    <th class="line_th">수집 항목</th>
+                                    <th class="line_th">보유 기간</th>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">학술대회 관람 설문조사<br /><br />
+                                        학술대회 안내<br /><br />
+                                        뉴스레터 발송</td>
+                                    <td style="text-align: center;" class="line">이메일</td>
+                                    <td style="text-align: center;" class="line">2년</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="personal_checkbox">
+                            <div>
+                                <input id="fourth_check" class="check" type="checkbox" />
+                                <label for="fourth_check"> 차기 학술대회 관련 안내 이메일 수신 동의 <span
+                                        style="color: #7d8597;">(선택)</span>
+                                </label>
+
+                            </div>
+
+                            <table class="tbl_type01" id="optionalAgreeInfoMobile" style="width: 100%;">
+                                <colgroup>
+                                    <col width="40%">
+                                    <col width="30%">
+                                    <col width="30%">
+                                </colgroup>
+                                <tr>
+                                    <th>수집 목적</th>
+                                    <th class="line_th">수집 항목</th>
+                                    <th class="line_th">보유 기간</th>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">학술대회 안내 및<br /><br />
+                                        모바일 초대권 발송</td>
+                                    <td style="text-align: center;" class="line">휴대폰 번호</td>
+                                    <td style="text-align: center;" class="line">2년</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="next_btn_box">
+
+                            <button class="next_btn w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg">Submit</button>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     </div>
@@ -1022,7 +1027,8 @@ numArray.forEach((num) => {
 let checkedArr = []
 
 firstPageBtn.addEventListener("click", (e) => {
-    onSubmit(e)
+    e.preventDefault()
+    onSubmit()
 })
 allCheck.addEventListener("click", () => selectAll());
 /**모두 체크 눌렀을 때 */
@@ -1034,10 +1040,13 @@ function selectAll() {
 }
 
 
-finalButton.addEventListener("click", () => onClickSubmit())
-
-function onSubmit(e) {
+finalButton.addEventListener("click", (e) => {
     e.preventDefault()
+    onClickSubmit()
+})
+
+function onSubmit() {
+
     if (!firstName.value || !LastName.value) {
         alert("invaild Name");
         firstName.focus()
@@ -1094,6 +1103,9 @@ function onSubmit(e) {
         need.focus()
         return;
     }
+    const members = member.checked ? "회원" : "비회원"
+    const needs = need.checked ? "필요" : "불필요"
+
     wrap_1.style.display = "none"
     wrap_2.style.display = ""
     wrap_3.style.display = "none"
@@ -1147,12 +1159,12 @@ function onClickSubmit() {
         checkedArr = [firstCheck.checked, secondCheck.checked, thirdCheck.checked, fourthCheck.checked];
 
     }
-    const members = member.checked ? "회원" : "비회원"
-    const needs = need.checked ? true : false
     const checkArray = []
     checkboxes.forEach((check) => {
         checkArray.push(check.checked)
     })
+    const members = member.checked ? "회원" : "비회원"
+    const needs = need.checked ? "필요" : "불필요"
     console.log("체크항목", checkedArr)
     console.log("이름", firstName.value, LastName.value, KoreanName.value)
     console.log("국가", contry.value)
@@ -1167,9 +1179,9 @@ function onClickSubmit() {
     console.log("가입경로", checkArray)
     // window.location = "/onsite/success";
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/OnSite/mobile", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    // const xhr = new XMLHttpRequest();
+    // xhr.open("POST", "/OnSite/mobile", true);
+    // xhr.setRequestHeader("Content-Type", "application/json");
 
     const data = {
         type2: categorySelect.options[categorySelect.selectedIndex].value,
@@ -1183,14 +1195,14 @@ function onClickSubmit() {
         sn: needs ? doctor.value || specialist.value : ""
     };
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // 요청 완료 후의 동작
-            console.log(xhr.responseText);
-        }
-    };
+    // xhr.onreadystatechange = function() {
+    //     if (xhr.readyState === 4 && xhr.status === 200) {
+    //         const response = JSON.parse(xhr.responseText);
+    //         console.log(response.message);
+    //     }
+    // };
 
-    xhr.send(JSON.stringify(data));
+    // xhr.send(JSON.stringify(data));
 }
 </script>
 
