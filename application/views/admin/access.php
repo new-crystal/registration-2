@@ -94,6 +94,10 @@
             qrcode.focus();
             return;
         }
+        <?php if(!$user['org'])?> {
+            alert("없는 유저입니다.");
+            return;
+        }
         qrcode.focus();
         // qrcode.value = "";
     });
