@@ -4,7 +4,7 @@
     margin-top: 10rem;
     border: 2px solid #eee;
     border-collapse: collapse;
-    width: 50%;
+    width: 40%;
 }
 
 .qr-info-table th {
@@ -51,7 +51,7 @@
 
     <table class="qr-info-table mb-80">
         <colgroup>
-            <col width="20%" />
+            <col width="30%" />
             <col />
         </colgroup>
         <tr>
@@ -88,23 +88,21 @@
     const table = document.querySelector(".qr-info-table")
 
     form.addEventListener("submit", (e) => {
-        // e.preventDefault();
+        //e.preventDefault();
         if (qrcode.value === "") {
             alert("QR CODE를 입력하세요.");
             qrcode.focus();
             return;
         }
-        <?php if(!$user['org'])?> {
-            alert("없는 유저입니다.");
-            return;
-        }
+        // <?php if (!isset($user['org'])) { ?>
+        // alert("없는 유저입니다.");
+        // <?php } ?>
         qrcode.focus();
-        // qrcode.value = "";
     });
 
 
     // setTimeout(() => {
-    //     hideText()
+    // hideText()
     // }, 3000)
 
 
