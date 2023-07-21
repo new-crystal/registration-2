@@ -1084,7 +1084,7 @@ class Admin extends CI_Controller
                 $this->entrance->record($info);
                 $user = $this->users->get_user($where);
                 $this->data['user'] = $user;
-
+                $data['item2'] = $this->entrance->access($where);
 
                 $this->load->view('admin/left_side.php', $data);
                 $this->load->view('admin/access', $this->data);
