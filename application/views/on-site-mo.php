@@ -187,16 +187,20 @@
         .mo_wrap {
             margin-bottom: 1rem;
         }
+
+        #mobile_form {
+            transform: translateY(6rem);
+        }
     </style>
 </head>
 
 <body>
-    <div class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll">
+    <div class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll relative">
         <div class="w-full max-w-4xl ">
-            <div class="text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white">
+            <div class="w-full text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white fixed z-10">
                 <h1>On-site registration<br>(현장 등록)</h1>
             </div>
-            <form action="/onSite/mobile" id="mobile_form" class="w-11/12 mt-5 mx-auto px-3">
+            <form action="/onSite/mobile" id="mobile_form" class="w-11/12 translate-y-48 mx-auto px-3 h-screen">
                 <div action="/onSite/mobile" id="page_1">
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
@@ -591,7 +595,7 @@
                 </div>
                 <!-- ==========================================================================================================/ -->
 
-                <div id="page_3" class="mt-5" style="display: none;">
+                <div id="page_3" class="mt-5 h-full" style="display: none;">
                     <div class="mb-4">
                         <img src="../../assets/images/circle.png" class="inline" />
                         <h2 class="mb-5 inline">Where did you get the information about the conference?(가입경로)</h2>
@@ -1056,7 +1060,7 @@
             phone.focus()
             return;
         }
-        if (!email_1.value) {
+        if (!email_1.value || !email_2.value) {
             alert("invaild email");
             email_1.focus()
             return;
@@ -1166,11 +1170,9 @@
         console.log("평점신청 여부", needs, doctor.value, specialist.value)
         console.log("세션참여 여부", [first, second, third, fourth, fiveth])
         console.log("가입경로", checkArray)
-        // window.location = "/onsite/success";
+        window.location.href = "/onsite/success";
 
-        // const xhr = new XMLHttpRequest();
-        // xhr.open("POST", "/OnSite/mobile", true);
-        // xhr.setRequestHeader("Content-Type", "application/json");
+
 
         const data = {
             type2: categorySelect.options[categorySelect.selectedIndex].value,
@@ -1183,15 +1185,6 @@
             type3: members,
             sn: needs ? doctor.value || specialist.value : ""
         };
-
-        // xhr.onreadystatechange = function() {
-        //     if (xhr.readyState === 4 && xhr.status === 200) {
-        //         const response = JSON.parse(xhr.responseText);
-        //         console.log(response.message);
-        //     }
-        // };
-
-        // xhr.send(JSON.stringify(data));
     }
 </script>
 
