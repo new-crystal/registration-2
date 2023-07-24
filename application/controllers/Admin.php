@@ -1063,12 +1063,12 @@ class Admin extends CI_Controller
     {
 
         $this->load->view('admin/header');
-        if (!isset($this->session->admin_data['logged_in']))
+        if (!isset($this->session->admin_data['logged_in'])) {
             $this->load->view('admin/login');
-        else {
+        } else {
             // 
             $data['primary_menu'] = 'qrcode';
-
+            $this->load->view('admin/left_side.php', $data);
             $qrcode = isset($_GET['qrcode']) ? $_GET['qrcode'] : null;
             if ($qrcode) {
                 $time = date("Y-m-d H:i:s");
@@ -1081,19 +1081,16 @@ class Admin extends CI_Controller
                 $where = array(
                     'registration_no' => $qrcode
                 );
-                $this->entrance->record($info);
+                //입장시간, 퇴장시간 기록
+                // $this->entrance->record($info);
                 $user = $this->users->get_user($where);
                 $this->data['user'] = $user;
-                $data['item2'] = $this->entrance->access($where);
 
-                $this->load->view('admin/left_side.php', $data);
                 $this->load->view('admin/access', $this->data);
-                $this->load->view('footer');
             } else {
-                $this->load->view('admin/left_side.php', $data);
                 $this->load->view('admin/access');
-                $this->load->view('footer');
             }
         }
+        $this->load->view('footer');
     }
 }
