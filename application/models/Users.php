@@ -220,15 +220,29 @@ class Users extends CI_Model
 
 	public function get_access_statistics()
 	{
+		//기존 코드
+		// SELECT u.type,
+		//     COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' THEN a.registration_no END) AS '2023-07-11',
+		//     COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' THEN a.registration_no END) AS '2023-07-12',
+		//     COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' THEN a.registration_no END) AS '2023-07-13'
+		// FROM users u
+		// JOIN access a
+		// ON u.registration_no = a.registration_no
+		// GROUP BY u.type;
+
+		//현장등록 반영한 코드
 		$query = $this->db->query("
-            SELECT u.type,
-                COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' THEN a.registration_no END) AS '2023-07-11',
-                COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' THEN a.registration_no END) AS '2023-07-12',
-                COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' THEN a.registration_no END) AS '2023-07-13'
-            FROM users u
-            JOIN access a
-            ON u.registration_no = a.registration_no
-            GROUP BY u.type;
+       
+			SELECT u.type,
+   				 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-11_A',
+   				 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-11_B',
+    			COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-12_A',
+   				COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-12_B',
+    			COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-13_A',
+   				 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-13_B'	
+				FROM users u
+				JOIN access a ON u.registration_no = a.registration_no
+				GROUP BY u.type;
         ");
 		return $query->result_array();
 	}

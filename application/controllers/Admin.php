@@ -1090,7 +1090,7 @@ class Admin extends CI_Controller
             } else {
                 $this->load->view('admin/access');
             }
+            $this->load->view('footer');
         }
-        $this->load->view('footer');
     }
 }
