@@ -164,7 +164,7 @@ th {
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script>
-<form class="w-3/5 mx-auto">
+<form action="/onSite" class="w-3/5 mx-auto">
     <!-- <img src="./mail_header.png" alt="header" class="w-full h-96" /> -->
     <div class="wrap_1">
         <div
@@ -183,10 +183,13 @@ th {
                     <td>
                         <div class="w-4/5 flex flex-col">
                             <div class="flex w-full justify-between  mb-3">
-                                <input type="text" id="firstName" placeholder="First name" class="w-6/12" />
-                                <input type="text" id="lastName" placeholder="Last name" type="text" class="w-6/12" />
+                                <input type="text" id="firstName" name="firstName" placeholder="First name"
+                                    class="w-6/12" />
+                                <input type="text" id="lastName" placeholder="Last name" id="lastName" name="lastName"
+                                    type="text" class="w-6/12" />
                             </div>
-                            <input id="koreanName" placeholder="국문 이름" type="text" class="w-full">
+                            <input id="koreanName" name="nick_name" id="koreanName" placeholder="국문 이름" type="text"
+                                class="w-full">
                         </div>
                     </td>
                 </tr>
@@ -421,7 +424,7 @@ th {
                         <span class="hit">*</span>
                     </th>
                     <td>
-                        <input type="text" id="affiliation" class="w-6/12" />
+                        <input type="text" id="affiliation" name="org" class="w-6/12" />
                     </td>
                 </tr>
                 <tr>
@@ -432,8 +435,8 @@ th {
                     </th>
                     <td>
                         <div class="flex w-6/12">
-                            <input type="text" id="contryNum" class="w-1/6" />
-                            <input type="text" id="phoneNumber" class="w-5/6" />
+                            <input type="text" id="contryNum" name="phone1" class="w-1/6" />
+                            <input type="text" id="phoneNumber" name="phone2" class="w-5/6" />
                         </div>
                     </td>
                 </tr>
@@ -444,9 +447,9 @@ th {
                     </th>
                     <td>
                         <div class="flex items-center w-7/12 justify-between">
-                            <input type="text" name="Email1" id="Email1" maxlength="64" value="" class="w-4/12">
+                            <input type="text" name="email1" id="Email1" maxlength="64" value="" class="w-4/12">
                             <p>@</p>
-                            <input type="text" name="Email2" id="Email2" maxlength="64" value="" class="w-4/12">
+                            <input type="text" name="email2" id="Email2" maxlength="64" value="" class="w-4/12">
                             <select name="Email3" id="Email3"
                                 style="background-color:#ffffff;width:100px; height:40px;">
                                 <option value="" selected="selected">직접입력</option>
@@ -473,9 +476,9 @@ th {
                         <span class="hit">*</span>
                     </th>
                     <td>
-                        <input type="radio" id="member" />
+                        <input type="radio" id="member" name="type4" />
                         <label for="member">Member(회원)</label>
-                        <input type="radio" id="non_member" />
+                        <input type="radio" id="non_member" name="type5" />
                         <label for="non_member">Non-Member(비회원)</label>
                     </td>
                 </tr>
@@ -487,14 +490,14 @@ th {
                     <td>
                         <div class="flex w-6/12 justify-between items-center">
                             <!-- <input type="text" id="Participation" maxlength="64" value="" class="w-11/12"> -->
-                            <select id="Participation_1" style="background-color:#ffffff;"
-                                class="px-2 py-1 w-full h-10">
+                            <select id="Participation_1" style="background-color:#ffffff;" class="px-2 py-1 w-full h-10"
+                                name="type1">
                                 <option value="" selected="selected">선택사항</option>
-                                <option value="Committee">Committee</option>
-                                <option value="Speaker">Speaker</option>
-                                <option value="Chairperson">Chairperson</option>
+                                <option value="임원">Committee</option>
+                                <option value="연자">Speaker</option>
+                                <option value="좌장">Chairperson</option>
                                 <option value="Panel">Panel</option>
-                                <option value="Paticipants">Paticipants</option>
+                                <option value="일반참가자">Paticipants</option>
                             </select>
                         </div>
                     </td>
@@ -507,21 +510,22 @@ th {
                     <td>
                         <div class="flex w-6/12 justify-between items-center">
                             <!-- <input type="text" id="Category" maxlength="64" value="" class="w-11/12"> -->
-                            <select id="Category_1" style="background-color:#ffffff;" class="px-2 py-1 w-full h-10">
+                            <select id="Category_1" style="background-color:#ffffff;" class="px-2 py-1 w-full h-10"
+                                name="type2">
                                 <option value="" selected="selected">선택사항</option>
-                                <option value="Certified M.D.">Certified M.D.</option>
-                                <option value="Fellow">Fellow</option>
-                                <option value="Resident">Resident</option>
-                                <option value="Researcher">Researcher</option>
-                                <option value="Nutritionist">Nutritionist</option>
-                                <option value="ExerciseSpecialist">Exercise Specialist</option>
-                                <option value="Nurse">Nurse</option>
-                                <option value="Pharmacist"> Pharmacist</option>
-                                <option value="Surgeon(Military)">Surgeon(Military)</option>
-                                <option value="Public_Health_Doctor">Public Health Doctor</option>
-                                <option value="Corporate_Member">Corporate Member</option>
-                                <option value="Student">Student</option>
-                                <option value="Others">Others</option>
+                                <option value="개원의">Certified M.D.</option>
+                                <option value="전임의">Fellow</option>
+                                <option value="전공의">Resident</option>
+                                <option value="연구원">Researcher</option>
+                                <option value="영양사">Nutritionist</option>
+                                <option value="운동처방사">Exercise Specialist</option>
+                                <option value="간호사">Nurse</option>
+                                <option value="약사"> Pharmacist</option>
+                                <option value="군의관">Surgeon(Military)</option>
+                                <option value="공중보건의">Public Health Doctor</option>
+                                <option value="기업회원">Corporate Member</option>
+                                <option value="학생">Student</option>
+                                <option value="기타">Others</option>
                                 <input type="text" id="category_others" style="display: none;" />
                             </select>
                         </div>
@@ -543,11 +547,11 @@ th {
                         <div class="flex items-center w-12/12 justify-left flex-wrap">
                             <div class="flex items-center">
                                 <p class="mx-2">의사면허번호</p>
-                                <input id="doctor" type="text" class="mx-2" />
+                                <input name="sn" id="doctor" type="text" class="mx-2" />
                             </div>
                             <div class="flex items-center">
                                 <p class="mx-4"> 전문의번호 </p>
-                                <input id="specialist" type="text" />
+                                <input name="sn" id="specialist" type="text" />
                             </div>
                         </div>
                     </td>
@@ -826,7 +830,7 @@ th {
         </div>
         <div class="next_btn_box">
             <button type="button" class="pre_btn w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg">Previous</button>
-            <button type="button" class="next_btn w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg">Submit</button>
+            <button type="submit" class="next_btn w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg">Submit</button>
         </div>
     </div>
 </form>
@@ -911,7 +915,7 @@ function englishInput(event) {
 }
 
 
-/**한국어 유효성 검사 */
+// /**한국어 유효성 검사 */
 KoreanName.addEventListener('input', (event) => {
     const inputValue = event.target.value;
     const onlyHangul = /^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/;
@@ -932,6 +936,7 @@ phone.addEventListener('input', (event) => {
 });
 
 contry.addEventListener("click", () => {
+
     contryNumber.value = contry.options[contry.selectedIndex].dataset.nt
 })
 
@@ -1090,8 +1095,8 @@ function selectAll() {
 finalButton.addEventListener("click", () => onClickSubmit())
 
 function onSubmit(e) {
-    e.preventDefault()
-    if (!firstName.value || !LastName.value) {
+    // e.preventDefault()
+    if (!firstName.value || !LastName.value || !KoreanName.value) {
         alert("invaild Name");
         firstName.focus()
         return;
@@ -1174,8 +1179,8 @@ function onClickSubmit() {
         checkedArr = [firstCheck.checked, secondCheck.checked, thirdCheck.checked, fourthCheck.checked];
 
     }
-    const members = member.checked ? true : false
-    const needs = need.checked ? true : false
+    const members = member.checked ? "회원" : "비회원"
+    const needs = need.checked ? "필요" : "불필요"
     const checkArray = []
     checkboxes.forEach((check) => {
         checkArray.push(check.checked)
@@ -1192,6 +1197,17 @@ function onClickSubmit() {
     console.log("평점신청 여부", needs, doctor.value, specialist.value)
     console.log("세션참여 여부", [first, second, third, fourth, fiveth])
     console.log("가입경로", checkArray)
-    window.location = "/onsite/success";
+    // window.location.href = "/onsite/success";
+    // const data = {
+    //     type2: categorySelect.options[categorySelect.selectedIndex].value,
+    //     nick_name: KoreanName.value ? KoreanName.value : firstName.value + LastName.value,
+    //     country: contry.value,
+    //     phone: phone.value,
+    //     email: email_1.value + email_2.value,
+    //     org: affilation.value,
+    //     type1: participationSelect.options[participationSelect.selectedIndex].value,
+    //     type3: members,
+    //     sn: needs ? doctor.value || specialist.value : ""
+    // };
 }
 </script>
