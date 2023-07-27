@@ -1,6 +1,6 @@
 <style>
 p {
-    margin: 5px
+    margin: 5px;
 }
 
 .name {
@@ -9,32 +9,28 @@ p {
     left: 100px;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+</head>
 <div>
-    <img src="../../../assets/images/receipt.jpg" />
-    <div class="name">
-        <p><?php echo $users['nick_name']; ?></p>
-        <p><?php echo $users['fee']; ?></p>
+    <div id="container">
+        <img src="../../../assets/images/receipt.jpg" />
+        <div class="name">
+            <p><?php echo $users['nick_name']; ?></p>
+            <p><?php echo $users['fee']; ?></p>
+        </div>
     </div>
     <div class="btn_wrap">
-        <button class="save_btn" onclick="CreatePDFfromHTML()">Save</button>
+        <button id="exportBtn" class="save_btn" onclick="PrintDiv()">Save</button>
     </div>
 </div>
-
-<script language="javascript">
-function CreatePDFfromHTML() {
-    const buttonBox = document.querySelector(".btn_wrap");
-    const button = document.querySelector(".save_btn");
-
-    buttonBox.removeChild(button)
-    let doc = new jsPDF('p', 'pt', 'a4');
-
-    doc.addHTML(document.body, function() {
-        doc.save('receipt.pdf');
-    });
-
-    buttonBox.appendChild(button)
+<script>
+document.getElementById('exportBtn').onclick = function() {
+    domtoimage.toBlob(document.getElementById('container'))
+        .then(function(blob) {
+            window.saveAs(blob, 'receipt.png');
+        });
 }
 </script>
