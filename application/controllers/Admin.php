@@ -201,7 +201,7 @@ class Admin extends CI_Controller
 
             /* QR생성 */
             $info = array(
-                'qr_chk' =>  'Y'
+                'qr_generated' =>  'Y'
             );
             $where = array(
                 'registration_no' => $value
@@ -257,7 +257,7 @@ class Admin extends CI_Controller
 
             /* QR생성 */
             $info = array(
-                'qr_chk' =>  'Y'
+                'qr_generated' =>  'Y'
             );
             $where = array(
                 'registration_no' => $value
@@ -319,7 +319,7 @@ class Admin extends CI_Controller
     {
         $regNo = $_GET['n'];
         $info = array(
-            'qr_chk' =>  'Y'
+            'qr_generated' =>  'Y'
         );
         $where = array(
             'registration_no' => $regNo
@@ -355,7 +355,7 @@ class Admin extends CI_Controller
         foreach ($list as $row) {
             $regNo = $row['registration_no'];
             $info = array(
-                'qr_chk' =>  'Y'
+                'qr_generated' =>  'Y'
             );
             $where = array(
                 'registration_no' => $regNo
@@ -718,7 +718,7 @@ class Admin extends CI_Controller
                 }
 
                 if ($fee == 0)
-                    $deposit = '입금완료';
+                    $deposit = '미결제';
                 else
                     $deposit = '미결제';
 
@@ -1073,14 +1073,18 @@ class Admin extends CI_Controller
             if ($qrcode) {
                 $time = date("Y-m-d H:i:s");
 
-                $info = array(
-                    'registration_no' => $qrcode,
-                    'time' => $time
+                // $info = array(
+                //     'registration_no' => $qrcode,
+                //     'time' => $time
+                // );
+                $infoqr = array(
+                    'qr_chk' =>  'Y'
                 );
 
                 $where = array(
                     'registration_no' => $qrcode
                 );
+                $this->users->update_qr_status($infoqr, $where);
                 //입장시간, 퇴장시간 기록
                 // $this->entrance->record($info);
                 $user = $this->users->get_user($where);

@@ -1,13 +1,32 @@
 <style>
-p {
-    margin: 5px;
-}
+    p {
+        margin: 5px;
+    }
 
-.name {
-    position: absolute;
-    top: 46px;
-    left: 100px;
-}
+    .name {
+        position: absolute;
+        top: 46px;
+        left: 165px;
+    }
+
+    .btn_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .save_btn {
+        width: 150px;
+        padding: 4px;
+        background-color: #fff;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 
 <head>
@@ -27,10 +46,10 @@ p {
     </div>
 </div>
 <script>
-document.getElementById('exportBtn').onclick = function() {
-    domtoimage.toBlob(document.getElementById('container'))
-        .then(function(blob) {
-            window.saveAs(blob, 'receipt.png');
-        });
-}
+    document.getElementById('exportBtn').onclick = function() {
+        domtoimage.toBlob(document.getElementById('container'))
+            .then(function(blob) {
+                window.saveAs(blob, 'receipt.png');
+            });
+    }
 </script>
