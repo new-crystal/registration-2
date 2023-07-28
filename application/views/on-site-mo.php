@@ -191,13 +191,24 @@
         #mobile_form {
             transform: translateY(6rem);
         }
+
+        #scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        #scroll {
+            -ms-overflow-style: none;
+            /* 인터넷 익스플로러 */
+            scrollbar-width: none;
+            /* 파이어폭스 */
+        }
     </style>
 </head>
 
 <body class="flex items-center justify-center">
-    <div class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll relative max-w-4xl">
-        <div class="w-full max-w-4xl ">
-            <div class="w-full max-w-4xl text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white fixed z-10">
+    <div id="scroll" class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll relative max-w-5xl">
+        <div class="w-full max-w-5xl ">
+            <div class="w-full max-w-5xl text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white fixed z-10">
                 <h1>On-site registration<br>(현장 등록)</h1>
             </div>
             <form action="/onSite/mobile" id="mobile_form" class="w-11/12 translate-y-48 mx-auto px-3 h-screen">
