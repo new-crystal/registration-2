@@ -122,6 +122,7 @@ class OnSite extends CI_Controller
         $category_13 = isset($_GET['category-13']) ? $_GET['category-13'] : null;
         $category_14 = isset($_GET['category-14']) ? $_GET['category-14'] : null;
         $category_15 = isset($_GET['category-15']) ? $_GET['category-15'] : null;
+        $category_16 = isset($_GET['category-16']) ? $_GET['category-16'] : null;
         $fee = 0;
         $type3 = 0;
         if ($category_1) {
@@ -176,6 +177,9 @@ class OnSite extends CI_Controller
         }
         if ($category_15) {
             $type2 = "간호사";
+        }
+        if ($category_16) {
+            $type2 = $category_16;
         }
 
         if ($fee == 0)
