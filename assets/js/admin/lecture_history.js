@@ -27,7 +27,8 @@ $(function() {
 
 	$('.datatable-basic').DataTable({
         stateSave: true,
-        stateDuration:-1
+        stateDuration:-1,
+       
     });
 
 
@@ -37,10 +38,12 @@ $(function() {
      // Enable Select2 select for the length option
     $('.dataTables_length select').select2({
         minimumResultsForSearch: Infinity,
-        width: 'auto'
+        width: 'auto',
+        // dataAdapter: {MinimumInputLength:100}
     });
 });
 
 function excel_download(){
     $.post('/admin/excel_download', function(resp){});
 }
+
