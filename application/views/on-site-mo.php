@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>On-site registration</title>
+    <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./on-site-mo.js" defer></script>
     <style>
     input:focus {
         outline: none;
@@ -192,33 +191,14 @@
     #mobile_form {
         transform: translateY(6rem);
     }
-
-    #scroll::-webkit-scrollbar {
-        display: none;
-    }
-
-    #scroll {
-        -ms-overflow-style: none;
-        /* 인터넷 익스플로러 */
-        scrollbar-width: none;
-        /* 파이어폭스 */
-    }
-
-    .mo-table th,
-    .mo-table td {
-        padding: 1rem;
-        border: 1px solid #eee;
-        text-align: center;
-    }
     </style>
 </head>
 
 <body class="flex items-center justify-center">
-    <div id="scroll"
-        class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll relative max-w-5xl">
-        <div class="w-full max-w-5xl ">
+    <div class="w-full h-full flex items-center justify-center overflow-x-hidden overflow-y-scroll relative max-w-4xl">
+        <div class="w-full max-w-4xl ">
             <div
-                class="w-full max-w-5xl text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white fixed z-10">
+                class="w-full max-w-4xl text-center text-2xl font-semibold bg-gradient-to-r from-green-400 to-blue-500 p-3 text-white fixed z-10">
                 <h1>On-site registration<br>(현장 등록)</h1>
             </div>
             <form action="/onSite/mobile" id="mobile_form" class="w-11/12 translate-y-48 mx-auto px-3 h-screen">
@@ -226,15 +206,14 @@
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Name(이름)<span>*</span></p>
-                        <div style="display: none;" class="flex justify-between w-full mb-2">
+                        <div class="flex justify-between w-full mb-2">
                             <input type="text" id="firstName" name="firstName" class="w-[49%]"
-                                placeholder="*First name(영문 이름)" />
-                            <input type="text" id="lastName" name="lastName" class="w-[49%]"
-                                placeholder="*Last name(영문 성)" />
+                                placeholder="*first name" />
+                            <input type="text" id="lastName" name="lastName" class="w-[49%]" placeholder="*last name" />
                         </div>
                         <input type="text" id="KoreanName" name="nick_name" class="w-full" placeholder="국문이름">
                     </div>
-                    <div style="display: none;" class="mo_wrap">
+                    <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
                         <p class="inline-block">Country(국가)<span>*</span></p>
                         <select id="nation_no" name="nation_no" class="px-2 py-1 w-full h-9 border">
@@ -459,7 +438,7 @@
                     </div>
                     <div class="mo_wrap">
                         <img src="../../assets/images/circle.png" class="inline-block" />
-                        <p class="inline-block">Affiliation(소속 / 근무처)<span>*</span></p>
+                        <p class="inline-block">Affiliation(소속)<span>*</span></p>
                         <input type="text" id="affiliation" name="org" class="w-full" placeholder="*소속을 입력해주세요">
                     </div>
                     <div class="mo_wrap">
@@ -493,7 +472,7 @@
                                 <option value="hanmir.com">hanmir.com</option>
                             </select>
                         </div>
-                        <!-- <div class="mo_wrap">
+                        <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Member(학회 회원 여부)<span>*</span></p>
                             <div class="flex flex-nowrap flex-col">
@@ -506,7 +485,7 @@
                                     <label for="non_member">Non-Member(비회원)</label>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
@@ -524,7 +503,7 @@
                             </div>
                         </div>
 
-                        <div style="display: none;" class="mo_wrap">
+                        <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Category(참석자 구분)<span>*</span></p>
                             <div class="flex justify-between items-center">
@@ -567,85 +546,11 @@
                                     <p class="mr-[1.3rem] ml-4 text-xs"> 전문의번호 </p>
                                     <input name="sn" id="specialist" type="text" />
                                 </div>
-                                <span class="text-sm mt-5">*의사면허번호를 정확하게 입력하시지 않으시면, 의협보고시 누락될 수 있습니다.<br>
-                                    *정확한 전문의 번호를 입력 부탁 드립니다.</span>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <table class="mo-table">
-                                <tr>
-                                    <th>구분</th>
-                                    <th>대한 내분비 학회 회원<br>(평생회원, 정회원/준회원,대기자 제외)</th>
-                                    <th>비회원<br>(준회원, 회원 승인 대기자)</th>
-                                </tr>
-                                <tr>
-                                    <th>전문의</th>
-                                    <td>
-                                        <input type="radio" id="type_1" class="type-1" name="category-1" />
-                                        <label for="type_1">90000</label>
-                                    </td>
-                                    <td>
-                                        <input type="radio" id="type_2" class="type-1" name="category-2" />
-                                        <label for="type_2">110000</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>전공의</th>
-                                    <td>
-                                        <input type="radio" id="type_3" class="type-1" name="category-3" />
-                                        <label for="type_3">70000</label>
-                                    </td>
-                                    <td>
-                                        <input type="radio" id="type_4" class="type-1" name="category-4" />
-                                        <label for="type_4">90000</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>기타</th>
-                                    <td>
-                                        <input type="radio" id="type_5" class="type-1" name="category-5" />
-                                        <label for="type_5">70000</label>
-                                    </td>
-                                    <td>
-                                        <input type="radio" id="type_6" class="type-1" name="category-6" />
-                                        <label for="type_6">90000</label>
-                                    </td>
-                                </tr>
-                                <tr id="type" style="display: none;">
-                                    <th>세부구분<span>*</span></th>
-                                    <td colspan="2">
-                                        <div id="one_box">
-                                            <input type="radio" id="type_7" class="type-2" name="category-7" />
-                                            <label for="type_7">개원의</label>
-                                            <input type="radio" id="type_8" class="type-2" name="category-8" />
-                                            <label for="type_8">봉직의</label>
-                                            <input type="radio" id="type_9" class="type-2" name="category-9" />
-                                            <label for="type_9">교수</label>
-                                            <input type="radio" id="type_10" class="type-2" name="category-10" />
-                                            <label for="type_10">전임의</label>
-                                        </div>
-                                        <div id="two_box">
-                                            <input type="radio" id="type_11" class="type-3" name="category-11" />
-                                            <label for="type_11">기초의학자</label>
-                                            <input type="radio" id="type_12" class="type-3" name="category-12" />
-                                            <label for="type_12">간호사</label>
-                                            <input type="radio" id="type_13" class="type-3" name="category-13" />
-                                            <label for="type_13">약사</label>
-                                            <input type="radio" id="type_14" class="type-3" name="category-14" />
-                                            <label for="type_14">군의관</label>
-                                            <input type="radio" id="type_15" class="type-3" name="category-15" />
-                                            <label for="type_15">기타</label>
-                                            <input class="border" id="other" name="category-16" />
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
                         </div>
                         <button type="button" id="page_1_btn"
                             class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
                     </div>
-
-
                 </div>
                 <!-- ==========================================================================================================/ -->
                 <div id="page_2" class="flex flex-col items-center justify-center text-center my-20"
@@ -769,7 +674,7 @@
                         <div class="confirm_box_title flex items-center justify-center">
                             <h1 class="text-sm">Use of Personal Information <br>(개인정보활용동의)</h1>
                         </div>
-                        <textarea style="height: 80px;" class="border text-center w-full" disabled="" readonly="">대한내분비학회 2023년 개원의 연수강좌 
+                        <textarea style="height: 80px;" class="border text-center w-full" disabled="" readonly="">ICOMES 2023 이용 약관 
 본 학술대회의 주관사인 대한비만학회는 학술대회 등록시스템 서비스 제공을 위하여 관계 법령에 따라 아래와 같이 개인정보를 수집, 이용하는 내용을 알리오니 자세히 읽으신 후 동의 여부를 결정하여 주십시오.
                        
                         </textarea>
@@ -791,14 +696,15 @@
 참가자들의 편의와 참가업체 상호간의 유용한 정보 교류 서비스 제공을 위한 학술대회 출입증 발급 및 전
 자명함시스템 제공에 이용되며, 본 학술대회에서 수집한 개인정보는 차기 학술대회 초대권 발송 및 안내
 를 위한 용도 외의 다른 목적으로 사용되지 않습니다.
-
+※ 기타 개인정보 취급에 관한 상세한 사항은 본 학술대회 홈페이지
+(https://icomes.or.kr/main/signup.php)에 공개하고 있는 “개인정보 처리방침”을 참조 하십시오.
                         </textarea>
                     </div>
 
                     <div class="personal_checkbox">
                         <div>
                             <input id="second_check" class="check" type="checkbox" />
-                            <label for="second_check">개인정보 3자 제공 동의<span>(필수)</span></label>
+                            <label for="second_check">개인정보 2자 제공 동의<span>(필수)</span></label>
                         </div>
 
                         <textarea class="border text-base" disabled="" readonly="">
@@ -951,29 +857,6 @@ const firstPageBtn = document.querySelector("#page_1_btn")
 const secondPageBtn = document.querySelector("#page_2_btn")
 const thirdPageBtn = document.querySelector("#page_3_btn")
 const fourthPageBtn = document.querySelector("#page_4_btn")
-const type = document.querySelector("#type")
-const firstType = document.querySelectorAll(".type-1")
-const secondType = document.querySelectorAll(".type-2")
-const thridType = document.querySelectorAll(".type-3")
-const oneBox = document.querySelector("#one_box")
-const twoBox = document.querySelector("#two_box")
-const type1 = document.querySelector("#type_1")
-const type2 = document.querySelector("#type_2")
-const type3 = document.querySelector("#type_3")
-const type4 = document.querySelector("#type_4")
-const type5 = document.querySelector("#type_5")
-const type6 = document.querySelector("#type_6")
-const type7 = document.querySelector("#type_7")
-const type8 = document.querySelector("#type_8")
-const type9 = document.querySelector("#type_9")
-const type10 = document.querySelector("#type_10")
-const type11 = document.querySelector("#type_11")
-const type12 = document.querySelector("#type_12")
-const type13 = document.querySelector("#type_13")
-const type14 = document.querySelector("#type_14")
-const type15 = document.querySelector("#type_15")
-const otherInput = document.querySelector("#other")
-
 
 /**영어 유효성 검사 */
 firstName.addEventListener("input", (event) => {
@@ -1017,21 +900,21 @@ email_3.addEventListener("click", () => {
     email_2.value = email_3.options[email_3.selectedIndex].value
 })
 
-// member.addEventListener("click", () => {
-//     if (member.checked) {
-//         nonMember.checked = false;
-//     } else {
-//         member.checked = true;
-//     }
-// })
+member.addEventListener("click", () => {
+    if (member.checked) {
+        nonMember.checked = false;
+    } else {
+        member.checked = true;
+    }
+})
 
-// nonMember.addEventListener("click", () => {
-//     if (nonMember.checked) {
-//         member.checked = false;
-//     } else {
-//         nonMember.checked = true;
-//     }
-// })
+nonMember.addEventListener("click", () => {
+    if (nonMember.checked) {
+        member.checked = false;
+    } else {
+        nonMember.checked = true;
+    }
+})
 
 // participationSelect.addEventListener("click", () => {
 //     participation.value = participationSelect.options[participationSelect.selectedIndex].value
@@ -1078,160 +961,6 @@ let second = false;
 let third = false;
 let fourth = false;
 let fiveth = false;
-
-type1.addEventListener("click", () => {
-
-    if (type1.checked) {
-        type2.checked = false
-        type3.checked = false
-        type4.checked = false
-        type5.checked = false
-        type6.checked = false
-        type.style.display = "";
-        oneBox.style.display = "";
-        twoBox.style.display = "none"
-    }
-})
-
-type2.addEventListener("click", () => {
-    if (type2.checked) {
-        type1.checked = false
-        type3.checked = false
-        type4.checked = false
-        type5.checked = false
-        type6.checked = false
-        type.style.display = "";
-        oneBox.style.display = "";
-        twoBox.style.display = "none"
-    }
-})
-
-type3.addEventListener("click", () => {
-    if (type3.checked) {
-        type2.checked = false
-        type1.checked = false
-        type4.checked = false
-        type5.checked = false
-        type6.checked = false
-        type.style.display = "none";
-        oneBox.style.display = "none";
-        twoBox.style.display = "none"
-    }
-})
-
-type4.addEventListener("click", () => {
-    if (type4.checked) {
-        type2.checked = false
-        type1.checked = false
-        type3.checked = false
-        type5.checked = false
-        type6.checked = false
-        type.style.display = "none";
-        oneBox.style.display = "none";
-        twoBox.style.display = "none"
-    }
-})
-
-type5.addEventListener("click", () => {
-    if (type5.checked) {
-        type1.checked = false
-        type3.checked = false
-        type4.checked = false
-        type2.checked = false
-        type6.checked = false
-        type.style.display = "";
-        oneBox.style.display = "none";
-        twoBox.style.display = ""
-    }
-})
-
-type6.addEventListener("click", () => {
-    if (type6.checked) {
-        type1.checked = false
-        type3.checked = false
-        type4.checked = false
-        type2.checked = false
-        type5.checked = false
-        type.style.display = "";
-        oneBox.style.display = "none";
-        twoBox.style.display = ""
-    }
-})
-
-type7.addEventListener("click", () => {
-    if (type7.checked) {
-        type8.checked = false
-        type9.checked = false
-        type10.checked = false
-    }
-})
-type8.addEventListener("click", () => {
-    if (type8.checked) {
-        type7.checked = false
-        type9.checked = false
-        type10.checked = false
-    }
-})
-type9.addEventListener("click", () => {
-    if (type9.checked) {
-        type8.checked = false
-        type7.checked = false
-        type10.checked = false
-    }
-})
-type10.addEventListener("click", () => {
-    if (type10.checked) {
-        type8.checked = false
-        type9.checked = false
-        type7.checked = false
-    }
-})
-
-type11.addEventListener("click", () => {
-    if (type11.checked) {
-        type12.checked = false
-        type13.checked = false
-        type14.checked = false
-        type15.checked = false
-        otherInput.disabled = true
-    }
-})
-type12.addEventListener("click", () => {
-    if (type12.checked) {
-        type11.checked = false
-        type13.checked = false
-        type14.checked = false
-        type15.checked = false
-        otherInput.disabled = true
-    }
-})
-type13.addEventListener("click", () => {
-    if (type13.checked) {
-        type12.checked = false
-        type11.checked = false
-        type14.checked = false
-        type15.checked = false
-        otherInput.disabled = true
-    }
-})
-type14.addEventListener("click", () => {
-    if (type14.checked) {
-        type12.checked = false
-        type13.checked = false
-        type11.checked = false
-        type15.checked = false
-        otherInput.disabled = true
-    }
-})
-type15.addEventListener("click", () => {
-    if (type15.checked) {
-        type12.checked = false
-        type13.checked = false
-        type14.checked = false
-        type11.checked = false
-        otherInput.disabled = false
-    }
-})
 
 numArray.forEach((num) => {
     const yes_num = document.getElementById(`yes_${num}`);
@@ -1304,10 +1033,6 @@ let checkedArr = []
 firstPageBtn.addEventListener("click", (e) => {
     e.preventDefault()
     onSubmit()
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
 })
 allCheck.addEventListener("click", () => selectAll());
 /**모두 체크 눌렀을 때 */
@@ -1326,16 +1051,16 @@ finalButton.addEventListener("click", (e) => {
 
 function onSubmit() {
 
-    if (!KoreanName.value) {
+    if (!firstName.value || !LastName.value || !KoreanName.value) {
         alert("invaild Name");
         firstName.focus()
         return;
     }
-    // if (!contry.value) {
-    //     alert("invaild contry");
-    //     contry.focus()
-    //     return;
-    // }
+    if (!contry.value) {
+        alert("invaild contry");
+        contry.focus()
+        return;
+    }
     if (!affilation.value) {
         alert("invaild affilation");
         affilation.focus()
@@ -1351,21 +1076,21 @@ function onSubmit() {
         email_1.focus()
         return;
     }
-    // if (!member.checked && !nonMember.checked) {
-    //     alert("invaild member");
-    //     member.focus()
-    //     return;
-    // }
+    if (!member.checked && !nonMember.checked) {
+        alert("invaild member");
+        member.focus()
+        return;
+    }
     if (!participationSelect.options[participationSelect.selectedIndex].value) {
         alert("invaild participation");
         participationSelect.focus()
         return;
     }
-    // if (!categorySelect.options[categorySelect.selectedIndex].value) {
-    //     alert("invaild category");
-    //     categorySelect.focus()
-    //     return;
-    // }
+    if (!categorySelect.options[categorySelect.selectedIndex].value) {
+        alert("invaild category");
+        categorySelect.focus()
+        return;
+    }
     if (categorySelect.options[categorySelect.selectedIndex].value === "Others" && !categoryOthers.value) {
         alert("invaild category");
         categoryOthers.focus()
@@ -1382,40 +1107,42 @@ function onSubmit() {
         need.focus()
         return;
     }
+    const members = member.checked ? "회원" : "비회원"
+    const needs = need.checked ? "필요" : "불필요"
 
-    if (!type1.checked && !type2.checked && !type3.checked && !type4.checked && !type5.checked && !type6.checked) {
-        alert("invaild category")
-        type1.focus()
-        return;
-    }
-    if (type1.checked && !type7.checked && !type8.checked && !type9.checked && !type10.checked) {
-        alert("invaild category")
-        type1.focus()
-        return;
-    }
-    if (type2.checked && !type7.checked && !type8.checked && !type9.checked && !type10.checked) {
-        alert("invaild category")
-        type1.focus()
-        return;
-    }
-    if (type5.checked && !type11.checked && !type12.checked && !type13.checked && !type14.checked && type15.checked) {
-        alert("invaild category")
-        type1.focus()
-        return;
-    }
-    if (type6.checked && !type11.checked && !type12.checked && !type13.checked && !type14.checked && !type15.checked) {
-        alert("invaild category")
-        type1.focus()
-        return;
-    }
-    // if (type15.checked && !otherInput.vlaue) {
-    //     alert("invaild category")
-    //     type1.focus()
-    //     return;
-    // }
+    wrap_1.style.display = "none"
+    wrap_2.style.display = ""
+    wrap_3.style.display = "none"
+    wrap_4.style.display = "none"
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
-    // const members = member.checked ? "회원" : "비회원"
-    // const needs = need.checked ? "필요" : "불필요"
+secondPageBtn.addEventListener("click", () => {
+    if (!one || !two || !three || !four || !five) {
+        alert("invaild  Session participation");
+        return;
+    }
+    wrap_1.style.display = "none"
+    wrap_2.style.display = "none"
+    wrap_3.style.display = ""
+    wrap_4.style.display = "none"
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+})
+
+thirdPageBtn.addEventListener("click", () => {
+
+    const isAnyCheckboxChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
+
+    if (!isAnyCheckboxChecked) {
+        alert("Please select at least one option.");
+        return;
+    }
 
     wrap_1.style.display = "none"
     wrap_2.style.display = "none"
@@ -1425,54 +1152,23 @@ function onSubmit() {
         top: 0,
         behavior: 'smooth'
     });
-}
-
-// secondPageBtn.addEventListener("click", () => {
-//     if (!one || !two || !three || !four || !five) {
-//         alert("invaild  Session participation");
-//         return;
-//     }
-//     wrap_1.style.display = "none"
-//     wrap_2.style.display = "none"
-//     wrap_3.style.display = ""
-//     wrap_4.style.display = "none"
-//     window.scrollTo({
-//         top: 0,
-//         behavior: 'smooth'
-//     });
-// })
-
-// thirdPageBtn.addEventListener("click", () => {
-
-//     const isAnyCheckboxChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
-
-//     if (!isAnyCheckboxChecked) {
-//         alert("Please select at least one option.");
-//         return;
-//     }
-
-//     wrap_1.style.display = "none"
-//     wrap_2.style.display = "none"
-//     wrap_3.style.display = "none"
-//     wrap_4.style.display = ""
-
-// })
+})
 
 function onClickSubmit() {
-    // if (!firstCheck.checked || !secondCheck.checked) {
-    //     alert("필수항목을 체크해주세요.")
-    //     firstCheck.focus()
-    //     return;
-    // } else {
-    //     checkedArr = [firstCheck.checked, secondCheck.checked, thirdCheck.checked, fourthCheck.checked];
+    if (!firstCheck.checked || !secondCheck.checked) {
+        alert("필수항목을 체크해주세요.")
+        firstCheck.focus()
+        return;
+    } else {
+        checkedArr = [firstCheck.checked, secondCheck.checked, thirdCheck.checked, fourthCheck.checked];
 
-    // }
+    }
     const checkArray = []
     checkboxes.forEach((check) => {
         checkArray.push(check.checked)
     })
-    // const members = member.checked ? "회원" : "비회원"
-    // const needs = need.checked ? "필요" : "불필요"
+    const members = member.checked ? "회원" : "비회원"
+    const needs = need.checked ? "필요" : "불필요"
     console.log("체크항목", checkedArr)
     console.log("이름", firstName.value, LastName.value, KoreanName.value)
     console.log("국가", contry.value)
