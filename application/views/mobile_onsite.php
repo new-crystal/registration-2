@@ -209,6 +209,18 @@
             border: 1px solid #eee;
             text-align: center;
         }
+
+        .mo-table td {
+            width: 27rem;
+        }
+
+        .mo-table th {
+            width: 7rem;
+        }
+
+        .mo-table {
+            margin-top: 5rem;
+        }
     </style>
 </head>
 
@@ -221,7 +233,7 @@
             <section id="container" class="">
 
                 <form action="/onSite/mobile" id="mobile_form" class="w-11/12 translate-y-48 mx-auto px-3 h-screen">
-                    <div action="/onSite/mobile" id="page_1">
+                    <div action="/onSite/mobile" id="page_1" class="py-1">
                         <div class="mo_wrap">
                             <img src="../../assets/images/circle.png" class="inline-block" />
                             <p class="inline-block">Name(이름)<span>*</span></p>
@@ -604,7 +616,7 @@
                                             <label for="type_6">90000</label>
                                         </td>
                                     </tr>
-                                    <tr id="type" style="display: none;">
+                                    <tr id="type" style="display:none;">
                                         <th>세부구분<span>*</span></th>
                                         <td colspan="2">
                                             <div id="one_box">
@@ -634,7 +646,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <button type="button" id="page_1_btn" class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 my-5 text-lg flex items-center justify-center mt-20">Next</button>
+                            <button type="button" id="page_1_btn" class="mx-auto w-60 h-15 bg-sky-900 text-white p-3 text-lg flex items-center justify-center mt-20 mb-20">Next</button>
                         </div>
 
 
@@ -873,7 +885,7 @@
                         </div>
                     </div>
                 </form>
-            </section>>
+            </section>
         </div>
     </div>
     </div>
