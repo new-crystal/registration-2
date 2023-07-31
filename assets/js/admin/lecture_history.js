@@ -36,11 +36,11 @@ $(function() {
 	 // Add placeholder to the datatable filter option
     $('.dataTables_filter input[type=search]').attr('placeholder','Type to filter...');
      // Enable Select2 select for the length option
-    $('.dataTables_length select').select2({
+     $('.dataTables_length select').select2({
         minimumResultsForSearch: Infinity,
         width: 'auto',
-        // dataAdapter: {MinimumInputLength:100}
-    });
+        dropdownAutoWidth : true // Added for auto width
+    }).val(100).trigger('change');
 });
 
 function excel_download(){
