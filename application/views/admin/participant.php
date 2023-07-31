@@ -1,21 +1,21 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-th,
-td {
-    text-align: center !important;
-    border: 2px solid rgb(163 163 163);
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
+    th,
+    td {
+        text-align: center !important;
+        border: 2px solid rgb(163 163 163);
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
 
-tr {
-    height: 4.5rem;
-    border: 2px solid rgb(163 163 163);
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
+    tr {
+        height: 4.5rem;
+        border: 2px solid rgb(163 163 163);
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
 </style>
 <div class="text-center flex flex-col items-center justify-center">
     <h1 class="text-6xl font-semibold text-orange-600 my-10">***학회_2023 ****</h1>
@@ -139,3 +139,8 @@ tr {
         </tr>
     </table>
 </div>
+</div>
+<!-- /page content -->
+
+</div>
+<!-- /page container -->
