@@ -1,9 +1,9 @@
 <script type="text/javascript" src="/assets/js/admin/lecture_history.js"></script>
 <style>
-    table th {
-        padding: 0;
-        font-size: 1.2rem;
-    }
+table th {
+    padding: 0;
+    font-size: 1.2rem;
+}
 </style>
 <!-- Main content -->
 <div class="content-wrapper">
@@ -76,9 +76,9 @@
                         echo '<td>';
 
                         if ($item['QR_SMS_SEND_YN'] == "Y") {
-                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '" target="_blank"><div class="btn btn-success qr_btn">문자발송</div></a>';
+                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '" ><div class="btn btn-success qr_btn">문자발송</div></a>';
                         } else {
-                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '" target="_blank"><div class="btn btn-non-success qr_btn">문자발송</div></a>';
+                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '" ><div class="btn btn-non-success qr_btn">문자발송</div></a>';
                         }
                         echo '</td>';
                         echo '<td>';
@@ -133,30 +133,30 @@
 </div>
 <!-- /page container -->
 <script>
-    //        $('#allChk').click(function(){
-    //            if($('input:checkbox[id="allChk"]').prop('checked')){
-    //                $('input[type=checkbox]').prop('checked',true);
-    //            }else{
-    //                $('input[type=checkbox]').prop('checked',false);
-    //            }
-    //        })
+//        $('#allChk').click(function(){
+//            if($('input:checkbox[id="allChk"]').prop('checked')){
+//                $('input[type=checkbox]').prop('checked',true);
+//            }else{
+//                $('input[type=checkbox]').prop('checked',false);
+//            }
+//        })
 
 
-    $('.depositChk').click(function() {
-        var formName = $('#depositForm');
-        // var formName2 = $('#nametagForm');
-        var formName3 = $('#deposit_mail_Form');
-        var userId = $(this).val();
-        var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
-            '" id="">'
+$('.depositChk').click(function() {
+    var formName = $('#depositForm');
+    // var formName2 = $('#nametagForm');
+    var formName3 = $('#deposit_mail_Form');
+    var userId = $(this).val();
+    var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
+        '" id="">'
 
-        if ($(this).prop('checked')) {
-            formName.append(checkHtml);
-            // formName2.append(checkHtml);
-            formName3.append(checkHtml);
-        } else {
-            $('.user' + userId).remove();
-        }
-    })
+    if ($(this).prop('checked')) {
+        formName.append(checkHtml);
+        // formName2.append(checkHtml);
+        formName3.append(checkHtml);
+    } else {
+        $('.user' + userId).remove();
+    }
+})
 </script>
 </body>

@@ -230,19 +230,36 @@ class Users extends CI_Model
 		// ON u.registration_no = a.registration_no
 		// GROUP BY u.type;
 
-		//현장등록 반영한 코드
+		//현장등록 반영한 코드 -> A와 B로 시작할 경우
+		// SELECT u.type,
+		// 		 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-11_A',
+		// 		 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-11_B',
+		// 		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-12_A',
+		// 		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-12_B',
+		// 		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-13_A',
+		// 		 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-13_B'	
+		// 		FROM users u
+		// 		JOIN access a ON u.registration_no = a.registration_no
+		// 		GROUP BY u.type;
+
+		//'202303_A'로 시작하는 것과  '202303_R'로 시작하는 것으로 구분하는 경우
 		$query = $this->db->query("
-       
-			SELECT u.type,
-   				 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-11_A',
-   				 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-11_B',
-    			COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-12_A',
-   				COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-12_B',
-    			COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '2023-07-13_A',
-   				 COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '2023-07-13_B'	
-				FROM users u
-				JOIN access a ON u.registration_no = a.registration_no
-				GROUP BY u.type;
+		SELECT
+		u.type,
+		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '202303_A_2023-07-11',
+		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-11' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '202303_R_2023-07-11',
+		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '202303_A_2023-07-12',
+		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-12' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '202303_R_2023-07-12',
+		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'A%' THEN a.registration_no END) AS '202303_A_2023-07-13',
+		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-07-13' AND a.registration_no LIKE 'B%' THEN a.registration_no END) AS '202303_R_2023-07-13'
+	FROM
+		users u
+	JOIN
+		access a ON u.registration_no = a.registration_no
+	GROUP BY
+		u.type;
+	
+			
         ");
 		return $query->result_array();
 	}

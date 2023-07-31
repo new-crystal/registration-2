@@ -4,7 +4,7 @@ $id = $users['id'] ?? '';
 $registration_no = $users['registration_no'] ?? '';
 $nick_name = $users['nick_name'] ?? '';
 $curl = curl_init();
-
+$error = "";
 
 curl_setopt_array($curl, array(
     CURLOPT_URL => "https://sms.gabia.com/oauth/token",
@@ -28,7 +28,7 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-    // echo "cURL Error #:" . $err;
+    echo "cURL Error #:" . $err;
 } else {
     // echo $response;
     $responseData = json_decode($response, true);
@@ -60,8 +60,6 @@ if ($err) {
         의 연수강좌 현장 사전 안내', 'image_cnt' =>
             '1', '
              images0' => new CURLFILE('assets/images/QR/qrcode_' . $registration_no . '.jpg')
-
-            // images0' => new CURLFILE('assets/images/QR/qrcode_A2023-00105.jpg')
         ),
         CURLOPT_HTTPHEADER => array(
             "Authorization: Basic " . base64_encode("intowebinar:" . $accessToken)
@@ -75,9 +73,9 @@ if ($err) {
 
     if ($err) {
         echo "cURL Error #:" . $err;
-        // $error = $err;
-        // $error = json_decode($err, true);
-        $error_msg = $err['message'];
+
+        $error = $err;
+        $error = json_decode($err, true);
     } else {
         // echo $response;
         $responseData = json_decode($response, true);
@@ -101,46 +99,9 @@ if ($err) {
     <?php if ($code != "200") : ?>
         <div class="w-2/4 h-3/4 bg-orange-500 flex flex-col items-center justify-center">
             <h1 class="text-white font-semibold text-3xl">MMS 전송이 실패하였습니다.</h1>
-            <p class="text-xl font-semibold mt-5"> </p>
+            <p class="text-xl font-semibold mt-5"><?= $error ? $error : null ?> </p>
             <a href="/admin/qr_user"><button class="bg-white bg-orange-500 p-3 font-semibold rounded">뒤로
                     가기</button></a>
         </div>
     <?php endif; ?>
-</div>
-
-
-
-
-<div>
-    <!-- //단문 문자
-// $curl = curl_init();
-
-// curl_setopt_array($curl, array(
-// CURLOPT_URL => "https://sms.gabia.com/api/send/sms",
-// CURLOPT_RETURNTRANSFER => true,
-// CURLOPT_ENCODING => "",
-// CURLOPT_MAXREDIRS => 10,
-// CURLOPT_TIMEOUT => 0,
-// CURLOPT_FOLLOWLOCATION => false,
-// CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-// CURLOPT_CUSTOMREQUEST => "POST",
-// CURLOPT_POSTFIELDS =>
-// "phone=01040585269&callback=01090224867&message=SMS TEST MESSAGE&refkey=[[RESTAPITEST1549847130]]",
-// CURLOPT_HTTPHEADER => array(
-// "Content-Type: application/x-www-form-urlencoded",
-// "Authorization: Basic " . base64_encode("intowebinar:" . $accessToken)
-// ),
-// ));
-
-// $response = curl_exec($curl);
-// $err = curl_error($curl);
-
-// curl_close($curl);
-
-// if ($err) {
-// echo "cURL Error #:" . $err;
-// } else {
-// echo $response;
-// } -->
-
 </div>
