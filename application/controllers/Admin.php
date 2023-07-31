@@ -242,7 +242,7 @@ class Admin extends CI_Controller
 
     function all_deposit_check()
     {
-
+        $this->load->view('admin/loading');
         $regNo = $this->input->post('userId');
 
         foreach ($regNo as $value) {
@@ -348,6 +348,7 @@ class Admin extends CI_Controller
     function qr_generate_all()
     {
         $list = $this->users->get_users();
+        $this->load->view('admin/loading');
         //        var_dump($list);
 
         $dir = "././assets/images/QR";
@@ -530,32 +531,28 @@ class Admin extends CI_Controller
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
                 $memo = $this->input->post('memo');
-                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
-                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
-                        $fee = 0;
+                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전임의' || $type2 == '교수') {
+                    if ($type3 == '비회원') {
+                        $fee = 110000;
                     } else {
-                        if ($type3 == '비회원') {
-                            $fee = 50000;
-                        } else {
-                            $fee = 30000;
-                        }
+                        $fee = 90000;
                     }
-                } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
-                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
-                        $fee = 0;
+                } else if ($type2 == '간호사' || $type2 == '기초의학자' || $type2 == '약사' || $type2 == '군의관') {
+                    if ($type3 == '비회원') {
+                        $fee = 90000;
                     } else {
-                        if ($type3 == '비회원') {
-                            $fee = 40000;
-                        } else {
-                            $fee = 20000;
-                        }
+                        $fee = 70000;
                     }
-                } else {
-                    $fee = 0;
+                } else if ($type2 == '전공의') {
+                    if ($type3 == '비회원') {
+                        $fee = 90000;
+                    } else {
+                        $fee = 70000;
+                    }
                 }
 
                 if ($fee == 0)
-                    $deposit = '입금완료';
+                    $deposit = '미결제';
                 else
                     $deposit = '미결제';
 
@@ -1096,5 +1093,10 @@ class Admin extends CI_Controller
             }
             $this->load->view('footer');
         }
+    }
+    public function loading()
+    {
+
+        $this->load->view('admin/loading');
     }
 }
