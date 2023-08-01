@@ -6,6 +6,10 @@ $(function() {
         stateSave: true,
         stateDuration:-1,
         autoWidth: false,
+        lengthMenu: [
+            [100, 200, 300], // 페이지 당 레코드 수 옵션
+            [100, 200, 300] // 옵션 레이블
+        ],
         // columnDefs: [{ 
         //     orderable: false,
         //     width: '100px',
@@ -35,6 +39,17 @@ $(function() {
 
 	 // Add placeholder to the datatable filter option
     $('.dataTables_filter input[type=search]').attr('placeholder','Type to filter...');
+
+   // 최소 2글자 이상 입력해야 검색 실행
+   $('.dataTables_filter input[type="search"]').on('keyup', function() {
+    var minCharacters = 2; // 최소 글자 수 설정
+    var searchText = $(this).val().trim();
+    if (searchText.length >= minCharacters || searchText === '') {
+        // 최소 글자 수 이상 또는 검색어가 없는 경우 검색 실행
+        $('.datatable-basic').DataTable().search(searchText).draw();
+    }
+});
+
      // Enable Select2 select for the length option
      $('.dataTables_length select').select2({
         minimumResultsForSearch: Infinity,
