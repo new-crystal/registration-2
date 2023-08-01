@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">E-mail</label>
+                                <label class="col-sm-2 control-label">E-mail *</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text" name="email" id="email">
                                 </div>
@@ -241,6 +241,12 @@
                 $("#phone").focus();
                 return false;
             }
+            if (!$.trim($("#email").val())) {
+                alert("이메일을 입력해주세요.");
+                $("#email").focus();
+                return false;
+            }
+
 
             $("#addForm").attr("action", "/admin/add_user");
 
