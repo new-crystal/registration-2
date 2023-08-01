@@ -95,6 +95,7 @@
 #printThis .a4_area{
     width: 794px;
     height: 1123px;
+    page-break-after: always;
 }
 
 #printThis .bg_area{
@@ -175,6 +176,10 @@
 #printThis #nt_info{
     height: 20px;
     padding: 0;
+}
+
+#printThis:last-child .a4_area {
+  page-break-after: avoid; /* 마지막 페이지에는 페이지 나눔을 적용하지 않도록 설정합니다. */
 }
 
 #qrcode{
