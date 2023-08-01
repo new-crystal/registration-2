@@ -110,7 +110,8 @@ class OnSite extends CI_Controller
             $email1 = isset($_GET['email1']) ? $_GET['email1'] : null;
             $email2 = isset($_GET['email2']) ? $_GET['email2'] : null;
             $org = isset($_GET['org']) ? $_GET['org'] : null;
-            $license = isset($_GET['sn']) ? $_GET['sn'] : null;
+            $license = isset($_GET['ln']) ? $_GET['ln'] : null;
+            $special_license = isset($_GET['sn']) ? $_GET['sn'] : null;
             $category_1 = isset($_GET['category-1']) ? $_GET['category-1'] : null;
             $category_2 = isset($_GET['category-2']) ? $_GET['category-2'] : null;
             $category_3 = isset($_GET['category-3']) ? $_GET['category-3'] : null;
@@ -192,11 +193,15 @@ class OnSite extends CI_Controller
                 $deposit = '미결제';
 
             $time = date("Y-m-d H:i:s");
+            if ($license == "") {
+                $license = "00000";
+            }
             // $uagent = $this->agent->agent_string();
 
             $email = $email1 . "@" . $email2;
             $info = array(
                 'nick_name' => preg_replace("/\s+/", "", $name),
+                'ln' => preg_replace("/\s+/", "", $special_license),
                 'sn' => preg_replace("/\s+/", "", $license),
                 'org' => trim($org),
                 'org_nametag' => trim($org),

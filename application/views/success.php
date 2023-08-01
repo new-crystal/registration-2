@@ -4,7 +4,15 @@
 
 <head>
     <title>Success Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
 </head>
+<style>
+    body {
+        font-family: 'Noto Serif KR', serif;
+    }
+</style>
 
 <body>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,7 +37,7 @@
                 <p>(현장 등록 참석자 학회 사이트 내에 다운로드 불가)</p>
             </div>
             <div>
-                <button class="p-2 border mb-3 hover:bg-slate-100" onclick="prev()">이전으로</button>
+                <button class="py-2 px-3 border mb-3 hover:bg-slate-100" onclick="prev()">이전으로</button>
             </div>
         </div>
     </div>
