@@ -203,8 +203,8 @@ class OnSite extends CI_Controller
             $email = $email1 . "@" . $email2;
             $info = array(
                 'nick_name' => preg_replace("/\s+/", "", $name),
-                'ln' => preg_replace("/\s+/", "", $special_license),
-                'sn' => preg_replace("/\s+/", "", $license),
+                'ln' => preg_replace("/\s+/", "", $license),
+                'sn' => preg_replace("/\s+/", "", $special_license),
                 'org' => trim($org),
                 'org_nametag' => trim($org),
                 'phone' => preg_replace("/\s+/", "", $phone),
