@@ -31,7 +31,8 @@ class OnSite extends CI_Controller
         $email1 = isset($_GET['email1']) ? $_GET['email1'] : null;
         $email2 = isset($_GET['email2']) ? $_GET['email2'] : null;
         $org = isset($_GET['org']) ? $_GET['org'] : null;
-        $license = isset($_GET['sn']) ? $_GET['sn'] : null;
+        $license = isset($_GET['ln']) ? $_GET['ln'] : null;
+        $special_license = isset($_GET['sn']) ? $_GET['sn'] : null;
 
         $phone =  $phone1 . $phone2;
 
@@ -79,6 +80,7 @@ class OnSite extends CI_Controller
             $email = $email1 . "@" . $email2;
             $info = array(
                 'nick_name' => preg_replace("/\s+/", "", $name),
+                'ln' => preg_replace("/\s+/", "", $special_license),
                 'sn' => preg_replace("/\s+/", "", $license),
                 'org' => trim($org),
                 'org_nametag' => trim($org),

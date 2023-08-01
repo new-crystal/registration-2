@@ -129,7 +129,7 @@
                         // }
                         // echo '</td>';
                         echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
-                        if ($item['deposit'] == "미결제") {
+                        if ($item['deposit'] == "미입금") {
                             echo '<td style="color:red;">';
                         } else {
                             echo '<td style="color:blue;">';
@@ -223,8 +223,8 @@
 
     $('#all_depositForm').click(function() {
         var formName4 = $('#all_depositForm');
-        const loading = document.querySelector(".loading")
         $('.depositChk').prop('checked', true).each(function() {
+            const loading = document.querySelector(".loading")
             loading.style.display = ""
             var userId = $(this).val();
             var checkHtml = '<input type="hidden" class="userId user' + userId +
@@ -232,8 +232,6 @@
                 '" id="">';
             formName4.append(checkHtml);
         });
-
-
     });
 </script>
 </body>
