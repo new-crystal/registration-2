@@ -74,7 +74,7 @@ if ($err) {
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo $response;
+            // echo $response;
             $responseData = json_decode($response, true);
             $code = $responseData['code'];
             $after = $responseData['data']['AFTER_SMS_QTY'];
