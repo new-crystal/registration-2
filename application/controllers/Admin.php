@@ -212,9 +212,9 @@ class Admin extends CI_Controller
             $upload_dir = $dir . '/';
             $filename =  'qrcode_' . $value . '.png';
 
-            echo getcwd();
-            echo $upload_dir;
-            echo $filename;
+            // echo getcwd();
+            // echo $upload_dir;
+            // echo $filename;
 
             if (is_dir($dir) != true) {
                 mkdir($dir, 0700);
@@ -267,9 +267,9 @@ class Admin extends CI_Controller
             $upload_dir = $dir . '/';
             $filename =  'qrcode_' . $value . '.png';
 
-            echo getcwd();
-            echo $upload_dir;
-            echo $filename;
+            // echo getcwd();
+            // echo $upload_dir;
+            // echo $filename;
 
             if (is_dir($dir) != true) {
                 mkdir($dir, 0700);
