@@ -242,7 +242,6 @@ class Admin extends CI_Controller
 
     function all_deposit_check()
     {
-        $this->load->view('admin/loading');
         $regNo = $this->input->post('userId');
 
         foreach ($regNo as $value) {

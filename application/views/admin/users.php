@@ -1,9 +1,14 @@
 <script type="text/javascript" src="/assets/js/admin/lecture_history.js"></script>
 <style>
-table th {
-    padding: 0;
-    font-size: 1.2rem;
-}
+    table th {
+        padding: 0;
+        font-size: 1.2rem;
+    }
+
+    .loading {
+        position: absolute;
+        top: -25%;
+    }
 </style>
 <!-- Main content -->
 <div class="content-wrapper">
@@ -22,6 +27,11 @@ table th {
 
         <!-- Basic datatable -->
         <div class="panel panel-flat">
+            <svg style="display: none;" version="1.1" class="loading" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                <path fill="#8ecae6" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                    <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
+                </path>
+            </svg>
             <div class="panel-heading">
                 <h5 class="panel-title">등록 인원</h5>
                 <div class="heading-elements">
@@ -173,57 +183,57 @@ table th {
 </div>
 <!-- /page container -->
 <script>
-//        $('#allChk').click(function(){
-//            if($('input:checkbox[id="allChk"]').prop('checked')){
-//                $('input[type=checkbox]').prop('checked',true);
-//            }else{
-//                $('input[type=checkbox]').prop('checked',false);
-//            }
-//        })
+    //        $('#allChk').click(function(){
+    //            if($('input:checkbox[id="allChk"]').prop('checked')){
+    //                $('input[type=checkbox]').prop('checked',true);
+    //            }else{
+    //                $('input[type=checkbox]').prop('checked',false);
+    //            }
+    //        })
 
 
-function onClickMemo(id) {
-    const url = `/admin/memo?n=${id}`;
-    window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
-}
-
-function onClickReceipt(id) {
-    const url = `/admin/receipt?n=${id}`
-    window.open(url, "Certificate", "width=500, height=300, top=30, left=30")
-}
-
-
-$('.depositChk').click(function() {
-    var formName = $('#depositForm');
-    var formName2 = $('#nametagForm');
-    var formName3 = $('#non_depositForm');
-    // var formName4 = $('#all_depositForm');
-    var userId = $(this).val();
-    var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
-        '" id="">'
-    if ($(this).prop('checked')) {
-        formName.append(checkHtml);
-        formName2.append(checkHtml);
-        formName3.append(checkHtml);
-        // formName4.append(checkHtml)
-    } else {
-        $('.user' + userId).remove();
+    function onClickMemo(id) {
+        const url = `/admin/memo?n=${id}`;
+        window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
     }
-})
 
-$('#all_depositForm').click(function() {
-    const newWindow = window.open("https://kscp.webeon.net/admin/loading")
-    var formName4 = $('#all_depositForm');
+    function onClickReceipt(id) {
+        const url = `/admin/receipt?n=${id}`
+        window.open(url, "Certificate", "width=500, height=300, top=30, left=30")
+    }
 
-    $('.depositChk').prop('checked', true).each(function() {
+
+    $('.depositChk').click(function() {
+        var formName = $('#depositForm');
+        var formName2 = $('#nametagForm');
+        var formName3 = $('#non_depositForm');
+        // var formName4 = $('#all_depositForm');
         var userId = $(this).val();
-        var checkHtml = '<input type="hidden" class="userId user' + userId +
-            '" name="userId[]" value="' + userId +
-            '" id="">';
-        formName4.append(checkHtml);
-    });
-    newWindow.close()
+        var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
+            '" id="">'
+        if ($(this).prop('checked')) {
+            formName.append(checkHtml);
+            formName2.append(checkHtml);
+            formName3.append(checkHtml);
+            // formName4.append(checkHtml)
+        } else {
+            $('.user' + userId).remove();
+        }
+    })
 
-});
+    $('#all_depositForm').click(function() {
+        var formName4 = $('#all_depositForm');
+        const loading = document.querySelector(".loading")
+        $('.depositChk').prop('checked', true).each(function() {
+            loading.style.display = ""
+            var userId = $(this).val();
+            var checkHtml = '<input type="hidden" class="userId user' + userId +
+                '" name="userId[]" value="' + userId +
+                '" id="">';
+            formName4.append(checkHtml);
+        });
+
+
+    });
 </script>
 </body>
