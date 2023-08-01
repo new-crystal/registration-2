@@ -583,7 +583,7 @@ class Admin extends CI_Controller
                     'memo' => $memo,
                 );
                 //                var_dump($info);
-                $this->users->add_user($info);
+                $this->users->add_onsite_user($info);
                 $this->load->view('admin/add_success');
             }
         }
@@ -689,29 +689,49 @@ class Admin extends CI_Controller
                 if ($memo == "") {
                     $memo = null;
                 }
-                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
-                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
-                        $fee = 0;
+                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전임의' || $type2 == '교수') {
+                    if ($type3 == '비회원') {
+                        $fee = 110000;
                     } else {
-                        if ($type3 == '비회원') {
-                            $fee = 50000;
-                        } else {
-                            $fee = 30000;
-                        }
+                        $fee = 90000;
                     }
-                } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
-                    if ($type == '좌장' || $type == '연자' || $type == '패널') {
-                        $fee = 0;
+                } else if ($type2 == '간호사' || $type2 == '기초의학자' || $type2 == '약사' || $type2 == '군의관') {
+                    if ($type3 == '비회원') {
+                        $fee = 90000;
                     } else {
-                        if ($type3 == '비회원') {
-                            $fee = 40000;
-                        } else {
-                            $fee = 20000;
-                        }
+                        $fee = 70000;
                     }
-                } else {
-                    $fee = 0;
+                } else if ($type2 == '전공의') {
+                    if ($type3 == '비회원') {
+                        $fee = 90000;
+                    } else {
+                        $fee = 70000;
+                    }
                 }
+                //기존코드
+                // if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
+                //     if ($type == '좌장' || $type == '연자' || $type == '패널') {
+                //         $fee = 0;
+                //     } else {
+                //         if ($type3 == '비회원') {
+                //             $fee = 50000;
+                //         } else {
+                //             $fee = 30000;
+                //         }
+                //     }
+                // } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
+                //     if ($type == '좌장' || $type == '연자' || $type == '패널') {
+                //         $fee = 0;
+                //     } else {
+                //         if ($type3 == '비회원') {
+                //             $fee = 40000;
+                //         } else {
+                //             $fee = 20000;
+                //         }
+                //     }
+                // } else {
+                //     $fee = 0;
+                // }
 
                 if ($fee == 0)
                     $deposit = '미결제';
