@@ -70,9 +70,9 @@ class OnSite extends CI_Controller
             }
 
             if ($fee == 0)
-                $deposit = '입금완료';
+                $deposit = '미입금';
             else
-                $deposit = '미결제';
+                $deposit = '미입금';
 
             $time = date("Y-m-d H:i:s");
             // $uagent = $this->agent->agent_string();
@@ -190,9 +190,9 @@ class OnSite extends CI_Controller
             }
 
             if ($fee == 0)
-                $deposit = '미결제';
+                $deposit = '미입금';
             else
-                $deposit = '미결제';
+                $deposit = '미입금';
 
             $time = date("Y-m-d H:i:s");
             if ($license == "") {
