@@ -99,7 +99,7 @@ class OnSite extends CI_Controller
     public function mobile()
     {
 
-        $this->load->view('mobile_onsite');
+
         if (isset($_GET['nick_name'])) {
 
 
@@ -211,6 +211,10 @@ class OnSite extends CI_Controller
                 // 'uagent' => $uagent,
             );
             $this->users->add_onsite_user($info);
+            $data['fee'] = $fee;
+            $this->load->view('success', $data);
+        } else {
+            $this->load->view('mobile_onsite');
         }
     }
 
