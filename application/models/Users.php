@@ -76,7 +76,7 @@ class Users extends CI_Model
 			FROM access
 			GROUP BY registration_no
 		) b ON a.registration_no = b.qr_registration_no
-		WHERE a.qr_generated <> 'N' AND a.deposit <> '미결제'
+		WHERE a.qr_generated = 'Y' AND a.deposit = '입금완료'
 		ORDER BY a.id ASC
 ");
 		return $query->result_array();
