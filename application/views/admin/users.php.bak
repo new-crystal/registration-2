@@ -78,7 +78,7 @@
 									echo '<td>' . $item['deposit_name'] . '</td>';
 									echo '<td>' . $item['deposit_date'] . '</td>';
 
-                                    if ($item['deposit'] == "미입금"){
+                                    if ($item['deposit'] == "미결제"){
                                         echo '<td style="color:red;">';
                                     }else {
                                        echo '<td style="color:blue;">';
