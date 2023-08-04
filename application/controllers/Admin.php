@@ -291,7 +291,6 @@ class Admin extends CI_Controller
             imagejpeg($bg, $upload_dir . 'qrcode_' . $value . '.jpg', $quality);
             imagedestroy($bg);
         }
-
         $this->load->view('admin/d_success');
     }
 
