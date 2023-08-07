@@ -1022,6 +1022,62 @@ class Admin extends CI_Controller
         }
     }
 
+    public function send_all_mail()
+    {
+        if (!isset($this->session->admin_data['logged_in']))
+            $this->load->view('admin/login');
+        else {
+            $userId = $this->input->post('userId');
+
+
+            foreach ($userId as $value) {
+                $where = array(
+                    'registration_no' => $value
+                );
+                $info = array(
+                    'QR_MAIL_SEND_YN' =>  'Y'
+                );
+                $data['users'] = $this->users->get_user($where);
+                $this->users->update_msm_status($info, $where);
+                $postdata = http_build_query(
+                    array(
+                        'CATEGORY_D_1'      => 'QrSystem',
+                        'CATEGORY_D_2'      => 'kes',
+                        'CATEGORY_D_3'      => '230903',
+                        'SEND_ADDRESS'      => 'into-mail@into-on.com',
+                        'SEND_NAME'         => 'Qr System test',
+                        'RECV_ADDRESS'      => $data['users']['email'],
+                        'RECV_NAME'         => $data['users']['nick_name'],
+                        'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
+                        'REPLY_NAME'        => 'Qr System test',
+                        'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
+                        'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
+                        'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
+                        'EMBED_IMAGE_GRID'  => 'null',
+                        'INSERT_TEXT_GRID'    => "{" .
+                            '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
+                            '"$text2" : ' . '"' . $data['users']['org'] . '",' .
+                            '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
+                            '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
+                            "}"
+                    )
+                );
+
+                $opts = array(
+                    'http' =>
+                    array(
+                        'method' => 'POST',
+                        'header' => 'Content-type: application/x-www-form-urlencoded',
+                        'content' => $postdata
+                    )
+                );
+                $context = stream_context_create($opts);
+                $result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
+            }
+            $this->load->view('admin/send_all_mail', $data);
+        }
+    }
+
 
     public function participant()
     {
@@ -1075,7 +1131,8 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['n'];
             $where = array(
-                'registration_no' => $userId
+                'registration_no' => $userId,
+                'QR_MAIL_SEND_YN' =>  'N'
             );
             $info = array(
                 'QR_MAIL_SEND_YN' =>  'Y'
@@ -1143,37 +1200,38 @@ class Admin extends CI_Controller
         $data['users'] = $this->users->get_user($where);
 
         $postdata = http_build_query(
-			array(
-				'CATEGORY_D_1'      => 'QrSystem',
-				'CATEGORY_D_2'      => 'kes',
-				'CATEGORY_D_3'      => '230903',
-				'SEND_ADDRESS'      => 'into-mail@into-on.com',
-				'SEND_NAME'         => 'Qr System test',
-				'RECV_ADDRESS'      => $data['users']['email'],
-				'RECV_NAME'         => $data['users']['nick_name'],
-				'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
-				'REPLY_NAME'        => 'Qr System test',
-				'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
-				'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
-				'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
+            array(
+                'CATEGORY_D_1'      => 'QrSystem',
+                'CATEGORY_D_2'      => 'kes',
+                'CATEGORY_D_3'      => '230903',
+                'SEND_ADDRESS'      => 'into-mail@into-on.com',
+                'SEND_NAME'         => 'Qr System test',
+                'RECV_ADDRESS'      => $data['users']['email'],
+                'RECV_NAME'         => $data['users']['nick_name'],
+                'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
+                'REPLY_NAME'        => 'Qr System test',
+                'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
+                'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
+                'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                 'EMBED_IMAGE_GRID'  => 'null',
-				'INSERT_TEXT_GRID'	=> "{" . 
-                                       '"$text1" : ' .'"' . $data['users']['nick_name'] . '",' .
-                                       '"$text2" : ' .'"' . $data['users']['org'] . '",' .
-                                       '"$text3" : ' .'"' . $data['users']['registration_no'] . '",' .
-                                       '"$text4" : ' .'"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
-                                       "}"
-			)
-		);
-		
-		$opts = array('http' =>
-			array(
-				'method' => 'POST',
-				'header' => 'Content-type: application/x-www-form-urlencoded',
-				'content' => $postdata
-			) 
-		);
-		$context = stream_context_create($opts);
-		$result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
+                'INSERT_TEXT_GRID'    => "{" .
+                    '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
+                    '"$text2" : ' . '"' . $data['users']['org'] . '",' .
+                    '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
+                    '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
+                    "}"
+            )
+        );
+
+        $opts = array(
+            'http' =>
+            array(
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $postdata
+            )
+        );
+        $context = stream_context_create($opts);
+        $result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
     }
 }

@@ -82,6 +82,19 @@ class Users extends CI_Model
 		return $query->result_array();
 	}
 
+	public function get_mail_user($where)
+	{
+		$registration_no = $where['registration_no'];
+		$query = $this->db->query("
+			SELECT *
+			FROM users a
+			WHERE a.registration_no = '$registration_no'
+			AND a.QR_MAIL_SEND_YN = 'N'
+		");
+
+		return $query->result_array();
+	}
+
 	public function add_user($info)
 	{
 		$this->db->insert($this->users, $info);

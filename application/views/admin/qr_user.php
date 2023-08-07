@@ -63,7 +63,7 @@ table th {
                     <form action="/admin/excel_download" method="post">
                         <button class="btn btn-primary pull-right"><i class="icon-download4"></i> QR기록 다운로드</button>
                     </form>
-                    <form action="/admin/deposit_check" method="post" id="deposit_mail_Form">
+                    <form action="/admin/send_all_mail" method="post" id="deposit_mail_Form">
                         <button class="btn btn-primary pull-right"><i class="icon-checkmark"></i> 전체메일발송</button>
                     </form>
                     <form action="/admin/send_all_msm" method="post" id="depositForm">
@@ -202,10 +202,24 @@ $('#depositForm').click(function() {
         const loading = document.querySelector(".loading_box")
         loading.style.display = ""
         var userId = $(this).val();
+        console.log(userId)
         var checkHtml = '<input type="hidden" class="userId user' + userId +
             '" name="userId[]" value="' + userId +
             '" id="">';
         formName4.append(checkHtml);
+    });
+});
+
+$('#deposit_mail_Form').click(function() {
+    var formName6 = $('#deposit_mail_Form');
+    $('.depositChk').prop('checked', true).each(function() {
+        const loading = document.querySelector(".loading_box")
+        loading.style.display = ""
+        var userId = $(this).val();
+        var checkHtml = '<input type="hidden" class="userId user' + userId +
+            '" name="userId[]" value="' + userId +
+            '" id="">';
+        formName6.append(checkHtml);
     });
 });
 </script>
