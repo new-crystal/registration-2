@@ -1129,4 +1129,51 @@ class Admin extends CI_Controller
 
         $this->load->view('admin/loading');
     }
+
+    public function sendMail()
+    {
+        $userId = $_GET['n'];
+        $where = array(
+            'registration_no' => $userId
+        );
+        $info = array(
+            'QR_MAIL_SEND_YN' =>  'Y'
+        );
+        $this->users->update_msm_status($info, $where);
+        $data['users'] = $this->users->get_user($where);
+
+        $postdata = http_build_query(
+			array(
+				'CATEGORY_D_1'      => 'QrSystem',
+				'CATEGORY_D_2'      => 'kes',
+				'CATEGORY_D_3'      => '230903',
+				'SEND_ADDRESS'      => 'into-mail@into-on.com',
+				'SEND_NAME'         => 'Qr System test',
+				'RECV_ADDRESS'      => $data['users']['email'],
+				'RECV_NAME'         => $data['users']['nick_name'],
+				'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
+				'REPLY_NAME'        => 'Qr System test',
+				'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
+				'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
+				'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
+                'EMBED_IMAGE_GRID'  => 'null',
+				'INSERT_TEXT_GRID'	=> "{" . 
+                                       '"$text1" : ' .'"' . $data['users']['nick_name'] . '",' .
+                                       '"$text2" : ' .'"' . $data['users']['org'] . '",' .
+                                       '"$text3" : ' .'"' . $data['users']['registration_no'] . '",' .
+                                       '"$text4" : ' .'"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
+                                       "}"
+			)
+		);
+		
+		$opts = array('http' =>
+			array(
+				'method' => 'POST',
+				'header' => 'Content-type: application/x-www-form-urlencoded',
+				'content' => $postdata
+			) 
+		);
+		$context = stream_context_create($opts);
+		$result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
+    }
 }

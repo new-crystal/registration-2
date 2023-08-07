@@ -64,7 +64,8 @@
         <tr>
             <td colspan='3' style="text-align: center;">
                 <img width="300px" height="300px"
-                    src="<?php echo '../assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg'; ?>" alt="" />
+                    src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg')); ?>" alt="" />
+                    <?php /*src="<?php echo '../assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg'; ?>" alt="" />*/?>
             </td>
         </tr>
         <tr>
@@ -84,4 +85,5 @@
 </table>
 <div style="width:750px;display:flex; justify-content:center;">
     <button style="background-color: #fff; padding: 4px 8px; border:1px solid #ddd">메일 발송</button>
+    <a href="https://kscp.webeon.net/admin/sendmail?n=<?php echo $users['registration_no'] ?>">진짜메일발송</a>
 </div>
