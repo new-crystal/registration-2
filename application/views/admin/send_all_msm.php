@@ -24,11 +24,10 @@ curl_close($curl);
 
 if ($err) {
     // echo "cURL Error #:" . $err;
-} else {
+} else if ($users) {
     // echo $response;
     $responseData = json_decode($response, true);
     $accessToken = $responseData['access_token'];
-
     foreach ($users as $item) {
         // MMS 포토문자
 
@@ -80,6 +79,13 @@ if ($err) {
             $after = $responseData['data']['AFTER_SMS_QTY'];
         }
     }
+} else if (!$users) {
+?>
+    <script>
+        alert('문자메시지를 전송할 유저가 없습니다.');
+        window.location.href = "/admin/qr_user";
+    </script>
+<?php
 }
 
 ?>

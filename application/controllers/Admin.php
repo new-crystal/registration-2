@@ -1005,17 +1005,19 @@ class Admin extends CI_Controller
         else {
             $userId = $this->input->post('userId');
             $data['users'] = array(); // 배열로 초기화
-
-            foreach ($userId as $value) {
+            $wheres = array(
+                'QR_SMS_SEND_YN' => 'N',
+            );
+            $users = $this->users->get_msm_user($wheres);
+            $data['users'] = array_merge($data['users'], $users);
+            foreach ($data['users'] as $users) {
                 $where = array(
-                    'registration_no' => $value,
+                    'registration_no' => $users['registration_no'],
                 );
                 $info = array(
                     'QR_SMS_SEND_YN' =>  'Y'
                 );
                 $this->users->update_msm_status($info, $where);
-                $users = $this->users->get_msm_user($where);
-                $data['users'] = array_merge($data['users'], $users); // 결과를 배열에 추가
             }
 
             $this->load->view('admin/send_all_msm', $data);
@@ -1028,51 +1030,53 @@ class Admin extends CI_Controller
             $this->load->view('admin/login');
         else {
             $userId = $this->input->post('userId');
-
-
-            foreach ($userId as $value) {
+            $data['users'] = $this->users->get_mail_user();
+            foreach ($data['users'] as $users) {
+                // var_dump($value);
                 $where = array(
-                    'registration_no' => $value
+                    'registration_no' => $users['registration_no']
                 );
                 $info = array(
                     'QR_MAIL_SEND_YN' =>  'Y'
                 );
-                $data['users'] = $this->users->get_user($where);
-                $this->users->update_msm_status($info, $where);
-                $postdata = http_build_query(
-                    array(
-                        'CATEGORY_D_1'      => 'QrSystem',
-                        'CATEGORY_D_2'      => 'kes',
-                        'CATEGORY_D_3'      => '230903',
-                        'SEND_ADDRESS'      => 'into-mail@into-on.com',
-                        'SEND_NAME'         => 'Qr System test',
-                        'RECV_ADDRESS'      => $data['users']['email'],
-                        'RECV_NAME'         => $data['users']['nick_name'],
-                        'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
-                        'REPLY_NAME'        => 'Qr System test',
-                        'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
-                        'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
-                        'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
-                        'EMBED_IMAGE_GRID'  => 'null',
-                        'INSERT_TEXT_GRID'    => "{" .
-                            '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
-                            '"$text2" : ' . '"' . $data['users']['org'] . '",' .
-                            '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
-                            '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
-                            "}"
-                    )
-                );
+                if ($users['QR_MAIL_SEND_YN'] == 'N') {
 
-                $opts = array(
-                    'http' =>
-                    array(
-                        'method' => 'POST',
-                        'header' => 'Content-type: application/x-www-form-urlencoded',
-                        'content' => $postdata
-                    )
-                );
-                $context = stream_context_create($opts);
-                $result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
+                    $this->users->update_msm_status($info, $where);
+                    $postdata = http_build_query(
+                        array(
+                            'CATEGORY_D_1'      => 'QrSystem',
+                            'CATEGORY_D_2'      => 'kes',
+                            'CATEGORY_D_3'      => '230903',
+                            'SEND_ADDRESS'      => 'into-mail@into-on.com',
+                            'SEND_NAME'         => 'Qr System test',
+                            'RECV_ADDRESS'      =>  $users['email'],
+                            'RECV_NAME'         =>  $users['nick_name'],
+                            'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
+                            'REPLY_NAME'        => 'Qr System test',
+                            'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
+                            'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
+                            'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
+                            'EMBED_IMAGE_GRID'  => 'null',
+                            'INSERT_TEXT_GRID'    => "{" .
+                                '"$text1" : ' . '"' .  $users['nick_name'] . '",' .
+                                '"$text2" : ' . '"' . $users['org'] . '",' .
+                                '"$text3" : ' . '"' .  $users['registration_no'] . '",' .
+                                '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' .  $users['registration_no'] . '.jpg')) . '"' .
+                                "}"
+                        )
+                    );
+
+                    $opts = array(
+                        'http' =>
+                        array(
+                            'method' => 'POST',
+                            'header' => 'Content-type: application/x-www-form-urlencoded',
+                            'content' => $postdata
+                        )
+                    );
+                    $context = stream_context_create($opts);
+                    $result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
+                }
             }
             $this->load->view('admin/send_all_mail', $data);
         }

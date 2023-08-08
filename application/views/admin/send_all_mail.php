@@ -1,3 +1,14 @@
+<?php
+if (!$users) {
+?>
+    <script>
+        alert('메일을 발송할 유저가 없습니다.');
+        window.location.href = "/admin/qr_user";
+    </script>
+<?php
+}
+?>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <div class="w-full h-full flex items-center justify-center">
     <div class="w-2/4 h-2/4 bg-lime-500 flex flex-col items-center justify-center">
