@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 require __DIR__ . '/../../vendor/autoload.php';
 
 class breaktime
@@ -8,11 +8,12 @@ class breaktime
     public $end;
 }
 
-class Access extends CI_Controller {
-	private $sheets;
-	private $data;
+class Access extends CI_Controller
+{
+    private $sheets;
+    private $data;
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
 
@@ -24,24 +25,21 @@ class Access extends CI_Controller {
         $this->load->library("time_spent");
     }
 
-	public function index()
-	{
+    public function index()
+    {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('qrcode', 'text', 'required');
 
-        if ($this->form_validation->run() === FALSE)
-        {
+        if ($this->form_validation->run() === FALSE) {
             $this->data['entrance'] = "";
             $this->data['entrance_org'] = '';
             $this->load->view('header');
             $this->load->view('access', $this->data);
             $this->load->view('footer');
-        }
-        else
-        {
-            $rop = array( "options" => array("regexp"=>"/[0-9]{5,10}$/"));
+        } else {
+            $rop = array("options" => array("regexp" => "/[0-9]{5,10}$/"));
             $qrcode = $this->input->post('qrcode');
             $qrstr = explode('/', $qrcode);
 
@@ -57,16 +55,16 @@ class Access extends CI_Controller {
                     'registration_no' => $qrcode
                 );
 
-                if ($this->entrance->record($info)){
+                if ($this->entrance->record($info)) {
                     $userName = $this->users->get_user($where);
-//                  var_dump($userName['nick_name']);
+                    //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
                     $this->data['nick_name'] = $userName['nick_name'];
                     $this->data['entrance_org'] = $userName['org'];
 
-					$list = $this->entrance->access($where);
-					$enter = $list['min_time'];
-					$leave = $list['max_time'];
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
 
                     $duration = $this->schedule->get_duration();
                     $start = $duration['start'];
@@ -75,8 +73,7 @@ class Access extends CI_Controller {
                     $allbreaks = $this->schedule->get_breaks();
                     $breaks = [];
 
-                    foreach ($allbreaks as $brk)
-                    {
+                    foreach ($allbreaks as $brk) {
                         $break = new breaktime();
                         $break->start = $brk['start'];
                         $break->end = $brk['end'];
@@ -86,7 +83,7 @@ class Access extends CI_Controller {
                     $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
 
                     $notice = "";
-                    $score = floor($spent/60);
+                    $score = floor($spent / 60);
                     $remains = $spent % 60;
 
                     $max_score = $this->schedule->get_maxscore();
@@ -94,26 +91,23 @@ class Access extends CI_Controller {
                     if ($score >= $max_score) {
                         $score = $max_score;
                         $notice = "현재 평점 {$score}";
-                    }
-                    else {
+                    } else {
                         $next_score = $score + 1;
                         $to_go = 60 - $remains;
                         $notice = "현재 평점 {$score}점, 평점 {$next_score}점까지 {$to_go}분 남았습니다.";
                     }
 
-//                  var_dump($spent);
+                    //                  var_dump($spent);
                     $this->data['enter'] = $enter;
                     $this->data['leave'] = $leave;
                     $this->data['score'] = $score;
 
                     $this->data['entrance'] =  $this->data['entrance'] . $notice;
-
-                }else{
+                } else {
                     $this->data['entrance'] =  "<span class='red'>등록 실패: </span>" . $phone;
                     $this->data['entrance_org'] = '';
                 }
-            }
-            else if (count($qrstr) == 6) {
+            } else if (count($qrstr) == 6) {
                 $url = $qrstr[0] . $qrstr[1] . $qrstr[2] . $qrstr[3] . $qrstr[4];
                 $phone = $qrstr[5];
                 $time = date("Y-m-d H:i:s");
@@ -127,16 +121,16 @@ class Access extends CI_Controller {
                     'registration_no' => $phone
                 );
 
-                if (filter_var($phone, FILTER_VALIDATE_REGEXP, $rop) and $this->entrance->record($info)){
+                if (filter_var($phone, FILTER_VALIDATE_REGEXP, $rop) and $this->entrance->record($info)) {
                     $userName = $this->users->get_user($where);
-//                  var_dump($userName['nick_name']);
+                    //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
                     $this->data['nick_name'] = $userName['nick_name'];
                     $this->data['entrance_org'] = $userName['org'];
 
-					$list = $this->entrance->access($where);
-					$enter = $list['min_time'];
-					$leave = $list['max_time'];
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
 
                     $duration = $this->schedule->get_duration();
                     $start = $duration['start'];
@@ -145,8 +139,7 @@ class Access extends CI_Controller {
                     $allbreaks = $this->schedule->get_breaks();
                     $breaks = [];
 
-                    foreach ($allbreaks as $brk)
-                    {
+                    foreach ($allbreaks as $brk) {
                         $break = new breaktime();
                         $break->start = $brk['start'];
                         $break->end = $brk['end'];
@@ -156,7 +149,7 @@ class Access extends CI_Controller {
                     $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
 
                     $notice = "";
-                    $score = floor($spent/60);
+                    $score = floor($spent / 60);
                     $remains = $spent % 60;
 
                     $max_score = $this->schedule->get_maxscore();
@@ -164,27 +157,23 @@ class Access extends CI_Controller {
                     if ($score >= $max_score) {
                         $score = $max_score;
                         $notice = "현재 평점 {$score}";
-                    }
-                    else {
+                    } else {
                         $next_score = $score + 1;
                         $to_go = 60 - $remains;
                         $notice = "현재 평점 {$score}점, 평점 {$next_score}점까지 {$to_go}분 남았습니다.";
                     }
 
-//                  var_dump($spent);
+                    //                  var_dump($spent);
                     $this->data['enter'] = $enter;
                     $this->data['leave'] = $leave;
                     $this->data['score'] = $score;
 
                     $this->data['entrance'] =  $this->data['entrance'] . $notice;
-
-                }else{
+                } else {
                     $this->data['entrance'] =  "<span class='red'>등록 실패: </span>" . $phone;
                     $this->data['entrance_org'] = '';
                 }
-            }
-            else if (filter_var($qrcode, FILTER_VALIDATE_REGEXP, $rop))
-            {
+            } else if (filter_var($qrcode, FILTER_VALIDATE_REGEXP, $rop)) {
                 $time = date("Y-m-d H:i:s");
                 $info = array(
                     'registration_no' => $qrcode,
@@ -195,16 +184,16 @@ class Access extends CI_Controller {
                     'registration_no' => $qrcode
                 );
 
-                if ($this->entrance->record($info)){
+                if ($this->entrance->record($info)) {
                     $userName = $this->users->get_user($where);
-//                  var_dump($userName['nick_name']);
+                    //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
                     $this->data['nick_name'] = $userName['nick_name'];
                     $this->data['entrance_org'] = $userName['org'];
 
-					$list = $this->entrance->access($where);
-					$enter = $list['min_time'];
-					$leave = $list['max_time'];
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
 
                     $duration = $this->schedule->get_duration();
                     $start = $duration['start'];
@@ -213,8 +202,7 @@ class Access extends CI_Controller {
                     $allbreaks = $this->schedule->get_breaks();
                     $breaks = [];
 
-                    foreach ($allbreaks as $brk)
-                    {
+                    foreach ($allbreaks as $brk) {
                         $break = new breaktime();
                         $break->start = $brk['start'];
                         $break->end = $brk['end'];
@@ -224,7 +212,7 @@ class Access extends CI_Controller {
                     $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
 
                     $notice = "";
-                    $score = floor($spent/60);
+                    $score = floor($spent / 60);
                     $remains = $spent % 60;
 
                     $max_score = $this->schedule->get_maxscore();
@@ -232,8 +220,7 @@ class Access extends CI_Controller {
                     if ($score >= $max_score) {
                         $score = $max_score;
                         $notice = "현재 평점 {$score}";
-                    }
-                    else {
+                    } else {
                         $next_score = $score + 1;
                         $to_go = 60 - $remains;
                         $notice = "현재 평점 <span class='bg_point'>{$score}점</span>, 평점 <span class='bg_point'>{$next_score}점</span>까지 <span class='bg_point'>{$to_go}분</span> 남았습니다.";
@@ -244,13 +231,11 @@ class Access extends CI_Controller {
                     $this->data['score'] = $score;
 
                     $this->data['entrance'] =  $this->data['entrance'] . $notice;
-                }else{
+                } else {
                     $this->data['entrance'] =  "<span class='red'>등록 실패:</span> " . $phone;
                     $this->data['entrance_org'] = '';
                 }
-            }
-            else
-            {
+            } else {
                 $this->data['entrance'] =  "등록 실패: phone not found";
             }
 
@@ -258,26 +243,23 @@ class Access extends CI_Controller {
             $this->load->view('access', $this->data);
             $this->load->view('footer');
         }
-	}
+    }
 
-	public function record()
-	{
+    public function record()
+    {
 
         $this->load->helper('form');
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('qrcode', 'text', 'required');
 
-        if ($this->form_validation->run() === FALSE)
-        {
+        if ($this->form_validation->run() === FALSE) {
             $this->data['entrance'] = "";
             $this->data['entrance_org'] = '';
             $this->load->view('header');
             $this->load->view('access', $this->data);
             $this->load->view('footer');
-        }
-        else
-        {
+        } else {
             $qrcode = $this->input->post('qrcode');
             $qrstr = explode('/', $qrcode);
 
@@ -295,16 +277,16 @@ class Access extends CI_Controller {
                     'phone' => $phone
                 );
 
-                if (filter_var($phone, FILTER_VALIDATE_REGEXP, $rop) and $this->entrance->record($info)){
+                if (filter_var($phone, FILTER_VALIDATE_REGEXP, $rop) and $this->entrance->record($info)) {
                     $userName = $this->users->get_user($where);
-//                  var_dump($userName['nick_name']);
+                    //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
                     $this->data['nick_name'] = $userName['nick_name'];
                     $this->data['entrance_org'] = $userName['org'];
 
-					$list = $this->entrance->access($where);
-					$enter = $list['min_time'];
-					$leave = $list['max_time'];
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
 
                     $duration = $this->schedule->get_duration();
                     $start = $duration['start'];
@@ -313,8 +295,7 @@ class Access extends CI_Controller {
                     $allbreaks = $this->schedule->get_breaks();
                     $breaks = [];
 
-                    foreach ($allbreaks as $brk)
-                    {
+                    foreach ($allbreaks as $brk) {
                         $break = new breaktime();
                         $break->start = $brk['start'];
                         $break->end = $brk['end'];
@@ -324,7 +305,7 @@ class Access extends CI_Controller {
                     $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
 
                     $notice = "";
-                    $score = floor($spent/60);
+                    $score = floor($spent / 60);
                     $remains = $spent % 60;
 
                     $max_score = $this->schedule->get_maxscore();
@@ -332,27 +313,23 @@ class Access extends CI_Controller {
                     if ($score >= $max_score) {
                         $score = $max_score;
                         $notice = "현재 평점 {$score}";
-                    }
-                    else {
+                    } else {
                         $next_score = $score + 1;
                         $to_go = 60 - $remains;
                         $notice = "현재 평점 {$score}점, 평점 {$next_score}점까지 {$to_go}분 남았습니다.";
                     }
 
-//                  var_dump($spent);
+                    //                  var_dump($spent);
                     $this->data['enter'] = $enter;
                     $this->data['leave'] = $leave;
                     $this->data['score'] = $score;
 
                     $this->data['entrance'] =  $this->data['entrance'] . $notice;
-
-                }else{
+                } else {
                     $this->data['entrance'] =  "<span class='red'>등록 실패: </span>" . $phone;
                     $this->data['entrance_org'] = '';
                 }
-            }
-            else if (filter_var($qrcode, FILTER_VALIDATE_REGEXP, $rop))
-            {
+            } else if (filter_var($qrcode, FILTER_VALIDATE_REGEXP, $rop)) {
                 $time = date("Y-m-d H:i:s");
                 $info = array(
                     'phone' => $qrcode,
@@ -363,16 +340,16 @@ class Access extends CI_Controller {
                     'phone' => $qrcode
                 );
 
-                if ($this->entrance->record($info)){
+                if ($this->entrance->record($info)) {
                     $userName = $this->users->get_user($where);
-//                  var_dump($userName['nick_name']);
+                    //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
                     $this->data['nick_name'] = $userName['nick_name'];
                     $this->data['entrance_org'] = $userName['org'];
 
-					$list = $this->entrance->access($where);
-					$enter = $list['min_time'];
-					$leave = $list['max_time'];
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
 
                     $duration = $this->schedule->get_duration();
                     $start = $duration['start'];
@@ -381,8 +358,7 @@ class Access extends CI_Controller {
                     $allbreaks = $this->schedule->get_breaks();
                     $breaks = [];
 
-                    foreach ($allbreaks as $brk)
-                    {
+                    foreach ($allbreaks as $brk) {
                         $break = new breaktime();
                         $break->start = $brk['start'];
                         $break->end = $brk['end'];
@@ -392,7 +368,7 @@ class Access extends CI_Controller {
                     $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
 
                     $notice = "";
-                    $score = floor($spent/60);
+                    $score = floor($spent / 60);
                     $remains = $spent % 60;
 
                     $max_score = $this->schedule->get_maxscore();
@@ -400,8 +376,7 @@ class Access extends CI_Controller {
                     if ($score >= $max_score) {
                         $score = $max_score;
                         $notice = "현재 평점 {$score}";
-                    }
-                    else {
+                    } else {
                         $next_score = $score + 1;
                         $to_go = 60 - $remains;
                         $notice = "현재 평점 {$score}점, 평점 {$next_score}점까지 {$to_go}분 남았습니다.";
@@ -412,28 +387,26 @@ class Access extends CI_Controller {
                     $this->data['score'] = $score;
 
                     $this->data['entrance'] =  $this->data['entrance'] . $notice;
-                }else{
+                } else {
                     $this->data['entrance'] =  "<span class='red'>등록 실패:</span> " . $phone;
                     $this->data['entrance_org'] = '';
                 }
-            }
-            else
-            {
+            } else {
                 $this->data['entrance'] =  "등록 실패: phone not found";
             }
 
             $this->load->view('header');
             $this->load->view('access', $this->data);
             $this->load->view('footer');
-
         }
     }
 
-	public function init_(){
+    public function init_()
+    {
+    }
 
-	}
-
-	public function get_pagination($total_rows, $per_page = PER_PAGE_COUNT){
+    public function get_pagination($total_rows, $per_page = PER_PAGE_COUNT)
+    {
         $this->load->library('pagination');
 
         $config['total_rows'] = $total_rows;
@@ -441,9 +414,9 @@ class Access extends CI_Controller {
         $config['num_links'] = 2;
 
         $config['page_query_string'] = TRUE;
-   
+
         $config['base_url'] = site_url();
-         
+
         $config['use_page_numbers'] = TRUE;
         $config['full_tag_open'] = '<div class="row" style="text-align: center; padding: 10px;"><ul class="pagination pagination-sm no-margin">';
         $config['full_tag_close'] = '</ul></div>';
@@ -465,5 +438,221 @@ class Access extends CI_Controller {
         $config['num_tag_close'] = '</li>';
         $this->pagination->initialize($config);
         return $this->pagination->create_links();
+    }
+
+    public function scan_qr()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('qrcode', 'text', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->data['entrance'] = "";
+            $this->data['entrance_org'] = '';
+            $this->load->view('scan_qr', $this->data);
+        } else {
+            $rop = array("options" => array("regexp" => "/[0-9]{5,10}$/"));
+            $qrcode = $this->input->post('qrcode');
+            $qrstr = explode('/', $qrcode);
+
+            if ($qrcode) {
+                $time = date("Y-m-d H:i:s");
+
+                $info = array(
+                    'registration_no' => $qrcode,
+                    'time' => $time
+                );
+
+                $where = array(
+                    'registration_no' => $qrcode
+                );
+
+                if ($this->entrance->record($info)) {
+                    $userName = $this->users->get_user($where);
+                    //                  var_dump($userName['nick_name']);
+                    $this->data['entrance'] =  "";
+                    $this->data['nick_name'] = $userName['nick_name'];
+                    $this->data['entrance_org'] = $userName['org'];
+
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
+
+                    $duration = $this->schedule->get_duration();
+                    $start = $duration['start'];
+                    $end = $duration['end'];
+
+                    $allbreaks = $this->schedule->get_breaks();
+                    $breaks = [];
+
+                    foreach ($allbreaks as $brk) {
+                        $break = new breaktime();
+                        $break->start = $brk['start'];
+                        $break->end = $brk['end'];
+                        $breaks[] = $break;
+                    }
+
+                    $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
+
+                    $notice = "";
+                    $score = floor($spent / 60);
+                    $remains = $spent % 60;
+
+                    $max_score = $this->schedule->get_maxscore();
+
+                    if ($score >= $max_score) {
+                        $score = $max_score;
+                        $notice = "현재 평점 {$score}";
+                    } else {
+                        $next_score = $score + 1;
+                        $to_go = 60 - $remains;
+                        $notice = "현재 평점 {$score}점, 평점 {$next_score}점까지 {$to_go}분 남았습니다.";
+                    }
+
+                    //                  var_dump($spent);
+                    $this->data['enter'] = $enter;
+                    $this->data['leave'] = $leave;
+                    $this->data['score'] = $score;
+
+                    $this->data['entrance'] =  $this->data['entrance'] . $notice;
+                } else {
+                    $this->data['entrance'] =  "<span class='red'>등록 실패: </span>" . $phone;
+                    $this->data['entrance_org'] = '';
+                }
+            } else if (count($qrstr) == 6) {
+                $url = $qrstr[0] . $qrstr[1] . $qrstr[2] . $qrstr[3] . $qrstr[4];
+                $phone = $qrstr[5];
+                $time = date("Y-m-d H:i:s");
+
+                $info = array(
+                    'registration_no' => $phone,
+                    'time' => $time
+                );
+
+                $where = array(
+                    'registration_no' => $phone
+                );
+
+                if (filter_var($phone, FILTER_VALIDATE_REGEXP, $rop) and $this->entrance->record($info)) {
+                    $userName = $this->users->get_user($where);
+                    //                  var_dump($userName['nick_name']);
+                    $this->data['entrance'] =  "";
+                    $this->data['nick_name'] = $userName['nick_name'];
+                    $this->data['entrance_org'] = $userName['org'];
+
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
+
+                    $duration = $this->schedule->get_duration();
+                    $start = $duration['start'];
+                    $end = $duration['end'];
+
+                    $allbreaks = $this->schedule->get_breaks();
+                    $breaks = [];
+
+                    foreach ($allbreaks as $brk) {
+                        $break = new breaktime();
+                        $break->start = $brk['start'];
+                        $break->end = $brk['end'];
+                        $breaks[] = $break;
+                    }
+
+                    $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
+
+                    $notice = "";
+                    $score = floor($spent / 60);
+                    $remains = $spent % 60;
+
+                    $max_score = $this->schedule->get_maxscore();
+
+                    if ($score >= $max_score) {
+                        $score = $max_score;
+                        $notice = "현재 평점 {$score}";
+                    } else {
+                        $next_score = $score + 1;
+                        $to_go = 60 - $remains;
+                        $notice = "현재 평점 {$score}점, 평점 {$next_score}점까지 {$to_go}분 남았습니다.";
+                    }
+
+                    //                  var_dump($spent);
+                    $this->data['enter'] = $enter;
+                    $this->data['leave'] = $leave;
+                    $this->data['score'] = $score;
+
+                    $this->data['entrance'] =  $this->data['entrance'] . $notice;
+                } else {
+                    $this->data['entrance'] =  "<span class='red'>등록 실패: </span>" . $phone;
+                    $this->data['entrance_org'] = '';
+                }
+            } else if (filter_var($qrcode, FILTER_VALIDATE_REGEXP, $rop)) {
+                $time = date("Y-m-d H:i:s");
+                $info = array(
+                    'registration_no' => $qrcode,
+                    'time' => $time
+                );
+
+                $where = array(
+                    'registration_no' => $qrcode
+                );
+
+                if ($this->entrance->record($info)) {
+                    $userName = $this->users->get_user($where);
+                    //                  var_dump($userName['nick_name']);
+                    $this->data['entrance'] =  "";
+                    $this->data['nick_name'] = $userName['nick_name'];
+                    $this->data['entrance_org'] = $userName['org'];
+
+                    $list = $this->entrance->access($where);
+                    $enter = $list['min_time'];
+                    $leave = $list['max_time'];
+
+                    $duration = $this->schedule->get_duration();
+                    $start = $duration['start'];
+                    $end = $duration['end'];
+
+                    $allbreaks = $this->schedule->get_breaks();
+                    $breaks = [];
+
+                    foreach ($allbreaks as $brk) {
+                        $break = new breaktime();
+                        $break->start = $brk['start'];
+                        $break->end = $brk['end'];
+                        $breaks[] = $break;
+                    }
+
+                    $spent = $this->time_spent->time_spentcalc($enter, $leave, $start, $end, $breaks);
+
+                    $notice = "";
+                    $score = floor($spent / 60);
+                    $remains = $spent % 60;
+
+                    $max_score = $this->schedule->get_maxscore();
+
+                    if ($score >= $max_score) {
+                        $score = $max_score;
+                        $notice = "현재 평점 {$score}";
+                    } else {
+                        $next_score = $score + 1;
+                        $to_go = 60 - $remains;
+                        $notice = "현재 평점 <span class='bg_point'>{$score}점</span>, 평점 <span class='bg_point'>{$next_score}점</span>까지 <span class='bg_point'>{$to_go}분</span> 남았습니다.";
+                    }
+
+                    $this->data['enter'] = $enter;
+                    $this->data['leave'] = $leave;
+                    $this->data['score'] = $score;
+
+                    $this->data['entrance'] =  $this->data['entrance'] . $notice;
+                } else {
+                    $this->data['entrance'] =  "<span class='red'>등록 실패:</span> " . $phone;
+                    $this->data['entrance_org'] = '';
+                }
+            } else {
+                $this->data['entrance'] =  "등록 실패: phone not found";
+            }
+
+            $this->load->view('scan_qr', $this->data);
+        }
     }
 }
