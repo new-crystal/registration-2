@@ -94,15 +94,15 @@
 
 #printThis .a4_area{
     width: 794px;
-    height: 1123px;
+    height: 24cm;
     page-break-after: always;
 }
 
 #printThis .bg_area{
-    width: 348px;
-    height: 639px;
+    width: 10cm;
+    height: 24cm;
     border: 1px solid #aeaeae;
-    background-image: url(../../images/nametag_bg.png);
+    background-image: url('../../images/nametag_bg.png');
     background-size: contain;
     margin: 0;
     background-repeat: no-repeat;
@@ -124,21 +124,24 @@
 }
 
 #printThis .org{
-    font-size: 25px;
-    padding: 0 10px;
-    top: 16%;
-    word-break: keep-all;
-    height: 76px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    letter-spacing: -0.5px;
+  font-size: 25px;
+  padding: 0 10px;
+  top: 16%;
+  word-break: keep-all;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: -0.5px;
+  transform: translateY(-9px);
+  font-weight: 500!important;
 }
 
 #printThis .nick_name{
-    font-size: 55px;
+  font-weight: 400;
+  font-size: 70px;
     letter-spacing: 20px;
-    padding: 10px 40px 0 58px;
+    padding: 19px 40px 0 58px;
     overflow: hidden;
 }
 
@@ -156,8 +159,44 @@
 #printThis .receipt{
     position: absolute;
     width: 100%;
-    padding-left: 96px;
-    text-align: left;
+    padding-right: 96px;
+    text-align: right;
+}
+#printThis .receipt_num_1{
+  top: 308px;
+  left: 78px;
+  font-size: 10px;
+}
+
+#printThis .receipt_num_2{
+  top: 533px;
+  left: 78px;
+  font-size: 10px;
+}
+
+#printThis .receipt_small{
+  position: absolute;
+  top: 594px;
+  font-size: 10px;
+}
+
+#printThis .small_nick{
+  position: absolute;
+  top: 594px;
+  font-size: 10px;
+  right: 185px;
+}
+#printThis .smaill_ln{
+  position: absolute;
+  top: 594px;
+  left: 20px;
+  font-size: 10px;
+}
+#printThis .small_sn{
+  position: absolute;
+  top: 612px;
+  right: 136px;
+  font-size: 10px;
 }
 
 #printThis .receipt span{
@@ -165,11 +204,11 @@
 }
 
 #printThis .receipt_name{
-    top: 59%;
+  top: 70.5%;
 }
 
 #printThis .receipt_price{
-    top: 64%;
+  top: 73.5%;
 }
 
 

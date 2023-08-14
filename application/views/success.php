@@ -17,8 +17,10 @@
 <body>
     <script src="https://cdn.tailwindcss.com"></script>
     <div class="w-full h-screen flex items-center justify-center">
-        <div class="w-1/2 h-2/3 m-auto border border-blue-800 text-center font-medium flex flex-col justify-between">
-            <div class="border w-full h-44"></div>
+        <div class="w-5/12 h-5/6 m-auto border border-blue-800 text-center font-medium flex flex-col justify-between">
+            <div class="w-full h-80">
+                <img src="../../assets/images/access_header.png" class="h-full w-full" />
+            </div>
             <div>
                 <div class="text-zinc-400 text-xl">
                     <p>Field registration completed.</p>
