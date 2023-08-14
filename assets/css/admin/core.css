@@ -8,7 +8,7 @@
  *  Latest update: May 25, 2015
  *
  * ---------------------------------------------------------------------------- */
-@font-face {
+ @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../css/icons/glyphicons/glyphicons-halflings-regular.eot');
   src: url('../css/icons/glyphicons/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../css/icons/glyphicons/glyphicons-halflings-regular.woff2') format('woff2'), url('../css/icons/glyphicons/glyphicons-halflings-regular.woff') format('woff'), url('../css/icons/glyphicons/glyphicons-halflings-regular.ttf') format('truetype'), url('../css/icons/glyphicons/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
@@ -51,8 +51,8 @@
 .edit_wrapper{
     width: 100%;
     position: relative;
-    /* display: inline-block; */
-    text-align: center;
+    display: inline-block;
+    /* text-align: center; */
 }
 
 #edit_area{
@@ -66,13 +66,13 @@
 }
 
 #nametag{
-    /* position: absolute; */
+    position: absolute;
     padding: 0;
     background-color: #fff;
     display: inline-block;
-    /* left: 50%; */
+    left: 50%;
     /* top: 10%; */
-    /* transform: translateX(-50%); */
+    transform: translateX(-50%);
 }
 
 #nametag.align-center{
@@ -117,7 +117,7 @@
 }
 
 #printThis .txt_con{
-    /* height: 526px; */
+    height: 526px;
     position: relative;
     width: 100%;
     margin-top: 152px;
@@ -167,19 +167,18 @@
 #printThis .receipt{
     position: absolute;
     /* width: 100%; */
-    right: 20px;
     /* padding-right: 96px; */
     text-align: right;
 }
 #printThis .receipt_num_1{
-  top: 308px;
-  /* left: 78px; */
+  top: 309px;
+  left: 283px;
   font-size: 10px;
 }
 
 #printThis .receipt_num_2{
-  top: 533px;
-  /* left: 78px; */
+  top: 534px;
+  left: 284px;
   font-size: 10px;
 }
 
@@ -191,20 +190,20 @@
 
 #printThis .small_nick{
   position: absolute;
-    top: 596px;
-    font-size: 10px;
-    right: 271px;
+  top: 596px;
+  font-size: 10px;
+  right: 278px;
 }
 #printThis .smaill_ln{
   position: absolute;
-  top: 594px;
-  left: 20px;
-  font-size: 10px;
+    top: 595px;
+    left: 271px;
+    font-size: 10px;
 }
 #printThis .small_sn{
   position: absolute;
-  top: 614px;
-  right: 238px;
+  top: 612px;
+  right: 136px;
   font-size: 10px;
 }
 
@@ -213,13 +212,13 @@
 }
 
 #printThis .receipt_name{
-  top: 144.5%;
-  right: 85px;
+  top: 70.5%;
+  left: 240px;
 }
 
 #printThis .receipt_price{
-  top: 151%;
-  right: 85px;
+  top: 73.5%;
+  left: 240px;
 }
 
 
