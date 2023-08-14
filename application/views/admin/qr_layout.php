@@ -3,13 +3,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 <style>
+@page {
+    size: 10cm 24cm;
+    margin: 0;
+}
+
 @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
 }
 
+body {
+    width: 10cm;
+    height: 24cm;
+    margin: 0;
+    padding: 0;
+}
+
 #nick_name {
     font-family: NanumSquare;
+}
+
+#printThis {
+    width: 10cm;
+    height: 24cm;
+    margin: 0;
+    padding: 0;
 }
 </style>
 <!-- Main content -->
@@ -27,39 +46,39 @@
     <!-- Content area -->
     <div class="content" id="nametag">
         <div id="printThis">
-            <div id="editor1" contenteditable="true">
-                <?php
-                $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['nick_name']);
-                $nicknameLength = mb_strlen($users['nick_name'], "UTF-8");
-                echo '<div class="a4_area">';
-                echo '<div class="bg_area">';
-                echo '<div class="txt_con">';
-                if ($users['nt_info'] != '') {
-                    echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
-                }
-                if ($lang == 0) {
-                    echo '<div class="nick_name lang_en" id="nick_name">' . $users['nick_name'] . '</div>';
-                } else if ($lang !== 0 && $nicknameLength == 3) {
-                    echo '<div class="nick_name" id="nick_name">' . $users['nick_name'] . '</div>';
-                } else if ($lang !== 0 && $nicknameLength > 3) {
-                    echo '<div class="small_nickname" id="nick_name">' . $users['nick_name'] . '</div>';
-                }
-                echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-                echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
-                echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
-                echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
-                echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
-                echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
-                echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                ?>
-            </div>
+            <!-- <div id="editor1" contenteditable="true"> -->
+            <?php
+            $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['nick_name']);
+            $nicknameLength = mb_strlen($users['nick_name'], "UTF-8");
+            echo '<div class="a4_area">';
+            echo '<div class="bg_area">';
+            echo '<div class="txt_con">';
+            if ($users['nt_info'] != '') {
+                echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
+            }
+            if ($lang == 0) {
+                echo '<div class="nick_name lang_en" id="nick_name">' . $users['nick_name'] . '</div>';
+            } else if ($lang !== 0 && $nicknameLength == 3) {
+                echo '<div class="nick_name" id="nick_name">' . $users['nick_name'] . '</div>';
+            } else if ($lang !== 0 && $nicknameLength > 3) {
+                echo '<div class="small_nickname" id="nick_name">' . $users['nick_name'] . '</div>';
+            }
+            echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
+            echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
+            echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
+            echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
+            echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
+            echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
+            echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
+            echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
+            echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
+            echo '</div>';
+            echo '</div>';
+            // echo '</div>';
+            ?>
         </div>
     </div>
+</div>
 </div>
 <!-- /content area -->
 
@@ -89,6 +108,8 @@ function printElement(elem) {
 
     if (!$printSection) {
         var $printSection = document.createElement("div");
+        $printSection.style.width = "10cm";
+        $printSection.style.height = "24cm";
         $printSection.id = "printSection";
         document.body.appendChild($printSection);
     }
