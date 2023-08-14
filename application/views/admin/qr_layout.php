@@ -14,8 +14,6 @@
 }
 
 body {
-    width: 10cm;
-    height: 24cm;
     margin: 0;
     padding: 0;
 }
@@ -34,7 +32,7 @@ body {
 <!-- Main content -->
 <div id="nametag_wrapper">
     <div class="edit_wrapper">
-        <button id="btnPrint" type="button" class="btn btn-primary">Print</button>
+
         <!--
                     <div id="edit_area">
                         <textarea name="editor1" id="editor1" rows="10" cols="50">
@@ -46,8 +44,8 @@ body {
     <!-- Content area -->
     <div class="content" id="nametag">
         <div id="printThis">
-            <!-- <div id="editor1" contenteditable="true"> -->
-            <?php
+            <div id="editor1" contenteditable="true">
+                <?php
             $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['nick_name']);
             $nicknameLength = mb_strlen($users['nick_name'], "UTF-8");
             echo '<div class="a4_area">';
@@ -74,11 +72,12 @@ body {
             echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
             echo '</div>';
             echo '</div>';
-            // echo '</div>';
+            echo '</div>';
             ?>
+            </div>
         </div>
     </div>
-</div>
+    <button id="btnPrint" type="button" class="btn btn-primary">Print</button>
 </div>
 <!-- /content area -->
 

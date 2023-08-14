@@ -66,13 +66,13 @@
 }
 
 #nametag{
-    /* position: absolute; */
+    position: absolute;
     padding: 0;
     background-color: #fff;
     display: inline-block;
-    /* left: 50%; */
+    left: 50%;
     /* top: 10%; */
-    /* transform: translateX(-50%); */
+    transform: translateX(-50%);
 }
 
 #nametag.align-center{
