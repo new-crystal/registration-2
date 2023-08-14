@@ -165,45 +165,45 @@
 }
 
 #printThis .receipt{
-    position: absolute;
+    position: relative;
     /* width: 100%; */
     /* padding-right: 96px; */
     text-align: right;
 }
 #printThis .receipt_num_1{
-  top: 309px;
-  left: 283px;
+  top: 52px;
+  right: 16px;
   font-size: 10px;
 }
 
 #printThis .receipt_num_2{
-  top: 534px;
-  left: 284px;
+  top: 221px;
+  right: 16px;
   font-size: 10px;
 }
 
 #printThis .receipt_small{
-  position: absolute;
-  top: 594px;
+  position: relative;
+  top: 100px;
   font-size: 10px;
 }
 
 #printThis .small_nick{
-  position: absolute;
-  top: 596px;
+  position: relative;
+  top: 267px;
   font-size: 10px;
   right: 278px;
 }
 #printThis .smaill_ln{
-  position: absolute;
-    top: 595px;
-    left: 271px;
-    font-size: 10px;
+  position: relative;
+  top: 251px;
+  right: 71px;
+  font-size: 10px;
 }
 #printThis .small_sn{
-  position: absolute;
-  top: 612px;
-  right: 136px;
+  position: relative;
+  top: 257px;
+  right: 238px;
   font-size: 10px;
 }
 
@@ -212,13 +212,13 @@
 }
 
 #printThis .receipt_name{
-  top: 70.5%;
-  left: 240px;
+  top: 99px;
+  right: 94px;
 }
 
 #printThis .receipt_price{
-  top: 73.5%;
-  left: 240px;
+  top: 95px;
+  right: 94px;
 }
 
 
