@@ -67,9 +67,8 @@
                             type="text" autofocus />
 
                         <button
-                            class="w-[150px] h-[40px] bg-slate-300 mt-20 hover:bg-slate-400 active:bg-slate-500 -translate-y-20"
+                            class="w-[150px] h-[40px] bg-slate-300 mt-20 mb-20 hover:bg-slate-400 active:bg-slate-500 -translate-y-20"
                             type="submit" id="submit">등록</button>
-
 
                     </div>
 

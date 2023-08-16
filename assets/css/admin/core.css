@@ -101,7 +101,7 @@
 #printThis .bg_area{
     width: 10cm;
     height: 24cm;
-    border: 1px solid #aeaeae;
+    border: 1px solid transparent;
     background-image: url('../../images/nametag_bg.png');
     background-size: contain;
     margin: 0;

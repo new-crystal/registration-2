@@ -8,10 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
 </head>
+
 <style>
-    body {
-        font-family: 'Noto Serif KR', serif;
-    }
+@font-face {
+    font-family: NanumSquare;
+    src: url("../../../assets/font/NanumSquare.otf");
+}
+
+body {
+    font-family: NanumSquare;
+}
 </style>
 
 <body>
@@ -45,9 +51,9 @@
     </div>
 </body>
 <script>
-    function prev() {
-        location.replace("/onSite/mobile")
-    }
+function prev() {
+    location.replace("/onSite/mobile")
+}
 </script>
 
 </html>

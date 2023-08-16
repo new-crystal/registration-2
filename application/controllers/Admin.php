@@ -418,25 +418,25 @@ class Admin extends CI_Controller
                 $userType = '후원사';
             }
 
-            if ($userType == '일반참가자') {
-                // 데이터베이스 쿼리를 통해 '전문의', '전공의', '기타' 중 하나를 만족하는 데이터를 가져옵니다.
-                $query = $this->db->query("
-                    SELECT *
-                    FROM users a
-                    WHERE a.type = '전문의' OR a.type = '전공의' OR a.type = '기타'
-                    ORDER BY nick_name
-                ");
+            // if ($userType == '일반참가자') {
+            //     // 데이터베이스 쿼리를 통해 '전문의', '전공의', '기타' 중 하나를 만족하는 데이터를 가져옵니다.
+            //     $query = $this->db->query("
+            //         SELECT *
+            //         FROM users a
+            //         WHERE a.type = '전문의' OR a.type = '전공의' OR a.type = '기타'
+            //         ORDER BY nick_name
+            //     ");
 
-                // 결과 데이터를 배열로 가져옵니다.
-                $result = $query->result_array();
-                $this->load->view('admin/qr_layout_all', array('users' => $result));
-            } else {
-                $where = array(
-                    'type' => $userType
-                );
-                $data['users'] = $this->users->get_users_order('nick_name', $where);
-                $this->load->view('admin/qr_layout_all', $data);
-            }
+            //     // 결과 데이터를 배열로 가져옵니다.
+            //     $result = $query->result_array();
+            //     $this->load->view('admin/qr_layout_all', array('users' => $result));
+            // } else {
+            $where = array(
+                'type2' => $userType
+            );
+            $data['users'] = $this->users->get_users_order('nick_name', $where);
+            $this->load->view('admin/qr_layout_all', $data);
+            // }
         }
     }
 

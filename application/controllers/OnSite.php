@@ -132,71 +132,73 @@ class OnSite extends CI_Controller
             $category_16 = isset($_GET['category-16']) ? $_GET['category-16'] : null;
             $fee = 0;
             $type3 = 0;
+            $etc1 = "신청";
+            $type1 = "";
             if ($category_1) {
                 $fee = 90000;
                 $type3 = "회원";
-                $type = "전문의";
+                $type1 = "전문의";
             }
             if ($category_2) {
                 $fee = 110000;
                 $type3 = "비회원";
-                $type = "전문의";
+                $type1 = "전문의";
             }
             if ($category_3) {
                 $fee = 70000;
                 $type3 = "회원";
-                $type = "전공의";
+                $type1 = "전공의";
             }
             if ($category_4) {
                 $fee = 90000;
                 $type3 = "비회원";
-                $type = "전공의";
+                $type1 = "전공의";
             }
             if ($category_5) {
                 $fee = 70000;
                 $type3 = "회원";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_6) {
                 $fee = 90000;
                 $type3 = "비회원";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_7) {
                 $type2 = "개원의";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_8) {
                 $type2 = "봉직의";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_9) {
                 $type2 = "교수";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_10) {
                 $type2 = "전임의";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_11) {
                 $type2 = "기초의학자";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_12) {
                 $type2 = "간호사";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_13) {
                 $type2 = "약사";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_14) {
                 $type2 = "군의관";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_15) {
                 $type2 = "간호사";
-                $type = "기타";
+                $type1 = "기타";
             }
             if ($category_16) {
                 $type2 = $category_16;
@@ -208,10 +210,16 @@ class OnSite extends CI_Controller
                 $deposit = '미결제';
 
             $time = date("Y-m-d H:i:s");
+            if ($license) {
+                $etc1 = "신청";
+            } else {
+                $etc1 = "미신청";
+            }
             if ($license == "") {
                 $license = "00000";
             }
             // $uagent = $this->agent->agent_string();
+
 
             $email = $email1 . "@" . $email2;
             $info = array(
@@ -223,11 +231,13 @@ class OnSite extends CI_Controller
                 'phone' => preg_replace("/\s+/", "", $phone),
                 'email' => preg_replace("/\s+/", "", $email),
                 'type' => trim($type),
+                'type1' => trim($type1),
                 'type2' => trim($type2),
                 'type3' => trim($type3),
                 'fee' => $fee,
                 'time' => $time,
                 'deposit' => $deposit,
+                'etc1' => $etc1,
                 // 'uagent' => $uagent,
             );
             $this->users->add_onsite_user($info);
