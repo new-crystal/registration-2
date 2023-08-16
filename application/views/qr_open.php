@@ -27,12 +27,12 @@
     <div class="page_2" style="display: none;">
         <img class="absolute top-0 left-0" style="z-index: -99;" src="../../assets/images/name_org.png" />
         <div class="text_box">
-            <div id="nickname" class="relative z-50" style="top: 46px;right: 100px;">
+            <div id="nickname" class="relative z-50" style="top: 44px;">
                 <?php if (isset($users['nick_name'])) echo $users['nick_name'] ?>
             </div>
         </div>
         <div class="text_box">
-            <div id="org" class="relative z-50" style="top: 132px;right: 100px;">
+            <div id="org" class="relative z-50" style="top: 141px;">
                 <?php if (isset($users['org'])) echo $users['org'] ?></div>
         </div>
     </div>
