@@ -80,6 +80,12 @@
                                 <col />
                             </colgroup>
                             <tr>
+                                <th>접수번호</th>
+                                <td id="number" class="qr_text">
+
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>이름</th>
                                 <td id="name" class="qr_text">
                                     <?php if (isset($user['nick_name'])) echo $user['nick_name'] ?></td>
@@ -103,6 +109,18 @@
                                                                     echo $user['memo'] == 'null' ? "" : $user['memo'];
                                                                 }
                                                                 ?></td>
+                            </tr>
+                            <tr>
+                                <th>평점신청여부</th>
+                                <td id="etc1" class="qr_text"><?php if (isset($user['etc1'])) echo $user['etc1'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>etc2</th>
+                                <td id="etc2" class="qr_text"><?php if (isset($user['etc2'])) echo $user['etc2'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>etc3</th>
+                                <td id="etc3" class="qr_text"><?php if (isset($user['etc3'])) echo $user['etc3'] ?></td>
                             </tr>
                         </table>
                     </div>
@@ -132,9 +150,11 @@ const name = document.querySelector("#name")
 const org = document.querySelector("#org")
 const category = document.querySelector("#category")
 const memo = document.querySelector("#memo")
+const number = document.querySelector("number")
 var childWindow;
 
 qrcode.focus();
+
 
 function openQR() {
     const url = `/qrcode/open`
@@ -158,6 +178,7 @@ form.addEventListener("submit", (e) => {
     //프린트 실행함수
     window.open(`https://kscp.webeon.net/qrcode/print_file?registration_no=${qrcode.value}`, "_blank")
     qrcode.value = "";
+
     qrcode.focus();
     // window.scrollBy(0, 200);
 });
@@ -221,5 +242,12 @@ window.addEventListener('message', (e) => {
     // childWindow = null;
     receiveMessage(e)
 }, false);
+
+window.onload = () => {
+
+    if (qrcode.value) {
+        number.innerText = qrcode.value
+    }
+}
 </script>
 </body>

@@ -171,8 +171,8 @@
     text-align: right;
 }
 #printThis .receipt_num_1{
-  top: 52px;
-  right: 16px;
+  top: 221px;
+  right: 19px;
   font-size: 10px;
 }
 
@@ -190,19 +190,19 @@
 
 #printThis .small_nick{
   position: relative;
-  top: 277px;
+  top: 268px;
   font-size: 10px;
   right: 278px;
 }
 #printThis .smaill_ln{
   position: relative;
-  top: 261px;
+  top:  253px;
   right: 71px;
   font-size: 10px;
 }
 #printThis .small_sn{
   position: relative;
-  top: 267px;
+  top: 258px;
   right: 238px;
   font-size: 10px;
 }

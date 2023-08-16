@@ -21,18 +21,18 @@
 }
 </style>
 <div class="w-full h-screen flex flex-col items-center justify-center">
-    <div class="page_1">
+    <div class="page_1" style="display: none;">
         <img src="../../assets/images/index.png" />
     </div>
-    <div class="page_2" style="display: none;">
+    <div class="page_2">
         <img class="absolute top-0 left-0" style="z-index: -99;" src="../../assets/images/name_org.png" />
         <div class="text_box">
-            <div id="nickname" class="relative z-50" style="top: 46px;right: 200px;">
+            <div id="nickname" class="relative z-50" style="top: 46px;right: 100px;">
                 <?php if (isset($users['nick_name'])) echo $users['nick_name'] ?>
             </div>
         </div>
         <div class="text_box">
-            <div id="org" class="relative z-50" style="top: 132px;right: 200px;">
+            <div id="org" class="relative z-50" style="top: 132px;right: 100px;">
                 <?php if (isset($users['org'])) echo $users['org'] ?></div>
         </div>
     </div>
@@ -51,18 +51,18 @@ function childFunction(data) {
     }
 }
 
-window.onload = () => {
-    page1.style.display = "";
-    page2.style.display = "none";
-    if (window.location.search) {
-        page1.style.display = "none";
-        page2.style.display = "";
-        setTimeout(() => {
-            page1.style.display = "";
-            page2.style.display = "none";
-        }, 10000)
-    }
-}
+// window.onload = () => {
+//     page1.style.display = "";
+//     page2.style.display = "none";
+//     if (window.location.search) {
+//         page1.style.display = "none";
+//         page2.style.display = "";
+//         setTimeout(() => {
+//             page1.style.display = "";
+//             page2.style.display = "none";
+//         }, 10000)
+//     }
+// }
 
 
 
