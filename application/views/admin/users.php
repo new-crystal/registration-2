@@ -132,8 +132,8 @@
                         echo '<td>' . $item['type3'] . '</td>';
                         echo '<td>' . substr($item['time'], 0, 100) . '</td>';
                         echo '<td>' . $item['registration_no'] . '</td>';
+                        echo '<td>' . $item['type'] . '</td>';
                         echo '<td>' . $item['type1'] . '</td>';
-                        echo '<td>' . $item['type2'] . '</td>';
                         echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['nick_name'] . '</a></td>';
                         echo '<td>' . $item['org'] . '</td>';
                         echo '<td>' . $item['email'] . '</td>';
