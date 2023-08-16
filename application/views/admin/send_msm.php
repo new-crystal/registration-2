@@ -52,9 +52,9 @@ if ($err) {
             테스트 진행에 도움 주시면 감사하겠습니다.
             * 테스트 진행 일시 : 2023년 8월 17일 / 09:00~10:00
             * 3층 정보기술팀 방문하시여 전달 받으신 QR코드를 스탠하시고 네임택을 수령 부탁드립니다.' .
-
-
-                '안녕하세요.' . $nick_name . '  선생님[접수번호 :' . $registration_no . ']  ' . '
+                '
+                =========================================================
+                안녕하세요.' . $nick_name . '  선생님[접수번호 :' . $registration_no . ']  ' . '
 
 대한내분비학회 2023년 개원의 연수강좌에 참석 해주셔서 감사합니다.
 
@@ -99,7 +99,7 @@ if ($err) {
         <div class="w-2/4 h-2/4 bg-lime-500 flex flex-col items-center justify-center">
             <h1 class="text-white font-semibold text-3xl">MMS 전송이 성공하였습니다.</h1>
             <p class="text-xl font-semibold mt-5">문자 잔여량 : <?= $responseData['data']['AFTER_SMS_QTY'] ?> </p>
-            <a href="/admin/qr_user"><button class="bg-white text-lime-500 p-3 translate-y-32 font-semibold rounded">뒤로가기</button></a>
+            <button id="closed" class="bg-white text-lime-500 py-3 px-5 translate-y-32 font-semibold rounded">확인</button>
         </div>
 
 
@@ -108,8 +108,15 @@ if ($err) {
         <div class="w-2/4 h-3/4 bg-orange-500 flex flex-col items-center justify-center">
             <h1 class="text-white font-semibold text-3xl">MMS 전송이 실패하였습니다.</h1>
             <p class="text-xl font-semibold mt-5"><?= $error ? $error : null ?> </p>
-            <a href="/admin/qr_user"><button class="bg-white bg-orange-500 p-3 font-semibold rounded">뒤로
-                    가기</button></a>
+            <button class="bg-white bg-orange-500 p-3 font-semibold rounded">확인</button>
         </div>
     <?php endif; ?>
 </div>
+
+<script>
+    const closed = document.querySelector("#closed");
+
+    closed.addEventListener("click", () => {
+        window.close()
+    })
+</script>
