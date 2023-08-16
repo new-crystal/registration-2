@@ -171,14 +171,14 @@
     text-align: right;
 }
 #printThis .receipt_num_1{
-  top: 221px;
+  top: 53px;
   right: 19px;
   font-size: 10px;
 }
 
 #printThis .receipt_num_2{
-  top: 215px;
-  right: 16px;
+  top: 221px;
+  right: 18px;
   font-size: 10px;
 }
 
