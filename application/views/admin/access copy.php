@@ -62,6 +62,7 @@
             <div class="panel panel-flat">
                 <div>
                     <button class="w-[150px] h-[40px] bg-slate-300 mt-20 hover:bg-slate-400 active:bg-slate-500" type="button" id="open">새창</button>
+                    <?php print_r(json_encode($users)) ?>
                 </div>
                 <form action="/admin/access" id="qr_form" name="qr_form" class="w-full h-screen flex flex-col items-center justify-center bg-slate-50">
 
@@ -142,6 +143,9 @@
 </div>
 <!-- /page container -->
 
+// 서버 측에서 PHP 코드를 사용하여 $users 배열을 JSON 형식으로 변환
+
+
 <script>
     const form = document.querySelector("#qr_form");
     const qrcode = document.querySelector("#qrcode");
@@ -171,26 +175,52 @@
             childWindow = window.open(url, 'ChildWindow', 'width=400,height=300');
         }
     }
-
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        qrvalue = qrcode.value
 
-        <?php if (isset($user['registration_no'])) { ?>
-            fetchData(qrcode.value)
-            //프린트 실행함수
-            window.open(`https://kscp.webeon.net/qrcode/print_file?registration_no=${qrcode.value}`, "_blank")
-            qrcode.value = "";
-        <?php
-        } else { ?>
-            alert("잘못된 QR코드입니다.");
-        <?php
+        if (qrcode.value === "") {
+            alert("QR CODE를 입력하세요.");
+            qrcode.focus();
+            return;
         }
-        ?>
 
+        // PHP에서 JSON으로 변환된 배열을 JavaScript 변수에 할당
+        // let usersArray = <?php echo json_encode($users); ?>;
+        //console.log(usersArray)
+        let validQRCode = false;
+
+
+        if (validQRCode) {
+            // fetchData(qrcode.value);
+        } else {
+            alert("잘못된 QR코드입니다.");
+        }
+
+        qrcode.value = "";
         qrcode.focus();
         // window.scrollBy(0, 200);
     });
+    // form.addEventListener("submit", (e) => {
+    //     e.preventDefault();
+
+    //     if (qrcode.value === "") {
+    //         alert("QR CODE를 입력하세요.");
+    //         qrcode.focus();
+    //         return;
+    //     }
+
+    //     for (let i = 0; i <= <?php mb_strlen($users) ?>; i++) {
+    //         console.log(<?php echo $users['registration_no'] ?>[i])
+    //         if (<?php echo $users['registration_no'] ?>[i] === qrcode.value) {} else {
+    //             alert("잘못된 QR코드입니다.");
+    //         }
+    //     }
+
+    //     qrcode.value = "";
+
+    //     qrcode.focus();
+    //     // window.scrollBy(0, 200);
+    // });
 
     function fetchData(qrcode) {
         // Ajax 요청 수행
@@ -219,9 +249,10 @@
 
             }).then((data) => {
                 executeFunctionInChildWindow(qrcode);
-            })
+            }).then(() => window.open(`https://kscp.webeon.net/qrcode/print_file?registration_no=${qrcode.value}`,
+                "_blank"))
             .catch(error => {
-                console.error('Error fetching data:', error);
+                alert("잘못된 QR코드 입니다.");
             });
     }
 

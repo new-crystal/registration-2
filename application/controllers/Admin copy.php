@@ -1158,7 +1158,6 @@ class Admin extends CI_Controller
             $data['primary_menu'] = 'qrcode';
             $this->load->view('admin/left_side.php', $data);
             $qrcode = isset($_GET['qrcode']) ? $_GET['qrcode'] : null;
-
             if ($qrcode) {
                 $time = date("Y-m-d H:i:s");
 
@@ -1181,7 +1180,9 @@ class Admin extends CI_Controller
 
                 $this->load->view('admin/access', $this->data);
             } else {
-                $this->load->view('admin/access');
+                $user = $this->users->get_users();
+                $this->data['users'] = $user;
+                $this->load->view('admin/access', $this->data);
             }
             $this->load->view('footer');
         }
