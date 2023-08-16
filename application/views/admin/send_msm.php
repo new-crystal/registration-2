@@ -47,11 +47,14 @@ if ($err) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
         CURLOPT_POSTFIELDS => array(
-            'phone' =>  $phone, 'callback' => '01090224867', 'message' => '안녕하세요. 정보기술팀 입니다.' . $nick_name . '  선생님[접수번호 :' . $registration_no . ']
+            'phone' =>  $phone, 'callback' => '01090224867', 'message' => '안녕하세요. 정보기술팀 입니다.
             본 문자는 이번 정보기술팀 자체 QR네임택 시스템 개발 테스트로 진행되는 문자입니다.
             테스트 진행에 도움 주시면 감사하겠습니다.
             * 테스트 진행 일시 : 2023년 8월 17일 / 09:00~10:00
-            * 3층 정보기술팀 방문하시여 전달 받으신 QR코드를 스탠하시고 네임택을 수령 부탁드립니다.
+            * 3층 정보기술팀 방문하시여 전달 받으신 QR코드를 스탠하시고 네임택을 수령 부탁드립니다.' .
+
+
+                '안녕하세요.' . $nick_name . '  선생님[접수번호 :' . $registration_no . ']  ' . '
 
 대한내분비학회 2023년 개원의 연수강좌에 참석 해주셔서 감사합니다.
 
