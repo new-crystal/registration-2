@@ -3,13 +3,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 <style>
+@page {
+    size: 10cm 24cm;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
 }
 
 #nick_name {
-    font-family: NanumSquare;
+    font-family: NanumSquare, "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#printThis {
+    width: 10cm;
+    height: 24cm;
+    margin: 0;
+    padding: 0;
 }
 </style>
 <!-- Main content -->
