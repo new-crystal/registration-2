@@ -108,7 +108,7 @@
                         <th>메모</th> -->
 
                         <th></th>
-                        <th style="min-width: 90px">회원여부</th>
+                        <th style="min-width: 90px">KSSO <br>회원여부</th>
                         <th>등록시간</th>
                         <th>접수번호</th>
                         <th style="min-width: 100px">참석자유형</th>
@@ -129,13 +129,13 @@
                     foreach ($users as $item) {
                         echo '<tr>';
                         echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['registration_no'] . '"></td>';
-                        echo '<td>' . $item['type3'] . '</td>';
+                        echo '<td>' . $item['ksso_member_status'] . '</td>';
                         echo '<td>' . substr($item['time'], 0, 100) . '</td>';
                         echo '<td>' . $item['registration_no'] . '</td>';
                         echo '<td>' . $item['type'] . '</td>';
-                        echo '<td>' . $item['type1'] . '</td>';
+                        echo '<td>' . $item['attendance_type'] . '</td>';
                         echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['nick_name'] . '</a></td>';
-                        echo '<td>' . $item['org'] . '</td>';
+                        echo '<td>' . $item['affiliation_kor'] . '</td>';
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
                         // echo '<td>';

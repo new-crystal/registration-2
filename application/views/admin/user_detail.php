@@ -9,6 +9,18 @@
                 <section class="panel form-horizontal">
                     <div class="panel-body">
                         <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">등록번호</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" value="<?php echo $item['registration_no']; ?>" name="registration_no" id="registration_no" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">비자 생년월일</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" value="<?php echo $item['date_of_birth']; ?>" name="registration_no" id="registration_no">
+                                </div>
+                            </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">구분 1</label>
                                 <div class="col-sm-10">
@@ -22,7 +34,7 @@
                                         <option value="후원사">후원사</option>
                                     </select>
 -->
-                                    <input class="form-control" type="text" value="<?php echo $item['type2']; ?>" name="type1" id="type1">
+                                    <input class="form-control" type="text" value="<?php echo $item['member_type']; ?>" name="type1" id="type1">
 
                                 </div>
                             </div>
@@ -45,7 +57,7 @@
                                         <option value="기타">기타</option>
                                     </select>
 -->
-                                    <input class="form-control" type="text" value="<?php echo $item['type']; ?>" name="type2" id="type2">
+                                    <input class="form-control" type="text" value="<?php echo $item['attendance_type']; ?>" name="type2" id="type2">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
@@ -67,39 +79,65 @@
                                         <option value="기타">기타</option>
                                     </select>
 -->
-                                    <input class="form-control" type="text" value="<?php echo $item['type1']; ?>" name="type2" id="type2">
+                                    <input class="form-control" type="text" value="<?php echo $item['occupation_type']; ?>" name="type2" id="type2">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">회원여부</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control input-lg m-bot15" name="type3" id="type3" data-select="<?php echo $item['type3']; ?>">
+                                    <select class="form-control input-lg m-bot15" name="type3" id="type3" data-select="<?php echo $item['member_status']; ?>">
                                         <option value="회원">회원</option>
                                         <option value="비회원">비회원</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">KSSO 회원 여부</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="<?php echo $item['ksso_member_status']; ?>" name="ln" id="ln">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">국가</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="<?php echo $item['nation']; ?>" name="ln" id="ln">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">평점신청여부</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['etc1']; ?>" name="ln" id="ln">
+                                    <input type="text" class="form-control" value="<?php echo $item['is_score']; ?>" name="ln" id="ln">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">면허번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['ln']; ?>" name="ln" id="ln">
+                                    <input type="text" class="form-control" value="<?php echo $item['licence_number']; ?>" name="ln" id="ln">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">전문의번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['sn']; ?>" name="sn" id="sn">
+                                    <input type="text" class="form-control" value="<?php echo $item['specialty_number']; ?>" name="sn" id="sn">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">영양사면허번호</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="<?php echo $item['nutritionist_number']; ?>" name="sn" id="sn">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">임상영양사자격번호</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="<?php echo $item['dietitian_number']; ?>" name="sn" id="sn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">이름</label>
                                 <div class="col-sm-10">
+                                    <input class="form-control" type="text" value="<?php echo $item['last_name']; ?>" name="nick_name" id="nick_name">
+                                    <input class="form-control" type="text" value="<?php echo $item['first_name']; ?>" name="nick_name" id="nick_name">
                                     <input class="form-control" type="text" value="<?php echo $item['nick_name']; ?>" name="nick_name" id="nick_name">
                                 </div>
                             </div>
@@ -110,11 +148,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">등록번호</label>
+                                <label class="col-sm-2 control-label">정보획득매체</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['registration_no']; ?>" name="registration_no" id="registration_no" readonly>
+                                    <input class="form-control" type="text" value="<?php echo $item['conference_info']; ?>" name="phone" id="phone">
                                 </div>
                             </div>
+
 
                         </div>
                         <div class="col-lg-6">
@@ -127,13 +166,21 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">소속</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['org']; ?>" name="org" id="org">
+                                    <input class="form-control" type="text" value="<?php echo $item['affiliation']; ?>" name="org" id="org">
+                                    <input class="form-control" type="text" value="<?php echo $item['affiliation_kor']; ?>" name="org" id="org">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">소속(네임택용)</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text" value="<?php echo $item['org_nametag']; ?>" name="org_nametag" id="org_nametag">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">부서</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" value="<?php echo $item['department']; ?>" name="org_nametag" id="org_nametag">
+                                    <input class="form-control" type="text" value="<?php echo $item['department_kor']; ?>" name="org_nametag" id="org_nametag">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -168,6 +215,48 @@
                                     <?php  } else { ?>
                                         <input id="memo" type="text" value="<?php echo $item['memo']; ?>" size="16" class="form-control" name="memo">
                                     <?php } ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">welcome_reception</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['welcome_reception_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day2_breakfast</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['day2_breakfast_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day2_luncheon</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['day2_luncheon_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day3_breakfast</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['day3_breakfast_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day3_luncheon</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['day3_luncheon_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">총회 만찬식 참석 여부</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['banquet_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">특이식단</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" value="<?php echo $item['special_request_food']; ?>" size="16" class="form-control" name="deposit_date">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -255,12 +344,12 @@
 <script src="/assets/js/bootstrap-datepicker.js"></script>
 <script>
     $(document).ready(function() {
-        var type1_val = $('select#type1').attr('data-select');
-        $('select#type1 option[value=' + type1_val + ']').attr('selected', 'selected');
-        var type2_val = $('select#type2').attr('data-select');
-        $('select#type2 option[value=' + type2_val + ']').attr('selected', 'selected');
-        var type3_val = $('select#type3').attr('data-select');
-        $('select#type3 option[value=' + type3_val + ']').attr('selected', 'selected');
+        // var type1_val = $('select#type1').attr('data-select');
+        // $('select#type1 option[value=' + type1_val + ']').attr('selected', 'selected');
+        // var type2_val = $('select#type2').attr('data-select');
+        // $('select#type2 option[value=' + type2_val + ']').attr('selected', 'selected');
+        // var type3_val = $('select#type3').attr('data-select');
+        // $('select#type3 option[value=' + type3_val + ']').attr('selected', 'selected');
 
         var registration_no = $('#registration_no').val();
         $("#updateForm").attr("action", "/admin/update_user?n=" + registration_no);
