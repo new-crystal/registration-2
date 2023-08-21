@@ -797,7 +797,7 @@ class Admin extends CI_Controller
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
 
-        $table_columns = array("NO", "참석여부", "구분1", "구분2", "이름", "의사면허번호", "소속", "우편번호", "주소", "핸드폰", "이메일", "등록비", "입실", "퇴실", "체류시간", "평점 인정시간 (점심, 휴식시간 제외)", "평점", "메모");
+        $table_columns = array("NO", "참석여부", "구분1", "구분2", "이름", "의사면허번호", "소속", "우편번호", "주소", "핸드폰", "이메일", "등록비", "DAY1입실", "DAY1퇴실", "DAY1체류시간", "DAY2입실", "DAY2퇴실", "DAY2체류시간", "DAY3입실", "DAY3퇴실", "DAY3체류시간", "메모");
 
         $column = 0;
 
@@ -865,12 +865,18 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row['phone']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row['email']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, number_format($row['fee']));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, date("H:i", strtotime($enter)));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, date("H:i", strtotime($leave)));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row['d_format']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, hoursandmins($spent));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $score);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(17, $excel_row, '');
+            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, date("H:i", strtotime($row['mintime_day1'])));  //DAY1입실
+            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, date("H:i", strtotime($row['maxtime_day1'])));  //DAY1퇴실
+            $object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row['d_format_day1']);                //DAY1체류시간
+            $object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, date("H:i", strtotime($row['mintime_day2'])));  //DAY2입실
+            $object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, date("H:i", strtotime($row['maxtime_day2'])));  //DAY2퇴실
+            $object->getActiveSheet()->setCellValueByColumnAndRow(17, $excel_row, $row['d_format_day2']);                //DAY2체류시간
+            $object->getActiveSheet()->setCellValueByColumnAndRow(18, $excel_row, date("H:i", strtotime($row['mintime_day3'])));  //DAY3입실
+            $object->getActiveSheet()->setCellValueByColumnAndRow(19, $excel_row, date("H:i", strtotime($row['maxtime_day3'])));  //DAY3퇴실
+            $object->getActiveSheet()->setCellValueByColumnAndRow(20, $excel_row, $row['d_format_day3']);                //DAY3체류시간
+            //$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, hoursandmins($spent));
+            //$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $score);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(21, $excel_row, '');
 
             $excel_row++;
         }
@@ -1136,13 +1142,12 @@ class Admin extends CI_Controller
             $userId = $_GET['n'];
             $where = array(
                 'registration_no' => $userId,
-                'QR_MAIL_SEND_YN' =>  'N'
             );
             $info = array(
                 'QR_MAIL_SEND_YN' =>  'Y'
             );
-            $this->users->update_msm_status($info, $where);
             $data['users'] = $this->users->get_user($where);
+            $this->users->update_msm_status($info, $where);
             $this->load->view('admin/qr_mail', $data);
         }
     }
@@ -1212,6 +1217,54 @@ class Admin extends CI_Controller
                 'SEND_ADDRESS'      => 'into-mail@into-on.com',
                 'SEND_NAME'         => 'Qr System test',
                 'RECV_ADDRESS'      => $data['users']['email'],
+                'RECV_NAME'         => $data['users']['nick_name'],
+                'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
+                'REPLY_NAME'        => 'Qr System test',
+                'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
+                'EMAIL_ALTBODY'     => '2023년 QrSystem test body',
+                'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
+                'EMBED_IMAGE_GRID'  => 'null',
+                'INSERT_TEXT_GRID'    => "{" .
+                    '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
+                    '"$text2" : ' . '"' . $data['users']['org'] . '",' .
+                    '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
+                    '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
+                    "}"
+            )
+        );
+
+        $opts = array(
+            'http' =>
+            array(
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $postdata
+            )
+        );
+        $context = stream_context_create($opts);
+        $result = file_get_contents('http://www.into-webinar.com/MailSenderApi', false, $context);
+    }
+    public function sendEMail()
+    {
+        $userId = $_GET['n'];
+        $email = $_GET['m'];
+        $where = array(
+            'registration_no' => $userId
+        );
+        $info = array(
+            'QR_MAIL_SEND_YN' =>  'Y'
+        );
+        $this->users->update_msm_status($info, $where);
+        $data['users'] = $this->users->get_user($where);
+
+        $postdata = http_build_query(
+            array(
+                'CATEGORY_D_1'      => 'QrSystem',
+                'CATEGORY_D_2'      => 'kes',
+                'CATEGORY_D_3'      => '230903',
+                'SEND_ADDRESS'      => 'into-mail@into-on.com',
+                'SEND_NAME'         => 'Qr System test',
+                'RECV_ADDRESS'      => $email,
                 'RECV_NAME'         => $data['users']['nick_name'],
                 'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                 'REPLY_NAME'        => 'Qr System test',

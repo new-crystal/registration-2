@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 <style>
 @page {
@@ -13,13 +13,13 @@ body {
     padding: 0;
 }
 
-@font-face {
+/* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
-}
+} */
 
 #nick_name {
-    font-family: NanumSquare, "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #printThis {
@@ -54,6 +54,7 @@ body {
                 if ($users['nt_info'] != '') {
                     echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
                 }
+                echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
                 if ($lang == 0) {
                     echo '<div class="nick_name lang_en" id="nick_name">' . $users['nick_name'] . '</div>';
                 } else if ($lang !== 0 && $nicknameLength == 3) {
@@ -61,7 +62,6 @@ body {
                 } else if ($lang !== 0 && $nicknameLength > 3) {
                     echo '<div class="small_nickname" id="nick_name">' . $users['nick_name'] . '</div>';
                 }
-                echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
                 echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
                 echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
                 echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
