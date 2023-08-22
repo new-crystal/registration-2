@@ -13,54 +13,91 @@
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">구분 1</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control input-lg m-bot15" name="type1" id="type1">
-                                        <option value="일반참가자">일반참가자</option>
-                                        <option value="좌장">좌장</option>
-                                        <option value="연자">연자</option>
-                                        <option value="패널">패널</option>
-                                        <option value="임원">임원</option>
-                                        <option value="후원사">후원사</option>
+                                    <select class="form-control input-lg m-bot15" name="attendance_type" id="type1">
+                                        <option value="Participants">일반참가자</option>
+                                        <option value="Chairperson">좌장</option>
+                                        <option value="Speaker">연자</option>
+                                        <option value="Panel">패널</option>
+                                        <option value="Committee">임원</option>
+                                        <option value="Sponsor">후원사</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">구분 2</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control input-lg m-bot15" name="type2" id="type2">
-                                        <option value="개원의">개원의</option>
-                                        <option value="봉직의">봉직의</option>
-                                        <option value="전공의">전공의</option>
-                                        <option value="전임의">전임의</option>
-                                        <option value="교수">교수</option>
-                                        <option value="간호사">간호사</option>
+                                    <select class="form-control input-lg m-bot15" name="member_type" id="type2">
+                                        <option value="Certified M.D.">개원의</option>
+                                        <!-- <option value="봉직의">봉직의</option> -->
+                                        <option value="Resident">전공의</option>
+                                        <option value="Fellow">전임의</option>
+                                        <option value="Professor">교수</option>
+                                        <option value="Nurse">간호사</option>
+                                        <option value="Researcher">연구원</option>
                                         <!--option value="사회복지사">사회복지사</option-->
-                                        <option value="약사">약사</option>
-                                        <option value="영양사">영양사</option>
-                                        <option value="군의관">군의관</option>
+                                        <option value="Pharmacist">약사</option>
+                                        <option value="Nutritionist">영양사</option>
+                                        <option value="Exercise Specialist">운동처방사</option>
+                                        <option value="Military Surgeon">군의관</option>
+                                        <option value="Public Health Doctor">공중보건의</option>
+                                        <option value="Corporate Member">기업회원</option>
+                                        <option value="Student">학생</option>
                                         <!-- <option value="연구원">연구원</option> -->
                                         <!-- <option value="운동처방사">운동처방사</option> -->
-                                        <option value="기타">기타</option>
+                                        <option value="Others">기타</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group form-inline">
-                                <label class="col-sm-2 control-label">회원여부</label>
+                                <label class="col-sm-2 control-label">구분 3</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control input-lg m-bot15" name="type3" id="type3">
-                                        <option value="회원">회원</option>
-                                        <option value="비회원">비회원</option>
+                                    <select class="form-control input-lg m-bot15" name="occupation_type" id="type2">
+                                        <option value="Medical">Medical</option>
+                                        <option value="Food & Nutrition">Food & Nutrition</option>
+                                        <option value="Exercise">Exercise</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="col-sm-2 control-label">KSSO 회원여부</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control input-lg m-bot15" name="ksso_member_status" id="type3">
+                                        <option value="1">정회원</option>
+                                        <option value="2">평생회원</option>
+                                        <option value="0">비회원</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">면허번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="sn" id="sn">
+                                    <input type="text" class="form-control" name="licence_number" id="sn">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">전문의번호</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="specialty_number" id="sn">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">영양사면허번호</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="nutritionist_number" id="sn">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> 임상영양사자격번호</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="dietitian_number" id="sn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">이름 *</label>
                                 <div class="col-sm-10">
+                                    <input class="form-control" type="text" placeholder="first name" name="first_name" />
+                                    <input class="form-control" type="text" placeholder="last name" name="last_name" />
                                     <input class="form-control" type="text" name="nick_name" id="nick_name" placeholder="*필수">
                                 </div>
                             </div>
@@ -76,14 +113,31 @@
                                     <input class="form-control" type="text" name="email" id="email">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">국가 *</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="nation" id="email">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">소속 *</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="org" id="org" placeholder="*필수">
+                                    <input class="form-control" type="text" name="affiliation" id="org" placeholder="*필수(영어)">
+                                    <input class="form-control" type="text" name="affiliation_kor" id="org" placeholder="*필수(한글)">
+                                    <input class="form-control" type="text" name="org_nametag" id="org" placeholder="*필수(네임택)">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">부서 *</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="department" id="org" placeholder="*필수(영어)">
+                                    <input class="form-control" type="text" name="department_kor" id="org" placeholder="*필수(한글)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">주소</label>
                                 <div class="col-sm-10">
@@ -114,6 +168,43 @@
                                     <input id="dp1" type="text" size="16" class="form-control" name="memo">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">welcome reception </label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Y/N" class="form-control" type="text" name="welcome_reception_yn" id="deposit_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day2_breakfast_yn</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Y/N" class="form-control" type="text" name="day2_breakfast_yn" id="deposit_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day2_luncheon_yn</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Y/N" class="form-control" type="text" name="day2_luncheon_yn" id="deposit_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day3_breakfast_yn</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Y/N" class="form-control" type="text" name="day3_breakfast_yn" id="deposit_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">day3_luncheon_yn</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Y/N" class="form-control" type="text" name="day3_luncheon_yn" id="deposit_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">생년월일</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="dd-mm-yyyy" class="form-control" type="text" name="date_of_birth" id="deposit_name">
+                                </div>
+                            </div>
+
                             <div clss="btn_group" style="float: right;">
                                 <button type="submit" class="btn btn-primary">등록</button>
                             </div>

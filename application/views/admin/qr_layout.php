@@ -18,7 +18,7 @@ body {
     src: url("../../../assets/font/NanumSquare-Hv.otf");
 } */
 
-#nick_name {
+.nick_name {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -55,21 +55,18 @@ body {
                     echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
                 }
                 echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-                if ($lang == 0) {
-                    echo '<div class="nick_name lang_en" id="nick_name">' . $users['nick_name'] . '</div>';
-                } else if ($lang !== 0 && $nicknameLength == 3) {
-                    echo '<div class="nick_name" id="nick_name">' . $users['nick_name'] . '</div>';
-                } else if ($lang !== 0 && $nicknameLength > 3) {
-                    echo '<div class="small_nickname" id="nick_name">' . $users['nick_name'] . '</div>';
-                }
+                // if ($lang == 0) {
+                echo '<div class="nick_name lang_en" id="first_name">' .  $users['last_name'] . '</div>';
+                echo '<div class="nick_name lang_en" id="first_name">' . $users['first_name'] .  '</div>';
+                // }
                 echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
+                echo '<div class="receipt receipt_name">' . $users['last_name'] . ' ' . $users['first_name'] .   '</div>';
                 echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_name">' . $users['nick_name'] . '</div>';
                 echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
-                echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
-                echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
-                echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
+                // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
+                // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
+                // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
+                // echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
