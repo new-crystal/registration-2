@@ -94,6 +94,13 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>영문 이름</th>
+                                <td id="en_name" class="qr_text">
+                                    <?php if (isset($user['first_name'])) echo $user['first_name'] ?>
+                                    <?php if (isset($user['last_name'])) echo $user['last_name'] ?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>이름</th>
                                 <td id="name" class="qr_text">
                                     <?php if (isset($user['nick_name'])) echo $user['nick_name'] ?></td>
@@ -101,14 +108,15 @@
                             <tr>
                                 <th>참가구분</th>
                                 <td id="category" class="qr_text"><?php
-                                                                    if (isset($user['type'])) {
-                                                                        echo $user['type'];
+                                                                    if (isset($user['attendance_type'])) {
+                                                                        echo $user['attendance_type'];
                                                                     }
                                                                     ?></td>
                             </tr>
                             <tr>
                                 <th>소속</th>
-                                <td id="org" class="qr_text"><?php if (isset($user['org'])) echo $user['org'] ?></td>
+                                <td id="org" class="qr_text">
+                                    <?php if (isset($user['affiliation'])) echo $user['affiliation'] ?></td>
                             </tr>
                             <tr>
                                 <th>메모</th>
@@ -120,7 +128,8 @@
                             </tr>
                             <tr>
                                 <th>평점신청여부</th>
-                                <td id="etc1" class="qr_text"><?php if (isset($user['etc1'])) echo $user['etc1'] ?></td>
+                                <td id="etc1" class="qr_text">
+                                    <?php if (isset($user['is_score'])) echo $user['is_score'] ?></td>
                             </tr>
                             <tr>
                                 <th>etc2</th>
@@ -155,6 +164,7 @@ const qrTexts = document.querySelectorAll(".qr_text")
 const table = document.querySelector(".qr-info-table")
 const open = document.querySelector("#open")
 const name = document.querySelector("#name")
+const EnName = document.querySelector("#en_name")
 const org = document.querySelector("#org")
 const category = document.querySelector("#category")
 const memo = document.querySelector("#memo")
@@ -197,6 +207,7 @@ function fetchData(qrcode) {
                 number.innerText = htmlDocument.querySelector("#number").innerText.replace(/<br\s*\/?>/gi, "")
                     .replace(
                         /\s/g, "");
+                EnName.innerText = htmlDocument.querySelector("#en_name").innerText.replace(/<br\s*\/?>/gi, "")
                 name.innerText = htmlDocument.querySelector("#name").innerText.replace(/<br\s*\/?>/gi, "").replace(
                     /\s/g, "");
                 org.innerText = htmlDocument.querySelector("#org").innerText.replace(/<br\s*\/?>/gi, "").replace(
@@ -223,7 +234,7 @@ function fetchData(qrcode) {
         }).then((data) => {
             executeFunctionInChildWindow(qrcode);
         }).then(() => {
-            window.open(`https://reg2.webeon.net/qrcode/print_file?registration_no=${qrvalue}`, "_blank")
+            // window.open(`https://reg2.webeon.net/qrcode/print_file?registration_no=${qrvalue}`, "_blank")
         })
         .catch(error => {
             console.error('Error fetching data:', error);

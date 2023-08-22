@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">비자 생년월일</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['date_of_birth']; ?>" name="registration_no" id="registration_no">
+                                    <input class="form-control" type="text" value="<?php echo $item['date_of_birth']; ?>" name="date_of_birth" id="registration_no">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
@@ -34,7 +34,7 @@
                                         <option value="후원사">후원사</option>
                                     </select>
 -->
-                                    <input class="form-control" type="text" value="<?php echo $item['member_type']; ?>" name="type1" id="type1">
+                                    <input class="form-control" type="text" value="<?php echo $item['member_type']; ?>" name="member_type" id="type1">
 
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                         <option value="기타">기타</option>
                                     </select>
 -->
-                                    <input class="form-control" type="text" value="<?php echo $item['attendance_type']; ?>" name="type2" id="type2">
+                                    <input class="form-control" type="text" value="<?php echo $item['attendance_type']; ?>" name="attendance_type" id="type2">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
@@ -79,13 +79,13 @@
                                         <option value="기타">기타</option>
                                     </select>
 -->
-                                    <input class="form-control" type="text" value="<?php echo $item['occupation_type']; ?>" name="type2" id="type2">
+                                    <input class="form-control" type="text" value="<?php echo $item['occupation_type']; ?>" name="occupation_type" id="type2">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">회원여부</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control input-lg m-bot15" name="type3" id="type3" data-select="<?php echo $item['member_status']; ?>">
+                                    <select class="form-control input-lg m-bot15" name="member_status" id="type3" data-select="<?php echo $item['member_status']; ?>">
                                         <option value="회원">회원</option>
                                         <option value="비회원">비회원</option>
                                     </select>
@@ -94,50 +94,50 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">KSSO 회원 여부</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['ksso_member_status']; ?>" name="ln" id="ln">
+                                    <input type="text" class="form-control" value="<?php echo $item['ksso_member_status']; ?>" name="ksso_member_status" id="ln">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">국가</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['nation']; ?>" name="ln" id="ln">
+                                    <input type="text" class="form-control" value="<?php echo $item['nation']; ?>" name="nation" id="ln">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">평점신청여부</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['is_score']; ?>" name="ln" id="ln">
+                                    <input type="text" class="form-control" value="<?php echo $item['is_score']; ?>" name="is_score" id="ln">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">면허번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['licence_number']; ?>" name="ln" id="ln">
+                                    <input type="text" class="form-control" value="<?php echo $item['licence_number']; ?>" name="licence_number" id="ln">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">전문의번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['specialty_number']; ?>" name="sn" id="sn">
+                                    <input type="text" class="form-control" value="<?php echo $item['specialty_number']; ?>" name="specialty_number" id="sn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">영양사면허번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['nutritionist_number']; ?>" name="sn" id="sn">
+                                    <input type="text" class="form-control" value="<?php echo $item['nutritionist_number']; ?>" name="nutritionist_number" id="sn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">임상영양사자격번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="<?php echo $item['dietitian_number']; ?>" name="sn" id="sn">
+                                    <input type="text" class="form-control" value="<?php echo $item['dietitian_number']; ?>" name="dietitian_number" id="sn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">이름</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['last_name']; ?>" name="nick_name" id="nick_name">
-                                    <input class="form-control" type="text" value="<?php echo $item['first_name']; ?>" name="nick_name" id="nick_name">
+                                    <input class="form-control" type="text" value="<?php echo $item['last_name']; ?>" name="last_name" id="nick_name">
+                                    <input class="form-control" type="text" value="<?php echo $item['first_name']; ?>" name="first_name" id="nick_name">
                                     <input class="form-control" type="text" value="<?php echo $item['nick_name']; ?>" name="nick_name" id="nick_name">
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">정보획득매체</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['conference_info']; ?>" name="phone" id="phone">
+                                    <input class="form-control" type="text" value="<?php echo $item['conference_info']; ?>" name="conference_info" id="phone">
                                 </div>
                             </div>
 
@@ -166,8 +166,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">소속</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['affiliation']; ?>" name="org" id="org">
-                                    <input class="form-control" type="text" value="<?php echo $item['affiliation_kor']; ?>" name="org" id="org">
+                                    <input class="form-control" type="text" value="<?php echo $item['affiliation']; ?>" name="affiliation" id="org">
+                                    <input class="form-control" type="text" value="<?php echo $item['affiliation_kor']; ?>" name="affiliation_kor" id="org">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -179,8 +179,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">부서</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="<?php echo $item['department']; ?>" name="org_nametag" id="org_nametag">
-                                    <input class="form-control" type="text" value="<?php echo $item['department_kor']; ?>" name="org_nametag" id="org_nametag">
+                                    <input class="form-control" type="text" value="<?php echo $item['department']; ?>" name="department" id="org_nametag">
+                                    <input class="form-control" type="text" value="<?php echo $item['department_kor']; ?>" name="department_kor" id="org_nametag">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -220,43 +220,43 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">welcome_reception</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['welcome_reception_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['welcome_reception_yn']; ?>" size="16" class="form-control" name="welcome_reception_yn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">day2_breakfast</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['day2_breakfast_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['day2_breakfast_yn']; ?>" size="16" class="form-control" name="day2_breakfast_yn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">day2_luncheon</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['day2_luncheon_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['day2_luncheon_yn']; ?>" size="16" class="form-control" name="day2_luncheon_yn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">day3_breakfast</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['day3_breakfast_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['day3_breakfast_yn']; ?>" size="16" class="form-control" name="day3_breakfast_yn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">day3_luncheon</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['day3_luncheon_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['day3_luncheon_yn']; ?>" size="16" class="form-control" name="day3_luncheon_yn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">총회 만찬식 참석 여부</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['banquet_yn']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['banquet_yn']; ?>" size="16" class="form-control" name="banquet_yn">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">특이식단</label>
                                 <div class="col-sm-10">
-                                    <input id="dp1" type="text" value="<?php echo $item['special_request_food']; ?>" size="16" class="form-control" name="deposit_date">
+                                    <input id="dp1" type="text" value="<?php echo $item['special_request_food']; ?>" size="16" class="form-control" name="special_request_food">
                                 </div>
                             </div>
                             <div class="form-group">

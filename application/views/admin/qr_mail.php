@@ -1,16 +1,16 @@
 <style>
-    #send_mail {
-        background-color: #fff;
-        padding: 4px 8px;
-        border: 2px solid #ddd;
-        cursor: pointer;
-        margin-left: 1rem;
-        font-weight: 600;
-    }
+#send_mail {
+    background-color: #fff;
+    padding: 4px 8px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    margin-left: 1rem;
+    font-weight: 600;
+}
 
-    #send_mail:hover {
-        background-color: #ddd;
-    }
+#send_mail:hover {
+    background-color: #ddd;
+}
 </style>
 
 <table width='750' style='border:1px solid #000; padding: 0;'>
@@ -31,26 +31,34 @@
             <td>
                 <div>
 
-                    <table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+                    <table width='586'
+                        style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
                         <tbody>
                             <tr>
-                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th
+                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     이름</th>
-                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>
-                                    <a href='mailto:{$to}' class='link font_inherit'><?php echo $users['nick_name'] ?></a>
+                                <td colspan='2'
+                                    style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>
+                                    <a href='mailto:{$to}'
+                                        class='link font_inherit'><?php echo $users['last_name'] . " " . $users['first_name']?></a>
                                 </td>
                             </tr>
                             <tr>
-                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th
+                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     소속</th>
-                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
-                                    <?php echo $users['org'] ?></td>
+                                <td colspan='2'
+                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
+                                    <?php echo $users['affiliation'] ?></td>
 
                             </tr>
                             <tr>
-                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th
+                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     접수번호</th>
-                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
+                                <td colspan='2'
+                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
                                     <?php echo $users['registration_no'] ?></td>
 
                             </tr>
@@ -70,7 +78,9 @@
         </tr>
         <tr>
             <td colspan='3' style="text-align: center;">
-                <img width="300px" height="300px" src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg')); ?>" alt="" />
+                <img width="300px" height="300px"
+                    src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg')); ?>"
+                    alt="" />
                 <?php /*src="<?php echo '../assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg'; ?>" alt=""
                 />*/ ?>
             </td>
@@ -101,59 +111,59 @@
 </div>
 
 <script>
-    // JavaScript 코드
-    document.addEventListener("DOMContentLoaded", function() {
-        const sendMailLink = document.getElementById("sendMailLink");
-        const sendMail = document.querySelector("#send_mail")
-        const email = document.querySelector("#email")
-        let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+// JavaScript 코드
+document.addEventListener("DOMContentLoaded", function() {
+    const sendMailLink = document.getElementById("sendMailLink");
+    const sendMail = document.querySelector("#send_mail")
+    const email = document.querySelector("#email")
+    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
 
-        sendMail.addEventListener("click", () => {
-            if (!email.value) {
-                alert("보내실 이메일을 입력해주세요.")
-                email.focus()
-                return;
-            } else if (!regex.test(email.value)) {
-                alert("이메일 형식을 확인해주세요.")
-                email.focus()
-                return;
-            } else {
-                const registrationNo = sendMail.getAttribute("data-registration-no");
-                const url = `https://reg2.webeon.net/admin/sendemail?n=${registrationNo}&m=${email.value}`;
+    sendMail.addEventListener("click", () => {
+        if (!email.value) {
+            alert("보내실 이메일을 입력해주세요.")
+            email.focus()
+            return;
+        } else if (!regex.test(email.value)) {
+            alert("이메일 형식을 확인해주세요.")
+            email.focus()
+            return;
+        } else {
+            const registrationNo = sendMail.getAttribute("data-registration-no");
+            const url = `https://reg2.webeon.net/admin/sendemail?n=${registrationNo}&m=${email.value}`;
 
-                fetch(url, {
-                        method: 'POST',
-                    })
-                    .then(response => {
-                        // 응답 처리
-                        alert("이메일 발송 성공");
-                    })
-                    .catch(error => {
-                        // 에러 처리
-                        console.error("POST 요청 실패", error);
-                    });
-            }
-        })
+            fetch(url, {
+                    method: 'POST',
+                })
+                .then(response => {
+                    // 응답 처리
+                    alert("이메일 발송 성공");
+                })
+                .catch(error => {
+                    // 에러 처리
+                    console.error("POST 요청 실패", error);
+                });
+        }
+    })
 
 
 
-        // sendMailLink.addEventListener("click", function(event) {
-        //     event.preventDefault();
+    // sendMailLink.addEventListener("click", function(event) {
+    //     event.preventDefault();
 
-        //     const registrationNo = sendMailLink.getAttribute("data-registration-no");
-        //     const url = `https://reg2.webeon.net/admin/sendmail?n=${registrationNo}`;
+    //     const registrationNo = sendMailLink.getAttribute("data-registration-no");
+    //     const url = `https://reg2.webeon.net/admin/sendmail?n=${registrationNo}`;
 
-        //     fetch(url, {
-        //             method: 'POST',
-        //         })
-        //         .then(response => {
-        //             // 응답 처리
-        //             alert("이메일 발송 성공");
-        //         })
-        //         .catch(error => {
-        //             // 에러 처리
-        //             console.error("POST 요청 실패", error);
-        //         });
-        // });
-    });
+    //     fetch(url, {
+    //             method: 'POST',
+    //         })
+    //         .then(response => {
+    //             // 응답 처리
+    //             alert("이메일 발송 성공");
+    //         })
+    //         .catch(error => {
+    //             // 에러 처리
+    //             console.error("POST 요청 실패", error);
+    //         });
+    // });
+});
 </script>
