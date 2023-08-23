@@ -124,7 +124,7 @@
 }
 
 #printThis .org{
-  font-size: 20px;
+  font-size: 16px;
   padding: 0 10px;
   top: 16%;
   word-break: keep-all;
@@ -138,6 +138,7 @@
 }
 
 #printThis .small_nickname{
+  line-height: 30px;
   font-weight: 400;
   font-size: 45px;
   letter-spacing: 15px;
@@ -146,6 +147,7 @@
 }
 
 #printThis .nick_name{
+  line-height: 42px;
   font-weight: 400;
   font-size: 35px;
   letter-spacing: 20px;
@@ -239,7 +241,7 @@
 /*    float: left;*/
 /*    width: 100px;*/
     margin-bottom: 0px;
-    padding:20px 10px;
+    padding: 41px 10px;
 }
 
 #qrcode img{
