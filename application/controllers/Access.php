@@ -59,8 +59,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -125,8 +125,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -188,8 +188,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -281,8 +281,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -344,8 +344,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -472,8 +472,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -538,8 +538,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];
@@ -601,8 +601,8 @@ class Access extends CI_Controller
                     $userName = $this->users->get_user($where);
                     //                  var_dump($userName['nick_name']);
                     $this->data['entrance'] =  "";
-                    $this->data['nick_name'] = $userName['nick_name'];
-                    $this->data['entrance_org'] = $userName['org'];
+                    $this->data['name_kor'] = $userName['name_kor'];
+                    $this->data['entrance_org'] = $userName['affiliation'];
 
                     $list = $this->entrance->access($where);
                     $enter = $list['min_time'];

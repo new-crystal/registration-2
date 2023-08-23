@@ -16,43 +16,33 @@
             <td>
                 <div>
 
-                    <table width='586'
-                        style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+                    <table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
                         <tbody>
                             <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     이름</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>
-                                    <a href='mailto:{$to}'
-                                        class='link font_inherit'><?php echo $users['nick_name'] ?></a>
+                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>
+                                    <a href='mailto:{$to}' class='link font_inherit'><?php echo $users['name_kor'] ?></a>
                                 </td>
                             </tr>
                             <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     소속</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
+                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
                                     <?php echo $users['org'] ?></td>
 
                             </tr>
                             <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     참석자 구분</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
+                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
                                     <?php echo $users['type2'] ?></td>
 
                             </tr>
                             <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
+                                <th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
                                     등록비</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
+                                <td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
                                     <?php echo number_format($users['fee']) ?></td>
 
                             </tr>

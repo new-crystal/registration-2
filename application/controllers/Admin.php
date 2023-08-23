@@ -100,7 +100,7 @@ class Admin extends CI_Controller
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
 
-        $table_columns = array("회원여부", "구분1", "구분2", "면허번호", "이름", "전화번호", "이메일", "소속", "주소", "등록비", "입금자명", "입금예정일", "입금여부", "등록시각");
+        $table_columns = array("KSSO 회원여부", "참가유형", "직업종류", "직업유형", "평점신청여부", "면허번호", "전문의 번호", "영양사면허번호", "임상영양사자격번호", "영문이름", "이름", "생년월일", "전화번호", "이메일", "영문소속", "소속", "영문부서", "부서", "주소", "등록비", "입금자명", "입금예정일", "환영여부", "2일차조식여부", "2일차오찬여부", "3일차조식여부", "3일차오찬여부", "특이식단", "입금여부", "등록시각");
 
         $column = 0;
 
@@ -115,20 +115,36 @@ class Admin extends CI_Controller
 
         foreach ($list as $row) {
 
-            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row['type3']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row['type']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row['type2']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['sn']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['nick_name']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row['phone']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row['email']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row['org']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row['addr']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, number_format($row['fee']));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row['deposit_name']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $row['deposit_date']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row['deposit']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row['time']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row['ksso_member_status']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row['attendance_type']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row['occupation_type']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['member_type']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['is_score']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row['licence_number']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row['specialty_number']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row['nutritionist_number']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row['dietitian_number']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row['first_name'] . $row['last_name']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row['name_kor']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $row['date_of_birth']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row['phone']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row['email']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(14, $excel_row, $row['affiliation']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, $row['affiliation_kor']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $row['department']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(17, $excel_row, $row['department_kor']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(18, $excel_row, $row['addr']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(19, $excel_row, number_format($row['fee']));
+            $object->getActiveSheet()->setCellValueByColumnAndRow(20, $excel_row, $row['deposit_name']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(21, $excel_row, $row['deposit_date']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(22, $excel_row, $row['welcome_reception_yn']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(23, $excel_row, $row['day2_breakfast_yn']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(24, $excel_row, $row['day2_luncheon_yn']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(25, $excel_row, $row['day3_breakfast_yn']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(26, $excel_row, $row['day3_luncheon_yn']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(27, $excel_row, $row['special_request_food']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(28, $excel_row, $row['deposit']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(29, $excel_row, $row['time']);
 
             $excel_row++;
         }
@@ -165,8 +181,8 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $row['name']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $row['email']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row['phone']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['org']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['orig_name']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['affiliation']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['org_name']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $row['file_path']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row['file_name']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row['time']);
@@ -405,17 +421,17 @@ class Admin extends CI_Controller
             );
         } else {
             if ($userType == '01') {
-                $userType = '일반참가자';
+                $userType = 'Participants';
             } else if ($userType == '02') {
-                $userType = '임원';
+                $userType = 'Committee';
             } else if ($userType == '04') {
-                $userType = '패널';
+                $userType = 'Panel';
             } else if ($userType == '05') {
-                $userType = '연자';
+                $userType = 'Speaker';
             } else if ($userType == '06') {
-                $userType = '좌장';
+                $userType = 'Chairperson';
             } else if ($userType == '07') {
-                $userType = '후원사';
+                $userType = 'Sponsor';
             }
 
             // if ($userType == '일반참가자') {
@@ -432,7 +448,7 @@ class Admin extends CI_Controller
             //     $this->load->view('admin/qr_layout_all', array('users' => $result));
             // } else {
             $where = array(
-                'type2' => $userType
+                'attendance_type' => $userType
             );
             $data['users'] = $this->users->get_users_order('nick_name', $where);
             $this->load->view('admin/qr_layout_all', $data);
@@ -519,21 +535,22 @@ class Admin extends CI_Controller
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('nick_name', '이름', 'required');
-            $this->form_validation->set_rules('org', '소속', 'required');
+            $this->form_validation->set_rules('name_kor', '이름', 'required');
             $this->form_validation->set_rules('phone', '전화번호', 'required');
 
             if ($this->form_validation->run() === FALSE) {
                 $this->load->view('admin/add_user');
             } else {
-                $name = $this->input->post('nick_name');
-                $license = $this->input->post('sn');
-                $org = $this->input->post('org');
+                $name_kor = $this->input->post('name_kor');
+                $license = $this->input->post('licence_number');
+                $affiliation = $this->input->post('affiliation');
+                $affiliation_kor = $this->input->post('affiliation_kor');
+                $department = $this->input->post('department');
+                $department_kor = $this->input->post('department_kor');
                 $phone = $this->input->post('phone');
                 $email = $this->input->post('email');
-                $type = $this->input->post('type1');
-                $type2 = $this->input->post('type2');
-                $type3 = $this->input->post('type3');
+                $member_type = $this->input->post('member_type');
+                $ksso_member_status = $this->input->post('ksso_member_status');
                 $postcode = $this->input->post('postcode');
                 $address = $this->input->post('address');
                 $detailAddress = $this->input->post('detailAddress');
@@ -541,25 +558,40 @@ class Admin extends CI_Controller
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
                 $memo = $this->input->post('memo');
-                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전임의' || $type2 == '교수') {
-                    if ($type3 == '비회원') {
-                        $fee = 110000;
-                    } else {
-                        $fee = 90000;
-                    }
-                } else if ($type2 == '간호사' || $type2 == '기초의학자' || $type2 == '약사' || $type2 == '군의관') {
-                    if ($type3 == '비회원') {
-                        $fee = 90000;
-                    } else {
-                        $fee = 70000;
-                    }
-                } else if ($type2 == '전공의') {
-                    if ($type3 == '비회원') {
-                        $fee = 90000;
-                    } else {
-                        $fee = 70000;
-                    }
-                }
+                $attendance_type = $this->input->post('attendance_type');
+                $specialty_number = $this->input->post('specialty_number');
+                $nutritionist_number = $this->input->post('nutritionist_number');
+                $dietitian_number = $this->input->post('dietitian_number');
+                $first_name = $this->input->post('first_name');
+                $last_name = $this->input->post('last_name');
+                $nation = $this->input->post('nation');
+                $welcome_reception_yn = $this->input->post('welcome_reception_yn');
+                $day2_breakfast_yn = $this->input->post('day2_breakfast_yn');
+                $day2_luncheon_yn = $this->input->post('day2_luncheon_yn');
+                $day3_breakfast_yn = $this->input->post('day3_breakfast_yn');
+                $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
+                $date_of_birth = $this->input->post('date_of_birth');
+                $fee = 0;
+                //fee 계산 추후에
+                // if ($member_type == '개원의' || $member_type == '봉직의' || $member_type == '전임의' || $member_type == '교수') {
+                //     if ($member_type == '비회원') {
+                //         $fee = 110000;
+                //     } else {
+                //         $fee = 90000;
+                //     }
+                // } else if ($member_type == '간호사' || $member_type == '기초의학자' || $member_type == '약사' || $member_type == '군의관') {
+                //     if ($member_type == '비회원') {
+                //         $fee = 90000;
+                //     } else {
+                //         $fee = 70000;
+                //     }
+                // } else if ($member_type == '전공의') {
+                //     if ($member_type == '비회원') {
+                //         $fee = 90000;
+                //     } else {
+                //         $fee = 70000;
+                //     }
+                // }
 
                 if ($fee == 0)
                     $deposit = '미결제';
@@ -574,17 +606,20 @@ class Admin extends CI_Controller
                 //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
 
                 $info = array(
-                    'nick_name' => preg_replace("/\s+/", "", $name),
-                    'sn' => preg_replace("/\s+/", "", $license),
-                    'org' => trim($org),
-                    'org_nametag' => trim($org),
+                    'name_kor' => preg_replace("/\s+/", "", $name_kor),
+                    'licence_number' => preg_replace("/\s+/", "", $license),
+                    'affiliation' => trim($affiliation),
+                    'affiliation_kor' => trim($affiliation_kor),
+                    'department' => trim($department),
+                    'department_kor' => trim($department_kor),
+                    'org_nametag' => trim($affiliation),
                     'phone' => preg_replace("/\s+/", "", $phone),
                     'email' => preg_replace("/\s+/", "", $email),
                     'postcode' => trim($postcode),
                     'addr' => trim($addr),
-                    'type' => trim($type),
-                    'type2' => trim($type2),
-                    'type3' => trim($type3),
+                    // 'type' => trim($type),
+                    'member_type' => trim($member_type),
+                    'ksso_member_status' => trim($ksso_member_status),
                     'fee' => $fee,
                     'time' => $time,
                     'uagent' => $uagent,
@@ -592,6 +627,19 @@ class Admin extends CI_Controller
                     'deposit_date' => $deposit_date,
                     'deposit_name' => $deposit_name,
                     'memo' => $memo,
+                    'attendance_type' => $attendance_type,
+                    'specialty_number' => $specialty_number,
+                    'nutritionist_number' => $nutritionist_number,
+                    'dietitian_number' => $dietitian_number,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'nation' => $nation,
+                    'welcome_reception_yn' => $welcome_reception_yn,
+                    'day2_breakfast_yn' => $day2_breakfast_yn,
+                    'day2_luncheon_yn' => $day2_luncheon_yn,
+                    'day3_breakfast_yn' => $day3_breakfast_yn,
+                    'day3_luncheon_yn' => $day3_luncheon_yn,
+                    'date_of_birth' => $date_of_birth,
                 );
                 //                var_dump($info);
                 $this->users->add_onsite_user($info);
@@ -630,8 +678,6 @@ class Admin extends CI_Controller
                 } else {
                     $info = array("memo" => $memo);
                 }
-
-
                 $this->users->add_memo($info, $where);
             }
         }
@@ -676,49 +722,67 @@ class Admin extends CI_Controller
             );
             $this->load->view('admin/left_side.php', $data);
 
-            $this->form_validation->set_rules('nick_name', '이름', 'required');
+            $this->form_validation->set_rules('name_kor', '이름', 'required');
             $this->form_validation->set_rules('phone', '전화번호', 'required');
-            $this->form_validation->set_rules('org', '소속', 'required');
+            // $this->form_validation->set_rules('org', '소속', 'required');
 
             if ($this->form_validation->run() === FALSE) {
                 //                $this->load->view('admin');
             } else {
-                $type = $this->input->post('type1');
-                $type2 = $this->input->post('type2');
-                $type3 = $this->input->post('type3');
-                $sn = $this->input->post('sn');
-                $nick_name = $this->input->post('nick_name');
+                $name_kor = $this->input->post('name_kor');
+                $license = $this->input->post('licence_number');
+                $org_nametag = $this->input->post('org_nametag');
+                $affiliation = $this->input->post('affiliation');
+                $affiliation_kor = $this->input->post('affiliation_kor');
+                $department = $this->input->post('department');
+                $department_kor = $this->input->post('department_kor');
                 $phone = $this->input->post('phone');
                 $email = $this->input->post('email');
-                $org = $this->input->post('org');
-                $org_nametag = $this->input->post('org_nametag');
-                $addr = $this->input->post('addr');
+                $member_type = $this->input->post('member_type');
+                $ksso_member_status = $this->input->post('ksso_member_status');
+                $postcode = $this->input->post('postcode');
+                $address = $this->input->post('address');
+                $detailAddress = $this->input->post('detailAddress');
+                $extraAddress = $this->input->post('extraAddress');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
                 $memo = $this->input->post('memo');
-                $time = $this->input->post('time');
+                $attendance_type = $this->input->post('attendance_type');
+                $specialty_number = $this->input->post('specialty_number');
+                $nutritionist_number = $this->input->post('nutritionist_number');
+                $dietitian_number = $this->input->post('dietitian_number');
+                $first_name = $this->input->post('first_name');
+                $last_name = $this->input->post('last_name');
+                $nation = $this->input->post('nation');
+                $welcome_reception_yn = $this->input->post('welcome_reception_yn');
+                $day2_breakfast_yn = $this->input->post('day2_breakfast_yn');
+                $day2_luncheon_yn = $this->input->post('day2_luncheon_yn');
+                $day3_breakfast_yn = $this->input->post('day3_breakfast_yn');
+                $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
+                $date_of_birth = $this->input->post('date_of_birth');
+                $fee = 0;
                 if ($memo == "") {
                     $memo = null;
                 }
-                if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전임의' || $type2 == '교수') {
-                    if ($type3 == '비회원') {
-                        $fee = 110000;
-                    } else {
-                        $fee = 90000;
-                    }
-                } else if ($type2 == '간호사' || $type2 == '기초의학자' || $type2 == '약사' || $type2 == '군의관') {
-                    if ($type3 == '비회원') {
-                        $fee = 90000;
-                    } else {
-                        $fee = 70000;
-                    }
-                } else if ($type2 == '전공의') {
-                    if ($type3 == '비회원') {
-                        $fee = 90000;
-                    } else {
-                        $fee = 70000;
-                    }
-                }
+                // if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전임의' || $type2 == '교수') {
+                //     if ($type3 == '비회원') {
+                //         $fee = 110000;
+                //     } else {
+                //         $fee = 90000;
+                //     }
+                // } else if ($type2 == '간호사' || $type2 == '기초의학자' || $type2 == '약사' || $type2 == '군의관') {
+                //     if ($type3 == '비회원') {
+                //         $fee = 90000;
+                //     } else {
+                //         $fee = 70000;
+                //     }
+                // } else if ($type2 == '전공의') {
+                //     if ($type3 == '비회원') {
+                //         $fee = 90000;
+                //     } else {
+                //         $fee = 70000;
+                //     }
+                // }
                 //기존코드
                 // if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
                 //     if ($type == '좌장' || $type == '연자' || $type == '패널') {
@@ -753,22 +817,42 @@ class Admin extends CI_Controller
 
 
                 $info = array(
-                    'type' => $type,
-                    'type2' => $type2,
-                    'type3' => $type3,
-                    'fee' => $fee,
-                    'sn' => preg_replace("/\s+/", "", $sn),
-                    'nick_name' => preg_replace("/\s+/", "", $nick_name),
+                    'name_kor' => preg_replace("/\s+/", "", $name_kor),
+                    'licence_number' => preg_replace("/\s+/", "", $license),
+                    'affiliation' => trim($affiliation),
+                    'affiliation_kor' => trim($affiliation_kor),
+                    'department' => trim($department),
+                    'department_kor' => trim($department_kor),
+                    'org_nametag' => $org_nametag,
                     'phone' => preg_replace("/\s+/", "", $phone),
                     'email' => preg_replace("/\s+/", "", $email),
-                    'org' => trim($org),
-                    'org_nametag' => trim($org_nametag),
-                    'addr' => trim($addr),
+                    'postcode' => trim($postcode),
+                    'addr' => trim($address),
+                    // 'type' => trim($type),
+                    'member_type' => trim($member_type),
+                    'ksso_member_status' => trim($ksso_member_status),
+                    'fee' => $fee,
+                    // 'time' => $time,
+                    // 'uagent' => $uagent,
+                    'deposit' => $deposit,
                     'deposit_date' => $deposit_date,
                     'deposit_name' => $deposit_name,
-                    'updatetime' => $updateTime,
                     'memo' => $memo,
-                    'time' => substr($time, 0, 10)
+                    'attendance_type' => $attendance_type,
+                    'specialty_number' => $specialty_number,
+                    'nutritionist_number' => $nutritionist_number,
+                    'dietitian_number' => $dietitian_number,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'nation' => $nation,
+                    'welcome_reception_yn' => $welcome_reception_yn,
+                    'day2_breakfast_yn' => $day2_breakfast_yn,
+                    'day2_luncheon_yn' => $day2_luncheon_yn,
+                    'day3_breakfast_yn' => $day3_breakfast_yn,
+                    'day3_luncheon_yn' => $day3_luncheon_yn,
+                    'date_of_birth' => $date_of_birth,
+                    'updatetime' => $updateTime,
+                    // 'time' => substr($time, 0, 10)
                 );
 
                 $this->users->update_user($info, $where);
@@ -856,8 +940,8 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $excel_row - 1);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $chk);
             $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row['type']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['type2']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['nick_name']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['member_type']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['name_kor']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, (string)$row['sn']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row['org']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, (string)$row['postcode']);
@@ -1056,7 +1140,7 @@ class Admin extends CI_Controller
                             'SEND_ADDRESS'      => 'into-mail@into-on.com',
                             'SEND_NAME'         => 'Qr System test',
                             'RECV_ADDRESS'      =>  $users['email'],
-                            'RECV_NAME'         =>  $users['nick_name'],
+                            'RECV_NAME'         =>  $users['name_kor'],
                             'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                             'REPLY_NAME'        => 'Qr System test',
                             'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
@@ -1064,8 +1148,8 @@ class Admin extends CI_Controller
                             'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                             'EMBED_IMAGE_GRID'  => 'null',
                             'INSERT_TEXT_GRID'    => "{" .
-                                '"$text1" : ' . '"' .  $users['nick_name'] . '",' .
-                                '"$text2" : ' . '"' . $users['org'] . '",' .
+                                '"$text1" : ' . '"' .  $users['name_kor'] . '",' .
+                                '"$text2" : ' . '"' . $users['affiliation'] . '",' .
                                 '"$text3" : ' . '"' .  $users['registration_no'] . '",' .
                                 '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' .  $users['registration_no'] . '.jpg')) . '"' .
                                 "}"
@@ -1217,7 +1301,7 @@ class Admin extends CI_Controller
                 'SEND_ADDRESS'      => 'into-mail@into-on.com',
                 'SEND_NAME'         => 'Qr System test',
                 'RECV_ADDRESS'      => $data['users']['email'],
-                'RECV_NAME'         => $data['users']['nick_name'],
+                'RECV_NAME'         => $data['users']['name_kor'],
                 'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                 'REPLY_NAME'        => 'Qr System test',
                 'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
@@ -1225,8 +1309,8 @@ class Admin extends CI_Controller
                 'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                 'EMBED_IMAGE_GRID'  => 'null',
                 'INSERT_TEXT_GRID'    => "{" .
-                    '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
-                    '"$text2" : ' . '"' . $data['users']['org'] . '",' .
+                    '"$text1" : ' . '"' . $data['users']['name_kor'] . '",' .
+                    '"$text2" : ' . '"' . $data['users']['affiliation'] . '",' .
                     '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
                     '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
                     "}"
@@ -1265,7 +1349,7 @@ class Admin extends CI_Controller
                 'SEND_ADDRESS'      => 'into-mail@into-on.com',
                 'SEND_NAME'         => 'Qr System test',
                 'RECV_ADDRESS'      => $email,
-                'RECV_NAME'         => $data['users']['nick_name'],
+                'RECV_NAME'         => $data['users']['name_kor'],
                 'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                 'REPLY_NAME'        => 'Qr System test',
                 'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
@@ -1273,8 +1357,8 @@ class Admin extends CI_Controller
                 'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                 'EMBED_IMAGE_GRID'  => 'null',
                 'INSERT_TEXT_GRID'    => "{" .
-                    '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
-                    '"$text2" : ' . '"' . $data['users']['org'] . '",' .
+                    '"$text1" : ' . '"' . $data['users']['name_kor'] . '",' .
+                    '"$text2" : ' . '"' . $data['users']['affiliation'] . '",' .
                     '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
                     '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
                     "}"

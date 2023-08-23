@@ -124,7 +124,7 @@
 }
 
 #printThis .org{
-  font-size: 25px;
+  font-size: 16px;
   padding: 0 10px;
   top: 16%;
   word-break: keep-all;
@@ -134,10 +134,11 @@
   align-items: center;
   letter-spacing: -0.5px;
   transform: translateY(-9px);
-  font-weight: 500!important;
+  font-weight: 400!important;
 }
 
 #printThis .small_nickname{
+  line-height: 30px;
   font-weight: 400;
   font-size: 45px;
   letter-spacing: 15px;
@@ -146,16 +147,21 @@
 }
 
 #printThis .nick_name{
+  line-height: 42px;
   font-weight: 400;
-  font-size: 70px;
-    letter-spacing: 20px;
-    padding: 19px 40px 0 58px;
-    overflow: hidden;
+  font-size: 35px;
+  letter-spacing: 20px;
+  padding: 19px 40px 0 58px;
+  overflow: hidden;
 }
 
 #printThis .nick_name.lang_en{
     letter-spacing: 0px;
     padding: 30px 10px 0 10px;
+}
+
+#printThis #first_name{
+  padding: 0px 10px 0 10px;
 }
 
 #printThis .draggable{
@@ -168,11 +174,11 @@
     position: relative;
     /* width: 100%; */
     /* padding-right: 96px; */
-    text-align: right;
+    text-align: left;
 }
 #printThis .receipt_num_1{
-  top: 53px;
-  right: 19px;
+  top: 87px;
+  left: 139px;
   font-size: 10px;
 }
 
@@ -212,13 +218,13 @@
 }
 
 #printThis .receipt_name{
-  top: 99px;
-  right: 94px;
+  top: 83px;
+  left: 94px;
 }
 
 #printThis .receipt_price{
-  top: 95px;
-  right: 94px;
+  top: 93px;
+  left: 144px;
 }
 
 
@@ -235,8 +241,7 @@
 /*    float: left;*/
 /*    width: 100px;*/
     margin-bottom: 0px;
-    top: 32%;
-    padding: 0 10px;
+    padding: 41px 10px;
 }
 
 #qrcode img{

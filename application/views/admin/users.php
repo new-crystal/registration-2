@@ -127,14 +127,15 @@
                 <tbody>
                     <?php
                     foreach ($users as $item) {
+                        // print_r($item);
                         echo '<tr>';
                         echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['registration_no'] . '"></td>';
-                        echo '<td>' . $item['ksso_member_status'] . '</td>';
+                        echo '<td>' . $item['ksso_member_status']  . '</td>';
                         echo '<td>' . substr($item['time'], 0, 100) . '</td>';
                         echo '<td>' . $item['registration_no'] . '</td>';
-                        echo '<td>' . $item['type'] . '</td>';
-                        echo '<td>' . $item['attendance_type'] . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['nick_name'] . '</a></td>';
+                        echo '<td>' . $item['member_type'] . '</td>';
+                        echo '<td>' . $item['attendance_type']  . '</td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['name_kor'] . '</a></td>';
                         echo '<td>' . $item['affiliation_kor'] . '</td>';
                         echo '<td>' . $item['email'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
