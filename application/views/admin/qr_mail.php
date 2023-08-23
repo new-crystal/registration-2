@@ -13,11 +13,11 @@
 }
 </style>
 
-<table width='750' style='border:1px solid #000; padding: 0;'>
+<table width='750' style='border:none; padding: 0;'>
     <tbody>
         <tr>
             <td colspan='3'>
-                <img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:750px;'>
+                <img src='https://icomes.or.kr/main/img/mail_header_2023.png' width='750' style='width:750px;'>
             </td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
                                 <td colspan='2'
                                     style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>
                                     <a href='mailto:{$to}'
-                                        class='link font_inherit'><?php echo $users['last_name'] . " " . $users['first_name']?></a>
+                                        class='link font_inherit'><?php echo $users['last_name'] . " " . $users['first_name'] ?></a>
                                 </td>
                             </tr>
                             <tr>
@@ -95,7 +95,7 @@
         </tr>
         <tr>
             <td colspan='3' style='padding-top:50px;'>
-                <img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:750px;'>
+                <img src='https://icomes.or.kr/main/img/mail_footer_2023.png' width='750' style='width:750px;'>
             </td>
         </tr>
     </tbody>
