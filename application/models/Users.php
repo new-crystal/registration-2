@@ -46,7 +46,7 @@ class Users extends CI_Model
 	public function get_user_check($userId)
 	{
 		$this->db->where_in('id', $userId);
-		$this->db->order_by('nick_name');
+		$this->db->order_by('name_kor');
 		return $this->db->get($this->users)->result_array();
 	}
 

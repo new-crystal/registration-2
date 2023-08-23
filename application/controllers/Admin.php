@@ -125,7 +125,7 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, $row['nutritionist_number']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(8, $excel_row, $row['dietitian_number']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(9, $excel_row, $row['first_name'] . $row['last_name']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row['nick_name']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(10, $excel_row, $row['name_kor']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(11, $excel_row, $row['date_of_birth']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(12, $excel_row, $row['phone']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(13, $excel_row, $row['email']);
@@ -535,13 +535,13 @@ class Admin extends CI_Controller
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('nick_name', '이름', 'required');
+            $this->form_validation->set_rules('name_kor', '이름', 'required');
             $this->form_validation->set_rules('phone', '전화번호', 'required');
 
             if ($this->form_validation->run() === FALSE) {
                 $this->load->view('admin/add_user');
             } else {
-                $nick_name = $this->input->post('nick_name');
+                $name_kor = $this->input->post('name_kor');
                 $license = $this->input->post('licence_number');
                 $affiliation = $this->input->post('affiliation');
                 $affiliation_kor = $this->input->post('affiliation_kor');
@@ -606,7 +606,7 @@ class Admin extends CI_Controller
                 //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
 
                 $info = array(
-                    'nick_name' => preg_replace("/\s+/", "", $nick_name),
+                    'name_kor' => preg_replace("/\s+/", "", $name_kor),
                     'licence_number' => preg_replace("/\s+/", "", $license),
                     'affiliation' => trim($affiliation),
                     'affiliation_kor' => trim($affiliation_kor),
@@ -722,14 +722,14 @@ class Admin extends CI_Controller
             );
             $this->load->view('admin/left_side.php', $data);
 
-            $this->form_validation->set_rules('nick_name', '이름', 'required');
+            $this->form_validation->set_rules('name_kor', '이름', 'required');
             $this->form_validation->set_rules('phone', '전화번호', 'required');
             // $this->form_validation->set_rules('org', '소속', 'required');
 
             if ($this->form_validation->run() === FALSE) {
                 //                $this->load->view('admin');
             } else {
-                $nick_name = $this->input->post('nick_name');
+                $name_kor = $this->input->post('name_kor');
                 $license = $this->input->post('licence_number');
                 $org_nametag = $this->input->post('org_nametag');
                 $affiliation = $this->input->post('affiliation');
@@ -817,7 +817,7 @@ class Admin extends CI_Controller
 
 
                 $info = array(
-                    'nick_name' => preg_replace("/\s+/", "", $nick_name),
+                    'name_kor' => preg_replace("/\s+/", "", $name_kor),
                     'licence_number' => preg_replace("/\s+/", "", $license),
                     'affiliation' => trim($affiliation),
                     'affiliation_kor' => trim($affiliation_kor),
@@ -940,8 +940,8 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $excel_row - 1);
             $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $chk);
             $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $row['type']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['type2']);
-            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['nick_name']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $row['member_type']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $row['name_kor']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, (string)$row['sn']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, $row['org']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(7, $excel_row, (string)$row['postcode']);
@@ -1140,7 +1140,7 @@ class Admin extends CI_Controller
                             'SEND_ADDRESS'      => 'into-mail@into-on.com',
                             'SEND_NAME'         => 'Qr System test',
                             'RECV_ADDRESS'      =>  $users['email'],
-                            'RECV_NAME'         =>  $users['nick_name'],
+                            'RECV_NAME'         =>  $users['name_kor'],
                             'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                             'REPLY_NAME'        => 'Qr System test',
                             'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
@@ -1148,7 +1148,7 @@ class Admin extends CI_Controller
                             'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                             'EMBED_IMAGE_GRID'  => 'null',
                             'INSERT_TEXT_GRID'    => "{" .
-                                '"$text1" : ' . '"' .  $users['nick_name'] . '",' .
+                                '"$text1" : ' . '"' .  $users['name_kor'] . '",' .
                                 '"$text2" : ' . '"' . $users['affiliation'] . '",' .
                                 '"$text3" : ' . '"' .  $users['registration_no'] . '",' .
                                 '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' .  $users['registration_no'] . '.jpg')) . '"' .
@@ -1301,7 +1301,7 @@ class Admin extends CI_Controller
                 'SEND_ADDRESS'      => 'into-mail@into-on.com',
                 'SEND_NAME'         => 'Qr System test',
                 'RECV_ADDRESS'      => $data['users']['email'],
-                'RECV_NAME'         => $data['users']['nick_name'],
+                'RECV_NAME'         => $data['users']['name_kor'],
                 'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                 'REPLY_NAME'        => 'Qr System test',
                 'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
@@ -1309,7 +1309,7 @@ class Admin extends CI_Controller
                 'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                 'EMBED_IMAGE_GRID'  => 'null',
                 'INSERT_TEXT_GRID'    => "{" .
-                    '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
+                    '"$text1" : ' . '"' . $data['users']['name_kor'] . '",' .
                     '"$text2" : ' . '"' . $data['users']['affiliation'] . '",' .
                     '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
                     '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .
@@ -1349,7 +1349,7 @@ class Admin extends CI_Controller
                 'SEND_ADDRESS'      => 'into-mail@into-on.com',
                 'SEND_NAME'         => 'Qr System test',
                 'RECV_ADDRESS'      => $email,
-                'RECV_NAME'         => $data['users']['nick_name'],
+                'RECV_NAME'         => $data['users']['name_kor'],
                 'REPLY_ADDRESS'     => 'myunghwan.lee@into-on.com',
                 'REPLY_NAME'        => 'Qr System test',
                 'EMAIL_SUBJECT'     => '2023년 QrSystem test sub',
@@ -1357,7 +1357,7 @@ class Admin extends CI_Controller
                 'EMAIL_TEMPLETE_ID' => 'Qr_kes_230903',
                 'EMBED_IMAGE_GRID'  => 'null',
                 'INSERT_TEXT_GRID'    => "{" .
-                    '"$text1" : ' . '"' . $data['users']['nick_name'] . '",' .
+                    '"$text1" : ' . '"' . $data['users']['name_kor'] . '",' .
                     '"$text2" : ' . '"' . $data['users']['affiliation'] . '",' .
                     '"$text3" : ' . '"' . $data['users']['registration_no'] . '",' .
                     '"$text4" : ' . '"' . base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $data['users']['registration_no'] . '.jpg')) . '"' .

@@ -62,7 +62,7 @@ $(function() {
         </colgroup>
         <tr>
             <th>이름</th>
-            <td><?php if (isset($user['nick_name'])) echo $user['nick_name'] ?></td>
+            <td><?php if (isset($user['name_kor'])) echo $user['name_kor'] ?></td>
         </tr>
         <tr>
             <th>참가구분</th>
