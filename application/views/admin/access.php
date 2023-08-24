@@ -79,21 +79,21 @@ $en_name = $firstName . " " . $lastName
                 <form action="/admin/access" id="qr_form" name="qr_form"
                     class="w-full h-screen flex flex-col items-center justify-center bg-slate-50">
 
-                    <div class="w-2/5 flex flex-col items-center justify-center translate-y-60">
+                    <div class="w-2/5 flex flex-col items-center justify-center translate-y-96">
                         <?php print_r($firstName) ?>
-                        <h1 class="text-5xl mt-32 font-semibold -translate-y-20">QR CODE 입력 </h1>
-                        <h6 class="text-3xl mt-20 -translate-y-20">커서를 텍스트박스 안에 놓고 QR 코드 스캐너를 사용하세요.</h6>
-                        <input id="qrcode_input" name="qrcode" class="w-[400px] h-[50px] mt-20 p-3 -translate-y-20"
-                            type="text" autofocus />
+                        <h1 class="text-5xl mt-32 font-semibold ">QR CODE 입력 </h1>
+                        <h6 class="text-3xl mt-20 ">커서를 텍스트박스 안에 놓고 QR 코드 스캐너를 사용하세요.</h6>
+                        <input id="qrcode_input" name="qrcode" class="w-[400px] h-[50px] mt-20 p-3 " type="text"
+                            autofocus />
 
                         <button
-                            class="w-[150px] h-[40px] bg-slate-300 mt-20 mb-20 hover:bg-slate-400 active:bg-slate-500 -translate-y-20 text-black"
+                            class="w-[150px] h-[40px] bg-slate-300 mt-20 mb-20 hover:bg-slate-400 active:bg-slate-500 text-black"
                             type="submit" id="submit">등록</button>
 
                     </div>
 
                     <!-- <div class="w-3/5 h-[1px] bg-slate-400 translate-y-24"></div> -->
-                    <div class="w-full bg-white mt-40 flex items-center justify-center">
+                    <div class="w-full bg-white mt-40 flex items-center justify-center translate-y-96">
                         <table class="qr-info-table mb-80" id="qrTable">
                             <colgroup>
                                 <col width="30%" />
