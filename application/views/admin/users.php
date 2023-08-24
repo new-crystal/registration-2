@@ -108,37 +108,54 @@
                         <th>메모</th> -->
 
                         <th></th>
-                        <th style="min-width: 90px">KSSO <br>회원여부</th>
+                        <th>No</th>
+                        <th>Registration No.</th>
+                        <th>결제상태</th>
                         <th>등록시간</th>
-                        <th>접수번호</th>
-                        <th style="min-width: 100px">참석자유형</th>
-                        <th>참석자구분</th>
-                        <th>이름</th>
-                        <th>소속</th>
-                        <th>이메일</th>
-                        <th>전화번호</th>
-                        <!-- <th>영수증출력</th>
-                        <th>메일전송</th> -->
+                        <th>KSSO 회원 여부</th>
+                        <th>Type of Participation</th>
+                        <th>Full Name</th>
+                        <th>성함</th>
+                        <th>네임택용 Affiliation </th>
+                        <th>Country</th>
+                        <th>Phone Number</th>
+                        <th>ID(E-mail)</th>
+                        <th>Category</th>
                         <th>등록비</th>
-                        <th>입금여부</th>
-                        <th>메모</th>
+                        <th>결제일</th>
+                        <th>결제 방식</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    $index = 1;
                     foreach ($users as $item) {
-                        // print_r($item);
                         echo '<tr>';
                         echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['registration_no'] . '"></td>';
-                        echo '<td>' . $item['ksso_member_status']  . '</td>';
+                        echo '<td>' . $index++ . '</td>';
+                        echo '<td>' . $item['registration_no']  . '</td>';
+                        // echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
+                        if ($item['deposit'] != "입금완료") {
+                            echo '<td style="color:red;">';
+                        } else {
+                            echo '<td style="color:blue;">';
+                        }
+                        echo '' . $item['deposit'] . '</td>';
+                        echo '</td>';
                         echo '<td>' . substr($item['time'], 0, 100) . '</td>';
-                        echo '<td>' . $item['registration_no'] . '</td>';
-                        echo '<td>' . $item['member_type'] . '</td>';
-                        echo '<td>' . $item['attendance_type']  . '</td>';
+                        echo '<td>' . $item['ksso_member_status'] . '</td>';
+                        echo '<td>' . $item['attendance_type'] . '</td>';
+
+                        echo '<td>' . $item['first_name']  . $item['last_name'] .  '</td>';
                         echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['name_kor'] . '</a></td>';
-                        echo '<td>' . $item['affiliation_kor'] . '</td>';
-                        echo '<td>' . $item['email'] . '</td>';
+                        echo '<td>' . $item['org_nametag'] . '</td>';
+                        echo '<td>' . $item['nation'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
+                        echo '<td>' . $item['email'] . '</td>';
+                        echo '<td>' . $item['member_type']  . '</td>';
+                        echo '<td>' . $item['fee']  . '</td>';
+                        echo '<td>' . $item['deposit_date']  . '</td>';
+                        echo '<td>' . $item['deposit_date']  . '</td>';
                         // echo '<td>';
                         // echo '<a><div class="btn btn-non-success qr_btn" onclick="onClickReceipt(\'' . $item['registration_no'] . '\')">영수증</div></a>';
                         // echo '</td>';
@@ -150,22 +167,15 @@
                         //     echo '<a href="/admin/email?n=' . $item['registration_no'] . '" target="_blank"><div class="btn btn-warning qr_btn" >입금요청메일발송</div></a>';
                         // }
                         // echo '</td>';
-                        echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
-                        if ($item['deposit'] != "입금완료") {
-                            echo '<td style="color:red;">';
-                        } else {
-                            echo '<td style="color:blue;">';
-                        }
-                        echo '' . $item['deposit'] . '</td>';
-                        echo '</td>';
-                        if ($item['memo'] != "" && $item['memo'] != 'null') {
-                            echo '<td>';
-                            echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(\'' . $item['registration_no'] . '\')" data-id="' . $item['registration_no'] . '">메모</button>';
-                        } else {
-                            echo '<td>';
-                            echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800 bg-white" onclick="onClickMemo(\'' . $item['registration_no'] . '\')" data-id="' . $item['registration_no'] . '">메모</button>';
-                        }
-                        echo '</td>';
+
+                        // if ($item['memo'] != "" && $item['memo'] != 'null') {
+                        //     echo '<td>';
+                        //     echo '<button class="btn qr_btn memo bg-indigo-800" onclick="onClickMemo(\'' . $item['registration_no'] . '\')" data-id="' . $item['registration_no'] . '">메모</button>';
+                        // } else {
+                        //     echo '<td>';
+                        //     echo '<button class="btn qr_btn memo border-indigo-800 text-indigo-800 bg-white" onclick="onClickMemo(\'' . $item['registration_no'] . '\')" data-id="' . $item['registration_no'] . '">메모</button>';
+                        // }
+                        // echo '</td>';
 
                         // echo $item['deposit'] . '</td>';
                         // if ($item['qr_chk'] == "N") {

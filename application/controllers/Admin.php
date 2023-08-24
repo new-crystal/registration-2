@@ -450,7 +450,7 @@ class Admin extends CI_Controller
             $where = array(
                 'attendance_type' => $userType
             );
-            $data['users'] = $this->users->get_users_order('nick_name', $where);
+            $data['users'] = $this->users->get_users_order('name_kor', $where);
             $this->load->view('admin/qr_layout_all', $data);
             // }
         }
