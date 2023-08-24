@@ -18,7 +18,7 @@
     }
 </style>
 <div class="text-center flex flex-col items-center justify-center">
-    <h1 class="text-6xl font-semibold text-orange-600 my-10">***학회_2023 ****</h1>
+    <h1 class="text-6xl font-semibold text-orange-600 my-10">ICOMES 2023</h1>
     <h6 class="text-3xl font-semibold mb-20 ">현장 참석자 데이터</h6>
     <?php
     // print_r($statistics);
@@ -35,9 +35,9 @@
     <table class="w-9/12 text-2xl mb-20">
         <tr class="bg-green-300 text-black">
             <th colspan="2">등록구분</th>
-            <th>7월 11일(목)</th>
-            <th>7월 12일(금)</th>
-            <th>7월 13일(토)</th>
+            <th>9월 7일(목)</th>
+            <th>9월 8일(금)</th>
+            <th>9월 9일(토)</th>
         </tr>
         <tr>
             <th class="bg-red-100" rowspan="5">사전등록</th>

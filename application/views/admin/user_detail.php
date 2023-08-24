@@ -18,6 +18,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Registration No.(Lucky Draw)</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text"
+                                        value="<?php echo $item['registration_no']; ?>" name="registration_no"
+                                        id="registration_no" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">비자 생년월일</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text"

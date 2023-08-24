@@ -59,7 +59,7 @@ class Entrance extends CI_Model
             WHERE DATE(TIME) = '2023-08-20'
             GROUP BY registration_no
         ) b3 ON a.registration_no = b3.qr_registration_no
-        ORDER BY a.nick_name ASC;
+        ORDER BY a.name_kor ASC;
         ");
 
         return $query->result_array();

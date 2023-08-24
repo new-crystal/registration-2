@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 <style>
 @page {
@@ -8,13 +8,13 @@
     margin: 0;
 }
 
-@font-face {
+/* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
-}
+} */
 
-#nick_name {
-    font-family: NanumSquare;
+.nick_name {
+    font-family: 'Open Sans', sans-serif;
 }
 
 #printThis {
@@ -22,6 +22,25 @@
     height: 24cm;
     margin: 0;
     padding: 0;
+}
+
+.small_name {
+    font-size: 30px !important;
+}
+
+.small_text_box {
+    position: relative;
+    top: -18px;
+}
+
+.text_box {
+    position: relative;
+    top: -19px;
+}
+
+.kor_box {
+    position: relative;
+    top: 24px;
 }
 </style>
 
@@ -38,30 +57,63 @@
             <?php
             $num_int = 1;
             foreach ($users as $item) {
-                $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $item['nick_name']);
-                $nicknameLength = mb_strlen($item['nick_name'], "UTF-8");
+                $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $item['name_kor']);
+                $nicknameLength = mb_strlen($item['name_kor'], "UTF-8");
+                $nation = $item['nation'];
                 echo '<div class="a4_area">';
                 echo '<div class="bg_area">';
                 echo '<div class="txt_con">';
                 if ($item['nt_info'] != '') {
                     echo '<div class="org" id="nt_info">' . $item['nt_info'] . '</div>';
                 }
-                if ($lang == 0) {
-                    echo '<div class="nick_name lang_en" id="nick_name">' . $item['nick_name'] . '</div>';
-                } else if ($lang !== 0 && $nicknameLength <= 3) {
-                    echo '<div class="nick_name" id="nick_name">' . $item['nick_name'] . '</div>';
-                } else if ($lang !== 0 && $nicknameLength > 3) {
-                    echo '<div class="small_nickname" id="nick_name">' . $item['nick_name'] . '</div>';
-                }
                 echo '<div class="org" id="org">' . $item['org_nametag'] . '</div>';
+
+                /**닉네임 조건식 */
+                // 한국인 X && firstname 15글자 이상
+                if (mb_strlen($item['first_name']) >= 15 && $nation != "Republic of Korea") {
+                    echo '<div class="nick_name lang_en small_name" id="first_name">' .  $item['first_name'] . '</div>';
+
+                    // 한국인 X && firstname 15글자 이하
+                } else if (mb_strlen($item['first_name']) <= 15 && $nation != "Republic of Korea") {
+                    echo '<div class="nick_name lang_en" id="first_name">' .  $item['first_name'] . '</div>';
+                }
+                // 한국인 X && lastname 15글자 이상
+                if (mb_strlen($item['last_name']) >= 15 && $nation != "Republic of Korea") {
+                    echo '<div class="nick_name lang_en small_name" id="first_name">' .  $item['last_name'] . '</div>';
+
+                    // 한국인 X && lastname 15글자 이하    
+                } else if (mb_strlen($item['first_name']) <= 15 && $nation != "Republic of Korea") {
+                    echo '<div class="nick_name lang_en" id="first_name">' .  $item['last_name'] . '</div>';
+                }
+
+                //한국인 O
+                if ($nation == "Republic of Korea") {
+                    echo '<div class="nick_name lang_en small_name" id="first_name">' . $item['last_name'] . " " . $item['first_name'] . '</div>';
+                }
                 echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $item['registration_no'] . '.jpg"></div>';
+
+                //한국인 X firstname & lastName 15글자 이상
+                if (mb_strlen($item['first_name']) >= 15 && mb_strlen($item['last_name']) >= 15 && $nation != "Republic of Korea") {
+                    echo '<div class ="small_text_box">';
+
+                    //한국인 X firstname & lastName 15글자 이하
+                } else if (mb_strlen($item['first_name']) <= 15 && mb_strlen($item['last_name']) <= 15 && $nation != "Republic of Korea") {
+                    echo '<div class ="text_box">';
+
+                    //한국인 O
+                } else if ($nation == "Republic of Korea") {
+                    echo '<div class ="kor_box">';
+                }
+                echo '<div class="receipt receipt_name">' . $item['last_name'] . ' ' . $item['first_name'] .   '</div>';
                 echo '<div class="receipt receipt_num_1">' . $item['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_name">' . $item['nick_name'] . '</div>';
                 echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '</div>';
-                echo '<div class="receipt receipt_num_2">' . $item['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_small small_nick">' . $item['nick_name'] . '</div>';
-                echo '<div class="receipt receipt_small smaill_ln">' . $item['ln'] . '</div>';
-                echo '<div class="receipt receipt_small small_sn">' . $item['sn'] . '</div>';
+                echo '</div>';
+
+
+                // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
+                // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
+                // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
+                // echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
