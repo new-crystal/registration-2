@@ -35,7 +35,7 @@ class Admin extends CI_Controller
         else {
             // 
             $data['primary_menu'] = 'users';
-            $data['users'] = $this->users->get_qr_user();
+            $data['users'] = $this->users->get_users();
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/users', $data);
