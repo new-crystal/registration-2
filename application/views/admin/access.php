@@ -80,7 +80,6 @@ $en_name = $firstName . " " . $lastName
                     class="w-full h-screen flex flex-col items-center justify-center bg-slate-50">
 
                     <div class="w-2/5 flex flex-col items-center justify-center translate-y-96">
-                        <?php print_r($firstName) ?>
                         <h1 class="text-5xl mt-32 font-semibold ">QR CODE 입력 </h1>
                         <h6 class="text-3xl mt-20 ">커서를 텍스트박스 안에 놓고 QR 코드 스캐너를 사용하세요.</h6>
                         <input id="qrcode_input" name="qrcode" class="w-[400px] h-[50px] mt-20 p-3 " type="text"
@@ -89,7 +88,9 @@ $en_name = $firstName . " " . $lastName
                         <button
                             class="w-[150px] h-[40px] bg-slate-300 mt-20 mb-20 hover:bg-slate-400 active:bg-slate-500 text-black"
                             type="submit" id="submit">등록</button>
-
+                        <button
+                            class="w-[150px] h-[40px] bg-slate-400 mt-20 mb-20 hover:bg-slate-300 active:bg-slate-300 text-black"
+                            type="button" id="memo_btn">메모</button>
                     </div>
 
                     <!-- <div class="w-3/5 h-[1px] bg-slate-400 translate-y-24"></div> -->
@@ -123,13 +124,13 @@ $en_name = $firstName . " " . $lastName
                             </tr>
                             <tr>
                                 <th>Affiliation</th>
-                                <td id="202303_A01264" class="qr_text">
-                                    <?php if (isset($user['202303_A01264'])) echo $user['affiliation'] ?></td>
+                                <td id="affiliation" class="qr_text">
+                                    <?php if (isset($user['affiliation'])) echo $user['affiliation'] ?></td>
                             </tr>
                             <tr>
                                 <th>소속</th>
-                                <td id="202303_A01264" class="qr_text">
-                                    <?php if (isset($user['affiliation'])) echo $user['affiliation_kor'] ?></td>
+                                <td id="affiliation_kor" class="qr_text">
+                                    <?php if (isset($user['affiliation_kor'])) echo $user['affiliation_kor'] ?></td>
                             </tr>
                             <tr>
                                 <th>비만학회 회원 여부</th>
@@ -174,7 +175,7 @@ $en_name = $firstName . " " . $lastName
 
                             <tr>
                                 <th>Remark 1</th>
-                                <td id="etc2" class="qr_text"></td>
+                                <td id="remark1" class="qr_text"></td>
                             </tr>
                             <tr>
                                 <th>Remark 2</th>
@@ -185,11 +186,11 @@ $en_name = $firstName . " " . $lastName
 
                             <tr>
                                 <th>Remark 3</th>
-                                <td id="etc2" class="qr_text"></td>
+                                <td id="remark3" class="qr_text"></td>
                             </tr>
                             <tr>
                                 <th>Remark 4</th>
-                                <td id="etc3" class="qr_text"></td>
+                                <td id="remark4" class="qr_text"></td>
                             </tr>
                         </table>
                     </div>
@@ -217,13 +218,22 @@ const table = document.querySelector(".qr-info-table")
 const open = document.querySelector("#open")
 const name = document.querySelector("#name")
 const enName = document.querySelector("#en_name")
-const org = document.querySelector("#org")
-const category = document.querySelector("#category")
+const nation = document.querySelector("#nation")
+const affiliation = document.querySelector("#affiliation")
+const affiliation_kor = document.querySelector("#affiliation_kor")
+const ksso_member_status = document.querySelector("#ksso_member_status")
+const attendance_type = document.querySelector("#attendance_type")
+const category = document.querySelector("#member_type")
+const deposit = document.querySelector("#deposit")
+const fee = document.querySelector("#fee")
+const is_score = document.querySelector("#is_score")
 const memo = document.querySelector("#memo")
 const number = document.querySelector("#number")
-const etc1 = document.querySelector("#etc1")
-const etc2 = document.querySelector("#etc2")
-const etc3 = document.querySelector("#etc3")
+const remark1 = document.querySelector("#remark1")
+const special_request_food = document.querySelector("#special_request_food")
+const remark3 = document.querySelector("#remark3")
+const remark4 = document.querySelector("#remark4")
+const memoBtn = document.querySelector("#memo_btn")
 var childWindow;
 let qrvalue = "";
 
@@ -264,19 +274,47 @@ function fetchData(qrcode) {
                         /\s/g, "");
                 name.innerText = htmlDocument.querySelector("#name").innerText.replace(/<br\s*\/?>/gi, "").replace(
                     /\s/g, "");
-                org.innerText = htmlDocument.querySelector("#org").innerText.replace(/<br\s*\/?>/gi, "").replace(
+                nation.innerText = htmlDocument.querySelector("#nation").innerText.replace(/<br\s*\/?>/gi, "")
+                    .replace(
+                        /\s/g, "");
+
+                affiliation.innerText = htmlDocument.querySelector("#affiliation").innerText.replace(/<br\s*\/?>/gi,
+                    "").replace(
                     /\s/g,
                     "");
-                category.innerText = htmlDocument.querySelector("#category").innerText.replace(/<br\s*\/?>/gi, "")
+                affiliation_kor.innerText = htmlDocument.querySelector("#affiliation_kor").innerText.replace(
+                    /<br\s*\/?>/gi, "").replace(
+                    /\s/g,
+                    "");
+                ksso_member_status.innerText = htmlDocument.querySelector("#ksso_member_status").innerText.replace(
+                        /<br\s*\/?>/gi, "")
+                    .replace(/\s/g, "");
+                attendance_type.innerText = htmlDocument.querySelector("#attendance_type").innerText.replace(
+                        /<br\s*\/?>/gi, "")
+                    .replace(/\s/g, "");
+                member_type.innerText = htmlDocument.querySelector("#member_type").innerText.replace(/<br\s*\/?>/gi,
+                        "")
+                    .replace(/\s/g, "");
+                deposit.innerText = htmlDocument.querySelector("#deposit").innerText.replace(/<br\s*\/?>/gi, "")
+                    .replace(/\s/g, "");
+                fee.innerText = htmlDocument.querySelector("#fee").innerText.replace(/<br\s*\/?>/gi, "")
+                    .replace(/\s/g, "");
+                is_score.innerText = htmlDocument.querySelector("#is_score").innerText.replace(/<br\s*\/?>/gi, "")
                     .replace(/\s/g, "");
                 memo.innerText = htmlDocument.querySelector("#memo").innerText.replace(/<br\s*\/?>/gi, "").replace(
                     /\s/g, "");
-                etc1.innerText = htmlDocument.querySelector("#etc1").innerText.replace(/<br\s*\/?>/gi, "").replace(
-                    /\s/g, "");
-                etc2.innerText = htmlDocument.querySelector("#etc2").innerText.replace(/<br\s*\/?>/gi, "").replace(
-                    /\s/g, "");
-                etc3.innerText = htmlDocument.querySelector("#etc3").innerText.replace(/<br\s*\/?>/gi, "").replace(
-                    /\s/g, "");
+                remark1.innerText = htmlDocument.querySelector("#remark1").innerText.replace(/<br\s*\/?>/gi, "")
+                    .replace(
+                        /\s/g, "");
+                special_request_food.innerText = htmlDocument.querySelector("#special_request_food").innerText
+                    .replace(/<br\s*\/?>/gi, "").replace(
+                        /\s/g, "");
+                remark3.innerText = htmlDocument.querySelector("#remark3").innerText.replace(/<br\s*\/?>/gi, "")
+                    .replace(
+                        /\s/g, "");
+                remark4.innerText = htmlDocument.querySelector("#remark4").innerText.replace(/<br\s*\/?>/gi, "")
+                    .replace(
+                        /\s/g, "");
             } else {
                 number.innerText = qrvalue
                 name.innerText = "없는 QR입니다."
@@ -336,5 +374,13 @@ window.onload = () => {
         number.innerText = qrvalue
     }
 }
+
+memoBtn.addEventListener("click", () => {
+    const registerNum = number.innerText;
+    const url = `/admin/memo?n=${registerNum}`;
+    if (registerNum) {
+        window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+    }
+})
 </script>
 </body>

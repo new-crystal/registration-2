@@ -50,9 +50,8 @@
                                 </tr>
                                 <tr>
                                     <th>Registration No.(Lucky Draw)</th>
-                                    <td style="background-color:#fafafa;"> <input class="form-control" type="text"
-                                            value="<?php echo $item['registration_no']; ?>" name="registration_no"
-                                            id="registration_no" readonly></td>
+                                    <td> <input class="form-control" type="text" name="registration_no"
+                                            id="registration_no"></td>
                                 </tr>
                                 <tr>
                                     <th>등록시간</th>
