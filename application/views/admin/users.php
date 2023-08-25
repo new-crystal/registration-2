@@ -2,11 +2,16 @@
 <style>
 table th {
     padding: 0;
-    font-size: 1.2rem;
+    font-size: 11px !important;
+    padding: 8px !important;
 }
 
 table {
     font-size: 11px !important;
+}
+
+table td {
+    padding: 4px !important;
 }
 
 .loading_box {
