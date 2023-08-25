@@ -13,13 +13,13 @@ body {
     padding: 0;
 }
 
-@font-face {
+/* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
-}
+} */
 
-#nick_name {
-    font-family: NanumSquare, "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
+.nick_name {
+    font-family: 'Open Sans', sans-serif;
 }
 
 #printThis {
@@ -27,6 +27,37 @@ body {
     height: 24cm;
     margin: 0;
     padding: 0;
+}
+
+.small_name {
+    font-size: 30px !important;
+}
+
+.small_text_box {
+    position: relative;
+    top: -18px;
+}
+
+.text_box {
+    position: relative;
+    top: -19px;
+}
+
+.kor_box {
+    position: relative;
+    top: 24px;
+}
+
+.lucky_num {
+    position: relative;
+    top: -118px;
+    left: 143px;
+}
+
+.lucky_num_bottom {
+    position: relative;
+    top: -175px;
+    left: 143px;
 }
 </style>
 
@@ -55,6 +86,7 @@ body {
                 if ($users['nt_info'] != '') {
                     echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
                 }
+                echo '<div class="lucky_num" id="lucky_num">' . "1234" . '</div>';
                 echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
 
                 /**닉네임 조건식 */
@@ -89,10 +121,7 @@ body {
                 } else if (mb_strlen($users['first_name']) <= 15 && mb_strlen($users['last_name']) <= 15) {
                     echo '<div class ="text_box">';
                 }
-                //한국인 O
-                // } else if ($nation == "Republic of Korea") {
-                //     echo '<div class ="kor_box">';
-                // }
+
                 echo '<div class="receipt receipt_name">' . $users['first_name'] . ' ' . $users['last_name'] .   '</div>';
                 echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
                 echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
@@ -106,6 +135,7 @@ body {
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 ?>
             </div>
         </div>
