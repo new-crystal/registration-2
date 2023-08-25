@@ -116,10 +116,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>네임택용 Name</th>
-                                    <td> <input type="text" class="form-control" name="is_score" id="ln"></td>
-                                </tr>
-                                <tr>
                                     <th>소속</th>
                                     <td> <input class="form-control" type="text"
                                             value="<?php echo $item['affiliation']; ?>" name="affiliation" id="org">
@@ -145,8 +141,6 @@
                                             id="org_nametag">
                                     </td>
                                 </tr>
-                            </table>
-                            <table>
                                 <tr>
                                     <th>E-mail</th>
                                     <td><input class="form-control" type="text" value="<?php echo $item['email']; ?>"
@@ -157,6 +151,9 @@
                                     <td> <input class="form-control" type="text" value="<?php echo $item['phone']; ?>"
                                             name="phone" id="phone"></td>
                                 </tr>
+                            </table>
+                            <table>
+
                                 <tr>
                                     <th>Occupation</th>
                                     <td> <input type="text" class="form-control"
@@ -184,7 +181,7 @@
                                 </tr>
                                 <tr>
                                     <th>Date of Birth</th>
-                                    <td> <input type="text" class="form-control"
+                                    <td> <input id="dp1" type="text" class="form-control"
                                             value="<?php echo $item['date_of_birth']; ?>" name="date_of_birth" id="ln">
                                     </td>
                                 </tr>

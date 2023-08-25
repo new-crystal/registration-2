@@ -5,6 +5,10 @@ table th {
     font-size: 1.2rem;
 }
 
+table {
+    font-size: 11px !important;
+}
+
 .loading_box {
     position: absolute;
     width: 100%;
@@ -147,7 +151,7 @@ table th {
                         }
                         echo '' . $item['deposit'] . '</td>';
                         echo '</td>';
-                        echo '<td>' . $item['mintime'] . '</td>';
+                        echo '<td>' . $item['time'] . '</td>';
                         echo '<td>' . $item['ksso_member_status'] . '</td>';
                         echo '<td>' . $item['attendance_type'] . '</td>';
 
@@ -160,7 +164,7 @@ table th {
                         echo '<td>' . $item['member_type']  . '</td>';
                         echo '<td>' . $item['fee']  . '</td>';
                         echo '<td>' . $item['deposit_date']  . '</td>';
-                        echo '<td>' . $item['deposit_date']  . '</td>';
+                        echo '<td>' . $item['etc1']  . '</td>';
                         // echo '<td>';
                         // echo '<a><div class="btn btn-non-success qr_btn" onclick="onClickReceipt(\'' . $item['registration_no'] . '\')">영수증</div></a>';
                         // echo '</td>';
