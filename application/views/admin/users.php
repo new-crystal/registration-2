@@ -1,40 +1,45 @@
 <script type="text/javascript" src="/assets/js/admin/lecture_history.js"></script>
 <style>
-    table th {
-        padding: 0;
-        font-size: 1.2rem;
-    }
+table th {
+    padding: 0;
+    font-size: 1.2rem;
+}
 
-    .loading_box {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        transform: translateX(-200px);
-        z-index: 9999;
-    }
+.loading_box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translateX(-200px);
+    z-index: 9999;
+}
 
-    .loading {
-        position: absolute;
-        top: 20%;
-        left: 52%;
-        transform: translate(-50%, -50%);
-    }
+.loading {
+    position: absolute;
+    top: 20%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+}
 </style>
 <!-- Main content -->
 <div class="content-wrapper">
     <!-- Page header -->
     <div style="display: none;" class="loading_box" onclick="alert('진행중입니다.')">
 
-        <svg class="loading" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" width="70px" height="70px">
+        <svg class="loading" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
+            enable-background="new 0 0 0 0" xml:space="preserve" width="70px" height="70px">
             <circle fill="#fff" stroke="none" cx="6" cy="50" r="6">
-                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15" repeatCount="indefinite" begin="0.1" />
+                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15"
+                    repeatCount="indefinite" begin="0.1" />
             </circle>
             <circle fill="#fff" stroke="none" cx="30" cy="50" r="6">
-                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 10 ; 0 -10; 0 10" repeatCount="indefinite" begin="0.2" />
+                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 10 ; 0 -10; 0 10"
+                    repeatCount="indefinite" begin="0.2" />
             </circle>
             <circle fill="#fff" stroke="none" cx="54" cy="50" r="6">
-                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5" repeatCount="indefinite" begin="0.3" />
+                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+                    repeatCount="indefinite" begin="0.3" />
             </circle>
         </svg>
     </div>
@@ -54,7 +59,7 @@
         <div class="panel panel-flat">
 
             <div class="panel-heading">
-                <h5 class="panel-title">등록 인원</h5>
+                <h5 class="panel-title">등록 인원(<?php echo count($users) ?>)</h5>
                 <div class="heading-elements">
                     <form action="/admin/excel_download" method="post">
                         <button class="btn btn-primary pull-right"><i class="icon-download4"></i> &nbspExcel
@@ -108,7 +113,7 @@
                         <th>메모</th> -->
 
                         <th></th>
-                        <th>No</th>
+                        <!-- <th>No</th> -->
                         <th>Registration No.</th>
                         <th>결제상태</th>
                         <th>등록시간</th>
@@ -128,11 +133,11 @@
                 </thead>
                 <tbody>
                     <?php
-                    $index = 1;
+                    // $index = 1;
                     foreach ($users as $item) {
                         echo '<tr>';
                         echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['registration_no'] . '"></td>';
-                        echo '<td>' . $index++ . '</td>';
+                        // echo '<td>' . $index++ . '</td>';
                         echo '<td>' . $item['registration_no']  . '</td>';
                         // echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
                         if ($item['deposit'] != "입금완료") {
@@ -142,7 +147,7 @@
                         }
                         echo '' . $item['deposit'] . '</td>';
                         echo '</td>';
-                        echo '<td>' . substr($item['time'], 0, 100) . '</td>';
+                        echo '<td>' . $item['mintime'] . '</td>';
                         echo '<td>' . $item['ksso_member_status'] . '</td>';
                         echo '<td>' . $item['attendance_type'] . '</td>';
 
@@ -215,55 +220,55 @@
 </div>
 <!-- /page container -->
 <script>
-    //        $('#allChk').click(function(){
-    //            if($('input:checkbox[id="allChk"]').prop('checked')){
-    //                $('input[type=checkbox]').prop('checked',true);
-    //            }else{
-    //                $('input[type=checkbox]').prop('checked',false);
-    //            }
-    //        })
+//        $('#allChk').click(function(){
+//            if($('input:checkbox[id="allChk"]').prop('checked')){
+//                $('input[type=checkbox]').prop('checked',true);
+//            }else{
+//                $('input[type=checkbox]').prop('checked',false);
+//            }
+//        })
 
 
-    function onClickMemo(id) {
-        const url = `/admin/memo?n=${id}`;
-        window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+function onClickMemo(id) {
+    const url = `/admin/memo?n=${id}`;
+    window.open(url, "Certificate", "width=500, height=300, top=30, left=30");
+}
+
+function onClickReceipt(id) {
+    const url = `/admin/receipt?n=${id}`
+    window.open(url, "Certificate", "width=500, height=300, top=30, left=30")
+}
+
+
+$('.depositChk').click(function() {
+    var formName = $('#depositForm');
+    var formName2 = $('#nametagForm');
+    var formName3 = $('#non_depositForm');
+    // var formName4 = $('#all_depositForm');
+    var userId = $(this).val();
+    var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
+        '" id="">'
+    if ($(this).prop('checked')) {
+        formName.append(checkHtml);
+        formName2.append(checkHtml);
+        formName3.append(checkHtml);
+        // formName4.append(checkHtml)
+    } else {
+        $('.user' + userId).remove();
     }
+})
 
-    function onClickReceipt(id) {
-        const url = `/admin/receipt?n=${id}`
-        window.open(url, "Certificate", "width=500, height=300, top=30, left=30")
-    }
-
-
-    $('.depositChk').click(function() {
-        var formName = $('#depositForm');
-        var formName2 = $('#nametagForm');
-        var formName3 = $('#non_depositForm');
-        // var formName4 = $('#all_depositForm');
+$('#all_depositForm').click(function() {
+    var formName4 = $('#all_depositForm');
+    $('.depositChk').prop('checked', true).each(function() {
+        const loading = document.querySelector(".loading_box")
+        loading.style.display = ""
         var userId = $(this).val();
-        var checkHtml = '<input type="hidden" class="userId user' + userId + '" name="userId[]" value="' + userId +
-            '" id="">'
-        if ($(this).prop('checked')) {
-            formName.append(checkHtml);
-            formName2.append(checkHtml);
-            formName3.append(checkHtml);
-            // formName4.append(checkHtml)
-        } else {
-            $('.user' + userId).remove();
-        }
-    })
-
-    $('#all_depositForm').click(function() {
-        var formName4 = $('#all_depositForm');
-        $('.depositChk').prop('checked', true).each(function() {
-            const loading = document.querySelector(".loading_box")
-            loading.style.display = ""
-            var userId = $(this).val();
-            var checkHtml = '<input type="hidden" class="userId user' + userId +
-                '" name="userId[]" value="' + userId +
-                '" id="">';
-            formName4.append(checkHtml);
-        });
+        var checkHtml = '<input type="hidden" class="userId user' + userId +
+            '" name="userId[]" value="' + userId +
+            '" id="">';
+        formName4.append(checkHtml);
     });
+});
 </script>
 </body>

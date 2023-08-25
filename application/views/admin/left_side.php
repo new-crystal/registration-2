@@ -119,7 +119,7 @@
                                         </span>
                                     </a>
                                 </li>
-                                <li <?php if ($primary_menu == 'abstracts') echo 'class="active"' ?>>
+                                <!-- <li <?php if ($primary_menu == 'abstracts') echo 'class="active"' ?>>
                                     <a href="/admin/abstracts">
                                         <i class="icon-list-unordered"></i>
                                         <span>초록제출인원
@@ -182,8 +182,15 @@
                                         </span>
                                     </a>
                                 </li>
+                              <li> 
+                                <a href="/admin/qr_excel_download" target="_blank">
+                                    <i class="icon-download4"></i>
+                                    <span>QR 기록 다운로드
+                                    </span>
+                                </a>
+                                </li> -->
                                 <li>
-                                    <a href="/admin/qr_excel_download" target="_blank">
+                                    <a href="/admin/icomes_qr_excel_download" target="_blank">
                                         <i class="icon-download4"></i>
                                         <span>QR 기록 다운로드
                                         </span>

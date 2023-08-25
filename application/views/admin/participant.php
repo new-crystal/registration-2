@@ -34,14 +34,29 @@
     ?>
     <table class="w-9/12 text-2xl mb-20">
         <tr class="bg-green-300 text-black">
-            <th colspan="2">등록구분</th>
-            <th>9월 7일(목)</th>
-            <th>9월 8일(금)</th>
-            <th>9월 9일(토)</th>
+            <th colspan="2" rowspan="2">등록구분</th>
+            <th colspan="2">9월 7일(목)</th>
+            <th colspan="2">9월 8일(금)</th>
+            <th colspan="2">9월 9일(토)</th>
+        </tr>
+        <tr class="bg-green-300 text-black">
+            <th>국외</th>
+            <th>국내</th>
+            <th>국외</th>
+            <th>국내</th>
+            <th>국외</th>
+            <th>국내</th>
+
         </tr>
         <tr>
-            <th class="bg-red-100" rowspan="5">사전등록</th>
-            <th class="bg-red-100">좌장</th>
+            <th class="bg-red-100" rowspan="7">사전등록</th>
+            <th class="bg-red-100">Chairperson</th>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-11']) ? $statistics[3]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-12']) ? $statistics[3]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-13']) ? $statistics[3]['202303_R_2023-07-13'] : 0; ?>
+            </td>
             <td><?php echo isset($statistics[3]['202303_R_2023-07-11']) ? $statistics[3]['202303_R_2023-07-11'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[3]['202303_R_2023-07-12']) ? $statistics[3]['202303_R_2023-07-12'] : 0; ?>
@@ -50,7 +65,13 @@
             </td>
         </tr>
         <tr>
-            <th class="bg-red-100">연자</th>
+            <th class="bg-red-100">Speakers</th>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-11']) ? $statistics[0]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-12']) ? $statistics[0]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-13']) ? $statistics[0]['202303_R_2023-07-13'] : 0; ?>
+            </td>
             <td><?php echo isset($statistics[0]['202303_R_2023-07-11']) ? $statistics[0]['202303_R_2023-07-11'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[0]['202303_R_2023-07-12']) ? $statistics[0]['202303_R_2023-07-12'] : 0; ?>
@@ -59,7 +80,13 @@
             </td>
         </tr>
         <tr>
-            <th class="bg-red-100">패널</th>
+            <th class="bg-red-100">Panel</th>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-11']) ? $statistics[4]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-12']) ? $statistics[4]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-13']) ? $statistics[4]['202303_R_2023-07-13'] : 0; ?>
+            </td>
             <td><?php echo isset($statistics[4]['202303_R_2023-07-11']) ? $statistics[4]['202303_R_2023-07-11'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[4]['202303_R_2023-07-12']) ? $statistics[4]['202303_R_2023-07-12'] : 0; ?>
@@ -68,7 +95,13 @@
             </td>
         </tr>
         <tr>
-            <th class="bg-red-100">임원</th>
+            <th class="bg-red-100">Committee</th>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-11']) ? $statistics[2]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-12']) ? $statistics[2]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-13']) ? $statistics[2]['202303_R_2023-07-13'] : 0; ?>
+            </td>
             <td><?php echo isset($statistics[2]['202303_R_2023-07-11']) ? $statistics[2]['202303_R_2023-07-11'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[2]['202303_R_2023-07-12']) ? $statistics[2]['202303_R_2023-07-12'] : 0; ?>
@@ -77,7 +110,13 @@
             </td>
         </tr>
         <tr>
-            <th class="bg-red-100">일반 참가자</th>
+            <th class="bg-red-100">Participants</th>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
+            </td>
             <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
@@ -86,56 +125,155 @@
             </td>
         </tr>
         <tr>
-            <th class="bg-sky-200" rowspan="5">현장등록</th>
-            <th class="bg-sky-200">좌장</th>
-            <td><?php echo isset($statistics[3]['202303_A_2023-07-11']) ? $statistics[3]['202303_A_2023-07-11'] : 0; ?>
+            <th class="bg-red-100">Press</th>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[3]['202303_A_2023-07-12']) ? $statistics[3]['202303_A_2023-07-12'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[3]['202303_A_2023-07-13']) ? $statistics[3]['202303_A_2023-07-13'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
             </td>
-        </tr>
-        <tr>
-            <th class="bg-sky-200">연자</th>
-            <td><?php echo isset($statistics[0]['202303_A_2023-07-11']) ? $statistics[0]['202303_A_2023-07-11'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[0]['202303_A_2023-07-12']) ? $statistics[0]['202303_A_2023-07-12'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[0]['202303_A_2023-07-13']) ? $statistics[0]['202303_A_2023-07-13'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
             </td>
         </tr>
         <tr>
-            <th class="bg-sky-200">패널</th>
-            <td><?php echo isset($statistics[4]['202303_A_2023-07-11']) ? $statistics[4]['202303_A_2023-07-11'] : 0; ?>
+            <th class="bg-red-100">Others</th>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[4]['202303_A_2023-07-12']) ? $statistics[4]['202303_A_2023-07-12'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[4]['202303_A_2023-07-13']) ? $statistics[4]['202303_A_2023-07-13'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
             </td>
-        </tr>
-        <tr>
-            <th class="bg-sky-200">임원</th>
-            <td><?php echo isset($statistics[2]['202303_A_2023-07-11']) ? $statistics[2]['202303_A_2023-07-11'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[2]['202303_A_2023-07-12']) ? $statistics[2]['202303_A_2023-07-12'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[2]['202303_A_2023-07-13']) ? $statistics[2]['202303_A_2023-07-13'] : 0; ?>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
             </td>
         </tr>
         <tr>
-            <th class="bg-sky-200">일반 참가자</th>
-            <td><?php echo isset($statistics[1]['202303_A_2023-07-11']) ? $statistics[1]['202303_A_2023-07-11'] : 0; ?>
+            <th class="bg-blue-100" rowspan="7">현장등록</th>
+            <th class="bg-blue-100">Chairperson</th>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-11']) ? $statistics[3]['202303_R_2023-07-11'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[1]['202303_A_2023-07-12']) ? $statistics[1]['202303_A_2023-07-12'] : 0; ?>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-12']) ? $statistics[3]['202303_R_2023-07-12'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[1]['202303_A_2023-07-13']) ? $statistics[1]['202303_A_2023-07-13'] : 0; ?>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-13']) ? $statistics[3]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-11']) ? $statistics[3]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-12']) ? $statistics[3]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[3]['202303_R_2023-07-13']) ? $statistics[3]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Speakers</th>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-11']) ? $statistics[0]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-12']) ? $statistics[0]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-13']) ? $statistics[0]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-11']) ? $statistics[0]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-12']) ? $statistics[0]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['202303_R_2023-07-13']) ? $statistics[0]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Panel</th>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-11']) ? $statistics[4]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-12']) ? $statistics[4]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-13']) ? $statistics[4]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-11']) ? $statistics[4]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-12']) ? $statistics[4]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[4]['202303_R_2023-07-13']) ? $statistics[4]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Committee</th>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-11']) ? $statistics[2]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-12']) ? $statistics[2]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-13']) ? $statistics[2]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-11']) ? $statistics[2]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-12']) ? $statistics[2]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[2]['202303_R_2023-07-13']) ? $statistics[2]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Participants</th>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Press</th>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Others</th>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-11']) ? $statistics[1]['202303_R_2023-07-11'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-12']) ? $statistics[1]['202303_R_2023-07-12'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[1]['202303_R_2023-07-13']) ? $statistics[1]['202303_R_2023-07-13'] : 0; ?>
             </td>
         </tr>
         <tr class="bg-green-300 text-black">
-            <th colspan="2">합계</th>
+            <th colspan="2" rowspan="2">합계</th>
             <th><?php echo $total_1; ?></th>
             <th><?php echo $total_2; ?></th>
             <th><?php echo $total_3; ?></th>
+            <th><?php echo $total_1; ?></th>
+            <th><?php echo $total_2; ?></th>
+            <th><?php echo $total_3; ?></th>
+        </tr>
+        <tr class="bg-green-300 text-black">
+            <th colspan="2"></th>
+            <th colspan="2"><?php echo $total_1; ?></th>
+            <th colspan="2"> <?php echo $total_2; ?></th>
+
         </tr>
     </table>
 </div>
