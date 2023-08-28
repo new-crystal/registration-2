@@ -257,19 +257,26 @@ class Users extends CI_Model
 		//etc 3이 0 -> 사전등록/ 1 -> 현장등록 
 		$query = $this->db->query("
 		SELECT
-		u.attendance_type,
-		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-07' AND u.etc3 LIKE '0' THEN u.etc3 END) AS '202303_A_2023-08-07'
-		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-07' AND u.etc3 LIKE '1' THEN u.etc3 END) AS '202303_R_2023-08-07',
-		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-08' AND u.etc3 LIKE '0' THEN u.etc3 END) AS '202303_A_2023-08-08',
-		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-08' AND u.etc3 LIKE '1' THEN u.etc3 END) AS '202303_R_2023-08-08',
-		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-09' AND u.etc3 LIKE '0' THEN u.etc3 END) AS '202303_A_2023-08-09',
-		COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-08-09' AND u.etc3 LIKE '1' THEN u.etc3 END) AS '202303_R_2023-08-09'
-	FROM
-		users u
-	JOIN
-		access a ON u.registration_no = a.registration_no
-	GROUP BY
-		u.attendance_type;	
+    u.attendance_type,
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-07' AND u.etc3 LIKE '0' AND u.nation = 'republic of korea' THEN u.registration_no END) AS 'AK_07',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-07' AND u.etc3 LIKE '0' AND u.nation != 'republic of korea' THEN u.registration_no END) AS 'A_07',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-07' AND u.etc3 LIKE '1' AND u.nation = 'republic of korea' THEN u.registration_no END) AS 'RK_07',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-07' AND u.etc3 LIKE '1' AND u.nation != 'republic of korea' THEN u.registration_no END) AS 'R_07',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-08' AND u.etc3 LIKE '0' AND u.nation = 'republic of korea' THEN u.registration_no END) AS 'AK_08',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-08' AND u.etc3 LIKE '0' AND u.nation != 'republic of korea' THEN u.registration_no END) AS 'A_08',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-08' AND u.etc3 LIKE '1' AND u.nation != 'republic of korea' THEN u.registration_no END) AS 'R_08',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-08' AND u.etc3 LIKE '1' AND u.nation = 'republic of korea' THEN u.registration_no END) AS 'RK_08',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-09' AND u.etc3 LIKE '0' AND u.nation = 'republic of korea' THEN u.registration_no END) AS 'AK_09',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-09' AND u.etc3 LIKE '0' AND u.nation != 'republic of korea' THEN u.registration_no END) AS 'A_09',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-09' AND u.etc3 LIKE '1' AND u.nation = 'republic of korea' THEN u.registration_no END) AS 'RK_09',
+    COUNT(DISTINCT CASE WHEN DATE(a.time) = '2023-09-09' AND u.etc3 LIKE '1' AND u.nation != 'republic of korea' THEN u.registration_no END) AS 'R_09'
+FROM
+    users u
+JOIN
+    access a ON u.registration_no = a.registration_no
+GROUP BY
+    u.attendance_type;
+
         ");
 		return $query->result_array();
 	}

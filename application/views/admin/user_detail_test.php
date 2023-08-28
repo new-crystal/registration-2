@@ -99,12 +99,12 @@ else {
                                 </tr>
 
 
-                                <tr>
+                                <!-- <tr>
                                     <th>구분 3</th>
                                     <td><input class="form-control" type="text"
                                             value="<?php echo $item['occupation_type']; ?>" name="occupation_type"
                                             id="type2"></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th>이름</th>
                                     <td>

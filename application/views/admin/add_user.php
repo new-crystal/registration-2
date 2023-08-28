@@ -318,44 +318,44 @@ $('#phone').bind('keyup', function(event) {
 })
 $(function() {
     $("#addForm").submit(function() {
-        if (!$.trim($("#name_kor").val())) {
-            alert("이름을 입력해주세요.");
-            $("#name_kor").focus();
-            return false;
-        }
-        if (!$.trim($("#sn").val())) {
-            $("#sn").val('00000');
-        }
-        if (!$.trim($("#org").val())) {
-            alert("소속단체명을 입력해주세요.");
-            $("#org").focus();
-            return false;
-        }
-        if (!$.trim($("#type1").val())) {
-            alert("구분1을 입력해주세요.");
-            $("#type1").focus();
-            return false;
-        }
-        if (!$.trim($("#type2").val())) {
-            alert("구분2을 입력해주세요.");
-            $("#type2").focus();
-            return false;
-        }
-        if (!$.trim($("#type3").val())) {
-            alert("구분3을 입력해주세요.");
-            $("#type3").focus();
-            return false;
-        }
-        if (!$.trim($("#phone").val())) {
-            alert("연락처(전화번호)를 입력해주세요.");
-            $("#phone").focus();
-            return false;
-        }
-        if (!$.trim($("#email").val())) {
-            alert("이메일을 입력해주세요.");
-            $("#email").focus();
-            return false;
-        }
+        // if (!$.trim($("#name_kor").val())) {
+        //     alert("이름을 입력해주세요.");
+        //     $("#name_kor").focus();
+        //     return false;
+        // }
+        // if (!$.trim($("#sn").val())) {
+        //     $("#sn").val('00000');
+        // }
+        // if (!$.trim($("#org").val())) {
+        //     alert("소속단체명을 입력해주세요.");
+        //     $("#org").focus();
+        //     return false;
+        // }
+        // if (!$.trim($("#type1").val())) {
+        //     alert("구분1을 입력해주세요.");
+        //     $("#type1").focus();
+        //     return false;
+        // }
+        // if (!$.trim($("#type2").val())) {
+        //     alert("구분2을 입력해주세요.");
+        //     $("#type2").focus();
+        //     return false;
+        // }
+        // if (!$.trim($("#type3").val())) {
+        //     alert("구분3을 입력해주세요.");
+        //     $("#type3").focus();
+        //     return false;
+        // }
+        // if (!$.trim($("#phone").val())) {
+        //     alert("연락처(전화번호)를 입력해주세요.");
+        //     $("#phone").focus();
+        //     return false;
+        // }
+        // if (!$.trim($("#email").val())) {
+        //     alert("이메일을 입력해주세요.");
+        //     $("#email").focus();
+        //     return false;
+        // }
 
 
         $("#addForm").attr("action", "/admin/add_user");
