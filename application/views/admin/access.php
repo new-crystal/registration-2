@@ -175,7 +175,9 @@ $en_name = $firstName . " " . $lastName
 
                             <tr>
                                 <th>Remark 1</th>
-                                <td id="remark1" class="qr_text"></td>
+                                <td id="remark1" class="qr_text">
+                                    <?php if (isset($user['remark1'])) echo $user['remark1'] ?>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Remark 2</th>
@@ -186,11 +188,15 @@ $en_name = $firstName . " " . $lastName
 
                             <tr>
                                 <th>Remark 3</th>
-                                <td id="remark3" class="qr_text"></td>
+                                <td id="remark3" class="qr_text">
+                                    <?php if (isset($user['remark3'])) echo $user['remark3'] ?>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Remark 4</th>
-                                <td id="remark4" class="qr_text"></td>
+                                <td id="remark4" class="qr_text">
+                                    <?php if (isset($user['remark4'])) echo $user['remark4'] ?>
+                                </td>
                             </tr>
                         </table>
                     </div>
