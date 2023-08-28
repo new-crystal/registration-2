@@ -29,7 +29,13 @@
     outline: 1px solid #000;
 }
 </style>
-
+<?php
+$contry = "";
+if ($item['nation'] == 'Republic of Korea') $contry = '국내';
+else {
+    $contry = '국외';
+}
+?>
 <!-- container section start -->
 <section id="container" class="">
 
@@ -50,18 +56,13 @@
                                 </tr>
                                 <tr>
                                     <th>Registration No.(Lucky Draw)</th>
-                                    <td> <input class="form-control" type="text" name="registration_no"
-                                            id="registration_no"></td>
+                                    <td> <input class="form-control" type="text" value="<?php echo $item['etc2']; ?>"
+                                            name="etc2" id="etc2"></td>
                                 </tr>
                                 <tr>
                                     <th>등록시간</th>
                                     <td> <input id="time" type="text" value="<?php echo substr($item['time'], 0, 10) ?>"
                                             size="16" class="form-control" name="time">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Date of Registration</th>
-                                    <td> <input id="time" type="text" size="16" class="form-control" name="time">
                                     </td>
                                 </tr>
                                 <tr>
@@ -72,7 +73,10 @@
                                 </tr>
                                 <tr>
                                     <th>국내/국외</th>
-                                    <td> <input class="form-control" type="text" name="attendance_type" id="type2"></td>
+                                    <td> <input class="form-control" type="text" name="attendance_type" id="type2"
+                                            value="<?php echo $contry ?>">
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>국가</th>
@@ -104,13 +108,18 @@
                                 <tr>
                                     <th>이름</th>
                                     <td>
-                                        firstname: <input class="form-control" type="text"
-                                            value="<?php echo $item['first_name']; ?>" name="first_name" id="nick_name">
-                                        lastname : <input class="form-control" type="text"
-                                            value="<?php echo $item['last_name']; ?>" name="last_name" id="nick_name">
-                                        fullname: <input class="form-control" type="text"
-                                            value="<?php echo $item['first_name'] . $item['last_name']; ?>"
-                                            name="fullname" id="nick_name">
+                                        <div style="display: flex; align-items: center;"><span>firstname:</span> <input
+                                                class="form-control" type="text"
+                                                value="<?php echo $item['first_name']; ?>" name="first_name"
+                                                id="nick_name"></div>
+                                        <div style="display: flex; align-items: center;"><span>lastname:</span> <input
+                                                class="form-control" type="text"
+                                                value="<?php echo $item['last_name']; ?>" name="last_name"
+                                                id="nick_name"></div>
+                                        <div style="display: flex; align-items: center;"><span> fullname:</span> <input
+                                                class="form-control" type="text"
+                                                value="<?php echo $item['first_name'] . " " . $item['last_name']; ?>"
+                                                name="fullname" id="nick_name"></div>
                                         <input class="form-control" type="text" value="<?php echo $item['name_kor']; ?>"
                                             name="name_kor" id="nick_name">
                                     </td>
@@ -234,7 +243,8 @@
                                 </tr>
                                 <tr>
                                     <th>결제방식</th>
-                                    <td> <input type="text" class="form-control" name="is_score" id="ln"></td>
+                                    <td> <input type="text" class="form-control" name="etc1" id="ln"
+                                            value="<?php echo $item['etc1']; ?>"></td>
                                 </tr>
                                 <tr>
                                     <th>결제금액
@@ -259,7 +269,8 @@
                                 <tr>
                                     <th>추천인
                                     </th>
-                                    <td><input class="form-control" type="text" name="fee" id="fee">
+                                    <td><input class="form-control" type="text" name="etc4"
+                                            value="<?php echo $item['etc4']; ?>" id="fee">
                                     </td>
                                 </tr>
                                 <tr>
@@ -348,7 +359,8 @@
                             <table>
                                 <tr>
                                     <th>Remarks 1(하단택) </th>
-                                    <td><input class="form-control" type="text" name="fee" id="fee">
+                                    <td><input class="form-control" type="text" name="remark1" id="fee"
+                                            value="<?php echo $item['remark1']; ?>">
                                     </td>
                                 </tr>
                                 <tr>
@@ -360,12 +372,14 @@
                                 </tr>
                                 <tr>
                                     <th>Remarks 3</th>
-                                    <td><input class="form-control" type="text" name="fee" id="fee">
+                                    <td><input class="form-control" type="text" name="remark3"
+                                            value="<?php echo $item['remark3']; ?>" id="fee">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Remarks 4</th>
-                                    <td><input class="form-control" type="text" name="fee" id="fee">
+                                    <td><input class="form-control" type="text" value="<?php echo $item['remark4']; ?>"
+                                            name="remark4" id="fee">
                                     </td>
                                 </tr>
                             </table>

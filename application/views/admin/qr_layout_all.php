@@ -8,6 +8,11 @@
     margin: 0;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 /* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
@@ -42,6 +47,18 @@
     position: relative;
     top: 24px;
 }
+
+.lucky_num {
+    position: relative;
+    top: -118px;
+    left: 143px;
+}
+
+.lucky_num_bottom {
+    position: relative;
+    top: -175px;
+    left: 143px;
+}
 </style>
 
 <!-- Main content -->
@@ -66,45 +83,43 @@
                 if ($item['nt_info'] != '') {
                     echo '<div class="org" id="nt_info">' . $item['nt_info'] . '</div>';
                 }
+                echo '<div class="lucky_num" id="lucky_num">' . "1234" . '</div>';
                 echo '<div class="org" id="org">' . $item['org_nametag'] . '</div>';
 
                 /**닉네임 조건식 */
                 // 한국인 X && firstname 15글자 이상
-                if (mb_strlen($item['first_name']) >= 15 && $nation != "Republic of Korea") {
+                if (mb_strlen($item['first_name']) >= 15) {
                     echo '<div class="nick_name lang_en small_name" id="first_name">' .  $item['first_name'] . '</div>';
 
                     // 한국인 X && firstname 15글자 이하
-                } else if (mb_strlen($item['first_name']) <= 15 && $nation != "Republic of Korea") {
+                } else if (mb_strlen($item['first_name']) <= 15) {
                     echo '<div class="nick_name lang_en" id="first_name">' .  $item['first_name'] . '</div>';
                 }
                 // 한국인 X && lastname 15글자 이상
-                if (mb_strlen($item['last_name']) >= 15 && $nation != "Republic of Korea") {
+                if (mb_strlen($item['last_name']) >= 15) {
                     echo '<div class="nick_name lang_en small_name" id="first_name">' .  $item['last_name'] . '</div>';
 
                     // 한국인 X && lastname 15글자 이하    
-                } else if (mb_strlen($item['first_name']) <= 15 && $nation != "Republic of Korea") {
+                } else if (mb_strlen($item['first_name']) <= 15) {
                     echo '<div class="nick_name lang_en" id="first_name">' .  $item['last_name'] . '</div>';
                 }
 
-                //한국인 O
-                if ($nation == "Republic of Korea") {
-                    echo '<div class="nick_name lang_en small_name" id="first_name">' . $item['last_name'] . " " . $item['first_name'] . '</div>';
-                }
+                // //한국인 O
+                // if ($nation == "Republic of Korea") {
+                //     echo '<div class="nick_name lang_en small_name" id="first_name">' . $users['last_name'] . " " . $users['first_name'] . '</div>';
+                // }
                 echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $item['registration_no'] . '.jpg"></div>';
 
                 //한국인 X firstname & lastName 15글자 이상
-                if (mb_strlen($item['first_name']) >= 15 && mb_strlen($item['last_name']) >= 15 && $nation != "Republic of Korea") {
+                if (mb_strlen($item['first_name']) >= 15 && mb_strlen($item['last_name']) >= 15) {
                     echo '<div class ="small_text_box">';
 
                     //한국인 X firstname & lastName 15글자 이하
-                } else if (mb_strlen($item['first_name']) <= 15 && mb_strlen($item['last_name']) <= 15 && $nation != "Republic of Korea") {
+                } else if (mb_strlen($item['first_name']) <= 15 && mb_strlen($item['last_name']) <= 15) {
                     echo '<div class ="text_box">';
-
-                    //한국인 O
-                } else if ($nation == "Republic of Korea") {
-                    echo '<div class ="kor_box">';
                 }
-                echo '<div class="receipt receipt_name">' . $item['last_name'] . ' ' . $item['first_name'] .   '</div>';
+
+                echo '<div class="receipt receipt_name">' . $item['first_name'] . ' ' . $item['last_name'] .   '</div>';
                 echo '<div class="receipt receipt_num_1">' . $item['registration_no'] . '</div>';
                 echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '</div>';
                 echo '</div>';
@@ -117,6 +132,7 @@
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 $num_int = $num_int + 1;
             }
             ?>
