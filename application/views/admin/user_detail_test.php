@@ -189,6 +189,12 @@ else {
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>평점신청여부</th>
+                                    <td> <input type="text" class="form-control"
+                                            value="<?php echo $item['is_score']; ?>" name="is_score" id="is_score">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>의사면허번호</th>
                                     <td> <input type="text" class="form-control"
                                             value="<?php echo $item['licence_number']; ?>" name="licence_number"
@@ -215,7 +221,7 @@ else {
                                 </tr>
                                 <tr>
                                     <th>운동사 신청(Y/N)</th>
-                                    <td> <input type="text" class="form-control" name="is_score" id="ln"></td>
+                                    <td> <input type="text" class="form-control" id="ln"></td>
                                 </tr>
                                 <tr>
                                     <th>결제상태</th>

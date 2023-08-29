@@ -3,82 +3,83 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 <style>
-    @page {
-        size: 10cm 24cm;
-        margin: 0;
-    }
+@page {
+    size: 10cm 24cm;
+    margin: 0;
+}
 
-    body {
-        margin: 0;
-        padding: 0;
-    }
+body {
+    margin: 0;
+    padding: 0;
+}
 
-    /* @font-face {
+/* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
 } */
 
-    .nick_name {
-        font-family: 'Open Sans', sans-serif;
-    }
+.nick_name {
+    font-family: 'Open Sans', sans-serif;
+}
 
-    #printThis {
-        width: 10cm;
-        height: 24cm;
-        margin: 0;
-        padding: 0;
-    }
+#printThis {
+    width: 10cm;
+    height: 24cm;
+    margin: 0;
+    padding: 0;
+}
 
-    .small_name {
-        font-size: 30px !important;
-    }
+.small_name {
+    font-size: 30px !important;
+}
 
-    .small_text_box {
-        position: relative;
-        top: -18px;
-    }
+.small_text_box {
+    position: relative;
+    top: -18px;
+}
 
-    .small_text_box>.receipt_name {
-        left: -42px !important;
-    }
+.small_text_box>.receipt_name {
+    left: -42px !important;
+}
 
-    .text_box>.receipt_name {
-        left: -42px !important;
-    }
+.text_box>.receipt_name {
+    left: -42px !important;
+}
 
-    #last_name {
-        padding: 0 !important;
-    }
+#last_name {
+    padding: 0 !important;
+}
 
-    .text_box {
-        position: relative;
-        top: -19px;
-    }
+.text_box {
+    position: relative;
+    top: -19px;
+}
 
-    .kor_box {
-        position: relative;
-        top: 24px;
-    }
+.kor_box {
+    position: relative;
+    top: 24px;
+}
 
-    .lucky_num {
-        position: relative;
-        top: -119px;
-        left: -30px;
-        text-align: right !important;
-    }
+.lucky_num {
+    position: relative;
+    top: -119px;
+    left: -30px;
+    text-align: right !important;
+}
 
-    .lucky_num_bottom {
-        position: relative;
-        top: 228px;
-        left: -32px;
-        text-align: right !important;
-    }
+.lucky_num_bottom {
+    position: relative;
+    top: 228px;
+    left: -32px;
+    text-align: right !important;
+}
 </style>
 
 <!-- Main content -->
 <div id="nametag_wrapper">
     <div class="edit_wrapper">
-        <button id="btnPrint" type="button" class="btn btn-primary" style="margin-left:20px;">Print<?php $num_row ?></button>
+        <button id="btnPrint" type="button" class="btn btn-primary"
+            style="margin-left:20px;">Print<?php $num_row ?></button>
     </div>
 
     <!-- Content area -->
@@ -96,7 +97,7 @@
                 if ($item['nt_info'] != '') {
                     echo '<div class="org" id="nt_info">' . $item['nt_info'] . '</div>';
                 }
-                echo '<div class="lucky_num" id="lucky_num">' . "1234" . '</div>';
+                echo '<div class="lucky_num" id="lucky_num">' . $item['etc2'] . '</div>';
                 echo '<div class="org" id="org">' . $item['org_nametag'] . '</div>';
 
                 /**닉네임 조건식 */
@@ -137,7 +138,7 @@
                 echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '</div>';
                 echo '</div>';
 
-                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $item['etc2'] . '</div>';
                 // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
                 // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
                 // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
@@ -161,31 +162,31 @@
 </div>
 <!-- /page container -->
 <style>
-    body {
-        background-color: #fff;
-    }
+body {
+    background-color: #fff;
+}
 </style>
 <script>
-    document.getElementById("btnPrint").onclick = function() {
-        printElement(document.getElementById("printThis"));
+document.getElementById("btnPrint").onclick = function() {
+    printElement(document.getElementById("printThis"));
+}
+
+function printElement(elem) {
+    var domClone = elem.cloneNode(true);
+
+    var $printSection = document.getElementById("printSection");
+
+    if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.style.width = "10cm";
+        $printSection.style.height = "24cm";
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
     }
 
-    function printElement(elem) {
-        var domClone = elem.cloneNode(true);
-
-        var $printSection = document.getElementById("printSection");
-
-        if (!$printSection) {
-            var $printSection = document.createElement("div");
-            $printSection.style.width = "10cm";
-            $printSection.style.height = "24cm";
-            $printSection.id = "printSection";
-            document.body.appendChild($printSection);
-        }
-
-        $printSection.innerHTML = "";
-        $printSection.appendChild(domClone);
-        window.print();
-    }
+    $printSection.innerHTML = "";
+    $printSection.appendChild(domClone);
+    window.print();
+}
 </script>
 </body>
