@@ -69,7 +69,7 @@
 
     .lucky_num_bottom {
         position: relative;
-        top: -175px;
+        top: 228px;
         left: -32px;
         text-align: right !important;
     }
@@ -89,7 +89,7 @@
     <!-- Content area -->
     <div class="content" id="nametag">
         <div id="printThis">
-            <div id="editor1" contenteditable="true">
+            <div id="editor1" contenteditable="true" style="height:24cm;">
                 <?php
                 $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['name_kor']);
                 $nation = $users['nation'];
@@ -141,7 +141,7 @@
                 echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
                 echo '</div>';
 
-
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
                 // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
                 // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
@@ -149,7 +149,7 @@
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
+
                 ?>
             </div>
         </div>
