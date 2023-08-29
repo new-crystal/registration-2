@@ -31,13 +31,13 @@
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text"
                                         value="<?php echo $item['date_of_birth']; ?>" name="date_of_birth"
-                                        id="registration_no">
+                                        id="date_of_birth">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">구분 1</label>
                                 <div class="col-sm-10"><input class="form-control" type="text"
-                                        value="<?php echo $item['member_type']; ?>" name="member_type" id="type1">
+                                        value="<?php echo $item['member_type']; ?>" name="member_type" id="member_type">
 
                                 </div>
                             </div>
@@ -46,21 +46,21 @@
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text"
                                         value="<?php echo $item['attendance_type']; ?>" name="attendance_type"
-                                        id="type2">
+                                        id="attendance_type">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">구분 3</label>
                                 <div class="col-sm-10"> <input class="form-control" type="text"
                                         value="<?php echo $item['occupation_type']; ?>" name="occupation_type"
-                                        id="type2">
+                                        id="occupation_type">
                                 </div>
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-2 control-label">회원여부</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control input-lg m-bot15" name="member_status" id="type3"
-                                        data-select="<?php echo $item['member_status']; ?>">
+                                    <select class="form-control input-lg m-bot15" name="member_status"
+                                        id="member_status" data-select="<?php echo $item['member_status']; ?>">
                                         <option value="회원">회원</option>
                                         <option value="비회원">비회원</option>
                                     </select>
@@ -71,28 +71,29 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"
                                         value="<?php echo  $item['ksso_member_status']; ?>" name="ksso_member_status"
-                                        id="ln">
+                                        id="ksso_member_status">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">국가</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" value="<?php echo $item['nation']; ?>"
-                                        name="nation" id="ln">
+                                        name="nation" id="nation">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">평점신청여부</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" value="<?php echo $item['is_score']; ?>"
-                                        name="is_score" id="ln">
+                                        name="is_score" id="is_score">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">면허번호</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"
-                                        value="<?php echo $item['licence_number']; ?>" name="licence_number" id="ln">
+                                        value="<?php echo $item['licence_number']; ?>" name="licence_number"
+                                        id="licence_number">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,7 +101,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"
                                         value="<?php echo $item['specialty_number']; ?>" name="specialty_number"
-                                        id="sn">
+                                        id="specialty_number">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,7 +109,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"
                                         value="<?php echo $item['nutritionist_number']; ?>" name="nutritionist_number"
-                                        id="sn">
+                                        id="nutritionist_number">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -116,7 +117,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control"
                                         value="<?php echo $item['dietitian_number']; ?>" name="dietitian_number"
-                                        id="sn">
+                                        id="dietitian_number">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -142,7 +143,7 @@
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text"
                                         value="<?php echo $item['conference_info']; ?>" name="conference_info"
-                                        id="phone">
+                                        id="conference_info">
                                 </div>
                             </div>
                         </div>
@@ -158,9 +159,10 @@
                                 <label class="col-sm-2 control-label">소속</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text" value="<?php echo $item['affiliation']; ?>"
-                                        name="affiliation" id="org">
+                                        name="affiliation" id="affiliation">
                                     <input class="form-control" type="text"
-                                        value="<?php echo $item['affiliation_kor']; ?>" name="affiliation_kor" id="org">
+                                        value="<?php echo $item['affiliation_kor']; ?>" name="affiliation_kor"
+                                        id="affiliation_kor">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -174,10 +176,10 @@
                                 <label class="col-sm-2 control-label">부서</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text" value="<?php echo $item['department']; ?>"
-                                        name="department" id="org_nametag">
+                                        name="department" id="department">
                                     <input class="form-control" type="text"
                                         value="<?php echo $item['department_kor']; ?>" name="department_kor"
-                                        id="org_nametag">
+                                        id="department_kor">
                                 </div>
                             </div>
                             <div class="form-group">

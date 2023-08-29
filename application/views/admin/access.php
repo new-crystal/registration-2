@@ -17,7 +17,7 @@ $en_name = $firstName . " " . $lastName
     margin-top: 1rem;
     border: 2px solid #eee;
     border-collapse: collapse;
-    width: 50%;
+    width: 40%;
 }
 
 .qr-info-table th {
@@ -45,13 +45,13 @@ $en_name = $firstName . " " . $lastName
     padding-left: 4rem;
     display: flex;
     align-items: center;
-    height: 5rem;
+    height: 4rem;
     font-weight: bold;
 }
 
 .qr-info-table tr {
-    height: 5rem;
-    padding: 4px 8px;
+    height: 4rem;
+    padding: 4px;
 }
 
 #open {
@@ -79,23 +79,24 @@ $en_name = $firstName . " " . $lastName
                 <form action="/admin/access" id="qr_form" name="qr_form"
                     class="w-full h-screen flex flex-col items-center justify-center bg-slate-50">
 
-                    <div class="w-2/5 flex flex-col items-center justify-center translate-y-96">
+                    <div class="w-2/5 flex flex-col items-center justify-center">
                         <h1 class="text-5xl mt-32 font-semibold ">QR CODE 입력 </h1>
                         <h6 class="text-3xl mt-20 ">커서를 텍스트박스 안에 놓고 QR 코드 스캐너를 사용하세요.</h6>
-                        <input id="qrcode_input" name="qrcode" class="w-[400px] h-[50px] mt-20 p-3 " type="text"
-                            autofocus />
-
-                        <button
-                            class="w-[150px] h-[40px] bg-slate-300 mt-20 mb-20 hover:bg-slate-400 active:bg-slate-500 text-black"
-                            type="submit" id="submit">등록</button>
-                        <button
-                            class="w-[150px] h-[40px] bg-slate-400 mt-20 mb-20 hover:bg-slate-300 active:bg-slate-300 text-black"
-                            type="button" id="memo_btn">메모</button>
+                        <div class="w-[850px] flex justify-between">
+                            <input id="qrcode_input" name="qrcode" class="w-[400px] h-[50px] mt-20 p-3 " type="text"
+                                autofocus />
+                            <button
+                                class="w-[150px] h-[40px] bg-slate-300 mt-20 mb-20 hover:bg-slate-400 active:bg-slate-500 text-black"
+                                type="submit" id="submit">등록</button>
+                            <button
+                                class="w-[150px] h-[40px] bg-indigo-950 mt-20 mb-20 hover:bg-slate-300 active:bg-slate-300 text-white"
+                                type="button" id="memo_btn">메모</button>
+                        </div>
                     </div>
 
                     <!-- <div class="w-3/5 h-[1px] bg-slate-400 translate-y-24"></div> -->
-                    <div class="w-full bg-white mt-40 flex items-center justify-center translate-y-96">
-                        <table class="qr-info-table mb-80" id="qrTable">
+                    <div class="w-full bg-white flex items-center justify-around">
+                        <table class="qr-info-table mb-80 w-2/5" id="qrTable">
                             <colgroup>
                                 <col width="30%" />
                                 <col />
@@ -148,6 +149,13 @@ $en_name = $firstName . " " . $lastName
                                 <td id="member_type" class="qr_text">
                                     <?php if (isset($user['member_type'])) echo $user['member_type'] ?></td>
                             </tr>
+                        </table>
+                        <table class="qr-info-table mb-80 w-2/5" id="qrTable">
+                            <colgroup>
+                                <col width="30%" />
+                                <col />
+                            </colgroup>
+
                             <tr>
                                 <th>member_type</th>
                                 <td id="deposit" class="qr_text">

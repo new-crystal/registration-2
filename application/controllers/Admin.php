@@ -744,6 +744,7 @@ class Admin extends CI_Controller
                 $address = $this->input->post('address');
                 $detailAddress = $this->input->post('detailAddress');
                 $extraAddress = $this->input->post('extraAddress');
+                $deposit = $this->input->post('deposit');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
                 $memo = $this->input->post('memo');
@@ -809,10 +810,10 @@ class Admin extends CI_Controller
                 //     $fee = 0;
                 // }
 
-                if ($fee == 0)
-                    $deposit = '미결제';
-                else
-                    $deposit = '미결제';
+                // if ($fee == 0)
+                //     $deposit = '미결제';
+                // else
+                //     $deposit = '미결제';
 
                 $updateTime = date("Y-m-d H:i:s");
 

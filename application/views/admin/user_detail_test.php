@@ -69,11 +69,11 @@ else {
                                     <th>Type of Participation</th>
                                     <td> <input class="form-control" type="text"
                                             value="<?php echo $item['attendance_type']; ?>" name="attendance_type"
-                                            id="type2"></td>
+                                            id="attendance_type"></td>
                                 </tr>
                                 <tr>
                                     <th>국내/국외</th>
-                                    <td> <input class="form-control" type="text" name="attendance_type" id="type2"
+                                    <td> <input class="form-control" type="text" name="contry" id="type2"
                                             value="<?php echo $contry ?>">
 
                                     </td>
@@ -250,27 +250,26 @@ else {
                                     <th>결제금액
 
                                     </th>
-                                    <td><input class="form-control" type="text" value="<?php echo $item['fee']; ?>"
-                                            name="fee" id="fee">
+                                    <td><input class="form-control" type="text" value="<?php echo $item['fee']; ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>할인율
                                     </th>
-                                    <td><input class="form-control" type="text" name="fee" id="fee">
+                                    <td><input class="form-control" type="text">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Promotion Code
                                     </th>
-                                    <td><input class="form-control" type="text" name="fee" id="fee">
+                                    <td><input class="form-control" type="text">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>추천인
                                     </th>
                                     <td><input class="form-control" type="text" name="etc4"
-                                            value="<?php echo $item['etc4']; ?>" id="fee">
+                                            value="<?php echo $item['etc4']; ?>" id="etc4">
                                     </td>
                                 </tr>
                                 <tr>
@@ -359,7 +358,7 @@ else {
                             <table>
                                 <tr>
                                     <th>Remarks 1(하단택) </th>
-                                    <td><input class="form-control" type="text" name="remark1" id="fee"
+                                    <td><input class="form-control" type="text" name="remark1" id="remark1"
                                             value="<?php echo $item['remark1']; ?>">
                                     </td>
                                 </tr>
@@ -367,19 +366,19 @@ else {
                                     <th>Remarks 2(Special Requst for Food)</th>
                                     <td><input class="form-control" type="text"
                                             value="<?php echo $item['special_request_food']; ?>"
-                                            name="special_request_food" id="fee">
+                                            name="special_request_food" id="special_request_food">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Remarks 3</th>
                                     <td><input class="form-control" type="text" name="remark3"
-                                            value="<?php echo $item['remark3']; ?>" id="fee">
+                                            value="<?php echo $item['remark3']; ?>" id="remark3">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Remarks 4</th>
                                     <td><input class="form-control" type="text" value="<?php echo $item['remark4']; ?>"
-                                            name="remark4" id="fee">
+                                            name="remark4" id="remark4">
                                     </td>
                                 </tr>
                             </table>
