@@ -760,7 +760,8 @@ class Admin extends CI_Controller
                 $day3_breakfast_yn = $this->input->post('day3_breakfast_yn');
                 $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
                 $date_of_birth = $this->input->post('date_of_birth');
-                $fee = 0;
+                $fee = $this->input->post('fee');
+
                 if ($memo == "") {
                     $memo = null;
                 }
