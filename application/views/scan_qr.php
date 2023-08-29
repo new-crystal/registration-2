@@ -136,13 +136,13 @@ body {
                                     <dl class="pl-2">
                                         <div id="qr_nick_name" class="qr_info_wrap">
                                             <div class="info_name">성 명</div>
-                                            <div class="info_content"><input type="text"
+                                            <div class="info_content"><input type="text" class="qr_info input"
                                                     value="<?php if (isset($name_kor)) echo $name_kor ?>" readonly>
                                             </div>
                                         </div>
                                         <div id="qr_org" class="qr_info_wrap">
                                             <div class="info_name">소 속</div>
-                                            <div class="info_content"> <input type="text"
+                                            <div class="info_content"> <input type="text" class="qr_info input"
                                                     value="<?php if (isset($entrance_org)) echo $entrance_org ?>"
                                                     readonly>
                                             </div>
@@ -153,7 +153,7 @@ body {
                                         <div id="qr_entrance" class="qr_info_wrap">
                                             <div class="info_name">입장시간</div>
                                             <div class="info_content">
-                                                <input type="text" value="<?php
+                                                <input type="text" class="qr_info input" value="<?php
                                                                             if (isset($enter)) {
                                                                                 $enter = date("Y-m-d H:i", strtotime($enter));
                                                                                 echo $enter;
@@ -166,7 +166,7 @@ body {
                                         <div id="qr_exit" class="qr_info_wrap">
                                             <div class="info_name">퇴장시간</div>
                                             <div class="info_content">
-                                                <input type="text" value="<?php
+                                                <input type="text" class="qr_info input" value="<?php
                                                                             if (isset($leave)) {
                                                                                 $leave = date("Y-m-d H:i", strtotime($leave));
                                                                                 echo $leave;
@@ -220,3 +220,17 @@ body {
             </div>
 
 </body>
+<script>
+const inputs = document.querySelectorAll(".qr_info")
+window.onload = () => {
+    inputs.forEach((input) => {
+        setTimeout(() => {
+            input.value = ""
+        }, 10000)
+    })
+}
+/**우클릭 방지 */
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+}, false);
+</script>

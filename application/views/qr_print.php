@@ -38,6 +38,18 @@ body {
     top: -18px;
 }
 
+.small_text_box>.receipt_name {
+    left: -42px !important;
+}
+
+.text_box>.receipt_name {
+    left: -42px !important;
+}
+
+#last_name {
+    padding: 0 !important;
+}
+
 .text_box {
     position: relative;
     top: -19px;
@@ -50,14 +62,16 @@ body {
 
 .lucky_num {
     position: relative;
-    top: -118px;
-    left: 143px;
+    top: -119px;
+    left: -30px;
+    text-align: right !important;
 }
 
 .lucky_num_bottom {
     position: relative;
-    top: -175px;
-    left: 143px;
+    top: 228px;
+    left: -32px;
+    text-align: right !important;
 }
 </style>
 
@@ -100,11 +114,11 @@ body {
                 }
                 // 한국인 X && lastname 15글자 이상
                 if (mb_strlen($users['last_name']) >= 15) {
-                    echo '<div class="nick_name lang_en small_name" id="first_name">' .  $users['last_name'] . '</div>';
+                    echo '<div class="nick_name lang_en small_name" id="last_name">' .  $users['last_name'] . '</div>';
 
                     // 한국인 X && lastname 15글자 이하    
-                } else if (mb_strlen($users['first_name']) <= 15) {
-                    echo '<div class="nick_name lang_en" id="first_name">' .  $users['last_name'] . '</div>';
+                } else if (mb_strlen($users['last_name']) <= 15) {
+                    echo '<div class="nick_name lang_en" id="last_name">' .  $users['last_name'] . '</div>';
                 }
 
                 // //한국인 O
@@ -114,7 +128,7 @@ body {
                 echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
 
                 //한국인 X firstname & lastName 15글자 이상
-                if (mb_strlen($users['first_name']) >= 15 && mb_strlen($users['last_name']) >= 15) {
+                if (mb_strlen($users['first_name']) >= 15 || mb_strlen($users['last_name']) >= 15) {
                     echo '<div class ="small_text_box">';
 
                     //한국인 X firstname & lastName 15글자 이하
@@ -127,7 +141,7 @@ body {
                 echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
                 echo '</div>';
 
-
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
                 // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
                 // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
@@ -135,7 +149,6 @@ body {
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 ?>
             </div>
         </div>

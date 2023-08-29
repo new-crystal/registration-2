@@ -3,69 +3,82 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 <style>
-@page {
-    size: 10cm 24cm;
-    margin: 0;
-}
+    @page {
+        size: 10cm 24cm;
+        margin: 0;
+    }
 
-body {
-    margin: 0;
-    padding: 0;
-}
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-/* @font-face {
+    /* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
 } */
 
-.nick_name {
-    font-family: 'Open Sans', sans-serif;
-}
+    .nick_name {
+        font-family: 'Open Sans', sans-serif;
+    }
 
-#printThis {
-    width: 10cm;
-    height: 24cm;
-    margin: 0;
-    padding: 0;
-}
+    #printThis {
+        width: 10cm;
+        height: 24cm;
+        margin: 0;
+        padding: 0;
+    }
 
-.small_name {
-    font-size: 30px !important;
-}
+    .small_name {
+        font-size: 30px !important;
+    }
 
-.small_text_box {
-    position: relative;
-    top: -18px;
-}
+    .small_text_box {
+        position: relative;
+        top: -18px;
+    }
 
-.text_box {
-    position: relative;
-    top: -19px;
-}
+    .small_text_box>.receipt_name {
+        left: -42px !important;
+    }
 
-.kor_box {
-    position: relative;
-    top: 24px;
-}
+    .text_box>.receipt_name {
+        left: -42px !important;
+    }
 
-.lucky_num {
-    position: relative;
-    top: -118px;
-    left: 143px;
-}
+    #last_name {
+        padding: 0 !important;
+    }
 
-.lucky_num_bottom {
-    position: relative;
-    top: -175px;
-    left: 143px;
-}
+    .text_box {
+        position: relative;
+        top: -19px;
+    }
+
+    .kor_box {
+        position: relative;
+        top: 24px;
+    }
+
+    .lucky_num {
+        position: relative;
+        top: -119px;
+        left: -30px;
+        text-align: right !important;
+    }
+
+    .lucky_num_bottom {
+        position: relative;
+        top: 228px;
+        left: -32px;
+        text-align: right !important;
+    }
 </style>
 
 <!-- Main content -->
 <div id="nametag_wrapper">
     <div class="edit_wrapper">
-        <button id="btnPrint" type="button" class="btn btn-primary"
-            style="margin-left:20px;">Print<?php $num_row ?></button>
+        <button id="btnPrint" type="button" class="btn btn-primary" style="margin-left:20px;">Print<?php $num_row ?></button>
     </div>
 
     <!-- Content area -->
@@ -97,11 +110,11 @@ body {
                 }
                 // 한국인 X && lastname 15글자 이상
                 if (mb_strlen($item['last_name']) >= 15) {
-                    echo '<div class="nick_name lang_en small_name" id="first_name">' .  $item['last_name'] . '</div>';
+                    echo '<div class="nick_name lang_en small_name" id="last_name">' .  $item['last_name'] . '</div>';
 
                     // 한국인 X && lastname 15글자 이하    
-                } else if (mb_strlen($item['first_name']) <= 15) {
-                    echo '<div class="nick_name lang_en" id="first_name">' .  $item['last_name'] . '</div>';
+                } else if (mb_strlen($item['last_name']) <= 15) {
+                    echo '<div class="nick_name lang_en" id="last_name">' .  $item['last_name'] . '</div>';
                 }
 
                 // //한국인 O
@@ -111,7 +124,7 @@ body {
                 echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $item['registration_no'] . '.jpg"></div>';
 
                 //한국인 X firstname & lastName 15글자 이상
-                if (mb_strlen($item['first_name']) >= 15 && mb_strlen($item['last_name']) >= 15) {
+                if (mb_strlen($item['first_name']) >= 15 || mb_strlen($item['last_name']) >= 15) {
                     echo '<div class ="small_text_box">';
 
                     //한국인 X firstname & lastName 15글자 이하
@@ -124,7 +137,7 @@ body {
                 echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '</div>';
                 echo '</div>';
 
-
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
                 // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
                 // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
@@ -132,7 +145,6 @@ body {
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . "1234" . '</div>';
                 $num_int = $num_int + 1;
             }
             ?>
@@ -149,31 +161,31 @@ body {
 </div>
 <!-- /page container -->
 <style>
-body {
-    background-color: #fff;
-}
+    body {
+        background-color: #fff;
+    }
 </style>
 <script>
-document.getElementById("btnPrint").onclick = function() {
-    printElement(document.getElementById("printThis"));
-}
-
-function printElement(elem) {
-    var domClone = elem.cloneNode(true);
-
-    var $printSection = document.getElementById("printSection");
-
-    if (!$printSection) {
-        var $printSection = document.createElement("div");
-        $printSection.style.width = "10cm";
-        $printSection.style.height = "24cm";
-        $printSection.id = "printSection";
-        document.body.appendChild($printSection);
+    document.getElementById("btnPrint").onclick = function() {
+        printElement(document.getElementById("printThis"));
     }
 
-    $printSection.innerHTML = "";
-    $printSection.appendChild(domClone);
-    window.print();
-}
+    function printElement(elem) {
+        var domClone = elem.cloneNode(true);
+
+        var $printSection = document.getElementById("printSection");
+
+        if (!$printSection) {
+            var $printSection = document.createElement("div");
+            $printSection.style.width = "10cm";
+            $printSection.style.height = "24cm";
+            $printSection.id = "printSection";
+            document.body.appendChild($printSection);
+        }
+
+        $printSection.innerHTML = "";
+        $printSection.appendChild(domClone);
+        window.print();
+    }
 </script>
 </body>
