@@ -762,62 +762,22 @@ class Admin extends CI_Controller
                 $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
                 $date_of_birth = $this->input->post('date_of_birth');
                 $fee = $this->input->post('fee');
+                $etc2 = $this->input->post('etc2');
+                $time = $this->input->post('time');
+                $occupation_type = $this->input->post('occupation_type');
+                $is_score = $this->input->post('is_score');
+                $etc1 = $this->input->post('etc1');
+                $etc4 = $this->input->post('etc4');
+                $conference_info = $this->input->post('conference_info');
+                $remark1 = $this->input->post('remark1');
+                $special_request_food = $this->input->post('special_request_food');
+                $remark3 = $this->input->post('remark3');
+                $remark4 = $this->input->post('remark4');
 
                 if ($memo == "") {
                     $memo = null;
                 }
-                // if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전임의' || $type2 == '교수') {
-                //     if ($type3 == '비회원') {
-                //         $fee = 110000;
-                //     } else {
-                //         $fee = 90000;
-                //     }
-                // } else if ($type2 == '간호사' || $type2 == '기초의학자' || $type2 == '약사' || $type2 == '군의관') {
-                //     if ($type3 == '비회원') {
-                //         $fee = 90000;
-                //     } else {
-                //         $fee = 70000;
-                //     }
-                // } else if ($type2 == '전공의') {
-                //     if ($type3 == '비회원') {
-                //         $fee = 90000;
-                //     } else {
-                //         $fee = 70000;
-                //     }
-                // }
-                //기존코드
-                // if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
-                //     if ($type == '좌장' || $type == '연자' || $type == '패널') {
-                //         $fee = 0;
-                //     } else {
-                //         if ($type3 == '비회원') {
-                //             $fee = 50000;
-                //         } else {
-                //             $fee = 30000;
-                //         }
-                //     }
-                // } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
-                //     if ($type == '좌장' || $type == '연자' || $type == '패널') {
-                //         $fee = 0;
-                //     } else {
-                //         if ($type3 == '비회원') {
-                //             $fee = 40000;
-                //         } else {
-                //             $fee = 20000;
-                //         }
-                //     }
-                // } else {
-                //     $fee = 0;
-                // }
-
-                // if ($fee == 0)
-                //     $deposit = '미결제';
-                // else
-                //     $deposit = '미결제';
-
                 $updateTime = date("Y-m-d H:i:s");
-
-
                 $info = array(
                     'name_kor' => preg_replace("/\s+/", "", $name_kor),
                     'licence_number' => preg_replace("/\s+/", "", $license),
@@ -854,6 +814,17 @@ class Admin extends CI_Controller
                     'day3_luncheon_yn' => $day3_luncheon_yn,
                     'date_of_birth' => $date_of_birth,
                     'updatetime' => $updateTime,
+                    'etc2' => $etc2,
+                    'time' => $time,
+                    'occupation_type' => $occupation_type,
+                    'is_score' => $is_score,
+                    'etc1' => $etc1,
+                    'etc4' => $etc4,
+                    'conference_info' => $conference_info,
+                    'remark1' => $remark1,
+                    'special_request_food' => $special_request_food,
+                    'remark3' => $remark3,
+                    'remark4' => $remark4,
                     // 'time' => substr($time, 0, 10)
                 );
 

@@ -95,7 +95,7 @@ $en_name = $firstName . " " . $lastName
                     </div>
 
                     <!-- <div class="w-3/5 h-[1px] bg-slate-400 translate-y-24"></div> -->
-                    <div class="w-full bg-white flex items-center justify-around">
+                    <div class="w-full bg-white flex items-left justify-around" style="margin-top:3rem;">
                         <table class="qr-info-table mb-80 w-2/5" id="qrTable">
                             <colgroup>
                                 <col width="30%" />

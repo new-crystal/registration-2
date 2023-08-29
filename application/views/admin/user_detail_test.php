@@ -1,7 +1,7 @@
 <style>
 .detail_table {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
 }
 
@@ -186,12 +186,6 @@ else {
                                     <td><input class="form-control" type="text"
                                             value="<?php echo $item['member_other_type']; ?>" name="member_other_type"
                                             id="type1">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Date of Birth</th>
-                                    <td> <input id="dp1" type="text" class="form-control"
-                                            value="<?php echo $item['date_of_birth']; ?>" name="date_of_birth" id="ln">
                                     </td>
                                 </tr>
                                 <tr>
