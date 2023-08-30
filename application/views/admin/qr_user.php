@@ -81,7 +81,7 @@ table th {
                     <tr>
                         <th></th>
                         <!-- <th>No</th> -->
-                        <th>접수번호</th>
+                        <th style="width: 145px;">접수번호</th>
                         <th>Type of Participation</th>
                         <th>Name</th>
                         <th>이름</th>

@@ -949,10 +949,12 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(27, $excel_row, date("H:i", strtotime($row['maxtime_day1'])));  //DAY1퇴실
             $object->getActiveSheet()->setCellValueByColumnAndRow(28, $excel_row, $row['d_format_day1']);                //DAY1체류시간
             $object->getActiveSheet()->setCellValueByColumnAndRow(29, $excel_row, hoursandmins($spent1));
+
             $object->getActiveSheet()->setCellValueByColumnAndRow(30, $excel_row, date("H:i", strtotime($row['mintime_day2'])));  //DAY2입실
             $object->getActiveSheet()->setCellValueByColumnAndRow(31, $excel_row, date("H:i", strtotime($row['maxtime_day2'])));  //DAY2퇴실
-            $object->getActiveSheet()->setCellValueByColumnAndRow(32, $excel_row, $row['d_format_day2']);                          //DAY2체류시간
+            $object->getActiveSheet()->setCellValueByColumnAndRow(32, $excel_row, $row['d_format_day2']);                          //DAY2체류시
             $object->getActiveSheet()->setCellValueByColumnAndRow(33, $excel_row, hoursandmins($spent2));
+
             $object->getActiveSheet()->setCellValueByColumnAndRow(34, $excel_row, date("H:i", strtotime($row['mintime_day3'])));  //DAY3입실
             $object->getActiveSheet()->setCellValueByColumnAndRow(35, $excel_row, date("H:i", strtotime($row['maxtime_day3'])));  //DAY3퇴실
             $object->getActiveSheet()->setCellValueByColumnAndRow(36, $excel_row, $row['d_format_day3']);        //DAY3체류시간

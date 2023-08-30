@@ -67,13 +67,13 @@ tr {
             </td>
             <td><?php echo isset($statistics[0]['AK_07']) ? $statistics[0]['AK_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[0]['AK_08']) ? $statistics[0]['AK_08'] : 0; ?>
-            </td>
             <td><?php echo isset($statistics[0]['A_08']) ? $statistics[0]['A_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[0]['AK_09']) ? $statistics[0]['AK_09'] : 0; ?>
+            <td><?php echo isset($statistics[0]['AK_08']) ? $statistics[0]['AK_08'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[0]['A_09']) ? $statistics[0]['A_09'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[0]['AK_09']) ? $statistics[0]['AK_09'] : 0; ?>
             </td>
         </tr>
         <tr>
@@ -177,7 +177,7 @@ tr {
             </td>
             <td><?php echo isset($statistics[0]['RK_08']) ? $statistics[0]['RK_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[0]['RK_09']) ? $statistics[0]['RK_09'] : 0; ?>
+            <td><?php echo isset($statistics[0]['R_09']) ? $statistics[0]['R_09'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[0]['RK_09']) ? $statistics[0]['RK_09'] : 0; ?>
             </td>
