@@ -256,6 +256,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/d_success');
     }
 
+
     function all_deposit_check()
     {
         $regNo = $this->input->post('userId');
