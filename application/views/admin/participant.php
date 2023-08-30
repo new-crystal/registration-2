@@ -1,21 +1,21 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-    th,
-    td {
-        text-align: center !important;
-        border: 2px solid rgb(163 163 163);
-        font-weight: 600;
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
+th,
+td {
+    text-align: center !important;
+    border: 2px solid rgb(163 163 163);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
 
-    tr {
-        height: 4.5rem;
-        border: 2px solid rgb(163 163 163);
-        font-weight: 600;
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
+tr {
+    height: 4.5rem;
+    border: 2px solid rgb(163 163 163);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
 </style>
 <div class="text-center flex flex-col items-center justify-center">
     <h1 class="text-6xl font-semibold text-orange-600 my-10">ICOMES 2023</h1>
@@ -78,17 +78,17 @@
         </tr>
         <tr>
             <th class="bg-red-100">Speakers</th>
-            <td><?php echo isset($statistics[5]['A_07']) ? $statistics[5]['A_07'] : 0; ?>
+            <td><?php echo isset($statistics[6]['A_07']) ? $statistics[6]['A_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[5]['AK_07']) ? $statistics[5]['AK_07'] : 0; ?>
+            <td><?php echo isset($statistics[6]['AK_07']) ? $statistics[6]['AK_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[5]['A_08']) ? $statistics[5]['A_08'] : 0; ?>
+            <td><?php echo isset($statistics[6]['A_08']) ? $statistics[6]['A_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[5]['AK_08']) ? $statistics[5]['AK_08'] : 0; ?>
+            <td><?php echo isset($statistics[6]['AK_08']) ? $statistics[6]['AK_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[5]['A_09']) ? $statistics[5]['A_09'] : 0; ?>
+            <td><?php echo isset($statistics[6]['A_09']) ? $statistics[6]['A_09'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[5]['AK_09']) ? $statistics[5]['AK_09'] : 0; ?>
+            <td><?php echo isset($statistics[6]['AK_09']) ? $statistics[6]['AK_09'] : 0; ?>
             </td>
         </tr>
         <tr>
