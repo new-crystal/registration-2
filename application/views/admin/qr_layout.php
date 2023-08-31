@@ -62,7 +62,7 @@ body {
 
 .lucky_num {
     position: relative;
-    top: -19px;
+    top: -63px;
     left: -30px;
     text-align: right !important;
 }
