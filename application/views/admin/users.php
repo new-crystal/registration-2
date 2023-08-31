@@ -2,7 +2,7 @@
 <style>
 table th {
     padding: 0;
-    font-size: 11px !important;
+    font-size: 12px !important;
     padding: 8px !important;
 }
 
@@ -91,20 +91,20 @@ table td {
                 <thead>
                     <tr>
                         <th></th>
-                        <th style="width:111px;">Registration No.</th>
+                        <th style="width:131px;">Registration No.</th>
                         <th style="width:60px;">결제상태</th>
-                        <th style="width:80px;">등록시간</th>
+                        <th style="width:90px;">등록시간</th>
                         <th style="width:60px;">KSSO <br>회원여부</th>
                         <th style="width:60px;">Type of Participation</th>
-                        <th style="width:180px;">Full Name</th>
+                        <th style="width:200px;">Full Name</th>
                         <th style="width:52px;">성함</th>
-                        <th style="width:260px;">네임택용 Affiliation </th>
+                        <th style="width:200px;">네임택용 Affiliation </th>
                         <th style="width:100px;">Country</th>
                         <th style="width:80px;">Phone Number</th>
-                        <th style="width:165px;">ID(E-mail)</th>
-                        <th style="width:95px;">Category</th>
+                        <th style="width:160px;">ID(E-mail)</th>
+                        <th style="width:100px;">Category</th>
                         <th style="width:60px;">등록비</th>
-                        <th style="width:80px;">결제일</th>
+                        <th style="width:90px;">결제일</th>
                         <th style="width:80px;">결제 방식</th>
                         <th>메모</th>
                     </tr>
