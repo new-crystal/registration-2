@@ -177,7 +177,7 @@
     text-align: right;
 }
 #printThis .receipt_num_1{
-  top: 89px;
+  top: 84px;
   left: -42px;
   font-size: 10px;
 }
@@ -218,13 +218,13 @@
 }
 
 #printThis .receipt_name{
-  top: 83px;
+  top: 81px;
   left: -200px;
 
 }
 
 #printThis .receipt_price{
-  top: 94px;
+  top: 90px;
   left: -43px;
 }
 
