@@ -12,7 +12,7 @@
 
     #accessForm {
         padding: 0 3rem;
-        height: 60%;
+        /* height: 60%; */
     }
 
     #qrcode:focus {
@@ -60,6 +60,7 @@
         width: 82%;
         height: 90%;
         padding: 0 2rem;
+        z-index: 999;
     }
 
     .info_content>input:focus {
@@ -68,6 +69,13 @@
 
     #text_box {
         font-size: 1.88rem;
+    }
+
+    .fresh {
+        width: 90%;
+        height: 200px;
+        /* background-color: #ddd; */
+        transform: translate(110px, 210px);
     }
 </style>
 
@@ -98,6 +106,7 @@
                             <!-- <?php echo validation_errors(); ?> -->
                             <?php echo form_open('/access/scan_qr', 'id="accessForm" name="accessForm"') ?>
                             <fieldset>
+                                <div class="fresh"></div>
                                 <div style=" transform: translateY(700px);">
 
                                     <dl>
@@ -126,8 +135,8 @@
                                             </ul>
                                         </dd>
                                     </dl>
-                                    <dl class="pl-2">
-                                        <dd><input type="text" name="qrcode" id="qrcode" class="w-[84%] h-20  px-3 py-3 mt-5 border-indigo-900 mx-auto" style="transform: translateX(76px);" placeholder="" autofocus>
+                                    <dl class="pl-2" style="transform: translateY(-200px);">
+                                        <dd><input type="text" name="qrcode" id="qrcode" class="w-[95%] h-20  px-3 py-3 mt-5 border-indigo-900 mx-auto" style="    transform: translate(76px,0px);" placeholder="" autofocus>
                                         </dd>
                                     </dl>
                                     <dl class="boldTit qr_txt">
@@ -135,7 +144,7 @@
                                                 echo "<dt><h1>$entrance</h1></dt>";
                                                 ?> -->
                                     </dl>
-                                    <dl class="pl-2">
+                                    <dl class="pl-2" style="transform: translateY(-200px);">
                                         <div id="qr_nick_name" class="qr_info_wrap">
                                             <div class="info_name" style="opacity: 0;">성 명</div>
                                             <div class="info_content"><input type="text" class="qr_info input" value="<?php if (isset($name_kor)) echo $name_kor ?>" readonly>
@@ -148,7 +157,7 @@
                                         </div>
                                     </dl>
 
-                                    <dl class="pl-2">
+                                    <dl class="pl-2" style="transform: translateY(-200px);">
                                         <div id="qr_entrance" class="qr_info_wrap">
                                             <div class="info_name" style="opacity: 0;">입장시간</div>
                                             <div class="info_content">
@@ -220,6 +229,11 @@
 <script>
     const inputs = document.querySelectorAll(".qr_info");
     const qrcodeInput = document.querySelector("#qrcode");
+    const freshBtn = document.querySelector(".fresh")
+
+    freshBtn.addEventListener("touchstart", () => {
+        window.location.reload()
+    })
 
     qrcodeInput.addEventListener("input", (e) => {
         // 입력된 값에서 공백 제거
