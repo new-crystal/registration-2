@@ -62,14 +62,15 @@
 
     .lucky_num {
         position: relative;
-        top: -14px;
-        left: -192px;
+        top: -17px;
+        left: -188px;
+        font-size: 15px;
         text-align: right !important;
     }
 
     .lucky_num_bottom {
         position: relative;
-        top: 228px;
+        top: 232px;
         left: -32px;
         text-align: right !important;
     }
