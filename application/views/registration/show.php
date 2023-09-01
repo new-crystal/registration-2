@@ -32,55 +32,54 @@
 
                                     <dd>사전 등록이 <span class="fcPoint fwBold">완료</span> 되었습니다.</dd>
                                     <?php
-                                            if ($users['fee'] > 0)
-                                                echo '<dd><span class="fcRed" id="info_msg">* 등록 주신 메일주소로 전송된 사전등록 완료 메일을 확인해주시고 카드결제를 진행하시거나,<br> 지정하신 입금 예정일까지 무통장 입금 부탁 드립니다.</span></dd>';
-                                            else
-                                                echo '<br>';
-                                        ?>
+                                    if ($users['fee'] > 0)
+                                        echo '<dd><span class="fcRed" id="info_msg">* 등록 주신 메일주소로 전송된 사전등록 완료 메일을 확인해주시고 카드결제를 진행하시거나,<br> 지정하신 입금 예정일까지 무통장 입금 부탁 드립니다.</span></dd>';
+                                    else
+                                        echo '<br>';
+                                    ?>
 
                                     <dt class="hidden">면허번호</dt>
                                     <dd>
                                         <?php
-										    echo '<span class="fwBold">소속: </span>';
-                                                echo $users['org'];
+                                        echo '<span class="fwBold">소속: </span>';
+                                        echo $users['org'];
                                         ?>
                                     </dd>
 
                                     <dt class="hidden">성명</dt>
                                     <dd>
                                         <?php
-										    echo '<span class="fwBold">이름: </span>';
-                                                echo $users['nick_name'];
+                                        echo '<span class="fwBold">이름: </span>';
+                                        echo $users['nick_name'];
                                         ?>
                                     </dd>
 
                                     <dt class="hidden">E-mail</dt>
                                     <dd>
                                         <?php
-										    echo '<span class="fwBold">메일: </span>';
-                                                echo $users['email'];
+                                        echo '<span class="fwBold">메일: </span>';
+                                        echo $users['email'];
                                         ?>
                                     </dd>
 
                                     <dt class="hidden">등록비</dt>
                                     <dd>
                                         <?php
-										    echo '<span class="fwBold">등록비: </span>';
-                                                echo $users['fee'];
+                                        echo '<span class="fwBold">등록비: </span>';
+                                        echo $users['fee'];
                                         ?>
                                     </dd>
 
                                     <?php
-                                            if ($users['fee'] > 0) {
-                                                echo '<dt class="hidden">등록비 결제 여부</dt>';
-                                                echo '<dd>';
-                                                    echo '<span class="fwBold">등록비 결제 여부: </span>';
-                                                        echo '<span id="deposit_statue">'.$users['deposit'].'</span>';
-                                                echo '</dd>';
-                                            }
-                                        ?>
-                                    <div class="tab_area<?php if($users['deposit']=='결제대기') echo ' active'; ?>"
-                                        id="tab_payment">
+                                    if ($users['fee'] > 0) {
+                                        echo '<dt class="hidden">등록비 결제 여부</dt>';
+                                        echo '<dd>';
+                                        echo '<span class="fwBold">등록비 결제 여부: </span>';
+                                        echo '<span id="deposit_statue">' . $users['deposit'] . '</span>';
+                                        echo '</dd>';
+                                    }
+                                    ?>
+                                    <div class="tab_area<?php if ($users['deposit'] == '미결제') echo ' active'; ?>" id="tab_payment">
                                         <div class="tab_inner">
                                             <ul class="tabs clearfix" data-tabgroup="first-tab-group">
                                                 <li class="w50"><a href="#tab1">무통장입금</a></li>
@@ -114,8 +113,7 @@
                                                 </div>
                                                 <div id="tab2">
                                                     <div class="btn">
-                                                        <input onclick="kscp_pay()" type="submit" value="결제"
-                                                            class="btnDef">
+                                                        <input onclick="kscp_pay()" type="submit" value="결제" class="btnDef">
                                                     </div>
                                             </section>
                                         </div>
@@ -137,89 +135,89 @@
 
 </div>
 <script>
-$(".tabgroup > div").hide();
-$(".tabgroup > div:last-of-type").show();
-$(".tabs a").click(function(e) {
-    e.preventDefault();
-    var $this = $(this),
-        tabgroup = "#" + $this.parents(".tabs").data("tabgroup"),
-        others = $this.closest("li").siblings().children("a"),
-        target = $this.attr("href");
-    others.removeClass("active");
-    $this.addClass("active");
-    $(tabgroup).children("div").hide();
-    $(target).show();
-});
-
-function goback(newurl) {
-    document.location = newurl;
-}
-
-function kscp_pay() {
-    var amount = <?php echo $users['fee'] ?>;
-    //            var amount = 100;
-    var buyer_email = '<?php echo $users['email'] ?>';
-    var buyer_name = '<?php echo $users['nick_name'] ?>';
-    var buyer_tel = '<?php echo $users['phone'] ?>';
-    var buyer_addr = '<?php echo $users['addr'] ?>';
-    var buyer_postcode = '<?php echo $users['postcode'] ?>';
-    var userId = <?php echo $users['id'] ?>;
-    var base_url = '<?php echo base_url()?>'
-    var IMP = window.IMP; // 생략가능
-    IMP.init('imp16319856'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-    IMP.request_pay({
-        pg: 'html5_inicis', // version 1.1.0부터 지원.
-        pay_method: 'card',
-        merchant_uid: 'merchant_' + new Date().getTime(),
-        name: '대한심뇌혈관질환예방학회 개원의 연수강좌',
-        amount: amount,
-        buyer_email: buyer_email,
-        buyer_name: buyer_name,
-        buyer_tel: buyer_tel,
-        buyer_addr: buyer_addr,
-        buyer_postcode: buyer_postcode,
-        custom_data: userId,
-        m_redirect_url: base_url + 'Iamport_api/m_get_by_impuid'
-    }, function(rsp) { // callback
-        if (rsp.success) {
-            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-            var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
-            // jQuery로 HTTP 요청
-            $.ajax({
-                url: "/Iamport_api/get_by_impuid", // 가맹점 서버
-                type: "POST",
-                dataType: "json",
-                data: {
-                    imp_uid: rsp.imp_uid,
-                    merchant_uid: rsp.merchant_uid,
-                    kscp_fee: amount,
-                    userId: userId
-                }
-            }).done(function(data) {
-                alert('결제가 완료되었습니다.');
-                console.log(data);
-                //                      var txt =  
-                //                      $('#deposit_statue').html
-                //                      window.history.back();
-                //                      goback('/registration/show');
-                document.getElementById("deposit_statue").innerHTML = "카드결제 완료";
-                document.getElementById("tab_payment").style.display = "none"
-                document.getElementById("info_msg").innerHTML = "";
-                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-            }).fail(function(xhr, status, error) {
-                //                      alert('error');
-            }).always(function() {
-                //                      alert('complete');
-            });
-        } else {
-            alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-            //                    console.log(rsp);
-        }
+    $(".tabgroup > div").hide();
+    $(".tabgroup > div:last-of-type").show();
+    $(".tabs a").click(function(e) {
+        e.preventDefault();
+        var $this = $(this),
+            tabgroup = "#" + $this.parents(".tabs").data("tabgroup"),
+            others = $this.closest("li").siblings().children("a"),
+            target = $this.attr("href");
+        others.removeClass("active");
+        $this.addClass("active");
+        $(tabgroup).children("div").hide();
+        $(target).show();
     });
-}
+
+    function goback(newurl) {
+        document.location = newurl;
+    }
+
+    function kscp_pay() {
+        var amount = <?php echo $users['fee'] ?>;
+        //            var amount = 100;
+        var buyer_email = '<?php echo $users['email'] ?>';
+        var buyer_name = '<?php echo $users['nick_name'] ?>';
+        var buyer_tel = '<?php echo $users['phone'] ?>';
+        var buyer_addr = '<?php echo $users['addr'] ?>';
+        var buyer_postcode = '<?php echo $users['postcode'] ?>';
+        var userId = <?php echo $users['id'] ?>;
+        var base_url = '<?php echo base_url() ?>'
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp16319856'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+        IMP.request_pay({
+            pg: 'html5_inicis', // version 1.1.0부터 지원.
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: '대한심뇌혈관질환예방학회 개원의 연수강좌',
+            amount: amount,
+            buyer_email: buyer_email,
+            buyer_name: buyer_name,
+            buyer_tel: buyer_tel,
+            buyer_addr: buyer_addr,
+            buyer_postcode: buyer_postcode,
+            custom_data: userId,
+            m_redirect_url: base_url + 'Iamport_api/m_get_by_impuid'
+        }, function(rsp) { // callback
+            if (rsp.success) {
+                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                var msg = '결제가 완료되었습니다.';
+                msg += '고유ID : ' + rsp.imp_uid;
+                msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '카드 승인번호 : ' + rsp.apply_num;
+                // jQuery로 HTTP 요청
+                $.ajax({
+                    url: "/Iamport_api/get_by_impuid", // 가맹점 서버
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        imp_uid: rsp.imp_uid,
+                        merchant_uid: rsp.merchant_uid,
+                        kscp_fee: amount,
+                        userId: userId
+                    }
+                }).done(function(data) {
+                    alert('결제가 완료되었습니다.');
+                    console.log(data);
+                    //                      var txt =  
+                    //                      $('#deposit_statue').html
+                    //                      window.history.back();
+                    //                      goback('/registration/show');
+                    document.getElementById("deposit_statue").innerHTML = "카드결제 완료";
+                    document.getElementById("tab_payment").style.display = "none"
+                    document.getElementById("info_msg").innerHTML = "";
+                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                }).fail(function(xhr, status, error) {
+                    //                      alert('error');
+                }).always(function() {
+                    //                      alert('complete');
+                });
+            } else {
+                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+                //                    console.log(rsp);
+            }
+        });
+    }
 </script>
 <!-- //container -->

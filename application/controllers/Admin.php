@@ -211,7 +211,7 @@ class Admin extends CI_Controller
             );
             $where = array(
                 'registration_no' => $value,
-                'deposit' => '결제대기'
+                'deposit' => '미결제'
             );
             $this->users->update_deposit_status($info, $where);
 
@@ -317,7 +317,7 @@ class Admin extends CI_Controller
 
         foreach ($regNo as $value) {
             $info = array(
-                'deposit' =>  '결제대기'
+                'deposit' =>  '미결제'
             );
             $where = array(
                 'registration_no' => $value,
