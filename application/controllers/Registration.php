@@ -229,7 +229,7 @@ class Registration extends CI_Controller
             if ($fee == 0)
                 $deposit = '결제완료';
             else
-                $deposit = '결제대기';
+                $deposit = '미결제';
 
             //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
 

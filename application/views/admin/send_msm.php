@@ -6,6 +6,11 @@ $nick_name = $users['name_kor'] ?? '';
 $curl = curl_init();
 $error = "";
 
+if (substr($phone, 0, 2) == "82") {
+    $phone = '0' . substr($phone, 3);
+}
+
+
 curl_setopt_array($curl, array(
     CURLOPT_URL => "https://sms.gabia.com/oauth/token",
     CURLOPT_RETURNTRANSFER => true,

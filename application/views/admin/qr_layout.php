@@ -150,10 +150,6 @@ body {
                 echo '</div>';
 
                 echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $users['etc2'] . '</div>';
-                // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
-                // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
-                // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
-                // echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
