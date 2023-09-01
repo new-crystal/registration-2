@@ -77,7 +77,7 @@ class Users extends CI_Model
 			WHERE DATE(TIME) = CURDATE()
 			GROUP BY registration_no
 		) b ON a.registration_no = b.qr_registration_no
-		WHERE a.qr_generated = 'Y' AND a.deposit = '입금완료'
+		WHERE a.qr_generated = 'Y' AND a.deposit = '결제완료'
 		ORDER BY a.id ASC
 ");
 		return $query->result_array();
