@@ -109,19 +109,18 @@ table th {
                         // echo '<td>' . $index++ . '</td>';
                         // echo '<td>' . $item['type3'] . '</td>';
                         // echo '<td>' . substr($item['time'], 0, 10) . '</td>';
-                        echo '<td>' . $item['registration_no'] . '</td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['registration_no'] . '</a></td>';
                         echo '<td>' . $item['attendance_type'] . '</td>';
                         echo '<td>' . $item['first_name']  . " " .  $item['last_name'] . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '"target="_blank">' . $item['name_kor'] . '</a></td>';
+                        echo '<td>' . $item['name_kor'] . '</td>';
                         echo '<td>' . $item['org_nametag'] . '</td>';
-                        echo '<td>' . $item['email'] . '</td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['email'] . '</a></td>';
                         echo '<td>' . $item['phone'] . '</td>';
                         echo '<td>';
-
                         if ($item['QR_SMS_SEND_YN'] == "Y") {
-                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '" target="_blank"><div class="btn btn-success qr_btn">문자발송</div></a>';
+                            echo '<button style="background:transparent;border:none" onclick="onClickMsm(\'' . $item['registration_no'] . '\')"><div class="msm_btn btn btn-success qr_btn"  data-id="' . $item['registration_no'] . '">문자발송</div></button>';
                         } else {
-                            echo '<a href="/admin/send_msm?n=' . $item['registration_no'] . '"target="_blank" ><div class="btn btn-non-success qr_btn">문자발송</div></a>';
+                            echo '<button style="background:transparent;border:none" onclick="onClickMsm(\'' . $item['registration_no'] . '\')"><div class="msm_btn btn btn-non-success qr_btn" data-id="' . $item['registration_no'] . '">문자발송</div></button>';
                         }
                         echo '</td>';
                         echo '<td>';
@@ -177,6 +176,11 @@ table th {
 </div>
 <!-- /page container -->
 <script>
+function onClickMsm(number) {
+    const url = `/admin/send_msm?n=${number}`
+    window.open(url, "Certificate", "width=800, height=1000, top=30, left=30")
+}
+
 //        $('#allChk').click(function(){
 //            if($('input:checkbox[id="allChk"]').prop('checked')){
 //                $('input[type=checkbox]').prop('checked',true);

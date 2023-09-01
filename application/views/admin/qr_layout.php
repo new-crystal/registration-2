@@ -139,7 +139,14 @@ body {
 
                 echo '<div class="receipt receipt_name">' . $users['first_name'] . ' ' . $users['last_name'] .   '</div>';
                 echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
-                echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
+                if (mb_strlen($users['fee']) == 3) {
+                    echo '<div class="receipt receipt_price">' . 'USD ' . number_format($users['fee']) . '</div>';
+                } else if (mb_strlen($users['fee']) == 1) {
+                    echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
+                } else {
+                    echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '원' . '</div>';
+                }
+
                 echo '</div>';
 
                 echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $users['etc2'] . '</div>';

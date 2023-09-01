@@ -6,77 +6,77 @@
 <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-    body {
-        font-family: 'Gothic A1', sans-serif;
-    }
+body {
+    font-family: 'Gothic A1', sans-serif;
+}
 
-    #accessForm {
-        padding: 0 3rem;
-        /* height: 60%; */
-    }
+#accessForm {
+    padding: 0 3rem;
+    /* height: 60%; */
+}
 
-    #qrcode:focus {
-        outline: none;
-    }
+#qrcode:focus {
+    outline: none;
+}
 
-    .font_nanum {
-        font-family: 'Nanum Gothic', sans-serif;
-    }
+.font_nanum {
+    font-family: 'Nanum Gothic', sans-serif;
+}
 
-    .qr_info_wrap {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 5.5rem;
-        /* border: 1px solid #eee; */
-        margin: 1rem auto;
-        font-weight: 500;
-        font-size: 2.5rem;
-    }
+.qr_info_wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5.5rem;
+    /* border: 1px solid #eee; */
+    margin: 1rem auto;
+    font-weight: 500;
+    font-size: 2.5rem;
+}
 
-    .info_name {
-        width: 33%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(49 46 129);
-        color: white;
+.info_name {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(49 46 129);
+    color: white;
 
-    }
+}
 
-    .info_content {
-        width: 66%;
-        height: 100%;
-        /* border: 2px solid rgb(49 46 129); */
-    }
+.info_content {
+    width: 66%;
+    height: 100%;
+    /* border: 2px solid rgb(49 46 129); */
+}
 
-    .info_content>input {
-        background-color: transparent;
-        margin-left: 139px;
-        margin-top: 10px;
-        width: 82%;
-        height: 90%;
-        padding: 0 2rem;
-        z-index: 999;
-    }
+.info_content>input {
+    background-color: transparent;
+    margin-left: 139px;
+    margin-top: 10px;
+    width: 82%;
+    height: 90%;
+    padding: 0 2rem;
+    z-index: 999;
+}
 
-    .info_content>input:focus {
-        outline: none
-    }
+.info_content>input:focus {
+    outline: none
+}
 
-    #text_box {
-        font-size: 1.88rem;
-    }
+#text_box {
+    font-size: 1.88rem;
+}
 
-    .fresh {
-        width: 90%;
-        height: 200px;
-        /* background-color: #ddd; */
-        transform: translate(110px, 210px);
-    }
+.fresh {
+    width: 90%;
+    height: 200px;
+    /* background-color: #ddd; */
+    transform: translate(110px, 210px);
+}
 </style>
 
 <body class="flex items-center justify-center">
@@ -84,23 +84,24 @@
         <div class="h-full">
             <div>
                 <div>
-                    <img src="../../assets/images/app_loading_bg.png" onclick="window.location.replace()" style="position: absolute;z-index: -999;width: 100vw;" />
+                    <img src="../../assets/images/app_loading_bg.png" onclick="window.location.replace()"
+                        style="position: absolute;z-index: -999;width: 100vw;" />
                     <dl>
 
                         <script type="text/javascript">
-                            $(function() {
-                                $("#accessForm").submit(function() {
-                                    if (!$.trim($("#qrcode").val())) {
-                                        alert("QR CODE를 입력하세요.");
-                                        $("#qrcode").focus();
-                                        return false;
-                                    }
+                        $(function() {
+                            $("#accessForm").submit(function() {
+                                if (!$.trim($("#qrcode").val())) {
+                                    alert("QR CODE를 입력하세요.");
+                                    $("#qrcode").focus();
+                                    return false;
+                                }
 
-                                    $("#accessForm").attr("action", "/access/scan_qr");
+                                $("#accessForm").attr("action", "/access/scan_qr");
 
-                                    return true;
-                                });
+                                return true;
                             });
+                        });
                         </script>
                         <div>
                             <!-- <?php echo validation_errors(); ?> -->
@@ -136,7 +137,9 @@
                                         </dd>
                                     </dl>
                                     <dl class="pl-2" style="transform: translateY(-200px);">
-                                        <dd><input type="text" name="qrcode" id="qrcode" class="w-[95%] h-20  px-3 py-3 mt-5 border-indigo-900 mx-auto" style="    transform: translate(76px,0px);" placeholder="" autofocus>
+                                        <dd><input type="text" name="qrcode" id="qrcode"
+                                                class="w-[95%] h-20  px-3 py-3 mt-5 border-indigo-900 mx-auto"
+                                                style="    transform: translate(76px,0px);" placeholder="" autofocus>
                                         </dd>
                                     </dl>
                                     <dl class="boldTit qr_txt">
@@ -147,13 +150,24 @@
                                     <dl class="pl-2" style="transform: translateY(-200px);">
                                         <div id="qr_nick_name" class="qr_info_wrap">
                                             <div class="info_name" style="opacity: 0;">성 명</div>
-                                            <div class="info_content"><input type="text" class="qr_info input" value="<?php if (isset($name_kor)) echo $name_kor ?>" readonly>
+                                            <div class="info_content"><input type="text" class="qr_info input"
+                                                    value="<?php if (isset($name_kor)) echo $name_kor ?>" readonly>
                                             </div>
                                         </div>
                                         <div id="qr_org" class="qr_info_wrap">
                                             <div class="info_name" style="opacity: 0;">소 속</div>
-                                            <div class="info_content"> <input type="text" class="qr_info input" value="<?php if (isset($entrance_org)) echo $entrance_org ?>" readonly>
+                                            <?php if (mb_strlen($entrance_org) >= 13) { ?>
+                                            <div class="info_content"> <input type="text" style="font-size:2rem"
+                                                    class="qr_info input"
+                                                    value="<?php if (isset($entrance_org)) echo $entrance_org ?>"
+                                                    readonly>
                                             </div>
+                                            <?php } else { ?>
+                                            <div class="info_content"> <input type="text" class="qr_info input"
+                                                    value="<?php if (isset($entrance_org)) echo $entrance_org ?>"
+                                                    readonly>
+                                            </div>
+                                            <?php } ?>
                                         </div>
                                     </dl>
 
@@ -197,28 +211,30 @@
                                         <p class="inline text-rose-600 font-bold">최종 이수 평점은 등록 시 변경 될 수 있습니다.</p>
                                     </div> -->
                                     <div class="w-full flex items-center justify-center">
-                                        <button type="submit" value="등록" class="btnPoint w-full flex items-center justify-center" style="    transform: translate(55px,434px);"></button>
+                                        <button type="submit" value="등록"
+                                            class="btnPoint w-full flex items-center justify-center"
+                                            style="    transform: translate(55px,434px);"></button>
                                     </div>
                                 </div>
 
                             </fieldset>
                             </form>
                             <script type="text/javascript">
-                                window.scrollTo(0, document.body.scrollHeight);
-                                $("#qrcode").focus();
-                                $(document).ready(function() {
-                                    setTimeout(function() {
-                                        $('.qr_info input').val('');
-                                        $('.qr_txt').hide();
-                                        $("#qrcode").focus();
-                                    }, 10000);
-                                })
-                                const qrcode = document.querySelector("#qrcode");
-                                const accessForm = document.querySelector("#accessForm")
-                                accessForm.addEventListener("submit", (e) => {
-                                    // e.preventDefault();
-                                    qrcdoe.valuea.replace(/ /g, "")
-                                })
+                            window.scrollTo(0, document.body.scrollHeight);
+                            $("#qrcode").focus();
+                            $(document).ready(function() {
+                                setTimeout(function() {
+                                    $('.qr_info input').val('');
+                                    $('.qr_txt').hide();
+                                    $("#qrcode").focus();
+                                }, 10000);
+                            })
+                            const qrcode = document.querySelector("#qrcode");
+                            const accessForm = document.querySelector("#accessForm")
+                            accessForm.addEventListener("submit", (e) => {
+                                // e.preventDefault();
+                                qrcdoe.valuea.replace(/ /g, "")
+                            })
                             </script>
                         </div>
                     </dl>
@@ -227,31 +243,31 @@
 
 </body>
 <script>
-    const inputs = document.querySelectorAll(".qr_info");
-    const qrcodeInput = document.querySelector("#qrcode");
-    const freshBtn = document.querySelector(".fresh")
+const inputs = document.querySelectorAll(".qr_info");
+const qrcodeInput = document.querySelector("#qrcode");
+const freshBtn = document.querySelector(".fresh")
 
-    freshBtn.addEventListener("touchstart", () => {
-        window.location.reload()
+freshBtn.addEventListener("touchstart", () => {
+    window.location.reload()
+})
+
+qrcodeInput.addEventListener("input", (e) => {
+    // 입력된 값에서 공백 제거
+    const newValue = e.target.value.replace(/\s+/g, "");
+
+    // 입력된 값 업데이트
+    e.target.value = newValue;
+})
+
+window.onload = () => {
+    inputs.forEach((input) => {
+        setTimeout(() => {
+            input.value = ""
+        }, 10000)
     })
-
-    qrcodeInput.addEventListener("input", (e) => {
-        // 입력된 값에서 공백 제거
-        const newValue = e.target.value.replace(/\s+/g, "");
-
-        // 입력된 값 업데이트
-        e.target.value = newValue;
-    })
-
-    window.onload = () => {
-        inputs.forEach((input) => {
-            setTimeout(() => {
-                input.value = ""
-            }, 10000)
-        })
-    }
-    /**우클릭 방지 */
-    document.addEventListener("contextmenu", function(event) {
-        event.preventDefault();
-    }, false);
+}
+/**우클릭 방지 */
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+}, false);
 </script>

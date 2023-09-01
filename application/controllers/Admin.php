@@ -207,11 +207,11 @@ class Admin extends CI_Controller
 
         foreach ($regNo as $value) {
             $info = array(
-                'deposit' =>  '입금완료'
+                'deposit' =>  '결제완료'
             );
             $where = array(
                 'registration_no' => $value,
-                'deposit' => '미결제'
+                'deposit' => '결제대기'
             );
             $this->users->update_deposit_status($info, $where);
 
@@ -263,7 +263,7 @@ class Admin extends CI_Controller
 
         foreach ($regNo as $value) {
             $info = array(
-                'deposit' => '입금완료'
+                'deposit' => '결제완료'
             );
             $where = array(
                 'registration_no' => $value,
@@ -317,11 +317,11 @@ class Admin extends CI_Controller
 
         foreach ($regNo as $value) {
             $info = array(
-                'deposit' =>  '미결제'
+                'deposit' =>  '결제대기'
             );
             $where = array(
                 'registration_no' => $value,
-                'deposit' => '입금완료'
+                'deposit' => '결제완료'
             );
             $this->users->update_deposit_status($info, $where);
         }
@@ -594,10 +594,10 @@ class Admin extends CI_Controller
                 //     }
                 // }
 
-                if ($fee == 0)
-                    $deposit = '미결제';
-                else
-                    $deposit = '미결제';
+                // if ($fee == 0)
+                //     $deposit = '미결제';
+                // else
+                //     $deposit = '미결제';
 
                 $addr = $address . " " . $detailAddress . " " . $extraAddress;
 
