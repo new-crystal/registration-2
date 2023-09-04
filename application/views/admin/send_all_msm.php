@@ -31,9 +31,8 @@ if ($err) {
     foreach ($users as $item) {
         // MMS 포토문자
         if (substr($item['phone'], 0, 2) == "82") {
-            $item['phone'] = '0' . substr($item['phone'], 3);
+            $phone = '0' . substr($item['phone'], 3);
         }
-
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://sms.gabia.com/api/send/mms",
@@ -45,7 +44,7 @@ if ($err) {
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => array(
-                'phone' =>  $item['phone'],
+                'phone' => $phone,
                 'callback' => '01090224867',
                 'message' =>  '
 안녕하십니까,
