@@ -536,7 +536,7 @@ class Admin extends CI_Controller
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            // $this->form_validation->set_rules('name_kor', '이름', 'required');
+            $this->form_validation->set_rules('first_name', '이름', 'required');
             // $this->form_validation->set_rules('phone', '전화번호', 'required');
 
             if ($this->form_validation->run() === FALSE) {
