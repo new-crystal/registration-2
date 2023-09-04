@@ -53,7 +53,11 @@ class Qrcode extends CI_Controller
         $where = array(
             'registration_no' => $qrcode
         );
+        $info = array(
+            'qr_print' =>  'Y'
+        );
         $data['users'] = $this->users->get_user($where);
+        $this->users->update_qr_status($info, $where);
         //                var_dump($data['users']);
         $this->load->view('/qr_print', $data);
     }

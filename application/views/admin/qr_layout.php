@@ -30,7 +30,7 @@ body {
 }
 
 .small_name {
-    font-size: 30px !important;
+    font-size: 25px !important
 }
 
 .small_text_box {
@@ -103,7 +103,7 @@ body {
                 }
                 echo '<div class="lucky_num" id="lucky_num">' . $users['etc2'] . '</div>';
                 echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-
+                echo '<div class="org" id="nation" style="height:0;    transform: translateY(-10px);">' . $users['nation'] . '</div>';
                 /**닉네임 조건식 */
                 // 한국인 X && firstname 15글자 이상
                 if (mb_strlen($users['first_name']) >= 15) {
@@ -176,28 +176,30 @@ body {
 </style>
 <script>
 document.getElementById("btnPrint").onclick = function() {
-    printElement(document.getElementById("printThis"));
+    const id = "<?php echo $users['registration_no']; ?>";
 
+    window.location.href = `https://reg2.webeon.net/qrcode/print_file?registration_no=${id}`
+    // printElement(document.getElementById("printThis"));
 }
 
-function printElement(elem) {
-    var domClone = elem.cloneNode(true);
+// function printElement(elem) {
+//     var domClone = elem.cloneNode(true);
 
-    var $printSection = document.getElementById("printSection");
+//     var $printSection = document.getElementById("printSection");
 
-    if (!$printSection) {
-        var $printSection = document.createElement("div");
-        $printSection.style.width = "10cm";
-        $printSection.style.height = "24cm";
-        $printSection.id = "printSection";
-        document.body.appendChild($printSection);
-    }
+//     if (!$printSection) {
+//         var $printSection = document.createElement("div");
+//         $printSection.style.width = "10cm";
+//         $printSection.style.height = "24cm";
+//         $printSection.id = "printSection";
+//         document.body.appendChild($printSection);
+//     }
 
-    $printSection.innerHTML = "";
-    $printSection.appendChild(domClone);
-    //            console.log($printSection);
-    window.print();
-}
+//     $printSection.innerHTML = "";
+//     $printSection.appendChild(domClone);
+//     //            console.log($printSection);
+//     window.print();
+// }
 </script>
 
 <script>
