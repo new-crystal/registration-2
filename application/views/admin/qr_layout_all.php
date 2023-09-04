@@ -92,13 +92,15 @@ body {
                 $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $item['name_kor']);
                 $nicknameLength = mb_strlen($item['name_kor'], "UTF-8");
                 $nation = $item['nation'];
+                $luckyNum = substr($users['registration_no'], 11, 4);
+
                 echo '<div class="a4_area">';
                 echo '<div class="bg_area">';
                 echo '<div class="txt_con">';
                 if ($item['nt_info'] != '') {
                     echo '<div class="org" id="nt_info">' . $item['nt_info'] . '</div>';
                 }
-                echo '<div class="lucky_num" id="lucky_num">' . $item['etc2'] . '</div>';
+                echo '<div class="lucky_num" id="lucky_num">' . $luckyNum  . '</div>';
                 echo '<div class="org" id="org">' . $item['org_nametag'] . '</div>';
 
                 /**닉네임 조건식 */
@@ -139,7 +141,7 @@ body {
                 echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '</div>';
                 echo '</div>';
 
-                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $item['etc2'] . '</div>';
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $luckyNum . '</div>';
                 // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
                 // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
                 // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
