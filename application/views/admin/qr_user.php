@@ -89,6 +89,7 @@ table th {
                         <th>ID(E-mail)</th>
                         <th>Phone Number</th>
                         <th>QR 문자 전송</th>
+                        <th>Print 여부</th>
                         <th>메일전송</th>
                         <th>입장시간</th>
                         <th>퇴장시간</th>
@@ -131,6 +132,7 @@ table th {
                         }
 
                         echo '</td>';
+                        echo '<td style="text-align: center;">' . $item['qr_print'] . '</td>';
                         echo '<td style="text-align: center;">' . $item['mintime'] . '</td>';
                         echo '<td style="text-align: center;">' . $item['maxtime'] . '</td>';
                         echo '<td>';

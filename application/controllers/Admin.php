@@ -536,8 +536,8 @@ class Admin extends CI_Controller
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('name_kor', '이름', 'required');
-            $this->form_validation->set_rules('phone', '전화번호', 'required');
+            // $this->form_validation->set_rules('name_kor', '이름', 'required');
+            // $this->form_validation->set_rules('phone', '전화번호', 'required');
 
             if ($this->form_validation->run() === FALSE) {
                 $this->load->view('admin/add_user');
@@ -558,7 +558,7 @@ class Admin extends CI_Controller
                 $extraAddress = $this->input->post('extraAddress');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
-                $deposit = $this->input->post('deposit');
+                $deposit = '미결제';
                 $memo = $this->input->post('memo');
                 $attendance_type = $this->input->post('attendance_type');
                 $specialty_number = $this->input->post('specialty_number');
