@@ -752,7 +752,7 @@ class Admin extends CI_Controller
                 $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
                 $date_of_birth = $this->input->post('date_of_birth');
                 $fee = $this->input->post('fee');
-                $etc2 = $this->input->post('etc2');
+                // $etc2 = $this->input->post('etc2');
                 $time = $this->input->post('time');
                 $occupation_type = $this->input->post('occupation_type');
                 $is_score = $this->input->post('is_score');
@@ -806,7 +806,7 @@ class Admin extends CI_Controller
                     'day3_luncheon_yn' => $day3_luncheon_yn,
                     'date_of_birth' => $date_of_birth,
                     'updatetime' => $updateTime,
-                    'etc2' => $etc2,
+                    // 'etc2' => $etc2,
                     'time' => $time,
                     'occupation_type' => $occupation_type,
                     'is_score' => $is_score,
