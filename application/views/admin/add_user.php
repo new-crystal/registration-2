@@ -14,12 +14,12 @@
                                 <label class="col-sm-2 control-label">구분 1</label>
                                 <div class="col-sm-10">
                                     <select class="form-control input-lg m-bot15" name="attendance_type" id="type1">
-                                        <option value="Participants">일반참가자</option>
-                                        <option value="Chairperson">좌장</option>
-                                        <option value="Speaker">연자</option>
-                                        <option value="Panel">패널</option>
-                                        <option value="Committee">임원</option>
-                                        <option value="Sponsor">후원사</option>
+                                        <option value="Participants">Participants</option>
+                                        <option value="Chairperson">Chairperson</option>
+                                        <option value="Speaker">Speaker</option>
+                                        <option value="Panel">Panel</option>
+                                        <option value="Committee">Committee</option>
+                                        <option value="Sponsor">Sponsor</option>
                                     </select>
                                 </div>
                             </div>
@@ -29,22 +29,22 @@
                                     <select class="form-control input-lg m-bot15" name="member_type" id="type2">
                                         <option value="Certified M.D.">개원의</option>
                                         <!-- <option value="봉직의">봉직의</option> -->
-                                        <option value="Resident">전공의</option>
-                                        <option value="Fellow">전임의</option>
-                                        <option value="Professor">교수</option>
-                                        <option value="Nurse">간호사</option>
-                                        <option value="Researcher">연구원</option>
+                                        <option value="Resident">Resident</option>
+                                        <option value="Fellow">Fellow</option>
+                                        <option value="Professor">Professor</option>
+                                        <option value="Nurse">Nurse</option>
+                                        <option value="Researcher">Researcher</option>
                                         <!--option value="사회복지사">사회복지사</option-->
-                                        <option value="Pharmacist">약사</option>
-                                        <option value="Nutritionist">영양사</option>
-                                        <option value="Exercise Specialist">운동처방사</option>
-                                        <option value="Military Surgeon">군의관</option>
-                                        <option value="Public Health Doctor">공중보건의</option>
-                                        <option value="Corporate Member">기업회원</option>
-                                        <option value="Student">학생</option>
+                                        <option value="Pharmacist">Pharmacist</option>
+                                        <option value="Nutritionist">Nutritionist</option>
+                                        <option value="Exercise Specialist">Exercise Specialist</option>
+                                        <option value="Military Surgeon">Military Surgeon</option>
+                                        <option value="Public Health Doctor">Public Health Doctor</option>
+                                        <option value="Corporate Member">Corporate Member</option>
+                                        <option value="Student">Student</option>
                                         <!-- <option value="연구원">연구원</option> -->
                                         <!-- <option value="운동처방사">운동처방사</option> -->
-                                        <option value="Others">기타</option>
+                                        <option value="Others">Others</option>
                                     </select>
                                 </div>
                             </div>
@@ -146,23 +146,18 @@
                         </div>
                         <div class="col-lg-6">
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-sm-2 control-label">주소</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="postcode" id="postcode" placeholder="*우편번호" readonly
-                                        disabled style="display:none;">
-                                    <input class="form-control" type="text" name="address" id="address"
-                                        placeholder="*주소" readonly disabled>
-                                    <input class="form-control" type="text" name="detailAddress" id="detailAddress"
-                                        placeholder="*상세주소">
-                                    <input style="display:none;" type="text" name="extraAddress" id="extraAddress"
-                                        placeholder="참고항목" readonly disabled>
+                                    <input type="text" name="postcode" id="postcode" placeholder="*우편번호" readonly disabled style="display:none;">
+                                    <input class="form-control" type="text" name="address" id="address" placeholder="*주소" readonly disabled>
+                                    <input class="form-control" type="text" name="detailAddress" id="detailAddress" placeholder="*상세주소">
+                                    <input style="display:none;" type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly disabled>
                                     <div clss="btn_group" style="float: right; margin-top: 20px;">
-                                        <input type="button" class="btn btn-warning" onclick="execDaumPostcode()"
-                                            value="주소 찾기">
+                                        <input type="button" class="btn btn-warning" onclick="execDaumPostcode()" value="주소 찾기">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">입금자명</label>
                                 <div class="col-sm-10">
@@ -179,6 +174,36 @@
                                 <label class="col-sm-2 control-label">메모</label>
                                 <div class="col-sm-10">
                                     <input id="dp1" type="text" size="16" class="form-control" name="memo">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">remark1</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" size="16" class="form-control" name="remark1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">remark2</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" size="16" class="form-control" name="remark2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">remark3</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" size="16" class="form-control" name="remark3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">remark4</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" size="16" class="form-control" name="remark4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">remark5</label>
+                                <div class="col-sm-10">
+                                    <input id="dp1" type="text" size="16" class="form-control" name="remark5">
                                 </div>
                             </div>
                             <div class="form-group">
