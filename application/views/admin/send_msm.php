@@ -83,7 +83,7 @@ ICOMES 2023 사무국에서 학술대회장 방문 시 참석자들의 빠르고
 ICOMES 2023 운영사무국 올림. 
 
 TEL:82-2-2285-2568, 82-10-3009-8530/ E-mail: icomes@into-on.com
-', 'refkey' => 'RESTAPITEST1548722798', 'subject' => '[ICOMES 2023] 등록 및 현장 참석 안내 (Sep 7. ~ 9, Conrad Seoul, Republic of Korea) ', 'image_cnt' =>
+', 'refkey' => 'RESTAPITEST1548722798', 'subject' => '[ICOMES 2023] 등록 및 현장 참석 안내', 'image_cnt' =>
             '1', '
              images0' => new CURLFILE('assets/images/QR/qrcode_' . $registration_no . '.jpg')
         ),
