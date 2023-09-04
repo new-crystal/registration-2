@@ -308,14 +308,14 @@ function execDaumPostcode() {
 
 
 
-$('#phone').bind('keyup', function(event) {
-    var regNumber = /^[0-9]*$/;
-    var temp = $('#phone').val();
-    if (!regNumber.test(temp)) {
-        alert('숫자만 입력하세요!');
-        $('#phone').val(temp.replace(/[^0-9]/g, ''));
-    }
-})
+// $('#phone').bind('keyup', function(event) {
+//     var regNumber = /^[0-9]*$/;
+//     var temp = $('#phone').val();
+//     if (!regNumber.test(temp)) {
+//         alert('숫자만 입력하세요!');
+//         $('#phone').val(temp.replace(/[^0-9]/g, ''));
+//     }
+// })
 $(function() {
     $("#addForm").submit(function() {
         // if (!$.trim($("#name_kor").val())) {
