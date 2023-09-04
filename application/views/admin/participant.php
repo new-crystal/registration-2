@@ -1,27 +1,30 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-th,
-td {
-    text-align: center !important;
-    border: 2px solid rgb(163 163 163);
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
+    th,
+    td {
+        text-align: center !important;
+        border: 2px solid rgb(163 163 163);
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
 
-tr {
-    height: 4.5rem;
-    border: 2px solid rgb(163 163 163);
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
+    tr {
+        height: 4.5rem;
+        border: 2px solid rgb(163 163 163);
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
 </style>
 <div class="text-center flex flex-col items-center justify-center">
     <h1 class="text-6xl font-semibold text-orange-600 my-10">ICOMES 2023</h1>
     <h6 class="text-3xl font-semibold mb-20 ">현장 참석자 데이터</h6>
+
+    <h6 class="text-3xl font-semibold mb-20 ">현장 QR 프린트 : <?php echo count($users) ?> 명</h6>
     <?php
     // print_r($statistics);
+    // print_r($users);
     $total_1 = 0;
     $total_2 = 0;
     $total_3 = 0;

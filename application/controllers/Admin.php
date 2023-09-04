@@ -558,6 +558,7 @@ class Admin extends CI_Controller
                 $extraAddress = $this->input->post('extraAddress');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
+                $deposit = $this->input->post('deposit');
                 $memo = $this->input->post('memo');
                 $attendance_type = $this->input->post('attendance_type');
                 $specialty_number = $this->input->post('specialty_number');
@@ -723,8 +724,9 @@ class Admin extends CI_Controller
             );
             $this->load->view('admin/left_side.php', $data);
 
-            $this->form_validation->set_rules('name_kor', '이름', 'required');
-            $this->form_validation->set_rules('phone', '전화번호', 'required');
+            $this->form_validation->set_rules('registration_no', '등록번호', 'required');
+            // $this->form_validation->set_rules('name_kor', '이름', 'required');
+            // $this->form_validation->set_ru/les('phone', '전화번호', 'required');
             // $this->form_validation->set_rules('org', '소속', 'required');
 
             if ($this->form_validation->run() === FALSE) {
@@ -774,6 +776,8 @@ class Admin extends CI_Controller
                 $special_request_food = $this->input->post('special_request_food');
                 $remark3 = $this->input->post('remark3');
                 $remark4 = $this->input->post('remark4');
+                $remark5 = $this->input->post('remark5');
+                $qr_print = $this->input->post('qr_print');
 
                 if ($memo == "") {
                     $memo = null;
@@ -826,6 +830,8 @@ class Admin extends CI_Controller
                     'special_request_food' => $special_request_food,
                     'remark3' => $remark3,
                     'remark4' => $remark4,
+                    'remark5' => $remark5,
+                    'qr_print' => $qr_print
                     // 'time' => substr($time, 0, 10)
                 );
 
@@ -1303,6 +1309,10 @@ class Admin extends CI_Controller
         else {
             $data['primary_menu'] = 'participant';
             $data['statistics'] = $this->users->get_access_statistics();
+            $where = array(
+                'qr_print' => 'Y'
+            );
+            $data['users'] = $this->users->get_qr_print_user($where);
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/participant.php', $data);

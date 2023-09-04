@@ -63,6 +63,11 @@ class Users extends CI_Model
 		return $this->db->get($this->users)->row_array();
 	}
 
+	public function get_qr_print_user($where)
+	{
+		$this->db->where($where);
+		return $this->db->get($this->users)->result_array();
+	}
 	public function get_qr_user()
 	{
 		$query = $this->db->query("
