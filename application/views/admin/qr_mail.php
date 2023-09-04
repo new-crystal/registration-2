@@ -1,4 +1,10 @@
 <style>
+@font-face {
+    font-family: 'Times New Roman', Times, serif;
+    src: url("../../../assets/font/Times_New_Roman.otf");
+}
+
+
 #send_mail {
     background-color: #fff;
     padding: 4px 8px;
@@ -11,6 +17,10 @@
 #send_mail:hover {
     background-color: #ddd;
 }
+
+table {
+    font-family: 'Times New Roman', Times, serif;
+}
 </style>
 
 <table width='750' style='border:none; padding: 0;'>
@@ -22,74 +32,94 @@
         </tr>
         <tr>
             <td colspan='3'>
-                <div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>사전등록
-                    신청이 아래와 같이 이루어졌습니다.</div>
-            </td>
-        </tr>
-        <tr>
-            <td width='74' style='width:74px;'></td>
-            <td>
-                <div>
-
-                    <table width='586'
-                        style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
-                        <tbody>
-                            <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
-                                    이름</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>
-                                    <a href='mailto:{$to}'
-                                        class='link font_inherit'><?php echo $users['last_name'] . " " . $users['first_name'] ?></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
-                                    소속</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
-                                    <?php echo $users['affiliation'] ?></td>
-
-                            </tr>
-                            <tr>
-                                <th
-                                    style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>
-                                    접수번호</th>
-                                <td colspan='2'
-                                    style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>
-                                    <?php echo $users['registration_no'] ?></td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+                <div style='font-weight:bold; text-align:left;font-size: 21px; color: #00666B;padding: 20px 0;'>
+                    <p>Dear
+                        Distinguished Participants,</p>
                 </div>
             </td>
-            <td width='74' style='width:74px;'></td>
         </tr>
         <tr>
-            <td colspan='3' style="text-align: center;">
-                <p>
-                    2023년 서울아산병원 당뇨병개원의 연수강좌에 참석 해주셔서 감사합니다.<br>
-                    현장 등록데스크에 방문하여 위 QR코드를 제시 후 네임택을 수령 부탁드립니다.
-                </p>
+            <td colspan='3'>
+                <div style='text-align:left;font-size: 18px;'>
+                    <p>We sincerely appreciate your valuable participation in ICOMES 2023, Hosted by the Korean Society
+                        for
+                        the
+                        Study of Obesity (KSSO). We are pleased to provide you with essential registration
+                        information.</p><br><br>
+
+                    <p>Kindly review the following details to ensure a smooth and efficient registration process.
+                        Included
+                        for
+                        your convenience is a 'QR code', which we appreciate you presenting at the registration desk to
+                        receive
+                        your name badge.</p><br><br>
+
+                    <p><span style="font-weight: 600;">[ICOMES 2023 Overview]</span><br>
+                        * Dates: September 7th (Thursday) to 9th (Saturday), 2023<br>
+                        * Venue: CONRAD Hotel, Seoul (10 Gukjegeumyung-ro, Yeongdeungpo-gu, Seoul, Republic of
+                        Korea)<br>
+                        * Directions: <a
+                            href="https://icomes.or.kr/main/venue.php">https://icomes.or.kr/main/venue.php</a><br>
+                        <span style="color:blue; font-weight:600;">* Location of Registration Desk: Lobby (3F), Conrad
+                            Seoul<br>
+                            * Operating Hours: Sep 7(Thu): 14:00 ~ / Sep 8(Fri), Sep 9(Sat): 07:00 ~</span>
+                    </p><br><br>
+
+                    <p><span style="font-weight: 600;">[Registration & Name Badge Collection]</span><br>
+                        We kindly request all attendees to visit the registration desk for the collection of their name
+                        badges
+                        and program books. Your own registration QR code can be confirmed through email, SMS, or our
+                        mobile
+                        application, and we would appreciate your presentation of this code at the registration desk
+                        (3F).</p><br><br>
+                    </p>
+                </div>
             </td>
         </tr>
         <tr>
             <td colspan='3' style="text-align: center;">
-                <img width="300px" height="300px"
+                <img width="200px" height="200px"
                     src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents(getcwd() . '/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg')); ?>"
                     alt="" />
-                <?php /*src="<?php echo '../assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg'; ?>" alt=""
-                />*/ ?>
+                <!-- <img width="200px" height="200px" src="data:image/jpg;base64,{$text4}" alt="" /> -->
+
             </td>
         </tr>
         <tr>
-            <td colspan='3' style="text-align: center; color: red; font-weight: 600;">
+            <td colspan='3' style="text-align: left;">
+                <p><br><br>
+                    <span style="font-weight: 600;">* Additional Verification Process</span><br>
+                    For student attendees, please ensure you have your student ID or proof of current enrollment readily
+                    available.
+                    For international attendees, kindly have your passport accessible for verification.
+                </p><br><br>
+
+                <p><span style="font-weight: 600;">[Download the ICOMES 2023 Mobile Application]</span><br>
+                    We are delighted to introduce the ICOMES 2023 mobile application.<br>
+                    For this edition of ICOMES, printed abstract books will <span
+                        style="color:red; font-weight:600">NOT</span> be
+                    provided. Instead, all the essential
+                    information for attendees can be accessed through the application.</p><br><br>
+
+                <p><span style="font-weight: 600;">Key Features of the application:</span> All session programs,
+                    setting the favorite session schedule,
+                    invited speaker profiles, session abstracts, program book downloads, and all the necessary
+                    information of participation.</p><br><br>
+
+                <p><span style="font-weight: 600;">* Mobile Application Download<br>
+                        - Scan the QR Code:<br></span></p>
+                <img src="https://image.webeon.net/icomes2023/1st/google_strore.png" alt="" width="100" />
+                <p> (Google Play Store)</p>
+                <img src="https://image.webeon.net/icomes2023/1st/apple_app.png" alt="" width="100" />
+                <p>(Apple App Store)</p><br>
+                <p><span style="font-weight: 600;">- Search in Android/ IOS APP Stores: ‘ICOMES 2023’</span></p><br><br>
+
+                <p> Once again, we appreciate your participation in ICOMES 2023. Should you have any questions or
+                    require assistance, please do not hesitate to contact our Secretariat.<br><br></p>
+
+                <p> Best Regards,<br><br>
+                    ICOMES 2023 Secretariat
                 <p>
-                    본 QR코드는 출석 태깅 QR코드가 아니며,<br>
-                    출석 태킹은 네임택 수령 후 네임택 QR코드을 사용 부탁 드립니다.
                 </p>
             </td>
         </tr>
