@@ -574,6 +574,7 @@ class Admin extends CI_Controller
             $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
             $date_of_birth = $this->input->post('date_of_birth');
             $remark1 = $this->input->post('remark1');
+            $remark2 = $this->input->post('remark2');
             $remark3 = $this->input->post('remark3');
             $remark4 = $this->input->post('remark4');
             $remark5 = $this->input->post('remark5');
@@ -623,6 +624,7 @@ class Admin extends CI_Controller
                 'day3_luncheon_yn' => $day3_luncheon_yn,
                 'date_of_birth' => $date_of_birth,
                 'remark1' => $remark1,
+                'remark2' => $remark2,
                 'remark3' => $remark3,
                 'remark4' => $remark4,
                 'remark5' => $remark5,
