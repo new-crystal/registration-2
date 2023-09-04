@@ -1224,7 +1224,7 @@ class Admin extends CI_Controller
             $userId = $this->input->post('userId');
             $data['users'] = array(); // 배열로 초기화
             $wheres = array(
-                'QR_SMS_SEND_YN' => 'N',
+                'nation' => 'Republic of Korea',
             );
             $users = $this->users->get_msm_user($wheres);
             $data['users'] = array_merge($data['users'], $users);
@@ -1248,7 +1248,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/login');
         else {
             $userId = $this->input->post('userId');
-            $data['users'] = $this->users->get_mail_user();
+            $data['users'] = $this->users->get_users();
             foreach ($data['users'] as $users) {
                 // var_dump($value);
                 $where = array(
