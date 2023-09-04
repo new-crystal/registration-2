@@ -539,115 +539,102 @@ class Admin extends CI_Controller
             // $this->form_validation->set_rules('name_kor', '이름', 'required');
             // $this->form_validation->set_rules('phone', '전화번호', 'required');
 
-            if ($this->form_validation->run() === FALSE) {
-                $this->load->view('admin/add_user');
-            } else {
-                $name_kor = $this->input->post('name_kor');
-                $license = $this->input->post('licence_number');
-                $affiliation = $this->input->post('affiliation');
-                $affiliation_kor = $this->input->post('affiliation_kor');
-                $department = $this->input->post('department');
-                $department_kor = $this->input->post('department_kor');
-                $phone = $this->input->post('phone');
-                $email = $this->input->post('email');
-                $member_type = $this->input->post('member_type');
-                $ksso_member_status = $this->input->post('ksso_member_status');
-                $postcode = $this->input->post('postcode');
-                $address = $this->input->post('address');
-                $detailAddress = $this->input->post('detailAddress');
-                $extraAddress = $this->input->post('extraAddress');
-                $deposit_date = $this->input->post('deposit_date');
-                $deposit_name = $this->input->post('deposit_name');
-                $deposit = '미결제';
-                $memo = $this->input->post('memo');
-                $attendance_type = $this->input->post('attendance_type');
-                $specialty_number = $this->input->post('specialty_number');
-                $nutritionist_number = $this->input->post('nutritionist_number');
-                $dietitian_number = $this->input->post('dietitian_number');
-                $first_name = $this->input->post('first_name');
-                $last_name = $this->input->post('last_name');
-                $nation = $this->input->post('nation');
-                $welcome_reception_yn = $this->input->post('welcome_reception_yn');
-                $day2_breakfast_yn = $this->input->post('day2_breakfast_yn');
-                $day2_luncheon_yn = $this->input->post('day2_luncheon_yn');
-                $day3_breakfast_yn = $this->input->post('day3_breakfast_yn');
-                $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
-                $date_of_birth = $this->input->post('date_of_birth');
-                $fee = 0;
-                //fee 계산 추후에
-                // if ($member_type == '개원의' || $member_type == '봉직의' || $member_type == '전임의' || $member_type == '교수') {
-                //     if ($member_type == '비회원') {
-                //         $fee = 110000;
-                //     } else {
-                //         $fee = 90000;
-                //     }
-                // } else if ($member_type == '간호사' || $member_type == '기초의학자' || $member_type == '약사' || $member_type == '군의관') {
-                //     if ($member_type == '비회원') {
-                //         $fee = 90000;
-                //     } else {
-                //         $fee = 70000;
-                //     }
-                // } else if ($member_type == '전공의') {
-                //     if ($member_type == '비회원') {
-                //         $fee = 90000;
-                //     } else {
-                //         $fee = 70000;
-                //     }
-                // }
+            // if ($this->form_validation->run() === FALSE) {
+            //     $this->load->view('admin/add_user');
+            // } else {
+            $name_kor = $this->input->post('name_kor');
+            $license = $this->input->post('licence_number');
+            $affiliation = $this->input->post('affiliation');
+            $affiliation_kor = $this->input->post('affiliation_kor');
+            $department = $this->input->post('department');
+            $department_kor = $this->input->post('department_kor');
+            $phone = $this->input->post('phone');
+            $email = $this->input->post('email');
+            $member_type = $this->input->post('member_type');
+            $ksso_member_status = $this->input->post('ksso_member_status');
+            // $postcode = $this->input->post('postcode');
+            // $address = $this->input->post('address');
+            // $detailAddress = $this->input->post('detailAddress');
+            // $extraAddress = $this->input->post('extraAddress');
+            $deposit_date = $this->input->post('deposit_date');
+            $deposit_name = $this->input->post('deposit_name');
+            $deposit = '미결제';
+            $memo = $this->input->post('memo');
+            $attendance_type = $this->input->post('attendance_type');
+            $specialty_number = $this->input->post('specialty_number');
+            $nutritionist_number = $this->input->post('nutritionist_number');
+            $dietitian_number = $this->input->post('dietitian_number');
+            $first_name = $this->input->post('first_name');
+            $last_name = $this->input->post('last_name');
+            $nation = $this->input->post('nation');
+            $welcome_reception_yn = $this->input->post('welcome_reception_yn');
+            $day2_breakfast_yn = $this->input->post('day2_breakfast_yn');
+            $day2_luncheon_yn = $this->input->post('day2_luncheon_yn');
+            $day3_breakfast_yn = $this->input->post('day3_breakfast_yn');
+            $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
+            $date_of_birth = $this->input->post('date_of_birth');
+            $remark1 = $this->input->post('remark1');
+            $remark2 = $this->input->post('remark2');
+            $remark3 = $this->input->post('remark3');
+            $remark4 = $this->input->post('remark4');
+            $remark5 = $this->input->post('remark5');
+            $special_request_food = $this->input->post('special_request_foodspecial_request_food');
+            $fee = 0;
 
-                // if ($fee == 0)
-                //     $deposit = '미결제';
-                // else
-                //     $deposit = '미결제';
+            // $addr = $address . " " . $detailAddress . " " . $extraAddress;
 
-                $addr = $address . " " . $detailAddress . " " . $extraAddress;
+            $time = date("Y-m-d H:i:s");
+            $uagent = $this->agent->agent_string();
 
-                $time = date("Y-m-d H:i:s");
-                $uagent = $this->agent->agent_string();
+            //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
 
-                //            error_log(print_r($name, TRUE), 3, '/tmp/errors.log');
-
-                $info = array(
-                    'name_kor' => preg_replace("/\s+/", "", $name_kor),
-                    'licence_number' => preg_replace("/\s+/", "", $license),
-                    'affiliation' => trim($affiliation),
-                    'affiliation_kor' => trim($affiliation_kor),
-                    'department' => trim($department),
-                    'department_kor' => trim($department_kor),
-                    'org_nametag' => trim($affiliation),
-                    'phone' => preg_replace("/\s+/", "", $phone),
-                    'email' => preg_replace("/\s+/", "", $email),
-                    'postcode' => trim($postcode),
-                    'addr' => trim($addr),
-                    // 'type' => trim($type),
-                    'member_type' => trim($member_type),
-                    'ksso_member_status' => trim($ksso_member_status),
-                    'fee' => $fee,
-                    'time' => $time,
-                    'uagent' => $uagent,
-                    'deposit' => $deposit,
-                    'deposit_date' => $deposit_date,
-                    'deposit_name' => $deposit_name,
-                    'memo' => $memo,
-                    'attendance_type' => $attendance_type,
-                    'specialty_number' => $specialty_number,
-                    'nutritionist_number' => $nutritionist_number,
-                    'dietitian_number' => $dietitian_number,
-                    'first_name' => $first_name,
-                    'last_name' => $last_name,
-                    'nation' => $nation,
-                    'welcome_reception_yn' => $welcome_reception_yn,
-                    'day2_breakfast_yn' => $day2_breakfast_yn,
-                    'day2_luncheon_yn' => $day2_luncheon_yn,
-                    'day3_breakfast_yn' => $day3_breakfast_yn,
-                    'day3_luncheon_yn' => $day3_luncheon_yn,
-                    'date_of_birth' => $date_of_birth,
-                );
-                //                var_dump($info);
-                $this->users->add_onsite_user($info);
-                $this->load->view('admin/add_success');
-            }
+            $info = array(
+                'name_kor' => preg_replace("/\s+/", "", $name_kor),
+                'licence_number' => preg_replace("/\s+/", "", $license),
+                'affiliation' => trim($affiliation),
+                'affiliation_kor' => trim($affiliation_kor),
+                'department' => trim($department),
+                'department_kor' => trim($department_kor),
+                'org_nametag' => trim($affiliation),
+                'phone' => preg_replace("/\s+/", "", $phone),
+                'email' => preg_replace("/\s+/", "", $email),
+                // 'postcode' => trim($postcode),
+                // 'addr' => trim($addr),
+                // 'type' => trim($type),
+                'member_type' => trim($member_type),
+                'ksso_member_status' => trim($ksso_member_status),
+                'fee' => $fee,
+                'time' => $time,
+                'uagent' => $uagent,
+                'deposit' => $deposit,
+                'deposit_date' => $deposit_date,
+                'deposit_name' => $deposit_name,
+                'memo' => $memo,
+                'attendance_type' => $attendance_type,
+                'specialty_number' => $specialty_number,
+                'nutritionist_number' => $nutritionist_number,
+                'dietitian_number' => $dietitian_number,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'nation' => $nation,
+                'welcome_reception_yn' => $welcome_reception_yn,
+                'day2_breakfast_yn' => $day2_breakfast_yn,
+                'day2_luncheon_yn' => $day2_luncheon_yn,
+                'day3_breakfast_yn' => $day3_breakfast_yn,
+                'day3_luncheon_yn' => $day3_luncheon_yn,
+                'date_of_birth' => $date_of_birth,
+                'remark1' => $remark1,
+                'remark2' => $remark2,
+                'remark3' => $remark3,
+                'remark4' => $remark4,
+                'remark5' => $remark5,
+                'special_request_food' => $special_request_food,
+            );
+            //                var_dump($info);
+            $this->users->add_onsite_user($info);
+            $this->load->view('admin/add_success');
         }
+        // }
         $this->load->view('footer');
     }
 

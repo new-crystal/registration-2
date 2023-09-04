@@ -154,13 +154,13 @@ $en_name = $firstName . " " . $lastName
                             </colgroup>
                             <tr>
                                 <th>Category</th>
-                                <?php if (isset($user['member_type']) && $user['member_type'] == "Student") : ?>
-                                    <td id="member_type_s" class="qr_text" style="color:red">Student</td>
-                                <?php elseif (isset($user['member_type']) && $user['member_type'] != "Student") : ?>
+                                <?php if (isset($user['member_type']) && $user['member_type'] == "Student") { ?>
+                                    <td id="member_type" class="qr_text" style="color:red">Student</td>
+                                <?php } else { ?>
                                     <td id="member_type" class="qr_text">
                                         <?php if (isset($user['member_type'])) echo $user['member_type']; ?>
                                     </td>
-                                <?php endif; ?>
+                                <?php } ?>
                             </tr>
 
 
@@ -191,8 +191,8 @@ $en_name = $firstName . " " . $lastName
                             </tr>
                             <tr>
                                 <th class="memoHeader">Remark 2</th>
-                                <td id="special_request_food" class="qr_text">
-                                    <?php if (isset($user['special_request_food'])) echo $user['special_request_food'] ?>
+                                <td id="remark2" class="qr_text">
+                                    <?php if (isset($user['remark2'])) echo $user['remark2'] ?>
                                 </td>
                             </tr>
 
@@ -246,14 +246,14 @@ $en_name = $firstName . " " . $lastName
     const ksso_member_status = document.querySelector("#ksso_member_status")
     const attendance_type = document.querySelector("#attendance_type")
     const category = document.querySelector("#member_type")
-    const member_type_s = document.querySelector("#member_type_s")
+    // const member_type_s = document.querySelector("#member_type_s")
     const deposit = document.querySelector("#deposit")
     const fee = document.querySelector("#fee")
     const is_score = document.querySelector("#is_score")
     const memo = document.querySelector("#memo")
     const number = document.querySelector("#number")
     const remark1 = document.querySelector("#remark1")
-    const special_request_food = document.querySelector("#special_request_food")
+    const remark2 = document.querySelector("#remark2")
     const remark3 = document.querySelector("#remark3")
     const remark4 = document.querySelector("#remark4")
     const remark5 = document.querySelector("#remark5")
@@ -317,17 +317,16 @@ $en_name = $firstName . " " . $lastName
                     attendance_type.innerText = htmlDocument.querySelector("#attendance_type").innerText.replace(
                             /<br\s*\/?>/gi, "")
                         .replace(/\s/g, "");
-                    if (htmlDocument.querySelector("#member_type").innerText.replace(/<br\s*\/?>/gi,
-                            "") == "Student") {
-                        member_type_s.innerText = htmlDocument.querySelector("#member_type").innerText.replace(
+                    if (htmlDocument.querySelector("#member_type").innerText.replace(
                             /<br\s*\/?>/gi,
-                            "")
+                            "").replace(/\s/g, "") === "Student") {
+                        category.style.color = "red";
+                        category.innerText = "Student"
                     } else {
-                        member_type.innerText = htmlDocument.querySelector("#member_type").innerText.replace(
+                        category.innerText = htmlDocument.querySelector("#member_type").innerText.replace(
                             /<br\s*\/?>/gi,
                             "").replace(/\s/g, "");
                     }
-
                     deposit.innerText = htmlDocument.querySelector("#deposit").innerText.replace(/<br\s*\/?>/gi, "")
                         .replace(/\s/g, "");
                     fee.innerText = htmlDocument.querySelector("#fee").innerText.replace(/<br\s*\/?>/gi, "")
@@ -339,7 +338,7 @@ $en_name = $firstName . " " . $lastName
                     remark1.innerText = htmlDocument.querySelector("#remark1").innerText.replace(/<br\s*\/?>/gi, "")
                         .replace(
                             /\s/g, "");
-                    special_request_food.innerText = htmlDocument.querySelector("#special_request_food").innerText
+                    remark2.innerText = htmlDocument.querySelector("#remark2").innerText
                         .replace(/<br\s*\/?>/gi, "").replace(
                             /\s/g, "");
                     remark3.innerText = htmlDocument.querySelector("#remark3").innerText.replace(/<br\s*\/?>/gi, "")
