@@ -93,7 +93,6 @@ class Users extends CI_Model
 		$query = $this->db->query("
 		SELECT *
 		FROM users a
-		WHERE a.QR_MAIL_SEND_YN = 'N'
 		");
 
 		return $query->result_array();
