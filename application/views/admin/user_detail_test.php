@@ -36,6 +36,12 @@ else {
     $contry = '국외';
 }
 $luckyNum = substr($item['registration_no'], 11, 4);
+if ($item['onsite_reg'] == '0') {
+    $on_site = '사전등록';
+} else {
+    $on_site = '현장등록';
+}
+
 ?>
 <!-- container section start -->
 <section id="container" class="">
@@ -52,6 +58,10 @@ $luckyNum = substr($item['registration_no'], 11, 4);
                                 <tr>
                                     <th>Registration No.</th>
                                     <td style="background-color:#fafafa;"> <input class="form-control" type="text" value="<?php echo $item['registration_no']; ?>" name="registration_no" id="registration_no" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th>사전등록여부</th>
+                                    <td> <input class="form-control" type="text" value="<?php echo $on_site;  ?>" name="onsite_reg" id="onsite_reg"></td>
                                 </tr>
                                 <tr>
                                     <th>Registration No.(Lucky Draw)</th>

@@ -732,8 +732,6 @@ class Admin extends CI_Controller
                 $ksso_member_status = $this->input->post('ksso_member_status');
                 $postcode = $this->input->post('postcode');
                 $address = $this->input->post('address');
-                $detailAddress = $this->input->post('detailAddress');
-                $extraAddress = $this->input->post('extraAddress');
                 $deposit = $this->input->post('deposit');
                 $deposit_date = $this->input->post('deposit_date');
                 $deposit_name = $this->input->post('deposit_name');
@@ -752,7 +750,6 @@ class Admin extends CI_Controller
                 $day3_luncheon_yn = $this->input->post('day3_luncheon_yn');
                 $date_of_birth = $this->input->post('date_of_birth');
                 $fee = $this->input->post('fee');
-                // $etc2 = $this->input->post('etc2');
                 $time = $this->input->post('time');
                 $occupation_type = $this->input->post('occupation_type');
                 $is_score = $this->input->post('is_score');
@@ -765,10 +762,16 @@ class Admin extends CI_Controller
                 $remark4 = $this->input->post('remark4');
                 $remark5 = $this->input->post('remark5');
                 $qr_print = $this->input->post('qr_print');
-
+                $onsite_reg = $this->input->post('onsite_reg');
                 if ($memo == "") {
                     $memo = null;
                 }
+                if ($onsite_reg == "사전등록") {
+                    $onsite_reg = '0';
+                } else {
+                    $onsite_reg = '1';
+                }
+
                 $updateTime = date("Y-m-d H:i:s");
                 $info = array(
                     'name_kor' => preg_replace("/\s+/", "", $name_kor),
@@ -818,7 +821,8 @@ class Admin extends CI_Controller
                     'remark3' => $remark3,
                     'remark4' => $remark4,
                     'remark5' => $remark5,
-                    'qr_print' => $qr_print
+                    'qr_print' => $qr_print,
+                    'onsite_reg' => $onsite_reg
                     // 'time' => substr($time, 0, 10)
                 );
 
