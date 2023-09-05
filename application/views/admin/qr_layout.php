@@ -93,6 +93,7 @@
             <div id="editor1" contenteditable="true" style="height:24cm;">
                 <?php
                 $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['name_kor']);
+                $nicknameLength = mb_strlen($users['first_name'], "UTF-8") + mb_strlen($users['last_name'], "UTF-8");
                 $nation = $users['nation'];
                 $luckyNum = substr($users['registration_no'], 11, 4);
 
@@ -104,23 +105,26 @@
                 }
                 echo '<div class="lucky_num" id="lucky_num">' . $luckyNum  . '</div>';
                 echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-                echo '<div class="org" id="nation" style="height:0;    transform: translateY(-10px);">' . $users['nation'] . '</div>';
+                if (mb_strlen($users['org_nametag']) <= 51) {
+                    echo '<div class="org" id="nation" style="height:0;    transform: translateY(-21px);">' . $users['nation'] . '</div>';
+                } else {
+                    echo '<div class="org" id="nation" style="height:0;    transform: translateY(-13px);">' . $users['nation'] . '</div>';
+                }
+
                 /**닉네임 조건식 */
                 // 한국인 X && firstname 15글자 이상
-                if (mb_strlen($users['first_name']) >= 15) {
-                    echo '<div class="nick_name lang_en small_name" id="first_name">' .  $users['first_name'] . '</div>';
-
-                    // 한국인 X && firstname 15글자 이하
-                } else if (mb_strlen($users['first_name']) <= 15) {
-                    echo '<div class="nick_name lang_en" id="first_name">' .  $users['first_name'] . '</div>';
-                }
-                // 한국인 X && lastname 15글자 이상
-                if (mb_strlen($users['last_name']) >= 15) {
-                    echo '<div class="nick_name lang_en small_name" id="last_name">' .  $users['last_name'] . '</div>';
-
-                    // 한국인 X && lastname 15글자 이하    
-                } else if (mb_strlen($users['last_name']) <= 15) {
-                    echo '<div class="nick_name lang_en" id="last_name">' .  $users['last_name'] . '</div>';
+                if ($nicknameLength < 25) {
+                    if (mb_strlen($users['first_name']) >= 15 || mb_strlen($users['last_name']) >= 15) {
+                        echo '<div class="nick_name lang_en small_name" id="first_name">' .  $users['first_name'] . '</div>';
+                        echo '<div class="nick_name lang_en small_name" id="last_name">' .  $users['last_name'] . '</div>';
+                        // 한국인 X && firstname 15글자 이하
+                    } else if (mb_strlen($users['first_name']) <= 15) {
+                        echo '<div class="nick_name lang_en" id="first_name">' .  $users['first_name'] . '</div>';
+                        echo '<div class="nick_name lang_en" id="last_name">' .  $users['last_name'] . '</div>';
+                    }
+                } else if ($nicknameLength >= 25) {
+                    echo '<div class="nick_name lang_en" id="first_name" style="line-height: 40px;font-size: 25px;">' .  $users['first_name'] . '</div>';
+                    echo '<div class="nick_name lang_en" id="last_name" style="line-height: 40px;font-size: 25px;">' .  $users['last_name'] . '</div>';
                 }
 
                 // //한국인 O
