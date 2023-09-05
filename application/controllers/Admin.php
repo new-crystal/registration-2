@@ -1196,7 +1196,8 @@ class Admin extends CI_Controller
         else {
             $userId = $_GET['n'];
             $where = array(
-                'registration_no' => $userId
+                'registration_no' => $userId,
+                'nation' => 'Republic of Korea'
             );
             $info = array(
                 'QR_SMS_SEND_YN' =>  'Y'
