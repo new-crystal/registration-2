@@ -787,6 +787,9 @@ class Admin extends CI_Controller
                 $remark5 = $this->input->post('remark5');
                 $qr_print = $this->input->post('qr_print');
                 $onsite_reg = $this->input->post('onsite_reg');
+                $qr_chk_day_1 = $this->input->post('qr_chk_day_1');
+                $qr_chk_day_2 = $this->input->post('qr_chk_day_2');
+                $qr_chk_day_3 = $this->input->post('qr_chk_day_3');
                 if ($memo == "") {
                     $memo = null;
                 }
@@ -846,7 +849,10 @@ class Admin extends CI_Controller
                     'remark4' => $remark4,
                     'remark5' => $remark5,
                     'qr_print' => $qr_print,
-                    'onsite_reg' => $onsite_reg
+                    'onsite_reg' => $onsite_reg,
+                    'qr_chk_day_1' => $qr_chk_day_1,
+                    'qr_chk_day_2' => $qr_chk_day_2,
+                    'qr_chk_day_3' => $qr_chk_day_3
                     // 'time' => substr($time, 0, 10)
                 );
 
@@ -1395,19 +1401,34 @@ class Admin extends CI_Controller
 
             if ($qrcode) {
                 $time = date("Y-m-d H:i:s");
-
+                $qr_time = date("T-m-d");
                 // $info = array(
                 //     'registration_no' => $qrcode,
                 //     'time' => $time
                 // );
-                $infoqr = array(
-                    'qr_chk' =>  'Y'
-                );
-
                 $where = array(
                     'registration_no' => $qrcode
                 );
-                $this->users->update_qr_status($infoqr, $where);
+                if ($qr_time == '2023-09-07') {
+                    $infoqr = array(
+                        'qr_chk_day_1' =>  'Y'
+                    );
+                    $this->users->update_qr_status($infoqr, $where);
+                }
+                if ($qr_time == '2023-09-08') {
+                    $infoqr = array(
+                        'qr_chk_day_2' =>  'Y'
+                    );
+                    $this->users->update_qr_status($infoqr, $where);
+                }
+                if ($qr_time == '2023-09-09') {
+                    $infoqr = array(
+                        'qr_chk_day_3' =>  'Y'
+                    );
+                    $this->users->update_qr_status($infoqr, $where);
+                }
+
+
                 //입장시간, 퇴장시간 기록
                 // $this->entrance->record($info);
                 $user = $this->users->get_user($where);
