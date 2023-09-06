@@ -61,6 +61,12 @@ class Qrcode extends CI_Controller
         //                var_dump($data['users']);
         $this->load->view('/qr_print', $data);
     }
+    public function print_staff_file()
+    {
+        $this->load->view('admin/header');
+
+        $this->load->view('/qr_staff_print');
+    }
 
     public function info()
     {
