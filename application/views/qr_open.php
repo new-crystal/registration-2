@@ -32,18 +32,7 @@ body::-webkit-scrollbar {
     <div class="page_1">
         <img src="../../assets/images/new_index.png" />
     </div>
-    <div class="page_2" style="display: none;">
-        <img class="absolute top-0 left-0" style="z-index: -99;" src="../../assets/images/name_org.png" />
-        <div class="text_box">
-            <div id="name_kor" class="relative z-50" style="top: 44px;">
-                <?php if (isset($users['name_kor'])) echo $users['name_kor'] ?>
-            </div>
-        </div>
-        <div class="text_box">
-            <div id="org" class="relative z-50" style="top: 141px;">
-                <?php if (isset($users['org'])) echo $users['org'] ?></div>
-        </div>
-    </div>
+
 </div>
 
 <script>
