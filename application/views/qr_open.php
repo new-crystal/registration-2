@@ -1,5 +1,13 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+body {
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .text_box {
     font-size: 7rem;
     color: #000;
@@ -20,7 +28,7 @@
     }
 }
 </style>
-<div class="w-full h-screen flex flex-col items-center justify-center">
+<div class="w-full h-screen flex flex-col items-center justify-center overflow-hiddens">
     <div class="page_1">
         <img src="../../assets/images/new_index.png" />
     </div>
@@ -72,4 +80,9 @@ window.addEventListener('message', function(event) {
         childFunction(event.data);
     }
 });
+
+/**우클릭 방지 */
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+}, false);
 </script>
