@@ -335,21 +335,27 @@ if ($item['onsite_reg'] == '0') {
                                             name="qr_print" id="phone"></td>
                                 </tr>
                                 <tr>
-                                    <th>day 1 참석여부</th>
+                                    <th>day 1 출결여부</th>
                                     <td><input class="form-control" type="text"
                                             value="<?php echo $item['qr_chk_day_1']; ?>" name="qr_chk_day_1" id="phone">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>day 2 참석여부</th>
+                                    <th>day 2 출결여부</th>
                                     <td><input class="form-control" type="text"
                                             value="<?php echo $item['qr_chk_day_2']; ?>" name="qr_chk_day_2" id="phone">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>day 3 참석여부</th>
+                                    <th>day 3 출결여부</th>
                                     <td><input class="form-control" type="text"
                                             value="<?php echo $item['qr_chk_day_3']; ?>" name="qr_chk_day_3" id="phone">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>memo</th>
+                                    <td><input class="form-control" type="text" value="<?php echo $item['memo']; ?>"
+                                            name="memo" id="memo">
                                     </td>
                                 </tr>
 
