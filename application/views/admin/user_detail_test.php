@@ -406,9 +406,12 @@ if ($item['onsite_reg'] == '0') {
                                 </tr>
                                 <tr>
                                     <th style="background-color: #fb8500">Remarks 2(Special Requst for Food)</th>
-                                    <td><input class="form-control" type="text"
+                                    <td>
+                                        special_request_food:
+                                        <input class="form-control" type="text"
                                             value="<?php echo $item['special_request_food']; ?>"
                                             name="special_request_food" id="special_request_food">
+                                        remark2
                                         <input class="form-control" type="text" value="<?php echo $item['remark2']; ?>"
                                             name="remark2" id="remark2">
                                     </td>
