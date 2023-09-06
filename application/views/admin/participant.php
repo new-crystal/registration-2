@@ -22,6 +22,7 @@
     <h6 class="text-3xl font-semibold mb-20 ">현장 참석자 데이터</h6>
 
     <h6 class="text-3xl font-semibold mb-20 ">현장 QR 프린트 : <?php echo count($users) ?> 명</h6>
+    <h6 class="text-3xl font-semibold mb-20 ">현장 QR 출결 : <?php echo count($item) ?> 명</h6>
     <?php
     // print_r($statistics);
     // print_r($users);
@@ -45,7 +46,6 @@
     $total_7 = $total_1 + $total_2;
     $total_8 = $total_3 + $total_4;
     $total_9 = $total_5 + $total_6;
-    // print_r($statistics)
     ?>
     <table class="w-9/12 text-2xl mb-20">
         <tr class="bg-green-300 text-black">
@@ -64,7 +64,7 @@
 
         </tr>
         <tr>
-            <th class="bg-red-100" rowspan="7">사전등록</th>
+            <th class="bg-red-100" rowspan="8">사전등록</th>
             <th class="bg-red-100">Chairperson</th>
             <td><?php echo isset($statistics[0]['A_07']) ? $statistics[0]['A_07'] : 0; ?>
             </td>
@@ -81,17 +81,17 @@
         </tr>
         <tr>
             <th class="bg-red-100">Speakers</th>
-            <td><?php echo isset($statistics[6]['A_07']) ? $statistics[6]['A_07'] : 0; ?>
+            <td><?php echo isset($statistics[5]['A_07']) ? $statistics[5]['A_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['AK_07']) ? $statistics[6]['AK_07'] : 0; ?>
+            <td><?php echo isset($statistics[5]['AK_07']) ? $statistics[5]['AK_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['A_08']) ? $statistics[6]['A_08'] : 0; ?>
+            <td><?php echo isset($statistics[5]['A_08']) ? $statistics[5]['A_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['AK_08']) ? $statistics[6]['AK_08'] : 0; ?>
+            <td><?php echo isset($statistics[5]['AK_08']) ? $statistics[5]['AK_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['A_09']) ? $statistics[6]['A_09'] : 0; ?>
+            <td><?php echo isset($statistics[5]['A_09']) ? $statistics[5]['A_09'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['AK_09']) ? $statistics[6]['AK_09'] : 0; ?>
+            <td><?php echo isset($statistics[5]['AK_09']) ? $statistics[5]['AK_09'] : 0; ?>
             </td>
         </tr>
         <tr>
@@ -155,6 +155,21 @@
             </td>
         </tr>
         <tr>
+            <th class="bg-red-100">Sponsor</th>
+            <td><?php echo isset($statistics[6]['A_07']) ? $statistics[6]['A_07'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['AK_07']) ? $statistics[6]['AK_07'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['A_08']) ? $statistics[6]['A_08'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['AK_08']) ? $statistics[6]['AK_08'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['A_09']) ? $statistics[6]['A_09'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['AK_09']) ? $statistics[6]['AK_09'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
             <th class="bg-red-100">Others</th>
             <td><?php echo isset($statistics[2]['A_07']) ? $statistics[2]['A_07'] : 0; ?>
             </td>
@@ -170,7 +185,7 @@
             </td>
         </tr>
         <tr>
-            <th class="bg-blue-100" rowspan="7">현장등록</th>
+            <th class="bg-blue-100" rowspan="8">현장등록</th>
             <th class="bg-blue-100">Chairperson</th>
             <td><?php echo isset($statistics[0]['R_07']) ? $statistics[0]['R_07'] : 0; ?>
             </td>
@@ -187,17 +202,17 @@
         </tr>
         <tr>
             <th class="bg-blue-100">Speakers</th>
-            <td><?php echo isset($statistics[6]['R_07']) ? $statistics[6]['R_07'] : 0; ?>
+            <td><?php echo isset($statistics[5]['R_07']) ? $statistics[5]['R_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['RK_07']) ? $statistics[6]['RK_07'] : 0; ?>
+            <td><?php echo isset($statistics[5]['RK_07']) ? $statistics[5]['RK_07'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['R_08']) ? $statistics[6]['R_08'] : 0; ?>
+            <td><?php echo isset($statistics[5]['R_08']) ? $statistics[5]['R_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['RK_08']) ? $statistics[6]['RK_08'] : 0; ?>
+            <td><?php echo isset($statistics[5]['RK_08']) ? $statistics[5]['RK_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['R_09']) ? $statistics[6]['R_09'] : 0; ?>
+            <td><?php echo isset($statistics[5]['R_09']) ? $statistics[5]['R_09'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[6]['RK_09']) ? $statistics[6]['RK_09'] : 0; ?>
+            <td><?php echo isset($statistics[5]['RK_09']) ? $statistics[5]['RK_09'] : 0; ?>
             </td>
         </tr>
         <tr>
@@ -258,6 +273,21 @@
             <td><?php echo isset($statistics[5]['R_09']) ? $statistics[5]['R_09'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[5]['RK_09']) ? $statistics[5]['RK_09'] : 0; ?>
+            </td>
+        </tr>
+        <tr>
+            <th class="bg-blue-100">Sponsor</th>
+            <td><?php echo isset($statistics[6]['R_07']) ? $statistics[6]['R_07'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['RK_07']) ? $statistics[6]['RK_07'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['R_08']) ? $statistics[6]['R_08'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['RK_08']) ? $statistics[6]['RK_08'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['R_09']) ? $statistics[6]['R_09'] : 0; ?>
+            </td>
+            <td><?php echo isset($statistics[6]['RK_09']) ? $statistics[6]['RK_09'] : 0; ?>
             </td>
         </tr>
         <tr>
