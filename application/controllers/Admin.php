@@ -1333,7 +1333,12 @@ class Admin extends CI_Controller
             $where = array(
                 'qr_print' => 'Y'
             );
+            $wheres = array(
+                'qr_chk' => 'Y'
+            );
+
             $data['users'] = $this->users->get_qr_print_user($where);
+            $data['item'] = $this->users->get_qr_print_user($wheres);
 
             $this->load->view('admin/left_side.php', $data);
             $this->load->view('admin/participant.php', $data);
@@ -1411,6 +1416,10 @@ class Admin extends CI_Controller
                 $where = array(
                     'registration_no' => $qrcode
                 );
+                $infoqr = array(
+                    'qr_chk' =>  'Y'
+                );
+                $this->users->update_qr_status($infoqr, $where);
                 if ($qr_time == '2023-09-07') {
                     $infoqr = array(
                         'qr_chk_day_1' =>  'Y'
