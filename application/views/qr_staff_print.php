@@ -3,77 +3,77 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 <style>
-    @page {
-        size: 10cm 24cm;
-        margin: 0;
-    }
+@page {
+    size: 10cm 24cm;
+    margin: 0;
+}
 
-    body {
-        margin: 0;
-        padding: 0;
-    }
+body {
+    margin: 0;
+    padding: 0;
+}
 
-    /* @font-face {
+/* @font-face {
     font-family: NanumSquare;
     src: url("../../../assets/font/NanumSquare-Hv.otf");
 } */
 
-    .nick_name {
-        font-family: 'Open Sans', sans-serif;
-    }
+.nick_name {
+    font-family: 'Open Sans', sans-serif;
+}
 
-    #printThis {
-        width: 10cm;
-        height: 24cm;
-        margin: 0;
-        padding: 0;
-    }
+#printThis {
+    width: 10cm;
+    height: 24cm;
+    margin: 0;
+    padding: 0;
+}
 
-    .small_name {
-        font-size: 25px !important
-    }
+.small_name {
+    font-size: 25px !important
+}
 
-    .small_text_box {
-        position: relative;
-        top: -18px;
-    }
+.small_text_box {
+    position: relative;
+    top: -18px;
+}
 
-    .small_text_box>.receipt_name {
-        left: -42px !important;
-    }
+.small_text_box>.receipt_name {
+    left: -42px !important;
+}
 
-    .text_box>.receipt_name {
-        left: -42px !important;
-    }
+.text_box>.receipt_name {
+    left: -42px !important;
+}
 
-    #last_name {
-        padding: 0 !important;
-    }
+#last_name {
+    padding: 0 !important;
+}
 
-    .text_box {
-        position: relative;
-        top: -19px;
-    }
+.text_box {
+    position: relative;
+    top: -19px;
+}
 
-    .kor_box {
-        position: relative;
-        top: 24px;
-    }
+.kor_box {
+    position: relative;
+    top: 24px;
+}
 
-    .lucky_num {
-        position: relative;
-        top: -130px;
-        left: -22px;
-        font-size: 15px;
-        text-align: right !important;
-    }
+.lucky_num {
+    position: relative;
+    top: -130px;
+    left: -22px;
+    font-size: 15px;
+    text-align: right !important;
+}
 
-    .lucky_num_bottom {
-        position: relative;
-        top: 229px;
-        left: -30px;
-        text-align: right !important;
-    }
+.lucky_num_bottom {
+    position: relative;
+    top: 229px;
+    left: -30px;
+    text-align: right !important;
+}
 </style>
 <!-- Main content -->
 <div id="nametag_wrapper">
@@ -107,7 +107,8 @@
                 /**닉네임 조건식 */
                 // 한국인 X && firstname 15글자 이상
 
-                echo '<div class="nick_name lang_en" id="first_name" style="font-size: 100px;padding: 78px 10px 0 10px;line-height: 86px;">' . 'PRESS' . '</div>';
+                echo '<div class="nick_name lang_en" id="first_name" style="font-size: 38px;padding: 18px 10px 0 10px;line-height: 86px;">' . 'ICOMES' . '</div>';
+                echo '<div class="nick_name lang_en" id="first_name" style="font-size: 38px;padding: 0px 10px 0 10px;line-height: 86px;">' . 'Policy Symposium Participant' . '</div>';
 
                 // 한국인 X && firstname 15글자 이하
 
@@ -141,35 +142,35 @@
 </div>
 <!-- /page container -->
 <style>
-    body {
-        background-color: #fff;
-    }
+body {
+    background-color: #fff;
+}
 </style>
 <script>
-    document.getElementById("btnPrint").onclick = function() {
+document.getElementById("btnPrint").onclick = function() {
 
-        // window.location.href = `https://reg2.webeon.net/qrcode/print_file?registration_no=${id}`
-        printElement(document.getElementById("printThis"));
+    // window.location.href = `https://reg2.webeon.net/qrcode/print_file?registration_no=${id}`
+    printElement(document.getElementById("printThis"));
+}
+
+function printElement(elem) {
+    var domClone = elem.cloneNode(true);
+
+    var $printSection = document.getElementById("printSection");
+
+    if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.style.width = "10cm";
+        $printSection.style.height = "24cm";
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
     }
 
-    function printElement(elem) {
-        var domClone = elem.cloneNode(true);
-
-        var $printSection = document.getElementById("printSection");
-
-        if (!$printSection) {
-            var $printSection = document.createElement("div");
-            $printSection.style.width = "10cm";
-            $printSection.style.height = "24cm";
-            $printSection.id = "printSection";
-            document.body.appendChild($printSection);
-        }
-
-        $printSection.innerHTML = "";
-        $printSection.appendChild(domClone);
-        //            console.log($printSection);
-        window.print();
-    }
+    $printSection.innerHTML = "";
+    $printSection.appendChild(domClone);
+    //            console.log($printSection);
+    window.print();
+}
 </script>
 
 
