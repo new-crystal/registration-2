@@ -30,7 +30,7 @@
     }
 
     .small_name {
-        font-size: 25px !important
+        font-size: 30px !important;
     }
 
     .small_text_box {
@@ -70,101 +70,99 @@
 
     .lucky_num_bottom {
         position: relative;
-        top: 229px;
+        top: 232px;
         left: -30px;
         text-align: right !important;
     }
 </style>
+
 <!-- Main content -->
 <div id="nametag_wrapper">
     <div class="edit_wrapper">
-        <button id="btnPrint" type="button" class="btn btn-primary">Print</button>
-        <!--
-                    <div id="edit_area">
-                        <textarea name="editor1" id="editor1" rows="10" cols="50">
-                            This is my textarea to be replaced with CKEditor 4.
-                        </textarea>
-                    </div>
--->
+        <button onclick="" id="btnPrint" type="button" class="btn btn-primary" style="margin-left:20px;">Print<?php $num_row ?></button>
     </div>
+
     <!-- Content area -->
     <div class="content" id="nametag">
         <div id="printThis">
-            <div id="editor1" contenteditable="true" style="height:24cm;">
-                <?php
-                $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $users['name_kor']);
-                $nicknameLength = mb_strlen($users['first_name'], "UTF-8") + mb_strlen($users['last_name'], "UTF-8");
-                $nation = $users['nation'];
-                $luckyNum = substr($users['registration_no'], 11, 4);
+            <?php
+            $num_int = 1;
+            foreach ($users as $item) {
+                $lang = preg_match("/[\xE0-\xFF][\x80-\xFF][\x80-\xFF]/", $item['name_kor']);
+                $nicknameLength = mb_strlen($item['first_name'], "UTF-8") + mb_strlen($item['last_name'], "UTF-8");
+                $nation = $item['nation'];
+                $luckyNum = substr($item['registration_no'], 11, 4);
 
                 echo '<div class="a4_area">';
                 echo '<div class="bg_area">';
                 echo '<div class="txt_con">';
-                if ($users['nt_info'] != '') {
-                    echo '<div class="org" id="nt_info">' . $users['nt_info'] . '</div>';
+                if ($item['nt_info'] != '') {
+                    echo '<div class="org" id="nt_info">' . $item['nt_info'] . '</div>';
                 }
                 echo '<div class="lucky_num" id="lucky_num">' . $luckyNum  . '</div>';
-                echo '<div class="org" id="org">' . $users['org_nametag'] . '</div>';
-                if (mb_strlen($users['org_nametag']) <= 51) {
-                    echo '<div class="org" id="nation" style="height:0;    transform: translateY(-21px);">' . $users['nation'] . '</div>';
+                echo '<div class="org" id="org">' . $item['org_nametag'] . '</div>';
+                if (mb_strlen($item['org_nametag']) <= 51) {
+                    echo '<div class="org" id="nation" style="height:0;    transform: translateY(-21px);">' . $item['nation']  . '</div>';
                 } else {
-                    echo '<div class="org" id="nation" style="height:0;    transform: translateY(-13px);">' . $users['nation'] . '</div>';
+                    echo '<div class="org" id="nation" style="height:0;    transform: translateY(-13px);">' . $item['nation']     . '</div>';
                 }
 
                 /**닉네임 조건식 */
-                // 한국인 X && firstname 15글자 이상
+                // 한국인 X && firstname 또는 lastname 15글자 이상
                 if ($nicknameLength < 25) {
-                    if (mb_strlen($users['first_name']) >= 15 || mb_strlen($users['last_name']) >= 15) {
-                        echo '<div class="nick_name lang_en small_name" id="first_name">' .  $users['first_name'] . '</div>';
-                        echo '<div class="nick_name lang_en small_name" id="last_name">' .  $users['last_name'] . '</div>';
+                    if (mb_strlen($item['first_name']) >= 15 || mb_strlen($item['last_name']) >= 15) {
+                        echo '<div class="nick_name lang_en small_name" id="first_name">' .  $item['first_name'] . '</div>';
+                        echo '<div class="nick_name lang_en small_name" id="last_name">' .  $item['last_name'] . '</div>';
                         // 한국인 X && firstname 15글자 이하
-                    } else if (mb_strlen($users['first_name']) <= 15) {
-                        echo '<div class="nick_name lang_en" id="first_name">' .  $users['first_name'] . '</div>';
-                        echo '<div class="nick_name lang_en" id="last_name">' .  $users['last_name'] . '</div>';
+                    } else if (mb_strlen($item['first_name']) <= 15) {
+                        echo '<div class="nick_name lang_en" id="first_name">' .  $item['first_name'] . '</div>';
+                        echo '<div class="nick_name lang_en" id="last_name">' .  $item['last_name'] . '</div>';
                     }
                 } else if ($nicknameLength >= 25) {
-                    echo '<div class="nick_name lang_en" id="first_name" style="line-height: 40px;font-size: 25px;">' .  $users['first_name'] . '</div>';
-                    echo '<div class="nick_name lang_en" id="last_name" style="line-height: 40px;font-size: 25px;">' .  $users['last_name'] . '</div>';
+                    echo '<div class="nick_name lang_en" id="first_name" style="line-height: 40px;font-size: 25px;">' .  $item['first_name'] . '</div>';
+                    echo '<div class="nick_name lang_en" id="last_name" style="line-height: 40px;font-size: 25px;">' .  $item['last_name'] . '</div>';
                 }
-
                 // //한국인 O
                 // if ($nation == "Republic of Korea") {
                 //     echo '<div class="nick_name lang_en small_name" id="first_name">' . $users['last_name'] . " " . $users['first_name'] . '</div>';
                 // }
-                echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $users['registration_no'] . '.jpg"></div>';
+                echo '<div id="qrcode" class=""><img src="/assets/images/QR/qrcode_' . $item['registration_no'] . '.jpg"></div>';
 
                 //한국인 X firstname & lastName 15글자 이상
-                if (mb_strlen($users['first_name']) >= 15 || mb_strlen($users['last_name']) >= 15) {
+                if (mb_strlen($item['first_name']) >= 15 || mb_strlen($item['last_name']) >= 15) {
                     echo '<div class ="small_text_box">';
 
                     //한국인 X firstname & lastName 15글자 이하
-                } else if (mb_strlen($users['first_name']) <= 15 && mb_strlen($users['last_name']) <= 15) {
+                } else if (mb_strlen($item['first_name']) <= 15 && mb_strlen($item['last_name']) <= 15) {
                     echo '<div class ="text_box">';
                 }
 
-                echo '<div class="receipt receipt_name">' . $users['first_name'] . ' ' . $users['last_name'] .   '</div>';
-                echo '<div class="receipt receipt_num_1">' . $users['registration_no'] . '</div>';
-                if (mb_strlen($users['fee']) == 3) {
-                    echo '<div class="receipt receipt_price">' . 'USD ' . number_format($users['fee']) . '</div>';
-                } else if (mb_strlen($users['fee']) == 1) {
-                    echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '</div>';
+                echo '<div class="receipt receipt_name">' . $item['first_name'] . ' ' . $item['last_name'] .   '</div>';
+                echo '<div class="receipt receipt_num_1">' . $item['registration_no'] . '</div>';
+                if (mb_strlen($item['fee']) == 3) {
+                    echo '<div class="receipt receipt_price">' . 'USD ' . number_format($item['fee']) . '</div>';
+                } else if (mb_strlen($item['fee']) == 1) {
+                    echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '</div>';
                 } else {
-                    echo '<div class="receipt receipt_price">' . number_format($users['fee']) . '원' . '</div>';
+                    echo '<div class="receipt receipt_price">' . number_format($item['fee']) . '원' . '</div>';
                 }
 
                 echo '</div>';
 
-                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $luckyNum  . '</div>';
+                echo '<div class="lucky_num_bottom" id="lucky_num_bottom">' . $luckyNum . '</div>';
+                // echo '<div class="receipt receipt_num_2">' . $users['registration_no'] . '</div>';
+                // echo '<div class="receipt receipt_small small_nick">' . $users['nick_name'] . '</div>';
+                // echo '<div class="receipt receipt_small smaill_ln">' . $users['ln'] . '</div>';
+                // echo '<div class="receipt receipt_small small_sn">' . $users['sn'] . '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-
-                ?>
-            </div>
+                $num_int = $num_int + 1;
+            }
+            ?>
         </div>
     </div>
-</div>
-<!-- /content area -->
+    <!-- /content area -->
 
 </div>
 <!-- /main content -->
@@ -202,69 +200,7 @@
 
     //     $printSection.innerHTML = "";
     //     $printSection.appendChild(domClone);
-    //     //            console.log($printSection);
     //     window.print();
     // }
-</script>
-
-<script>
-    //Make the DIV element draggagle:
-    dragElement(document.getElementById("qrcode"));
-    dragElement(document.getElementById("org"));
-    dragElement(document.getElementById("nick_name"));
-
-    function dragElement(elmnt) {
-        var pos1 = 0,
-            pos2 = 0,
-            pos3 = 0,
-            pos4 = 0;
-        if (document.getElementById(elmnt.id)) {
-            /* if present, the header is where you move the DIV from:*/
-            document.getElementById(elmnt.id).onmousedown = dragMouseDown;
-        } else {
-            /* otherwise, move the DIV from anywhere inside the DIV:*/
-            elmnt.onmousedown = dragMouseDown;
-        }
-
-        function dragMouseDown(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // get the mouse cursor position at startup:
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            // call a function whenever the cursor moves:
-            document.onmousemove = elementDrag;
-        }
-
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // calculate the new cursor position:
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            // set the element's new position:
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-            /* stop moving when mouse button is released:*/
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
-    }
-</script>
-<script src="/ckeditor/ckeditor.js"></script>
-<script>
-    // Replace the <textarea id="editor1"> with a CKEditor 4
-    // instance, using default configuration.
-    //        CKEDITOR.replace( 'editor1' );
-
-    // Turn off automatic editor creation first.
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline('editor1');
 </script>
 </body>
