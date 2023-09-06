@@ -1,5 +1,13 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+body {
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .text_box {
     font-size: 7rem;
     color: #000;
@@ -20,22 +28,11 @@
     }
 }
 </style>
-<div class="w-full h-screen flex flex-col items-center justify-center">
+<div class="w-full h-screen flex flex-col items-center justify-center overflow-hiddens">
     <div class="page_1">
         <img src="../../assets/images/new_index.png" />
     </div>
-    <div class="page_2" style="display: none;">
-        <img class="absolute top-0 left-0" style="z-index: -99;" src="../../assets/images/name_org.png" />
-        <div class="text_box">
-            <div id="name_kor" class="relative z-50" style="top: 44px;">
-                <?php if (isset($users['name_kor'])) echo $users['name_kor'] ?>
-            </div>
-        </div>
-        <div class="text_box">
-            <div id="org" class="relative z-50" style="top: 141px;">
-                <?php if (isset($users['org'])) echo $users['org'] ?></div>
-        </div>
-    </div>
+
 </div>
 
 <script>
@@ -72,4 +69,9 @@ window.addEventListener('message', function(event) {
         childFunction(event.data);
     }
 });
+
+/**우클릭 방지 */
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+}, false);
 </script>
