@@ -781,6 +781,7 @@ class Admin extends CI_Controller
                 $etc4 = $this->input->post('etc4');
                 $conference_info = $this->input->post('conference_info');
                 $remark1 = $this->input->post('remark1');
+                $remark2 = $this->input->post('remark2');
                 $special_request_food = $this->input->post('special_request_food');
                 $remark3 = $this->input->post('remark3');
                 $remark4 = $this->input->post('remark4');
@@ -843,8 +844,9 @@ class Admin extends CI_Controller
                     'etc1' => $etc1,
                     'etc4' => $etc4,
                     'conference_info' => $conference_info,
-                    'remark1' => $remark1,
                     'special_request_food' => $special_request_food,
+                    'remark1' => $remark1,
+                    'remark2' => $remark2,
                     'remark3' => $remark3,
                     'remark4' => $remark4,
                     'remark5' => $remark5,
