@@ -121,7 +121,7 @@ table td {
                         }
                         echo '<td style="text-align: center;"><input type="checkbox" name="depositChk" class="depositChk" value="' .  $item['registration_no'] . '"></td>';
                         // echo '<td>' . $index++ . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['registration_no'] . '</a></td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_self">' . $item['registration_no'] . '</a></td>';
                         // echo '<td style="text-align: center;">' . number_format($item['fee']) . '</td>';
                         if ($item['deposit'] != "결제완료") {
                             echo '<td style="color:red;">';
@@ -139,7 +139,7 @@ table td {
                         echo '<td>' . $item['org_nametag'] . '</td>';
                         echo '<td>' . $item['nation'] . '</td>';
                         echo '<td>' . $item['phone'] . '</td>';
-                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_blank">' . $item['email'] . '</a></td>';
+                        echo '<td class="user_d"><a href="/admin/user_detail?n=' . $item['registration_no'] . '" target="_self">' . $item['email'] . '</a></td>';
                         echo '<td>' . $item['member_type']  . '</td>';
                         if (mb_strlen($item['fee']) == 1) {
                             echo '<td>' . $item['fee']  . '</td>';
