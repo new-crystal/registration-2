@@ -54,7 +54,7 @@
     }
 
     .info_content>input {
-        background-color: transparent;
+
         margin-left: 139px;
         margin-top: 10px;
         width: 82%;
@@ -65,6 +65,10 @@
 
     .info_content>input:focus {
         outline: none
+    }
+
+    input {
+        background-color: transparent;
     }
 
     #text_box {
