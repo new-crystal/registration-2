@@ -884,7 +884,7 @@ class Admin extends CI_Controller
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
 
-        $table_columns = array("NO", "Registration No.", "참석여부", "방문일자", "E-Mail", "Full Name", "First Name", "Last Name", "성함", "Country", "Affiliation", "소속", "Department", "부서", "Type of Participation", "Category", "Telephone Number", "Date of Birth", "등록비", "결제 여부", "결제 방식", "의사면허번호", "전문의번호", "영양사자격번호", "임상영양사자격번호", "운동사 신청(Y/N)", "Day 1 입실 시간", "Day 1 퇴실 시간", "체류시간", "Break 제외 시간", "Day 2 입실 시간", "Day 2 퇴실 시간", "체류시간", "Break 제외 시간", "Day 3 입실 시간", "Day 3 퇴실 시간", "체류시간", "Break 제외 시간");
+        $table_columns = array("NO", "Registration No.", "참석여부", "방문일자", "E-Mail", "Full Name", "First Name", "Last Name", "성함", "Country", "Affiliation", "소속", "Department", "부서", "Type of Participation", "Category", "Telephone Number", "Date of Birth", "등록비", "결제 여부", "결제 방식", "의사면허번호", "전문의번호", "영양사자격번호", "임상영양사자격번호", "운동사 신청(Y/N)", "Day 1 입실 시간", "Day 1 퇴실 시간", "체류시간", "Break 제외 시간", "Day 2 입실 시간", "Day 2 퇴실 시간", "체류시간", "Break 제외 시간", "Day 3 입실 시간", "Day 3 퇴실 시간", "체류시간", "Break 제외 시간", "특이식단");
 
         $column = 0;
 
@@ -988,6 +988,7 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(35, $excel_row, date("H:i", strtotime($row['maxtime_day3'])));  //DAY3퇴실
             $object->getActiveSheet()->setCellValueByColumnAndRow(36, $excel_row, $row['d_format_day3']);        //DAY3체류시간
             $object->getActiveSheet()->setCellValueByColumnAndRow(37, $excel_row, hoursandmins($spent3));
+            $object->getActiveSheet()->setCellValueByColumnAndRow(38, $excel_row, $row['reg2']);
             //$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, hoursandmins($spent));
             //$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $score);
             // $object->getActiveSheet()->setCellValueByColumnAndRow(24, $excel_row, '');
