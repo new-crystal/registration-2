@@ -988,7 +988,7 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(35, $excel_row, date("H:i", strtotime($row['maxtime_day3'])));  //DAY3퇴실
             $object->getActiveSheet()->setCellValueByColumnAndRow(36, $excel_row, $row['d_format_day3']);        //DAY3체류시간
             $object->getActiveSheet()->setCellValueByColumnAndRow(37, $excel_row, hoursandmins($spent3));
-            $object->getActiveSheet()->setCellValueByColumnAndRow(38, $excel_row, $row['reg2']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(38, $excel_row, $row['remark2']);
             //$object->getActiveSheet()->setCellValueByColumnAndRow(15, $excel_row, hoursandmins($spent));
             //$object->getActiveSheet()->setCellValueByColumnAndRow(16, $excel_row, $score);
             // $object->getActiveSheet()->setCellValueByColumnAndRow(24, $excel_row, '');
