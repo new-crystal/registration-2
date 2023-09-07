@@ -107,8 +107,7 @@ body {
                 /**닉네임 조건식 */
                 // 한국인 X && firstname 15글자 이상
 
-                echo '<div class="nick_name lang_en" id="first_name" style="font-size: 38px;padding: 18px 10px 0 10px;line-height: 86px;">' . 'ICOMES' . '</div>';
-                echo '<div class="nick_name lang_en" id="first_name" style="font-size: 38px;padding: 0px 10px 0 10px;line-height: 86px;">' . 'Policy Symposium Participant' . '</div>';
+                echo '<div class="nick_name lang_en" id="first_name" style="font-size: 100px;padding: 78px 10px 0 10px;line-height: 86px;">' . 'PRESS' . '</div>';
 
                 // 한국인 X && firstname 15글자 이하
 
