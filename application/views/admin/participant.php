@@ -64,7 +64,7 @@ tr {
 
         </tr>
         <tr>
-            <th class="bg-red-100" rowspan="8">사전등록</th>
+            <th class="bg-red-100" rowspan="7">사전등록</th>
             <th class="bg-red-100">Chairperson</th>
             <td><?php echo isset($statistics[0]['A_07']) ? $statistics[0]['A_07'] : 0; ?>
             </td>
@@ -185,7 +185,7 @@ tr {
             </td>
         </tr>
         <tr>
-            <th class="bg-blue-100" rowspan="8">현장등록</th>
+            <th class="bg-blue-100" rowspan="7">현장등록</th>
             <th class="bg-blue-100">Chairperson</th>
             <td><?php echo isset($statistics[0]['R_07']) ? $statistics[0]['R_07'] : 0; ?>
             </td>
