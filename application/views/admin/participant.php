@@ -35,7 +35,7 @@ tr {
     $total_7 = 0;
     $total_8 = 0;
     $total_9 = 0;
-    for ($i = 0; $i < 6; $i++) {
+    for ($i = 0; $i <= 6; $i++) {
         $total_1 += $statistics[$i]['A_07'] + $statistics[$i]['R_07'];
         $total_2 += $statistics[$i]['AK_07'] + $statistics[$i]['RK_07'];
         $total_3 += $statistics[$i]['A_08'] + $statistics[$i]['R_08'];
