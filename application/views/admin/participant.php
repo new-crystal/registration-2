@@ -1,21 +1,21 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-    th,
-    td {
-        text-align: center !important;
-        border: 2px solid rgb(163 163 163);
-        font-weight: 600;
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
+th,
+td {
+    text-align: center !important;
+    border: 2px solid rgb(163 163 163);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
 
-    tr {
-        height: 4.5rem;
-        border: 2px solid rgb(163 163 163);
-        font-weight: 600;
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
+tr {
+    height: 4.5rem;
+    border: 2px solid rgb(163 163 163);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
 </style>
 <div class="text-center flex flex-col items-center justify-center">
     <h1 class="text-6xl font-semibold text-orange-600 my-10">ICOMES 2023</h1>
@@ -38,7 +38,7 @@
     for ($i = 0; $i < count($statistics); $i++) {
         $total_1 += $statistics[$i]['A_07'] + $statistics[$i]['R_07'];
         $total_2 += $statistics[$i]['AK_07'] + $statistics[$i]['RK_07'];
-        $total_3 += $statistics[$i]['A_08'] + $statistics[$i]['AK_08'];
+        $total_3 += $statistics[$i]['A_08'] + $statistics[$i]['R_08'];
         $total_4 += $statistics[$i]['AK_08'] + $statistics[$i]['RK_08'];
         $total_5 += $statistics[$i]['A_09'] + $statistics[$i]['R_09'];
         $total_6 += $statistics[$i]['AK_09'] + $statistics[$i]['RK_09'];
