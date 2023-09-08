@@ -64,7 +64,7 @@ tr {
 
         </tr>
         <tr>
-            <th class="bg-red-100" rowspan="8">사전등록</th>
+            <th class="bg-red-100" rowspan="7">사전등록</th>
             <th class="bg-red-100">Chairperson</th>
             <td><?php echo isset($statistics[0]['A_07']) ? $statistics[0]['A_07'] : 0; ?>
             </td>
@@ -139,7 +139,7 @@ tr {
             <td><?php echo isset($statistics[4]['AK_09']) ? $statistics[4]['AK_09'] : 0; ?>
             </td>
         </tr>
-        <tr>
+        <!-- <tr>
             <th class="bg-red-100">Press</th>
             <td><?php echo isset($statistics[5]['A_07']) ? $statistics[5]['A_07'] : 0; ?>
             </td>
@@ -147,13 +147,13 @@ tr {
             </td>
             <td><?php echo isset($statistics[5]['A_08']) ? $statistics[5]['A_08'] : 0; ?>
             </td>
-            <td><?php echo isset($statistics[5]['AK_08']) ? $statistics[5]['AK_08'] : 0; ?>
-            </td>
+            <td><?php echo isset($statistics[5]['AK_08']) ? $statistics[5]['AK_08'] : 0; ?> -->
+        <!-- </td>
             <td><?php echo isset($statistics[5]['A_09']) ? $statistics[5]['A_09'] : 0; ?>
             </td>
             <td><?php echo isset($statistics[5]['AK_09']) ? $statistics[5]['AK_09'] : 0; ?>
             </td>
-        </tr>
+        </tr> -->
         <tr>
             <th class="bg-red-100">Sponsor</th>
             <td><?php echo isset($statistics[6]['A_07']) ? $statistics[6]['A_07'] : 0; ?>
@@ -185,7 +185,7 @@ tr {
             </td>
         </tr>
         <tr>
-            <th class="bg-blue-100" rowspan="8">현장등록</th>
+            <th class="bg-blue-100" rowspan="7">현장등록</th>
             <th class="bg-blue-100">Chairperson</th>
             <td><?php echo isset($statistics[0]['R_07']) ? $statistics[0]['R_07'] : 0; ?>
             </td>
@@ -260,7 +260,7 @@ tr {
             <td><?php echo isset($statistics[4]['RK_09']) ? $statistics[4]['RK_09'] : 0; ?>
             </td>
         </tr>
-        <tr>
+        <!-- <tr>
             <th class="bg-blue-100">Press</th>
             <td><?php echo isset($statistics[5]['R_07']) ? $statistics[5]['R_07'] : 0; ?>
             </td>
@@ -274,7 +274,7 @@ tr {
             </td>
             <td><?php echo isset($statistics[5]['RK_09']) ? $statistics[5]['RK_09'] : 0; ?>
             </td>
-        </tr>
+        </tr> -->
         <tr>
             <th class="bg-blue-100">Sponsor</th>
             <td><?php echo isset($statistics[6]['R_07']) ? $statistics[6]['R_07'] : 0; ?>
