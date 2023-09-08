@@ -179,28 +179,28 @@
 </style>
 <script>
     document.getElementById("btnPrint").onclick = function() {
-        const id = "<?php echo $users['registration_no']; ?>";
+        // const id = "<?php echo $users['registration_no']; ?>";
 
-        window.location.href = `https://reg2.webeon.net/qrcode/print_file?registration_no=${id}`
-        // printElement(document.getElementById("printThis"));
+        // window.location.href = `https://reg2.webeon.net/qrcode/print_file?registration_no=${id}`
+        printElement(document.getElementById("printThis"));
     }
 
-    // function printElement(elem) {
-    //     var domClone = elem.cloneNode(true);
+    function printElement(elem) {
+        var domClone = elem.cloneNode(true);
 
-    //     var $printSection = document.getElementById("printSection");
+        var $printSection = document.getElementById("printSection");
 
-    //     if (!$printSection) {
-    //         var $printSection = document.createElement("div");
-    //         $printSection.style.width = "10cm";
-    //         $printSection.style.height = "24cm";
-    //         $printSection.id = "printSection";
-    //         document.body.appendChild($printSection);
-    //     }
+        if (!$printSection) {
+            var $printSection = document.createElement("div");
+            $printSection.style.width = "10cm";
+            $printSection.style.height = "24cm";
+            $printSection.id = "printSection";
+            document.body.appendChild($printSection);
+        }
 
-    //     $printSection.innerHTML = "";
-    //     $printSection.appendChild(domClone);
-    //     window.print();
-    // }
+        $printSection.innerHTML = "";
+        $printSection.appendChild(domClone);
+        window.print();
+    }
 </script>
 </body>
