@@ -100,7 +100,7 @@ class Admin extends CI_Controller
         $object = new PHPExcel();
         $object->setActiveSheetIndex(0);
 
-        $table_columns = array("Registration No.", "Registration No.(Lucky Draw)", "등록 시간", "Date of Registration", "Type of Participation", "국내/국외", "Country", "KSSO 회원 여부", "Full Name", "First Name", "Last Name", "네임택용 Name", "성함", "Affiliation(Institution)", "네임택용 Affiliation", "소속", "Affiliation(Department)", "부서", "ID(E-mail)", "Phone Number", "Occupation", "Occupation (Others)", "Category", "Category (Others)", "Date of Birth", "의사면허번호", "전문의번호", "영양사자격번호", "임상영양사자격번호", "운동사 신청(Y/N)", "결제상태", "등록비", "결제일", "결제 방식", "결제금액", "할인율", "Promotion Code", "추천인", "Welcome Reception", "Day 2 Breakfast", "Day 2 Luncheon", "Day 3 Breakfast", "Day 3 Luncheon", "Where did you get the information about the conference?", "Remarks 1(하단택)", "Remarks 2(Special Requst for Food)", "Remarks 3", "Remarks 4", "Remarks 5");
+        $table_columns = array("Registration No.", "Registration No.(Lucky Draw)", "등록 시간", "Date of Registration", "Type of Participation", "국내/국외", "Country", "KSSO 회원 여부", "Full Name", "First Name", "Last Name", "네임택용 Name", "성함", "Affiliation(Institution)", "네임택용 Affiliation", "소속", "Affiliation(Department)", "부서", "ID(E-mail)", "Phone Number", "Occupation", "Occupation (Others)", "Category", "Category (Others)", "Date of Birth", "의사면허번호", "전문의번호", "영양사자격번호", "임상영양사자격번호", "운동사 신청(Y/N)", "결제상태", "등록비", "결제일", "결제 방식", "결제금액", "할인율", "Promotion Code", "추천인", "Welcome Reception", "Day 2 Breakfast", "Day 2 Luncheon", "Day 3 Breakfast", "Day 3 Luncheon", "Where did you get the information about the conference?", "Remarks 1(하단택)", "Remarks 2(Special Requst for Food)", "Remarks 3", "Remarks 4", "Remarks 5", "memo");
 
         $column = 0;
 
@@ -170,6 +170,7 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValueByColumnAndRow(46, $excel_row, $row['remark3']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(47, $excel_row, $row['remark4']);
             $object->getActiveSheet()->setCellValueByColumnAndRow(48, $excel_row, $row['remark5']);
+            $object->getActiveSheet()->setCellValueByColumnAndRow(49, $excel_row, $row['memo']);
             $excel_row++;
         }
 
