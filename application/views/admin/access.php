@@ -188,6 +188,7 @@ $en_name = $firstName . " " . $lastName
                                                                     echo $user['memo'] == 'null' ? "" : $user['memo'];
                                                                 }
                                                                 ?></td>
+
                             </tr>
 
                             <tr>
@@ -265,11 +266,26 @@ const remark3 = document.querySelector("#remark3")
 const remark4 = document.querySelector("#remark4")
 const remark5 = document.querySelector("#remark5")
 const memoBtn = document.querySelector("#memo_btn")
+const content = document.querySelector(".content")
 var childWindow;
+let popUpWindow;
 let qrvalue = "";
+
+content.addEventListener("click", () => {
+    qrcode.focus();
+})
 
 qrcode.focus();
 
+function whiteBackGrond() {
+    memo.style.backgrond = "#FFF"
+}
+
+function changeBackgroundColorIfNotEmpty(element) {
+    if (element.innerText.trim() !== "") {
+        element.style.backgroundColor = "#ffe566";
+    }
+}
 
 function openQR() {
     const url = `/qrcode/open`
@@ -279,6 +295,19 @@ function openQR() {
         childWindow = window.open(url, 'ChildWindow', 'width=400,height=300');
     }
 }
+
+function popUp(id) {
+    const url = `/qrcode/pop_up?n=${id}`
+    if (popUpWindow && !popUpWindow.closed) {
+        popUpWindow = null;
+    } else {
+        popUpWindow = window.open(url, 'popUpWindow', 'width=500,height=500');
+        popUpWindow.addEventListener("unload", () => {
+            qrcode.focus();
+        })
+    }
+}
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -344,6 +373,9 @@ function fetchData(qrcode) {
                     .trim();
                 remark5.innerText = htmlDocument.querySelector("#remark5").innerText.replace(/<br\s*\/?>/gi, "")
                     .trim();
+                // if (remark1.innerText !== "") {
+                //     popUp(number.innerText)
+                // }
             } else {
                 number.innerText = qrvalue
                 name.innerText = "없는 QR입니다."
@@ -356,6 +388,17 @@ function fetchData(qrcode) {
             executeFunctionInChildWindow(qrcode);
         }).then(() => {
             window.open(`https://reg2.webeon.net/qrcode/print_file?registration_no=${qrvalue}`, "_blank")
+        }).then(() => {
+            // if (memo.innerText || remark1.innerText || remark2.innerText || remark3.innerText || remark4
+            //     .innerText || remark5.innerText) {
+            //     alert("메모나 remark를 확인해주세요!")
+            // }
+            changeBackgroundColorIfNotEmpty(memo);
+            changeBackgroundColorIfNotEmpty(remark1);
+            changeBackgroundColorIfNotEmpty(remark2);
+            changeBackgroundColorIfNotEmpty(remark3);
+            changeBackgroundColorIfNotEmpty(remark4);
+            changeBackgroundColorIfNotEmpty(remark5);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -399,6 +442,7 @@ window.addEventListener('message', (e) => {
 }, false);
 
 window.onload = () => {
+    whiteBackGrond()
     if (qrvalue) {
         number.innerText = qrvalue
     }

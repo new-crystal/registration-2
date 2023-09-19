@@ -132,4 +132,14 @@ class Qrcode extends CI_Controller
         $data['users'] = $this->users->get_user($where);
         $this->load->view('qr_open', $data);
     }
+
+    public function pop_up()
+    {
+        $qrcode = $_GET['n'];
+        $where = array(
+            'registration_no' => $qrcode
+        );
+        $data['users'] = $this->users->get_user($where);
+        $this->load->view('qr_pop', $data);
+    }
 }

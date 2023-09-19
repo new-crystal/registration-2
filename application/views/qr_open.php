@@ -30,7 +30,8 @@ body::-webkit-scrollbar {
 </style>
 <div class="w-full h-screen flex flex-col items-center justify-center overflow-hiddens">
     <div class="page_1">
-        <img src="../../assets/images/new_index.png" />
+        <!-- <img src="../../assets/images/new_index.png" /> -->
+
     </div>
 
 </div>
