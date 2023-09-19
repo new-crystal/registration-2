@@ -253,4 +253,85 @@ class OnSite extends CI_Controller
         $data['fee'] = $_GET['fee'];
         $this->load->view('success', $data);
     }
+
+    public function sicem()
+    {
+
+        $this->load->view('on_site_sicem', $this->data);
+        $type = isset($_GET['type1']) ? $_GET['type1'] : null;
+        $type2 = isset($_GET['type2']) ? $_GET['type2'] : null;
+        $type4 = isset($_GET['type4']) ? $_GET['type4'] : null;
+        $type5 = isset($_GET['type5']) ? $_GET['type5'] : null;
+        $name = isset($_GET['name_kor']) ? $_GET['name_kor'] : null;
+        $phone1 = isset($_GET['phone1']) ? $_GET['phone1'] : null;
+        $phone2 = isset($_GET['phone2']) ? $_GET['phone2'] : null;
+        $email1 = isset($_GET['email1']) ? $_GET['email1'] : null;
+        $email2 = isset($_GET['email2']) ? $_GET['email2'] : null;
+        $org = isset($_GET['org']) ? $_GET['org'] : null;
+        $license = isset($_GET['ln']) ? $_GET['ln'] : null;
+        $special_license = isset($_GET['sn']) ? $_GET['sn'] : null;
+
+        $phone =  $phone1 . $phone2;
+
+        if (!empty($name) || !empty($firstName)) {
+            if ($type4 == "on") {
+                $type3 = "회원";
+            } else {
+                $type3 = "비회원";
+            }
+            if ($license == "") {
+                $license = "00000";
+            }
+            if ($type2 == '개원의' || $type2 == '봉직의' || $type2 == '전문의' || $type2 == '교수' || $type2 == '군의관') {
+                if ($type == '좌장' || $type == '연자' || $type == '패널') {
+                    $fee = 0;
+                } else {
+                    if ($type3 == '비회원') {
+                        $fee = 50000;
+                    } else {
+                        $fee = 30000;
+                    }
+                }
+            } else if ($type2 == '간호사' || $type2 == '영양사' || $type2 == '약사' || $type2 == '운동처방사' || $type2 == '연구원') {
+                if ($type == '좌장' || $type == '연자' || $type == '패널') {
+                    $fee = 0;
+                } else {
+                    if ($type3 == '비회원') {
+                        $fee = 40000;
+                    } else {
+                        $fee = 20000;
+                    }
+                }
+            } else {
+                $fee = 0;
+            }
+
+            // if ($fee == 0)
+            //     $deposit = '미결제';
+            // else
+            //     $deposit = '미결제';
+
+            $time = date("Y-m-d H:i:s");
+            // $uagent = $this->agent->agent_string();
+
+            $email = $email1 . "@" . $email2;
+            $info = array(
+                'name_kor' => preg_replace("/\s+/", "", $name),
+                'ln' => preg_replace("/\s+/", "", $license),
+                'sn' => preg_replace("/\s+/", "", $special_license),
+                'org' => trim($org),
+                'org_nametag' => trim($org),
+                'phone' => preg_replace("/\s+/", "", $phone),
+                'email' => preg_replace("/\s+/", "", $email),
+                'type' => trim($type),
+                'type2' => trim($type2),
+                'type3' => trim($type3),
+                'fee' => $fee,
+                'time' => $time,
+                'deposit' => $deposit,
+                // 'uagent' => $uagent,
+            );
+            $this->users->add_onsite_user($info);
+        }
+    }
 }
